@@ -6,6 +6,9 @@ export default {
       fontFamily: {
         Pretendard: ['Pretendard'],
       },
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(to right, rgba(72, 77, 84, 0.5), rgba(72, 77, 84, 1))',
+      },
     },
     colors: {
       black01: '#212121',
