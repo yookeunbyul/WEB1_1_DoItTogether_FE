@@ -9,3 +9,23 @@
     @apply font-Pretendard;
   }
 }
+
+.react-modal-sheet-container {
+  /* margin: 0 auto !important;
+  max-width: 430px !important;
+  width: 100% !important; */
+  border-top-left-radius: 1rem !important;
+  border-top-right-radius: 1rem !important;
+  box-shadow: none !important;
+}
+
+.react-modal-sheet-header {
+  /* custom styles */
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.react-modal-sheet-drag-indicator {
+  display: none;
+}
+
