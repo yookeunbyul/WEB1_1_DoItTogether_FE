@@ -1,6 +1,7 @@
 import React from 'react';
 
 interface MemberTabProps {
+  /** 멤버 이름 */
   memberName: string;
 }
 
