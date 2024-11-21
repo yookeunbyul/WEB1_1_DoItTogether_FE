@@ -26,3 +26,18 @@ export const Default: Story = {
     }),
   },
 };
+
+export const Complete: Story = {
+  args: {
+    actionStatus: 'complete',
+    handleAction: fn(() => {
+      console.log('action btn clicked');
+    }),
+    listTitle: '화장실 청소',
+    charger: '철수',
+    time: '오후 9:00',
+    handleEditOrDelete: fn(() => {
+      console.log('Edit or Delete triggered');
+    }),
+  },
+};
