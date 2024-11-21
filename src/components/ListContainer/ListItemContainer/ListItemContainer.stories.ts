@@ -3,7 +3,7 @@ import ListItemContainer, { ListItemContainerProps } from './ListItemContainer';
 import { fn } from '@storybook/test'; // Mock function을 가져오기
 
 const meta = {
-  title: 'components/ListContainer',
+  title: 'components/ListContainer/ListItemContainer',
   component: ListItemContainer,
   tags: ['autodocs'],
 } satisfies Meta<typeof ListItemContainer>;
@@ -14,6 +14,7 @@ type Story = StoryObj<ListItemContainerProps>;
 
 export const Default: Story = {
   args: {
+    id: 1,
     actionStatus: 'incomplete',
     handleAction: fn(() => {
       console.log('action btn clicked');
@@ -29,6 +30,7 @@ export const Default: Story = {
 
 export const Complete: Story = {
   args: {
+    id: 2,
     actionStatus: 'complete',
     handleAction: fn(() => {
       console.log('action btn clicked');

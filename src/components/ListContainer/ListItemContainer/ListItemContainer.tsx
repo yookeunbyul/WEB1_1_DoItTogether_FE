@@ -3,6 +3,8 @@ import EditDeleteBtn, { EditDeleteBtnProps } from '../EditDeleteBtn/EditDeleteBt
 import ListActionBtn, { ListActionBtnProps } from '../ListActionBtn/ListActionBtn';
 
 export interface ListItemContainerProps extends ListActionBtnProps, EditDeleteBtnProps {
+  /** 집안일 ID */
+  id: number;
   /** 집안일 */
   listTitle: string;
   /** 담당자 */
