@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-  #root {
+
+  html,
+  body {
     @apply font-Pretendard;
   }
 }
@@ -26,3 +28,4 @@
 .react-modal-sheet-drag-indicator {
   display: none;
 }
+
