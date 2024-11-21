@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import BottomNavBtn from './BottomNavBtn';
 
 const meta = {
-  title: 'Components/BottomNavBtn/BottomNavBtn',
+  title: 'Components/BottomNavContainer/BottomNavBtn/BottomNavBtn',
   component: BottomNavBtn,
   parameters: {
     layout: 'centered',

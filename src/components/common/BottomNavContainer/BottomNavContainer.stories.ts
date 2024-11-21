@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import BottomNavContainer from './BottomNavContainer';
 
 const meta = {
-  title: 'Components/BottomNavContainer',
+  title: 'Components/BottomNavContainer/BottomNavContainer',
   component: BottomNavContainer,
 
   tags: ['autodocs'],

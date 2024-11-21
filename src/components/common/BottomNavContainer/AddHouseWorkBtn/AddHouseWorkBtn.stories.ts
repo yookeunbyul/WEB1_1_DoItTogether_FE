@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import AddHouseWorkBtn from './AddHouseWorkBtn';
 
 const meta = {
-  title: 'Components/AddHouseWorkBtn/AddHouseWorkBtn',
+  title: 'Components/BottomNavContainer/AddHouseWorkBtn/AddHouseWorkBtn',
   component: AddHouseWorkBtn,
   parameters: {
     layout: 'centered',
