@@ -22,6 +22,7 @@ export default {
       white03: '#FFFFFF',
     },
     fontSize: {
+      12: '0.75rem',
       14: '0.875rem',
       16: '1rem',
       24: '1.5rem',
