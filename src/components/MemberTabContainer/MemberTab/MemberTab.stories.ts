@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import MemberTab from './MemberTab';
 
 const meta = {
-  title: 'Components/MemberTabContainer/MemberTab/MemberTab',
+  title: 'Components/MemberTabContainer/MemberTab',
   component: MemberTab,
 } satisfies Meta<typeof MemberTab>;
 
