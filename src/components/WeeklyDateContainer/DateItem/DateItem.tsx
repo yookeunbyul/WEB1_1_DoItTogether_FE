@@ -7,12 +7,15 @@ interface DateItemProps {
   pendingCnt: number;
   /** 활성화 상태 */
   isActive: boolean;
+  /** 클릭 이벤트 */
+  onClick: () => void;
 }
 
-const DateItem = ({ date, day, pendingCnt, isActive }: DateItemProps) => {
+const DateItem = ({ date, day, pendingCnt, isActive, onClick }: DateItemProps) => {
   return (
     // TODO rounded, font-weight 공통변수로 수정할 예정
     <div
+      onClick={onClick}
       className={`flex h-20 w-10 flex-col items-center justify-center gap-0.5 rounded-[30px] px-2 py-1 ${isActive ? 'bg-black02' : 'bg-white03'} `}
     >
       <span className={`text-14 ${isActive ? 'text-gray03' : 'text-gray02'}`}>{date}</span>
