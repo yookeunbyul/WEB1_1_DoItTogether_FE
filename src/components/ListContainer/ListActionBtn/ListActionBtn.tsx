@@ -10,7 +10,9 @@ import React from 'react';
  */
 
 export interface ListActionBtnProps {
+  /** 상태 */
   actionStatus: string;
+  /** 액션 */
   handleAction: () => void;
 }
 
