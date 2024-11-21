@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import HomeHeaderContainer from './HomeHeaderContainer';
 
 const meta = {
-  title: 'HomeHeaderContainer',
+  title: 'components/HomeHeaderContainer',
   component: HomeHeaderContainer,
 } satisfies Meta<typeof HomeHeaderContainer>;
 
