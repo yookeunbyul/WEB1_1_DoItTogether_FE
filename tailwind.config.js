@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
@@ -14,8 +15,8 @@ export default {
       gray02: '#9090A0',
       gray03: '#C6C6D0',
       white01: '#E9E9EE',
-      white01: '#F5F5F9',
-      white01: '#FFFFFF',
+      white02: '#F5F5F9',
+      white03: '#FFFFFF',
     },
     fontSize: {
       14: '0.875rem',
@@ -27,5 +28,18 @@ export default {
       DEFAULT: '430px',
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.no-scrollbar::-webkit-scrollbar': {
+          display: 'none',
+        },
+        '.no-scrollbar': {
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
 };
