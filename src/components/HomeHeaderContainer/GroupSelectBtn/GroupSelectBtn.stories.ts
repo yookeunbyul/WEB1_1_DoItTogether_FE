@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import GroupSelectBtn from './GroupSelectBtn';
 
 const meta = {
-  title: 'GroupSelectBtn',
+  title: 'components/HomeHeaderContainer/GroupSelectBtn',
   component: GroupSelectBtn,
   tags: ['autodocs'],
 } satisfies Meta<typeof GroupSelectBtn>;
