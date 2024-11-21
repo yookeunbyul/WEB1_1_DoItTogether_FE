@@ -3,7 +3,7 @@ import EditDeleteBtn, { EditDeleteBtnProps } from './EditDeleteBtn';
 import { fn } from '@storybook/test'; // Mock function을 가져오기
 
 const meta = {
-  title: 'components/ListContainer/EditDelteBtn',
+  title: 'components/ListContainer/EditDeleteBtn',
   component: EditDeleteBtn,
   tags: ['autodocs'],
 } satisfies Meta<typeof EditDeleteBtn>;
