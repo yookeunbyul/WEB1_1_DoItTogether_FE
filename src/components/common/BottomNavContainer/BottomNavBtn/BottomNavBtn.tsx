@@ -12,7 +12,10 @@ const BottomNavBtn: React.FC<BottomNavBtnProps> = ({
   name,
 }) => {
   return (
-    <button className='flex flex-col items-center gap-1'>
+    <button
+      className='flex flex-col items-center gap-1 px-3'
+      onClick={() => console.log(name, icon)}
+    >
       {/* <div>{icon}</div> */}
       <div className='bg-gray01 h-6 w-6 rounded-full border-2'></div>
       <p className='text-12'>{name}</p>
