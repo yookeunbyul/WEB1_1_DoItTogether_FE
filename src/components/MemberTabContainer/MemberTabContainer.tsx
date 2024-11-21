@@ -6,7 +6,7 @@ const MemberTabContainer = () => {
   const [activeTab, setActiveTab] = useState(dummyMembers[0]);
 
   return (
-    <div className='max-w px-5 text-center'>
+    <div className='px-5 text-center'>
       <div className='no-scrollbar overflow-x-auto overflow-y-hidden'>
         <ul className='-mb-px flex flex-nowrap'>
           {dummyMembers.map((memberName, index) => (
