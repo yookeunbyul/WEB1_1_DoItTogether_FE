@@ -23,6 +23,9 @@ export default {
       24: '1.5rem',
       28: '1.75rem',
     },
+    maxWidth: {
+      DEFAULT: '430px',
+    },
   },
   plugins: [],
 };
