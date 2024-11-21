@@ -14,7 +14,7 @@ type Story = StoryObj<ListItemContainerProps>;
 
 export const Default: Story = {
   args: {
-    actionStatus: 'incompleteㄹ',
+    actionStatus: 'incomplete',
     handleAction: fn(() => {
       console.log('action btn clicked');
     }),
