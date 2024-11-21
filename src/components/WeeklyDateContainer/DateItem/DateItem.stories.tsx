@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import DateItem from './DateItem';
 
 const meta = {
@@ -19,5 +20,6 @@ export const Default: Story = {
     day: '월',
     pendingCnt: 1,
     isActive: true,
+    handleClick: action('DateItem clicked'),
   },
 };
