@@ -26,7 +26,7 @@ const WeeklyDateContainer = () => {
           day={item.day}
           pendingCnt={item.pendingCnt}
           isActive={activeDate === idx}
-          onClick={() => handleActiveDate(idx)}
+          handleClick={() => handleActiveDate(idx)}
         />
       ))}
     </div>
