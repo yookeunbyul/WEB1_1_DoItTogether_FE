@@ -18,12 +18,13 @@ const data = [
     handleAction: () => {
       console.log('Action btn clicked for 거실 바닥 걸레질');
     },
-    listTitle: '거실 바닥 걸레질',
+    listTitle: '바닥 걸레질',
     charger: '종원',
     time: '오후 8:00',
     handleEditOrDelete: () => {
       console.log('Edit or Delete triggered for 거실 바닥 걸레질');
     },
+    category: '거실',
   },
   {
     id: 2,
@@ -31,12 +32,13 @@ const data = [
     handleAction: () => {
       console.log('Action btn clicked for 주방 청소');
     },
-    listTitle: '주방 청소',
+    listTitle: '청소',
     charger: '민수',
     time: '오후 9:00',
     handleEditOrDelete: () => {
       console.log('Edit or Delete triggered for 주방 청소');
     },
+    category: '주방',
   },
   {
     id: 3,
@@ -50,6 +52,7 @@ const data = [
     handleEditOrDelete: () => {
       console.log('Edit or Delete triggered for 세탁기 돌리기');
     },
+    category: '기타',
   },
   {
     id: 4,
@@ -63,6 +66,7 @@ const data = [
     handleEditOrDelete: () => {
       console.log('Edit or Delete triggered for 정리 정돈');
     },
+    category: '침실',
   },
 ];
 
