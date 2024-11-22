@@ -19,12 +19,13 @@ export const Default: Story = {
     handleAction: fn(() => {
       console.log('action btn clicked');
     }),
-    listTitle: '거실 바닥 걸레질',
+    listTitle: '바닥 걸레질',
     charger: '종원',
     time: '오후 8:00',
     handleEditOrDelete: fn(() => {
       console.log('Edit or Delete triggered');
     }),
+    category: '거실',
   },
 };
 
@@ -35,11 +36,12 @@ export const Complete: Story = {
     handleAction: fn(() => {
       console.log('action btn clicked');
     }),
-    listTitle: '화장실 청소',
+    listTitle: '청소',
     charger: '철수',
     time: '오후 9:00',
     handleEditOrDelete: fn(() => {
       console.log('Edit or Delete triggered');
     }),
+    category: '화장실',
   },
 };
