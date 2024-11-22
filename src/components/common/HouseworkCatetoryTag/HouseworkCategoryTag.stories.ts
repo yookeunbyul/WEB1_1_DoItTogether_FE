@@ -4,7 +4,7 @@ import HouseworkCategoryTag, {
 } from '@/components/common/HouseworkCatetoryTag/HouseworkCategoryTag';
 
 const meta = {
-  title: 'components/HouseworkCategoryTag',
+  title: 'components/common/HouseworkCategoryTag',
   component: HouseworkCategoryTag,
   tags: ['autodocs'],
 } satisfies Meta<typeof HouseworkCategoryTag>;
