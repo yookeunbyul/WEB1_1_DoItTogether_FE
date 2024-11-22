@@ -35,7 +35,7 @@ const ListItemContainer: React.FC<ListItemContainerProps> = ({
       <ListActionBtn actionStatus={actionStatus} handleAction={handleAction} />
       <div className='flex w-full justify-between'>
         <div className='flex flex-col items-start justify-center'>
-          <div className='flex'>
+          <div className='flex items-center'>
             <p className={`text-18 ${actionStatus === 'complete' && 'line-through'}`}>
               {listTitle}
             </p>
