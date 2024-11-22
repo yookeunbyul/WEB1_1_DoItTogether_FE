@@ -16,7 +16,7 @@ const buttonVariants = cva(
           'bg-gray03 text-secondary-foreground shadow-sm hover:bg-secondary/80 text-white02',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
-        houseWorkSelect:
+        select:
           'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground text-black01 px-3 py-4 rounded-2xl',
       },
       size: {
