@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import BottomSheetContainer from './BottomSheetContainer';
 
 const meta = {
-  title: 'components/BottomSheetContainer',
+  title: 'components/common/BottomSheetContainer',
   component: BottomSheetContainer,
 } satisfies Meta<typeof BottomSheetContainer>;
 
