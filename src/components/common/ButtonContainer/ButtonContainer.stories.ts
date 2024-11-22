@@ -9,20 +9,10 @@ const meta = {
     buttonLeft: {
       control: 'object',
       description: '왼쪽 버튼의 속성 설정',
-      table: {
-        type: {
-          summary: `{ label: string; variant: 'full' | 'outline' | 'secondary' | 'ghost' | 'link'; size: 'small' | 'medium' | 'large'; }`,
-        },
-      },
     },
     buttonRight: {
       control: 'object',
       description: '오른쪽 버튼의 속성 설정',
-      table: {
-        type: {
-          summary: `{ label: string; variant: 'full' | 'outline' | 'secondary' | 'ghost' | 'link'; size: 'small' | 'medium' | 'large'; }`,
-        },
-      },
     },
   },
 } satisfies Meta<typeof ButtonContainer>;
