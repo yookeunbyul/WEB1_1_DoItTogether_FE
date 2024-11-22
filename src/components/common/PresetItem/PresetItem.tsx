@@ -12,7 +12,10 @@ export interface PresetItemProps extends HouseworkCategoryTagProps {
 
 const PresetItem: React.FC<PresetItemProps> = ({ category, housework, handleClick }) => {
   return (
-    <li className='flex w-full list-none items-center border-b p-5' onClick={handleClick}>
+    <li
+      className='flex w-full cursor-pointer list-none items-center border-b p-5'
+      onClick={handleClick}
+    >
       <HouseworkCategoryTag category={category} />
       <p className='pl-4 text-14'>{housework}</p>
     </li>
