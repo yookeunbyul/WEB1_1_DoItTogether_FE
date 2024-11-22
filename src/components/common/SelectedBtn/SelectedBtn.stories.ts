@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    houseWork: '음식물 쓰레기 처리',
+    selected: '음식물 쓰레기 처리',
     handleClick: action('i clicked!!!!'),
   },
 };
