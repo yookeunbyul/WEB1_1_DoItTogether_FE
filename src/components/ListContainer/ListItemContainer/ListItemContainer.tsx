@@ -1,8 +1,14 @@
 import React from 'react';
 import EditDeleteBtn, { EditDeleteBtnProps } from '../EditDeleteBtn/EditDeleteBtn';
 import ListActionBtn, { ListActionBtnProps } from '../ListActionBtn/ListActionBtn';
+import HouseworkCategoryTag, {
+  HouseworkCategoryTagProps,
+} from '@/components/common/HouseworkCatetoryTag/HouseworkCategoryTag';
 
-export interface ListItemContainerProps extends ListActionBtnProps, EditDeleteBtnProps {
+export interface ListItemContainerProps
+  extends ListActionBtnProps,
+    EditDeleteBtnProps,
+    HouseworkCategoryTagProps {
   /** 집안일 ID */
   id: number;
   /** 집안일 */
@@ -20,6 +26,7 @@ const ListItemContainer: React.FC<ListItemContainerProps> = ({
   charger,
   time,
   handleEditOrDelete,
+  category,
 }) => {
   return (
     <li
@@ -28,7 +35,13 @@ const ListItemContainer: React.FC<ListItemContainerProps> = ({
       <ListActionBtn actionStatus={actionStatus} handleAction={handleAction} />
       <div className='flex w-full justify-between'>
         <div className='flex flex-col items-start justify-center'>
-          <p className={`text-18 ${actionStatus === 'complete' && 'line-through'}`}>{listTitle}</p>
+          <div className='flex'>
+            <p className={`text-18 ${actionStatus === 'complete' && 'line-through'}`}>
+              {listTitle}
+            </p>
+            <HouseworkCategoryTag category={category} status={actionStatus} isDark={true} />
+          </div>
+
           <p className='text-12'>{charger}</p>
         </div>
         <div className='flex flex-col items-end justify-center'>
