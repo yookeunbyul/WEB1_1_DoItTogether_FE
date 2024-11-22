@@ -1,6 +1,7 @@
 import React from 'react';
 
 export interface BackBtnProps {
+  /** 뒤로가기 */
   handleClick: () => void;
 }
 
