@@ -16,11 +16,14 @@ const buttonVariants = cva(
           'bg-gray03 text-secondary-foreground shadow-sm hover:bg-secondary/80 text-white02',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
+        houseWorkSelect:
+          'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground text-black01 px-3 py-4 rounded-2xl',
       },
       size: {
         small: 'h-15 max-w-[89px] rounded-xl px-8 py-4',
         medium: 'h-15 max-w-[250px] rounded-xl px-24 py-4',
         large: 'h-15 max-w-[350px] rounded-xl px-40 py-4',
+        full: 'w-full',
       },
     },
     defaultVariants: {
