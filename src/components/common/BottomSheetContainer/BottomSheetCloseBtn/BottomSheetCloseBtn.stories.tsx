@@ -3,7 +3,7 @@ import BottomSheetCloseBtn from './BottomSheetCloseBtn';
 import { fn } from '@storybook/test';
 
 const meta = {
-  title: 'components/BottomSheetContainer/BottomSheetCloseBtn',
+  title: 'components/common/BottomSheetContainer/BottomSheetCloseBtn',
   component: BottomSheetCloseBtn,
   tags: ['autodocs'],
   decorators: [

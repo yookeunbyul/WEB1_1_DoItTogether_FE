@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import BottomSheetTitle from './BottomSheetTitle';
 
 const meta = {
-  title: 'components/BottomSheetContainer/BottomSheetTitle',
+  title: 'components/common/BottomSheetContainer/BottomSheetTitle',
   component: BottomSheetTitle,
   tags: ['autodocs'],
 } satisfies Meta<typeof BottomSheetTitle>;
