@@ -18,7 +18,7 @@ const WeeklyDateContainer = () => {
   };
 
   return (
-    <div className='flex items-center gap-3 py-2'>
+    <div className='flex items-center justify-between bg-white03 px-5 py-2'>
       {dummyItems.map((item, idx) => (
         <DateItem
           key={idx}
