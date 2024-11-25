@@ -3,11 +3,28 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import TimePicker from './TimePicker/TimePicker';
 
-const TimeContainer = () => {
+interface SelectedTime {
+  hour: string;
+  minute: string;
+  dayPart: 'AM' | 'PM';
+}
+
+interface TimeContainerProps {
+  onTimeChange: (time: SelectedTime) => void;
+}
+
+const TimeContainer: React.FC<TimeContainerProps> = ({ onTimeChange }) => {
   const [isAllDay, setIsAllDay] = useState(true);
+  const [selectedTime, setSelectedTime] = useState<SelectedTime | null>(null);
 
   const handleSwitchChange = () => {
     setIsAllDay(!isAllDay);
+    setSelectedTime(null);
+  };
+
+  const handleTimeChange = (time: SelectedTime) => {
+    setSelectedTime(time);
+    onTimeChange(time);
   };
 
   return (
@@ -20,7 +37,7 @@ const TimeContainer = () => {
         )}
         <Switch id='time-mode' checked={isAllDay} onCheckedChange={handleSwitchChange} />
       </div>
-      {!isAllDay && <TimePicker />}
+      {!isAllDay && <TimePicker onTimeChange={handleTimeChange} />}
     </div>
   );
 };
