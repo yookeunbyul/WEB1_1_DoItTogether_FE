@@ -2,8 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import SelectBtn from '@/components/common/SelectBtn/SelectBtn';
 import BottomSheetContainer from '@/components/common/BottomSheetContainer/BottomSheetContainer';
 import { useState } from 'react';
-import Button from '@/components/common/ButtonContainer/Button/Button';
-import MaganerSelectContainer from '@/components/ManagerSelectContainer/ManagerSelectContainer';
 
 const meta = {
   title: 'components/common/SelectBtn',
