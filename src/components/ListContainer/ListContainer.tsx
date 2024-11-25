@@ -7,7 +7,7 @@ export interface ListContainerProps {
 
 const ListContainer: React.FC<ListContainerProps> = ({ items }) => {
   return (
-    <div className='max-w'>
+    <div className='flex max-w flex-col gap-2 p-5'>
       {items.map(item => (
         <ListItemContainer key={item.id} {...item} />
       ))}

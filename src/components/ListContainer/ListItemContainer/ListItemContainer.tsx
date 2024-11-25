@@ -1,14 +1,16 @@
 import React from 'react';
-import EditDeleteBtn, { EditDeleteBtnProps } from '../EditDeleteBtn/EditDeleteBtn';
 import ListActionBtn, { ListActionBtnProps } from '../ListActionBtn/ListActionBtn';
 import HouseworkCategoryTag, {
   HouseworkCategoryTagProps,
 } from '@/components/common/HouseworkCatetoryTag/HouseworkCategoryTag';
+import ControlDropdown, {
+  ControlDropdownProps,
+} from '@/components/ControlDropdown/ControlDropdown';
 
 export interface ListItemContainerProps
   extends ListActionBtnProps,
-    EditDeleteBtnProps,
-    HouseworkCategoryTagProps {
+    HouseworkCategoryTagProps,
+    ControlDropdownProps {
   /** 집안일 ID */
   id: number;
   /** 집안일 */
@@ -25,17 +27,18 @@ const ListItemContainer: React.FC<ListItemContainerProps> = ({
   listTitle,
   charger,
   time,
-  handleEditOrDelete,
   category,
+  handleEdit,
+  handleDelete,
 }) => {
   return (
     <li
       className={`flex list-none items-center rounded-2xl border border-solid ${actionStatus === 'complete' ? `bg-gray03` : `bg-black02`} p-5 text-white01`}
     >
       <ListActionBtn actionStatus={actionStatus} handleAction={handleAction} />
-      <div className='flex w-full justify-between'>
-        <div className='flex flex-col items-start justify-center'>
-          <div className='flex items-center'>
+      <div className='flex w-full justify-between pl-4'>
+        <div className='flex flex-col items-start justify-center gap-2'>
+          <div className='flex items-center gap-2'>
             <p className={`text-18 ${actionStatus === 'complete' && 'line-through'}`}>
               {listTitle}
             </p>
@@ -44,9 +47,9 @@ const ListItemContainer: React.FC<ListItemContainerProps> = ({
 
           <p className='text-12'>{charger}</p>
         </div>
-        <div className='flex flex-col items-end justify-center'>
-          <EditDeleteBtn handleEditOrDelete={handleEditOrDelete} />
-          <div className='flex items-center'>
+        <div className='flex flex-col items-end justify-center gap-2'>
+          <ControlDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
+          <div className='flex items-center gap-1'>
             <div className='h-5 w-5 border border-solid'></div>
             <p className='text-12'>{time}</p>
           </div>

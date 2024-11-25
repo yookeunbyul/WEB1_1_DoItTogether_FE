@@ -16,7 +16,7 @@ const DateItem = ({ date, day, pendingCnt, isActive, handleClick }: DateItemProp
     // TODO rounded, font-weight 공통변수로 수정할 예정
     <div
       onClick={handleClick}
-      className={`flex h-20 w-10 flex-col items-center justify-center gap-0.5 rounded-[30px] px-2 py-1 ${isActive ? 'bg-black02' : 'bg-white03'} `}
+      className={`flex h-20 w-10 flex-col items-center justify-center gap-1 rounded-[30px] px-2 py-1 ${isActive ? 'bg-black02' : 'bg-white03'} `}
     >
       <span className={`text-14 ${isActive ? 'text-gray03' : 'text-gray02'}`}>{date}</span>
       <span className={`text-16 font-bold ${isActive ? 'text-white02' : 'text-black02'}`}>

@@ -7,7 +7,7 @@ const MainLayout = () => {
       <div className='flex-1'>
         <Outlet />
       </div>
-      <div className='bg-white fixed bottom-0 w-full'>
+      <div className='bg-white sticky bottom-0 w-full'>
         <BottomNavContainer />
       </div>
     </div>
