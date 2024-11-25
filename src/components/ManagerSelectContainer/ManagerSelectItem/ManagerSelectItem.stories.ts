@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import ManagerSelectItem from '@/components/ManagerSelectContainer/ManagerSelectItem/ManagerSelectItem';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -17,6 +18,9 @@ const meta = {
       options: ['default', 'person', 'ai'],
       defaultValue: 'default',
     },
+    onClick: {
+      description: '클릭 함수',
+    },
   },
 } satisfies Meta<typeof ManagerSelectItem>;
 
@@ -27,6 +31,7 @@ export const Default: Story = {
   args: {
     name: '김민수',
     selectState: 'default',
+    onClick: action('i cliked'),
   },
 };
 
@@ -34,6 +39,7 @@ export const SelectedByPerson: Story = {
   args: {
     name: '김민수',
     selectState: 'person',
+    onClick: action('i cliked'),
   },
 };
 
@@ -41,5 +47,6 @@ export const SelectedByAI: Story = {
   args: {
     name: '김민수',
     selectState: 'ai',
+    onClick: action('i cliked'),
   },
 };
