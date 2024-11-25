@@ -1,4 +1,5 @@
 import BottomSheetContainer from '@/components/common/BottomSheetContainer/BottomSheetContainer';
+import ButtonContainer from '@/components/common/ButtonContainer/ButtonContainer';
 import PresetTabContainer from '@/components/PresetTabContainer/PresetTabContainer';
 import { useState } from 'react';
 
@@ -49,7 +50,23 @@ const HouseWorkSheetContainer: React.FC<HouseWorkSheetContainerProps> = ({}) => 
   return (
     <BottomSheetContainer isOpen={isOpen} setOpen={setOpen} title='집안일 선택'>
       <div className='mt-4 flex min-h-96 flex-col gap-y-6 pb-6'>
-        <PresetTabContainer data={presetData} />
+        <section aria-label='집안일 할당 바텀 시트' className='flex flex-1 flex-col gap-6'>
+          <PresetTabContainer data={presetData} />
+        </section>
+        <div className='px-5'>
+          <ButtonContainer
+            buttonLeft={{
+              label: '설정',
+              variant: 'outline',
+              size: 'small',
+            }}
+            buttonRight={{
+              label: '선택',
+              variant: 'full',
+              size: 'large',
+            }}
+          />
+        </div>
       </div>
     </BottomSheetContainer>
   );
