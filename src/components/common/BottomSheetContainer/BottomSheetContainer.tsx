@@ -1,14 +1,28 @@
 import { Sheet } from 'react-modal-sheet';
-import { useState } from 'react';
 import BottomSheetCloseBtn from './BottomSheetCloseBtn/BottomSheetCloseBtn';
 import BottomSheetTitle from './BottomSheetTitle/BottomSheetTitle';
 
-const BottomSheetContainer = () => {
-  const [isOpen, setOpen] = useState(false);
+import React from 'react';
+
+interface BottomSheetContainerProps {
+  /**바텀시트 오픈 여부 */
+  isOpen: boolean;
+  /**isOpen 바꾸는 set함수 */
+  setOpen: (value: boolean) => void;
+  /**바텀시트 타이틀 */
+  title: string;
+  /**바텀시트 컨텐츠 */
+  children: React.ReactNode;
+}
+
+const BottomSheetContainer: React.FC<BottomSheetContainerProps> = ({
+  isOpen,
+  setOpen,
+  title,
+  children,
+}) => {
   return (
     <>
-      <button onClick={() => setOpen(true)}>Open sheet</button>
-
       <Sheet
         isOpen={isOpen}
         onClose={() => setOpen(false)}
@@ -19,11 +33,9 @@ const BottomSheetContainer = () => {
           <Sheet.Container>
             <BottomSheetCloseBtn handleClick={() => setOpen(false)} />
             <Sheet.Header>
-              <BottomSheetTitle title='모임 변경' />
+              <BottomSheetTitle title={title} />
             </Sheet.Header>
-            <Sheet.Content>
-              <div className='px-5 py-8'>Some content</div>
-            </Sheet.Content>
+            <Sheet.Content>{children}</Sheet.Content>
           </Sheet.Container>
         </div>
         <Sheet.Backdrop />
