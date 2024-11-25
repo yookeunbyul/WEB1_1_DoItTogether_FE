@@ -7,11 +7,12 @@ interface ButtonProps {
   variant: 'full' | 'outline' | 'secondary' | 'ghost' | 'link';
   /** 사이즈 */
   size: 'small' | 'medium' | 'large';
+  handleClick?: () => void;
 }
 
-const Button = ({ label, variant = 'full', size }: ButtonProps) => {
+const Button = ({ label, variant = 'full', size, handleClick }: ButtonProps) => {
   return (
-    <ButtonComponent variant={variant} size={size}>
+    <ButtonComponent variant={variant} size={size} onClick={handleClick}>
       {label}
     </ButtonComponent>
   );

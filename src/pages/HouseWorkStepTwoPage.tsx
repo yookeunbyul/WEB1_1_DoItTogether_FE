@@ -16,7 +16,8 @@ interface SelectedTime {
 
 const HouseWorkStepTwoPage = () => {
   const navigate = useNavigate();
-  const [manager, setManager] = useState(null);
+  const [manager, setManager] = useState<string | null>(null);
+  const [selectedMember, setSelectedMember] = useState('');
   const [isOpen, setOpen] = useState(false);
   const [time, setTime] = useState<SelectedTime | null>(null);
 
@@ -30,6 +31,11 @@ const HouseWorkStepTwoPage = () => {
 
   const handleManagerClick = () => {
     setOpen(true);
+  };
+
+  const handleDoneClick = () => {
+    setOpen(false);
+    setManager(selectedMember);
   };
 
   const handleTimeChange = (newTime: SelectedTime | null) => {
@@ -57,8 +63,11 @@ const HouseWorkStepTwoPage = () => {
 
       <BottomSheetContainer isOpen={isOpen} setOpen={setOpen} title='담당자 고르기'>
         <div className='flex flex-col gap-y-6 px-5 pb-6'>
-          <MaganerSelectContainer />
-          <Button label='완료' variant='full' size='large' />
+          <MaganerSelectContainer
+            selectedMember={selectedMember}
+            handleSelectMember={setSelectedMember}
+          />
+          <Button label='완료' variant='full' size='large' handleClick={handleDoneClick} />
           <button className='text-14 underline'>AI가 딱 맞는 사람을 선택할게요</button>
         </div>
       </BottomSheetContainer>
