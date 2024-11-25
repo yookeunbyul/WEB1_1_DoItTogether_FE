@@ -4,7 +4,6 @@ import TimeContainer from './TimeContainer';
 const meta: Meta<typeof TimeContainer> = {
   title: 'Components/TimeContainer',
   component: TimeContainer,
-
   tags: ['autodocs'],
 };
 
