@@ -14,12 +14,3 @@ type Story = StoryObj<typeof TimeContainer>;
 export const Default: Story = {
   args: {},
 };
-
-export const WithDarkBackground: Story = {
-  args: {},
-  parameters: {
-    backgrounds: {
-      default: 'dark',
-    },
-  },
-};
