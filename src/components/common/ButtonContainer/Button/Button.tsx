@@ -7,6 +7,7 @@ interface ButtonProps {
   variant: 'full' | 'outline' | 'secondary' | 'ghost' | 'link';
   /** 사이즈 */
   size: 'small' | 'medium' | 'large';
+  /** 클릭 이벤트 */
   handleClick?: () => void;
 }
 
