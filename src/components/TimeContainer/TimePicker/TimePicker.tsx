@@ -40,7 +40,7 @@ const TimePicker = () => {
     setSelectedTime(prev => ({ ...prev, ampm: value as 'AM' | 'PM' }));
   };
 
-  // 임시 코드 -> 값 바뀌는지 확인 용
+  // 임시 코드 -> 값 바뀌는지 확인
   useEffect(() => {
     console.log('Time Changed:', selectedTime);
   }, [selectedTime]);
