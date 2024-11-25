@@ -19,7 +19,7 @@ interface TabContainerProps {
 const TabContainer: React.FC<TabContainerProps> = ({ activeTab, handleSetActiveTab }) => {
   return (
     <Tabs defaultValue={activeTab} onValueChange={handleSetActiveTab}>
-      <TabsList className='flex h-auto w-full justify-start overflow-x-auto overflow-y-hidden rounded-none bg-white03 p-0 px-5 no-scrollbar'>
+      <TabsList className='flex h-9 w-full justify-start overflow-x-auto overflow-y-hidden rounded-none bg-white03 p-0 px-5 no-scrollbar'>
         {DUMMY_MEMBERS.map(member => (
           <Tab key={member.value} name={member.name} value={member.name} />
         ))}

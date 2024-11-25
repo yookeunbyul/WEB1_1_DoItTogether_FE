@@ -185,7 +185,7 @@ const HomePage: React.FC<HomePageProps> = () => {
   return (
     <div>
       <HomeHeaderContainer />
-      <div className='bg-white sticky top-0 z-10 shadow'>
+      <div className='bg-white sticky top-0 z-10'>
         <WeeklyDateContainer />
         <TabContainer activeTab={activeTab} handleSetActiveTab={setActiveTab} />
       </div>
