@@ -1,14 +1,16 @@
 import React from 'react';
-import EditDeleteBtn, { EditDeleteBtnProps } from '../EditDeleteBtn/EditDeleteBtn';
 import ListActionBtn, { ListActionBtnProps } from '../ListActionBtn/ListActionBtn';
 import HouseworkCategoryTag, {
   HouseworkCategoryTagProps,
 } from '@/components/common/HouseworkCatetoryTag/HouseworkCategoryTag';
+import ControlDropdown, {
+  ControlDropdownProps,
+} from '@/components/ControlDropdown/ControlDropdown';
 
 export interface ListItemContainerProps
   extends ListActionBtnProps,
-    EditDeleteBtnProps,
-    HouseworkCategoryTagProps {
+    HouseworkCategoryTagProps,
+    ControlDropdownProps {
   /** 집안일 ID */
   id: number;
   /** 집안일 */
@@ -25,8 +27,9 @@ const ListItemContainer: React.FC<ListItemContainerProps> = ({
   listTitle,
   charger,
   time,
-  handleEditOrDelete,
   category,
+  handleEdit,
+  handleDelete,
 }) => {
   return (
     <li
@@ -45,7 +48,7 @@ const ListItemContainer: React.FC<ListItemContainerProps> = ({
           <p className='text-12'>{charger}</p>
         </div>
         <div className='flex flex-col items-end justify-center'>
-          <EditDeleteBtn handleEditOrDelete={handleEditOrDelete} />
+          <ControlDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
           <div className='flex items-center'>
             <div className='h-5 w-5 border border-solid'></div>
             <p className='text-12'>{time}</p>
