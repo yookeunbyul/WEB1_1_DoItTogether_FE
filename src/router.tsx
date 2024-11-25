@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import MainLayout from '@/layout/MainLayout';
 import GroupLayout from '@/layout/GroupLayout';
-import HouseWorkLayout from '@/layout/HouseWorkLayout';
 import StatisticsLayout from '@/layout/StatisticsLayout';
 
 import ErrorPage from '@/pages/ErrorPage';
