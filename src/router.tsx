@@ -1,3 +1,116 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-export const router = createBrowserRouter([{}]);
+import MainLayout from '@/layout/MainLayout';
+import GroupLayout from '@/layout/GroupLayout';
+import HouseWorkLayout from '@/layout/HouseWorkLayout';
+import StatisticsLayout from '@/layout/StatisticsLayout';
+
+import ErrorPage from '@/pages/ErrorPage';
+import LandingPage from '@/pages/LandingPage';
+import RegisterPage from '@/pages/RegisterPage';
+import SurveyPage from '@/pages/SurveyPage';
+import GroupCreatePage from '@/pages/GroupCreatePage';
+import GroupSelectPage from '@/pages/GroupSelectPage';
+import GroupInviteReceivePage from '@/pages/GroupInviteReceivePage';
+import GroupInviteSendPage from '@/pages/GroupInviteSendPage';
+import GroupSettingPage from '@/pages/GroupSettingPage';
+import HomePage from '@/pages/HomePage';
+import WeeklyStatisticsPage from '@/pages/WeeklyStatisticsPage';
+import MonthlyStatisticsPage from '@/pages/MonthlyStatisticsPage';
+import PresetSettingPage from '@/pages/PresetSettingPage';
+import MyPage from '@/pages/MyPage';
+import MyPageEditPage from '@/pages/MyPageEditPage';
+import HouseWorkStepOnePage from '@/pages/HouseWorkStepOnePage';
+import HouseWorkStepTwoPage from '@/pages/HouseWorkStepTwoPage';
+
+export const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <LandingPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/register',
+    element: <RegisterPage />,
+  },
+  {
+    path: '/survey',
+    element: <SurveyPage />,
+  },
+  {
+    path: '/group-select',
+    element: <GroupSelectPage />,
+  },
+  {
+    path: '/group',
+    element: <GroupLayout />,
+    children: [
+      {
+        path: 'create',
+        element: <GroupCreatePage />,
+      },
+      {
+        path: 'invite-send',
+        element: <GroupInviteSendPage />,
+      },
+      {
+        path: 'invite-receive',
+        element: <GroupInviteReceivePage />,
+      },
+    ],
+  },
+  {
+    path: '/main',
+    element: <MainLayout />,
+    children: [
+      {
+        path: 'home',
+        element: <HomePage />,
+      },
+      {
+        path: 'statistics',
+        element: <StatisticsLayout />,
+        children: [
+          {
+            path: 'weekly',
+            element: <WeeklyStatisticsPage />,
+          },
+          {
+            path: 'monthly',
+            element: <MonthlyStatisticsPage />,
+          },
+        ],
+      },
+      {
+        path: 'group-setting',
+        element: <GroupSettingPage />,
+      },
+      {
+        path: 'preset-setting',
+        element: <PresetSettingPage />,
+      },
+      {
+        path: 'my-page',
+        element: <MyPage />,
+      },
+      {
+        path: 'my-page/edit',
+        element: <MyPageEditPage />,
+      },
+    ],
+  },
+  {
+    path: '/add-housework',
+    element: <HouseWorkLayout />,
+    children: [
+      {
+        path: 'step1',
+        element: <HouseWorkStepOnePage />,
+      },
+      {
+        path: 'step2',
+        element: <HouseWorkStepTwoPage />,
+      },
+    ],
+  },
+]);
