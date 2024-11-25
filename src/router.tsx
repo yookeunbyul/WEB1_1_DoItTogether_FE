@@ -100,17 +100,11 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/add-housework',
-    element: <HouseWorkLayout />,
-    children: [
-      {
-        path: 'step1',
-        element: <HouseWorkStepOnePage />,
-      },
-      {
-        path: 'step2',
-        element: <HouseWorkStepTwoPage />,
-      },
-    ],
+    path: '/add-housework/step1',
+    element: <HouseWorkStepOnePage />,
+  },
+  {
+    path: '/add-housework/step2',
+    element: <HouseWorkStepTwoPage />,
   },
 ]);

@@ -4,14 +4,18 @@ import { useEffect, useState } from 'react';
 interface SelectedTime {
   hour: string;
   minute: string;
-  ampm: 'AM' | 'PM';
+  dayPart: 'AM' | 'PM';
 }
 
-const TimePicker = () => {
+interface TimePickerProps {
+  onTimeChange: (time: SelectedTime) => void;
+}
+
+const TimePicker: React.FC<TimePickerProps> = ({ onTimeChange }) => {
   const [selectedTime, setSelectedTime] = useState<SelectedTime>({
     hour: '01',
     minute: '00',
-    ampm: 'AM',
+    dayPart: 'AM',
   });
 
   const formatHour = (relative: number) => {
@@ -40,10 +44,9 @@ const TimePicker = () => {
     setSelectedTime(prev => ({ ...prev, ampm: value as 'AM' | 'PM' }));
   };
 
-  // 임시 코드 -> 값 바뀌는지 확인
   useEffect(() => {
-    console.log('Time Changed:', selectedTime);
-  }, [selectedTime]);
+    onTimeChange(selectedTime);
+  }, [selectedTime, onTimeChange]);
 
   return (
     <div className='flex justify-center gap-4'>
