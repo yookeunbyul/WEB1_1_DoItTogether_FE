@@ -1,3 +1,4 @@
+import React from 'react';
 import Tab from '@/components/common/TabContainer/Tab/Tab';
 import { Tabs, TabsList } from '@/components/ui/tabs';
 
@@ -10,10 +11,10 @@ const DUMMY_MEMBERS = [
   { name: '최민수', value: 'choi' },
 ];
 
-const TabContainer = () => {
+const TabContainer: React.FC = ({}) => {
   return (
     <Tabs defaultValue='all'>
-      <TabsList className='flex w-full justify-start gap-4 overflow-x-auto overflow-y-hidden bg-white03 p-0 no-scrollbar'>
+      <TabsList className='flex h-auto w-full justify-start overflow-x-auto overflow-y-hidden rounded-none bg-white03 p-0 px-5 no-scrollbar'>
         {DUMMY_MEMBERS.map(member => (
           <Tab key={member.value} name={member.name} value={member.value} />
         ))}
