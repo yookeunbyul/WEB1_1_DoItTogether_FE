@@ -5,7 +5,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-interface ControlDropdownProps {
+export interface ControlDropdownProps {
   /** 수정 클릭 이벤트 */
   handleEdit: () => void;
   /** 삭제 클릭 이벤트 */
