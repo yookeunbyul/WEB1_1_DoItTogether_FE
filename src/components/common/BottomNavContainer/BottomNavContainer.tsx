@@ -10,7 +10,7 @@ const BottomNavContainer = () => {
   ];
 
   return (
-    <div className='bg-white02 max-w flex w-full justify-between px-5 py-2'>
+    <div className='flex w-full max-w justify-between bg-white02 px-5 py-2'>
       <BottomNavBtn icon={navItems[0].icon} name={navItems[0].name} />
       <BottomNavBtn icon={navItems[1].icon} name={navItems[1].name} />
       <AddHouseWorkBtn />

@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-
   html,
   body {
     @apply font-Pretendard;
@@ -86,8 +85,10 @@
   * {
     @apply border-border;
   }
+  html {
+    @apply flex justify-center;
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply h-full w-full max-w;
   }
 }
-
