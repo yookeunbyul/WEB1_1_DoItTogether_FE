@@ -5,11 +5,14 @@ interface ManagerSelectItemProps {
   name: string;
   /** 선택 상태 */
   selectState?: 'default' | 'person' | 'ai';
+  /**클릭 함수 */
+  onClick: () => void;
 }
 
 const ManagerSelectItem: React.FC<ManagerSelectItemProps> = ({
   name,
   selectState = 'default',
+  onClick,
 }: ManagerSelectItemProps) => {
   const getStyle = () => {
     switch (selectState) {
@@ -37,7 +40,10 @@ const ManagerSelectItem: React.FC<ManagerSelectItemProps> = ({
   const styles = getStyle();
 
   return (
-    <li className={`flex cursor-pointer items-center gap-x-3 rounded-full p-2 ${styles.container}`}>
+    <li
+      className={`flex cursor-pointer items-center gap-x-3 rounded-full p-2 ${styles.container}`}
+      onClick={onClick}
+    >
       <div className={`h-6 w-6 rounded-full ${styles.icon}`}></div>
       <div className={`text-14 ${styles.text}`}>{name}</div>
     </li>
