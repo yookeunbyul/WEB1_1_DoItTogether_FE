@@ -18,7 +18,7 @@ const meta = {
       options: ['default', 'person', 'ai'],
       defaultValue: 'default',
     },
-    onClick: {
+    handleClick: {
       description: '클릭 함수',
     },
   },
@@ -31,7 +31,7 @@ export const Default: Story = {
   args: {
     name: '김민수',
     selectState: 'default',
-    onClick: action('i cliked'),
+    handleClick: action('i cliked'),
   },
 };
 
@@ -39,7 +39,7 @@ export const SelectedByPerson: Story = {
   args: {
     name: '김민수',
     selectState: 'person',
-    onClick: action('i cliked'),
+    handleClick: action('i cliked'),
   },
 };
 
@@ -47,6 +47,6 @@ export const SelectedByAI: Story = {
   args: {
     name: '김민수',
     selectState: 'ai',
-    onClick: action('i cliked'),
+    handleClick: action('i cliked'),
   },
 };

@@ -6,13 +6,13 @@ interface ManagerSelectItemProps {
   /** 선택 상태 */
   selectState?: 'default' | 'person' | 'ai';
   /**클릭 함수 */
-  onClick: () => void;
+  handleClick: () => void;
 }
 
 const ManagerSelectItem: React.FC<ManagerSelectItemProps> = ({
   name,
   selectState = 'default',
-  onClick,
+  handleClick,
 }: ManagerSelectItemProps) => {
   const getStyle = () => {
     switch (selectState) {
@@ -42,7 +42,7 @@ const ManagerSelectItem: React.FC<ManagerSelectItemProps> = ({
   return (
     <li
       className={`flex cursor-pointer items-center gap-x-3 rounded-full p-2 ${styles.container}`}
-      onClick={onClick}
+      onClick={handleClick}
     >
       <div className={`h-6 w-6 rounded-full ${styles.icon}`}></div>
       <div className={`text-14 ${styles.text}`}>{name}</div>

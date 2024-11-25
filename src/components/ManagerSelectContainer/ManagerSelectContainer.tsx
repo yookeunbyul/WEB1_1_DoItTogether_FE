@@ -4,12 +4,12 @@ interface ManagerSelectContainerProps {
   /**선택한 멤버 */
   selectedMember: string;
   /**set 함수 */
-  onSelectMember: (member: string) => void;
+  handleSelectMember: (member: string) => void;
 }
 
 const ManagerSelectContainer: React.FC<ManagerSelectContainerProps> = ({
   selectedMember,
-  onSelectMember,
+  handleSelectMember,
 }) => {
   const members = ['김민수', '이영희', '박지수', '최수진'];
 
@@ -19,7 +19,7 @@ const ManagerSelectContainer: React.FC<ManagerSelectContainerProps> = ({
         <ManagerSelectItem
           key={member}
           name={member}
-          onClick={() => onSelectMember(member)}
+          handleClick={() => handleSelectMember(member)}
           selectState={selectedMember === member ? 'person' : 'default'}
         />
       ))}

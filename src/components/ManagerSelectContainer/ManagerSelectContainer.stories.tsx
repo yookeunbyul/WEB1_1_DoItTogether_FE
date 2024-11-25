@@ -11,7 +11,7 @@ const meta = {
       description: '선택된 멤버',
       control: 'text',
     },
-    onSelectMember: {
+    handleSelectMember: {
       description: '멤버 선택 시 호출되는 함수',
     },
   },
@@ -22,7 +22,10 @@ const ManagerSelectWithState = () => {
   const [selectedMember, setSelectedMember] = useState('');
 
   return (
-    <ManagerSelectContainer selectedMember={selectedMember} onSelectMember={setSelectedMember} />
+    <ManagerSelectContainer
+      selectedMember={selectedMember}
+      handleSelectMember={setSelectedMember}
+    />
   );
 };
 
