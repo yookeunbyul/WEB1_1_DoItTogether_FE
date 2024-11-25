@@ -45,7 +45,7 @@ const HouseWorkStepTwoPage = () => {
 
   return (
     <>
-      <div className='flex h-screen flex-col gap-6'>
+      <div className='flex h-screen flex-col gap-6 px-5'>
         <PageHeaderContainer
           title='새로운 집안일을 추가해보세요(2/2)'
           handleClick={handleBackClick}
@@ -58,7 +58,7 @@ const HouseWorkStepTwoPage = () => {
           )}
           <TimeContainer onTimeChange={handleTimeChange} />
         </section>
-        <Button label='다음' variant='full' size='large' />
+        <Button label='다음' variant='full' size='large' handleClick={handleNextClick} />
       </div>
 
       <BottomSheetContainer isOpen={isOpen} setOpen={setOpen} title='담당자 고르기'>
