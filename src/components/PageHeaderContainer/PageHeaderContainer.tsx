@@ -8,7 +8,7 @@ export interface PageHeaderContainerProps extends BackBtnProps {
 
 const PageHeaderContainer: React.FC<PageHeaderContainerProps> = ({ title, handleClick }) => {
   return (
-    <div className='flex flex-col gap-5'>
+    <div className='mt-5 flex flex-col gap-5'>
       <BackBtn handleClick={handleClick} />
       <p className='text-18 text-gray01'>{title}</p>
     </div>
