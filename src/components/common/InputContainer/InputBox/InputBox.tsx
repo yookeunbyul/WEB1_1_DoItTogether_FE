@@ -12,7 +12,7 @@ const InputBox: React.FC<InputBoxProps> = ({ value, placeholder, disabled, handl
     <div>
       <Input
         placeholder={placeholder}
-        className='rounded-full text-16'
+        className='h-12 rounded-full text-16'
         disabled={disabled}
         value={value}
         onChange={e => handleChange?.(e.target.value)}
