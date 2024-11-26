@@ -1,6 +1,7 @@
 import React from 'react';
 import TextTag from '@/components/common/TextTag/TextTag';
 import CompletionText from '@/components/WeeklyCompletionContainer/CompletionText/CompletionText';
+import CompletionBarGraph from '@/components/WeeklyCompletionContainer/CompletionBarGraph/CompletionBarGraph';
 
 interface WeeklyCompletionContainerProps {
   /** 그룹명 */
@@ -30,7 +31,9 @@ const WeeklyCompletionContainer: React.FC<WeeklyCompletionContainerProps> = ({
           <CompletionText completedText='미완료' num={notCompleted} />
         </div>
       </div>
-      <div></div>
+      <div>
+        <CompletionBarGraph completed={completed} notCompleted={notCompleted} />
+      </div>
     </div>
   );
 };
