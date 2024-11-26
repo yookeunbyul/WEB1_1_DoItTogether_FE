@@ -5,7 +5,7 @@ const InviteLink = () => {
 
   const handleGenerateLink = () => {
     // TODO: 나중에 API 호출로 바꾸기
-    setInviteLink('https://contents.ohou....');
+    setInviteLink('https://contents.ohou.contents.ohoucontents.ohou...');
   };
 
   const handleCopyLink = () => {
@@ -16,11 +16,13 @@ const InviteLink = () => {
   };
 
   return (
-    <div className='flex h-9 items-center justify-between rounded-full border border-gray02 px-2 py-1 text-16'>
+    <div className='flex h-9 items-center justify-between rounded-full border border-gray02 px-4 py-1 text-16'>
       {inviteLink ? (
         <>
-          <p className='flex-1 truncate px-2'>{inviteLink}</p>
-          <button className='text-14 text-gray01' onClick={handleCopyLink}>
+          <div className='min-w-0 flex-1 overflow-hidden'>
+            <p className='truncate'>{inviteLink}</p>
+          </div>
+          <button className='shrink-0 pl-4 text-14 text-gray01' onClick={handleCopyLink}>
             링크복사
           </button>
         </>
