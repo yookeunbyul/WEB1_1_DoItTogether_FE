@@ -1,16 +1,11 @@
-interface GroupMemberManageProps {
+interface MemberItemProps {
   leader: boolean;
   member: string;
   isCurrentUser: boolean;
   handleClick: () => void;
 }
 
-const GroupMemberManage: React.FC<GroupMemberManageProps> = ({
-  leader,
-  member,
-  handleClick,
-  isCurrentUser,
-}) => {
+const MemberItem: React.FC<MemberItemProps> = ({ leader, member, handleClick, isCurrentUser }) => {
   const showButton = leader || isCurrentUser;
 
   return (
@@ -25,4 +20,4 @@ const GroupMemberManage: React.FC<GroupMemberManageProps> = ({
   );
 };
 
-export default GroupMemberManage;
+export default MemberItem;

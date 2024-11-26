@@ -1,9 +1,9 @@
-import PresetCategory from '@/components/PresetAddContainer/PresetCategory/PresetCategory';
+import PresetCategory from '@/components/PresetAddInput/PresetCategory/PresetCategory';
 import React from 'react';
 
-interface PresetAddContainerProps {}
+interface PresetAddInputProps {}
 
-const PresetAddContainer: React.FC<PresetAddContainerProps> = ({}) => {
+const PresetAddInput: React.FC<PresetAddInputProps> = ({}) => {
   return (
     <div className='rounded-t-2xl pb-2 pt-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]'>
       <PresetCategory />
@@ -12,4 +12,4 @@ const PresetAddContainer: React.FC<PresetAddContainerProps> = ({}) => {
   );
 };
 
-export default PresetAddContainer;
+export default PresetAddInput;

@@ -1,19 +1,14 @@
 import GroupMemberManage from '@/components/GroupMemberManagerContainer/GroupMemberManage/GroupMemberManage';
 import React from 'react';
 
-interface GroupMemberManageContainerProps {
+interface MemberItemsProps {
   leader: boolean;
   members: string[];
   currentUser: string;
   handleClick?: (member: string) => void;
 }
 
-const GroupMemberManageContainer: React.FC<GroupMemberManageContainerProps> = ({
-  leader,
-  members,
-  currentUser,
-  handleClick,
-}) => {
+const MemberItems: React.FC<MemberItemsProps> = ({ leader, members, currentUser, handleClick }) => {
   return (
     <div className='flex flex-col gap-2'>
       <p className='text-14'>그룹원 관리</p>
@@ -32,4 +27,4 @@ const GroupMemberManageContainer: React.FC<GroupMemberManageContainerProps> = ({
   );
 };
 
-export default GroupMemberManageContainer;
+export default MemberItems;

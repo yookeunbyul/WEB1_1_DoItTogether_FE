@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import InviteLink from './InviteLink';
+import InviteLink from './InviteLink/InviteLink';
 
 const meta: Meta<typeof InviteLink> = {
   title: 'Components/InviteLinkContainer/InviteLink',
