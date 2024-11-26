@@ -1,8 +1,7 @@
-import BottomSheetContainer from '@/components/common/BottomSheetContainer/BottomSheetContainer';
+import ManagerSelectSheetContainer from '@/components/bottomSheet/ManagerSelectSheetContainer/ManagerSelectSheetContainer';
 import Button from '@/components/common/ButtonContainer/Button/Button';
 import SelectBtn from '@/components/common/SelectBtn/SelectBtn';
 import SelectedBtn from '@/components/common/SelectedBtn/SelectedBtn';
-import MaganerSelectContainer from '@/components/ManagerSelectContainer/ManagerSelectContainer';
 import PageHeaderContainer from '@/components/PageHeaderContainer/PageHeaderContainer';
 import TimeContainer from '@/components/TimeContainer/TimeContainer';
 import { useState } from 'react';
@@ -18,7 +17,7 @@ const HouseWorkStepTwoPage = () => {
   const navigate = useNavigate();
   const [manager, setManager] = useState<string | null>(null);
   const [selectedMember, setSelectedMember] = useState('');
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [time, setTime] = useState<SelectedTime | null>(null);
 
   const handleBackClick = () => {
@@ -30,11 +29,11 @@ const HouseWorkStepTwoPage = () => {
   };
 
   const handleManagerClick = () => {
-    setOpen(true);
+    setIsOpen(true);
   };
 
   const handleDoneClick = () => {
-    setOpen(false);
+    setIsOpen(false);
     setManager(selectedMember);
   };
 
@@ -61,16 +60,13 @@ const HouseWorkStepTwoPage = () => {
         <Button label='다음' variant='full' size='large' handleClick={handleNextClick} />
       </div>
 
-      <BottomSheetContainer isOpen={isOpen} setOpen={setOpen} title='담당자 고르기'>
-        <div className='flex flex-col gap-y-6 px-5 pb-6'>
-          <MaganerSelectContainer
-            selectedMember={selectedMember}
-            handleSelectMember={setSelectedMember}
-          />
-          <Button label='완료' variant='full' size='large' handleClick={handleDoneClick} />
-          <button className='text-14 underline'>AI가 딱 맞는 사람을 선택할게요</button>
-        </div>
-      </BottomSheetContainer>
+      <ManagerSelectSheetContainer
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        selectedMember={selectedMember}
+        handleSetSelectMember={setSelectedMember}
+        handleDoneClick={handleDoneClick}
+      />
     </>
   );
 };

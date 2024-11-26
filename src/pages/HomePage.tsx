@@ -3,6 +3,7 @@ import HomeHeaderContainer from '@/components/HomeHeaderContainer/HomeHeaderCont
 import WeeklyDateContainer from '@/components/WeeklyDateContainer/WeeklyDateContainer';
 import TabContainer from '@/components/common/TabContainer/TabContainer';
 import ListContainer from '@/components/ListContainer/ListContainer';
+import GroupSelectSheetContainer from '@/components/bottomSheet/GroupSelectSheetContainer/GroupSelectSheetContainer';
 
 export const data = [
   {
@@ -181,10 +182,11 @@ interface HomePageProps {}
 
 const HomePage: React.FC<HomePageProps> = () => {
   const [activeTab, setActiveTab] = useState<string>('전체');
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
-      <HomeHeaderContainer />
+      <HomeHeaderContainer handleSetOpen={setIsOpen} />
       <div className='bg-white sticky top-0 z-10'>
         <WeeklyDateContainer />
         <TabContainer activeTab={activeTab} handleSetActiveTab={setActiveTab} />
@@ -192,6 +194,7 @@ const HomePage: React.FC<HomePageProps> = () => {
       <ListContainer
         items={data.filter(item => item.charger === activeTab || activeTab === '전체')}
       />
+      <GroupSelectSheetContainer isOpen={isOpen} handleSetOpen={setIsOpen} />
     </div>
   );
 };
