@@ -1,13 +1,13 @@
 import BackBtn from '@/components/common/BackBtn/BackBtn';
 import React from 'react';
 
-interface GroupSettingHeaderContainerProps {
+interface SettingHeaderContainerProps {
   title: string;
   isNeededBackBtn: boolean;
   isNeededDoneBtn: boolean;
 }
 
-const GroupSettingHeaderContainer: React.FC<GroupSettingHeaderContainerProps> = ({
+const SettingHeaderContainer: React.FC<SettingHeaderContainerProps> = ({
   title,
   isNeededBackBtn,
   isNeededDoneBtn,
@@ -24,4 +24,4 @@ const GroupSettingHeaderContainer: React.FC<GroupSettingHeaderContainerProps> = 
   );
 };
 
-export default GroupSettingHeaderContainer;
+export default SettingHeaderContainer;

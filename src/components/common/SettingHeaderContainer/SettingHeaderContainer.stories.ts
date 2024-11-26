@@ -1,9 +1,9 @@
-import GroupSettingHeaderContainer from '@/components/common/GroupSettingHeaderContainer/GroupSettingHeaderContainer';
+import SettingHeaderContainer from '@/components/common/SettingHeaderContainer/SettingHeaderContainer';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'components/common/GroupSettingHeaderContainer',
-  component: GroupSettingHeaderContainer,
+  title: 'components/common/SettingHeaderContainer',
+  component: SettingHeaderContainer,
   tags: ['autodocs'],
   argTypes: {
     title: {
@@ -19,11 +19,11 @@ const meta = {
       control: 'boolean',
     },
   },
-} satisfies Meta<typeof GroupSettingHeaderContainer>;
+} satisfies Meta<typeof SettingHeaderContainer>;
 
 export default meta;
 
-type Story = StoryObj<typeof GroupSettingHeaderContainer>;
+type Story = StoryObj<typeof SettingHeaderContainer>;
 
 export const GroupSetting: Story = {
   args: {
