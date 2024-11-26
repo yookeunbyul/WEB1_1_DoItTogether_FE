@@ -1,9 +1,9 @@
 import React from 'react';
 import TextTag from '@/components/common/TextTag/TextTag';
-import CompletionText from '@/components/WeeklyCompletionContainer/CompletionText/CompletionText';
-import CompletionBarGraph from '@/components/WeeklyCompletionContainer/CompletionBarGraph/CompletionBarGraph';
+import CompletionText from '@/components/WeeklyCompletion/CompletionText/CompletionText';
+import CompletionBarGraph from '@/components/WeeklyCompletion/CompletionBarGraph/CompletionBarGraph';
 
-interface WeeklyCompletionContainerProps {
+interface WeeklyCompletionProps {
   /** 그룹명 */
   groupName: string;
   // status: string; // 추후 상태에 따라 아이콘 변경
@@ -13,7 +13,7 @@ interface WeeklyCompletionContainerProps {
   notCompleted: number;
 }
 
-const WeeklyCompletionContainer: React.FC<WeeklyCompletionContainerProps> = ({
+const WeeklyCompletion: React.FC<WeeklyCompletionProps> = ({
   groupName,
   completed,
   notCompleted,
@@ -38,4 +38,4 @@ const WeeklyCompletionContainer: React.FC<WeeklyCompletionContainerProps> = ({
   );
 };
 
-export default WeeklyCompletionContainer;
+export default WeeklyCompletion;

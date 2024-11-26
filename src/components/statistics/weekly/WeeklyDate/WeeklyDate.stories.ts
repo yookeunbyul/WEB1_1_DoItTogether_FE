@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import WeeklyDateContainer from './WeeklyDateContainer';
+import WeeklyDateContainer from './WeeklyDate';
 
 const meta = {
   title: 'components/WeeklyDateContainer',

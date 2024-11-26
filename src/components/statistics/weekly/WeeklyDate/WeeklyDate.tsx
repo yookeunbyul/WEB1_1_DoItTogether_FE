@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import DateItem from './DateItem/DateItem';
 
-const WeeklyDateContainer = () => {
+const WeeklyDate = () => {
   const dummyItems = [
     { date: 25, day: '월', pendingCnt: 2 },
     { date: 26, day: '화', pendingCnt: 0 },
@@ -47,4 +47,4 @@ const WeeklyDateContainer = () => {
   );
 };
 
-export default WeeklyDateContainer;
+export default WeeklyDate;
