@@ -1,6 +1,6 @@
-import GroupOption from '@/components/GroupOptionContainer/GroupOption/GroupOption';
+import GroupOption from '@/components/GroupOptions/GroupOption/GroupOption';
 
-const GroupOptionContainer = () => {
+const GroupOptions = () => {
   const groups = ['우리집', '회사'];
   return (
     <ul className='flex flex-col gap-y-6 px-5 pb-14 pt-8'>
@@ -11,4 +11,4 @@ const GroupOptionContainer = () => {
   );
 };
 
-export default GroupOptionContainer;
+export default GroupOptions;

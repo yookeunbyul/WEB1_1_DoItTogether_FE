@@ -1,7 +1,7 @@
-import PresetItem from '@/components/common/PresetItem/PresetItem';
+import PresetItemControl from '@/components/common/PresetItemControl/PresetItemControl';
 import { useState } from 'react';
 
-const PresetItemContainer = () => {
+const PresetItemControl = () => {
   const [isShowDeleteBtn, setIsShowDeleteBtn] = useState(false);
 
   const handleSettingClick = () => {
@@ -15,7 +15,7 @@ const PresetItemContainer = () => {
   };
   return (
     <div className='flex'>
-      <PresetItem
+      <PresetItemControl
         category='거실'
         housework='쓰레기통 비우기'
         handleSettingClick={handleSettingClick}
@@ -27,4 +27,4 @@ const PresetItemContainer = () => {
   );
 };
 
-export default PresetItemContainer;
+export default PresetItemControl;
