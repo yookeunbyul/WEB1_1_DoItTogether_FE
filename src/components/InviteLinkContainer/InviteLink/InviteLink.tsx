@@ -16,7 +16,7 @@ const InviteLink = () => {
   };
 
   return (
-    <div className='flex h-9 items-center justify-between rounded-full border border-gray02 px-4 py-1 text-16'>
+    <div className='flex h-12 items-center justify-between rounded-full border border-solid border-white01 px-4 py-1 text-16 shadow-sm'>
       {inviteLink ? (
         <>
           <div className='min-w-0 flex-1 overflow-hidden'>
