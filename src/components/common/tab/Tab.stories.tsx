@@ -1,6 +1,6 @@
 // TabContainer.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-import TabContainer from './TabContainer';
+import TabContainer from './TabContainer/TabContainer';
 import { Tabs, TabsList } from '@radix-ui/react-tabs';
 import Tab from '@/components/common/TabContainer/Tab/Tab';
 

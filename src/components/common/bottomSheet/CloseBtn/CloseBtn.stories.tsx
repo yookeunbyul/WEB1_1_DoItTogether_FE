@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import BottomSheetCloseBtn from './BottomSheetCloseBtn';
+import BottomSheetCloseBtn from './CloseBtn';
 import { fn } from '@storybook/test';
 
 const meta = {

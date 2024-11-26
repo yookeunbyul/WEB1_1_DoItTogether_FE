@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import BottomNavContainer from './BottomNavContainer';
+import BottomNavContainer from './BottomNavContainer/BottomNavContainer';
 
 const meta = {
   title: 'Components/BottomNavContainer',

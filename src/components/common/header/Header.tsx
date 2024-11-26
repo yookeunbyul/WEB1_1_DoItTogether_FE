@@ -1,17 +1,13 @@
 import BackBtn from '@/components/common/BackBtn/BackBtn';
 import React from 'react';
 
-interface SettingHeaderContainerProps {
+interface HeaderProps {
   title: string;
   isNeededBackBtn: boolean;
   isNeededDoneBtn: boolean;
 }
 
-const SettingHeaderContainer: React.FC<SettingHeaderContainerProps> = ({
-  title,
-  isNeededBackBtn,
-  isNeededDoneBtn,
-}) => {
+const Header: React.FC<HeaderProps> = ({ title, isNeededBackBtn, isNeededDoneBtn }) => {
   const handleClick = () => {
     console.log('뒤로가기');
   };
@@ -24,4 +20,4 @@ const SettingHeaderContainer: React.FC<SettingHeaderContainerProps> = ({
   );
 };
 
-export default SettingHeaderContainer;
+export default Header;

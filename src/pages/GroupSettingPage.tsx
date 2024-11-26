@@ -1,6 +1,6 @@
 import Button from '@/components/common/ButtonContainer/Button/Button';
 import InputContainer from '@/components/common/InputContainer/InputContainer';
-import SettingHeaderContainer from '@/components/common/SettingHeaderContainer/SettingHeaderContainer';
+import SettingHeaderContainer from '@/components/common/header/Header';
 import GroupMemberManageContainer from '@/components/GroupMemberManagerContainer/GroupMemberManageContainer';
 import InviteLinkContainer from '@/components/InviteLinkContainer/InviteLinkContainer';
 import { useState } from 'react';

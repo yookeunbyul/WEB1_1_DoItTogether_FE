@@ -1,4 +1,4 @@
-import SettingHeaderContainer from '@/components/common/SettingHeaderContainer/SettingHeaderContainer';
+import SettingHeaderContainer from '@/components/common/header/Header';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {

@@ -1,7 +1,7 @@
 import InputBox from '@/components/common/InputContainer/InputBox/InputBox';
 import React from 'react';
 
-interface InputContainerProps {
+interface InputWithLabelProps {
   label: string;
   value?: string;
   placeholder?: string;
@@ -9,7 +9,7 @@ interface InputContainerProps {
   handleChange?: (value: string) => void;
 }
 
-const InputContainer: React.FC<InputContainerProps> = ({
+const InputWithLabel: React.FC<InputWithLabelProps> = ({
   label,
   value,
   placeholder,
@@ -29,4 +29,4 @@ const InputContainer: React.FC<InputContainerProps> = ({
   );
 };
 
-export default InputContainer;
+export default InputWithLabel;

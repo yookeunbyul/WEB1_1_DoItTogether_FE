@@ -4,7 +4,7 @@ import BottomSheetTitle from './BottomSheetTitle/BottomSheetTitle';
 
 import React from 'react';
 
-interface BottomSheetContainerProps {
+interface BottomSheetProps {
   /**바텀시트 오픈 여부 */
   isOpen: boolean;
   /**isOpen 바꾸는 set함수 */
@@ -15,12 +15,7 @@ interface BottomSheetContainerProps {
   children: React.ReactNode;
 }
 
-const BottomSheetContainer: React.FC<BottomSheetContainerProps> = ({
-  isOpen,
-  setOpen,
-  title,
-  children,
-}) => {
+const BottomSheet: React.FC<BottomSheetProps> = ({ isOpen, setOpen, title, children }) => {
   return (
     <>
       <Sheet
@@ -44,4 +39,4 @@ const BottomSheetContainer: React.FC<BottomSheetContainerProps> = ({
   );
 };
 
-export default BottomSheetContainer;
+export default BottomSheet;

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import InputContainer from './InputContainer';
+import InputContainer from './InputContainer/InputContainer';
 
 const meta: Meta<typeof InputContainer> = {
   title: 'Components/common/InputContainer',

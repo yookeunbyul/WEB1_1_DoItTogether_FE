@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import PresetTab from './PresetTab';
+import PresetTab from './PresetTabItem';
 import { Tabs, TabsList, TabsContent } from '@/components/ui/tabs';
 
 const meta: Meta<typeof PresetTab> = {

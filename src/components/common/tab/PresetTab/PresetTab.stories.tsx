@@ -1,6 +1,6 @@
 // PresetTabContainer.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-import PresetTabContainer from './PresetTabContainer';
+import PresetTabContainer from './PresetTab';
 
 const meta: Meta<typeof PresetTabContainer> = {
   title: 'Components/PresetTabContainer',

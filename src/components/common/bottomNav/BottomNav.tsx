@@ -1,7 +1,7 @@
 import AddHouseWorkBtn from './AddHouseWorkBtn/AddHouseWorkBtn';
 import BottomNavBtn from './BottomNavBtn/BottomNavBtn';
 
-const BottomNavContainer = () => {
+const BottomNav = () => {
   const navItems = [
     { name: '홈', icon: null },
     { name: '통계', icon: null },
@@ -20,4 +20,4 @@ const BottomNavContainer = () => {
   );
 };
 
-export default BottomNavContainer;
+export default BottomNav;

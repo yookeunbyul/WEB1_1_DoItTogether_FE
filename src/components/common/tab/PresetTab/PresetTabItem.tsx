@@ -1,13 +1,13 @@
 import { TabsTrigger } from '@/components/ui/tabs';
 import React from 'react';
 
-interface PresetTabProps {
+interface PresetTabItemProps {
   name: string;
   value: string;
   icon: string;
 }
 
-const PresetTab: React.FC<PresetTabProps> = ({ name, value, icon }) => {
+const PresetTabItem: React.FC<PresetTabItemProps> = ({ name, value, icon }) => {
   return (
     <TabsTrigger
       value={value}
@@ -19,4 +19,4 @@ const PresetTab: React.FC<PresetTabProps> = ({ name, value, icon }) => {
   );
 };
 
-export default PresetTab;
+export default PresetTabItem;

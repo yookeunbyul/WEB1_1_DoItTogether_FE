@@ -12,11 +12,11 @@ interface PresetData {
   items: PresetItem[];
 }
 
-interface PresetTabContainerProps {
+interface PresetTabProps {
   data: PresetData[];
 }
 
-const PresetTabContainer: React.FC<PresetTabContainerProps> = ({ data }) => {
+const PresetTab: React.FC<PresetTabProps> = ({ data }) => {
   const handleClick = (item: string) => {
     console.log(item);
   };
@@ -45,4 +45,4 @@ const PresetTabContainer: React.FC<PresetTabContainerProps> = ({ data }) => {
   );
 };
 
-export default PresetTabContainer;
+export default PresetTab;
