@@ -135,7 +135,7 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({}) => {
     <div className='h-80 max-w'>
       <ResponsiveTimeRange
         data={data}
-        from='2024-05-01'
+        from='2024-04-30'
         to='2024-05-31'
         emptyColor='#ffffff'
         colors={['#eeeeff', '#D8D8D8', '#989393']}
@@ -143,6 +143,7 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({}) => {
         dayRadius={50}
         dayBorderWidth={5}
         daySpacing={5}
+        firstWeekday='monday'
         direction='vertical'
         minValue={0}
         maxValue={30}
