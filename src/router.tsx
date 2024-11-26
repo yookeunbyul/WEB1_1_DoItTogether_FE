@@ -85,10 +85,6 @@ export const router = createBrowserRouter([
         element: <GroupSettingPage />,
       },
       {
-        path: 'preset-setting',
-        element: <PresetSettingPage />,
-      },
-      {
         path: 'my-page',
         element: <MyPage />,
       },
@@ -97,6 +93,10 @@ export const router = createBrowserRouter([
         element: <MyPageEditPage />,
       },
     ],
+  },
+  {
+    path: '/group-setting/preset-setting',
+    element: <PresetSettingPage />,
   },
   {
     path: '/add-housework/step1',
