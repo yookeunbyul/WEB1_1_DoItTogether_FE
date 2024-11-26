@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Tab from './Tab';
+import Tab from './TabItem';
 import { Tabs, TabsList } from '@radix-ui/react-tabs';
 
 const meta = {

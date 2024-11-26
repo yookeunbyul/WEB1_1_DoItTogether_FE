@@ -1,4 +1,4 @@
-import BottomNavContainer from '@/components/common/BottomNavContainer/BottomNavContainer';
+import BottomNav from '@/components/common/bottomNav/BottomNav';
 import { Outlet } from 'react-router-dom';
 
 const MainLayout = () => {
@@ -8,7 +8,7 @@ const MainLayout = () => {
         <Outlet />
       </div>
       <div className='bg-white sticky bottom-0 w-full'>
-        <BottomNavContainer />
+        <BottomNav />
       </div>
     </div>
   );

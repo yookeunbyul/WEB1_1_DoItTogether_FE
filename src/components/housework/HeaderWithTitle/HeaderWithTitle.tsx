@@ -1,5 +1,5 @@
+import BackBtn, { BackBtnProps } from '@/components/common/button/BackBtn/BackBtn';
 import React from 'react';
-import BackBtn, { BackBtnProps } from '@/components/common/BackBtn/BackBtn';
 
 export interface HeaderWithTitleProps extends BackBtnProps {
   /** 타이틀 */
