@@ -182,12 +182,17 @@ interface HomePageProps {}
 const HomePage: React.FC<HomePageProps> = () => {
   const [activeTab, setActiveTab] = useState<string>('전체');
 
+  const chargers = [
+    { name: '전체' },
+    ...Array.from(new Set(data.map(item => item.charger))).map(charger => ({ name: charger })),
+  ];
+
   return (
     <div>
       <HomeHeaderContainer />
       <div className='bg-white sticky top-0 z-10'>
         <WeeklyDateContainer />
-        <TabContainer activeTab={activeTab} handleSetActiveTab={setActiveTab} />
+        <TabContainer activeTab={activeTab} handleSetActiveTab={setActiveTab} chargers={chargers} />
       </div>
       <ListContainer
         items={data.filter(item => item.charger === activeTab || activeTab === '전체')}
