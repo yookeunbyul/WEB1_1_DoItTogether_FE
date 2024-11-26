@@ -15,10 +15,12 @@ const GroupMemberManage: React.FC<GroupMemberManageProps> = ({
 
   return (
     <div
-      className={`flex h-9 items-center justify-between rounded-full border border-gray02 px-2 py-1 text-16 ${!showButton ? 'bg-white02' : ''}`}
+      className={`flex h-12 items-center justify-between rounded-full border border-solid border-white01 px-2 py-1 text-16 shadow-sm ${!showButton ? 'bg-white02' : ''}`}
     >
       {member}
-      {showButton && <i className='h-4 w-4 border border-black02' onClick={handleClick}></i>}
+      {showButton && (
+        <i className='h-4 w-4 border border-solid border-black02' onClick={handleClick}></i>
+      )}
     </div>
   );
 };
