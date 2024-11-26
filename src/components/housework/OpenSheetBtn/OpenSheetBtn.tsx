@@ -1,13 +1,13 @@
 import { Button } from '@/components/ui/button';
 
-interface SelectBtnProps {
+interface OpenSheetBtnProps {
   /** 셀렉트 버튼 title*/
   text: string;
   /** 클릭하는 이벤트 */
   handleClick: () => void;
 }
 
-const SelectBtn: React.FC<SelectBtnProps> = ({ text, handleClick }: SelectBtnProps) => {
+const OpenSheetBtn: React.FC<OpenSheetBtnProps> = ({ text, handleClick }: OpenSheetBtnProps) => {
   return (
     <Button variant='select' size='full' className='!justify-between' onClick={handleClick}>
       <div>{text}</div>
@@ -16,4 +16,4 @@ const SelectBtn: React.FC<SelectBtnProps> = ({ text, handleClick }: SelectBtnPro
   );
 };
 
-export default SelectBtn;
+export default OpenSheetBtn;

@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 
-interface SelectedBtnProps {
+interface OpenSheetBtnWithLabelProps {
   /**버튼 타이틀 */
   title: string;
   /**선택된 value */
@@ -8,11 +8,11 @@ interface SelectedBtnProps {
   /** 클릭하는 이벤트 */
   handleClick: () => void;
 }
-const SelectedBtn: React.FC<SelectedBtnProps> = ({
+const OpenSheetBtnWithLabel: React.FC<OpenSheetBtnWithLabelProps> = ({
   title,
   selected,
   handleClick,
-}: SelectedBtnProps) => {
+}: OpenSheetBtnWithLabelProps) => {
   return (
     <div className='flex items-center gap-x-11'>
       <div className='w-auto whitespace-nowrap'>{title}</div>
@@ -23,4 +23,4 @@ const SelectedBtn: React.FC<SelectedBtnProps> = ({
   );
 };
 
-export default SelectedBtn;
+export default OpenSheetBtnWithLabel;

@@ -4,7 +4,7 @@ import ManagerSelectContainer from '@/components/ManagerSelectContainer/ManagerS
 import React from 'react';
 import { Dispatch, SetStateAction } from 'react';
 
-interface ManagerSelectSheetContainerProps {
+interface ManagerSelectSheetProps {
   /**바텀시트 오픈 여부 */
   isOpen: boolean;
   /**isOpen 바꾸는 set함수 */
@@ -17,7 +17,7 @@ interface ManagerSelectSheetContainerProps {
   handleDoneClick: () => void;
 }
 
-const ManagerSelectSheetContainer: React.FC<ManagerSelectSheetContainerProps> = ({
+const ManagerSelectSheet: React.FC<ManagerSelectSheetProps> = ({
   isOpen,
   setIsOpen,
   selectedMember,
@@ -38,4 +38,4 @@ const ManagerSelectSheetContainer: React.FC<ManagerSelectSheetContainerProps> = 
   );
 };
 
-export default ManagerSelectSheetContainer;
+export default ManagerSelectSheet;

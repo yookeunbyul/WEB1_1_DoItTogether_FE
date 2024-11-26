@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface ManagerSelectItemProps {
+interface ManagerItemProps {
   /**멤버 이름 */
   name: string;
   /** 선택 상태 */
@@ -9,11 +9,11 @@ interface ManagerSelectItemProps {
   handleClick: () => void;
 }
 
-const ManagerSelectItem: React.FC<ManagerSelectItemProps> = ({
+const ManagerItem: React.FC<ManagerItemProps> = ({
   name,
   selectState = 'default',
   handleClick,
-}: ManagerSelectItemProps) => {
+}: ManagerItemProps) => {
   const getStyle = () => {
     switch (selectState) {
       case 'person':
@@ -50,4 +50,4 @@ const ManagerSelectItem: React.FC<ManagerSelectItemProps> = ({
   );
 };
 
-export default ManagerSelectItem;
+export default ManagerItem;

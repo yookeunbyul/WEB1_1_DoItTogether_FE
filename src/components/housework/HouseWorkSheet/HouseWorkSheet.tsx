@@ -4,14 +4,14 @@ import TabContainer from '@/components/common/TabContainer/TabContainer';
 import PresetTabContainer from '@/components/PresetTabContainer/PresetTabContainer';
 import { useState } from 'react';
 
-interface HouseWorkSheetContainerProps {
+interface HouseWorkSheetProps {
   /** 바텀시트 오픈 여부 */
   isOpen: boolean;
   /** isOpen 바꾸는 set함수 */
   setOpen: (isOpen: boolean) => void;
 }
 
-const HouseWorkSheetContainer: React.FC<HouseWorkSheetContainerProps> = ({ isOpen, setOpen }) => {
+const HouseWorkSheet: React.FC<HouseWorkSheetProps> = ({ isOpen, setOpen }) => {
   const mockData = {
     userData: [
       {
@@ -96,4 +96,4 @@ const HouseWorkSheetContainer: React.FC<HouseWorkSheetContainerProps> = ({ isOpe
   );
 };
 
-export default HouseWorkSheetContainer;
+export default HouseWorkSheet;

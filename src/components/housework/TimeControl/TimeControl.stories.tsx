@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import TimeContainer from './TimeContainer';
+import TimeContainer from './TimeControl';
 
 const meta: Meta<typeof TimeContainer> = {
   title: 'Components/TimeContainer',

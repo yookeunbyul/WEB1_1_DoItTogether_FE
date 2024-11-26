@@ -9,11 +9,11 @@ interface SelectedTime {
   dayPart: 'AM' | 'PM';
 }
 
-interface TimeContainerProps {
+interface TimeControlProps {
   onTimeChange: (time: SelectedTime) => void;
 }
 
-const TimeContainer: React.FC<TimeContainerProps> = ({ onTimeChange }) => {
+const TimeControl: React.FC<TimeControlProps> = ({ onTimeChange }) => {
   const [isAllDay, setIsAllDay] = useState(true);
   const [selectedTime, setSelectedTime] = useState<SelectedTime | null>(null);
 
@@ -42,4 +42,4 @@ const TimeContainer: React.FC<TimeContainerProps> = ({ onTimeChange }) => {
   );
 };
 
-export default TimeContainer;
+export default TimeControl;

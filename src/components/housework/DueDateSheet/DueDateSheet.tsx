@@ -2,14 +2,14 @@ import BottomSheetContainer from '@/components/common/BottomSheetContainer/Botto
 import Button from '@/components/common/ButtonContainer/Button/Button';
 import { Calendar } from '@/components/common/Calendar/Calendar';
 
-interface DueDateSheetContainerProps {
+interface DueDateSheetProps {
   /** 바텀시트 오픈 여부 */
   isOpen: boolean;
   /** isOpen 바꾸는 set함수 */
   setOpen: (isOpen: boolean) => void;
 }
 
-const DueDateSheetContainer = ({ isOpen, setOpen }: DueDateSheetContainerProps) => {
+const DueDateSheet = ({ isOpen, setOpen }: DueDateSheetProps) => {
   const handleDoneClick = () => {
     setOpen(false);
   };
@@ -28,4 +28,4 @@ const DueDateSheetContainer = ({ isOpen, setOpen }: DueDateSheetContainerProps) 
   );
 };
 
-export default DueDateSheetContainer;
+export default DueDateSheet;

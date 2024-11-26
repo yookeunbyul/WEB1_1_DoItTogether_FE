@@ -1,16 +1,13 @@
-import ManagerSelectItem from '@/components/ManagerSelectContainer/ManagerSelectItem/ManagerSelectItem';
+import ManagerSelectItem from '@/components/ManagerItems/ManagerSelectItem/ManagerSelectItem';
 
-interface ManagerSelectContainerProps {
+interface ManagerItemsProps {
   /**선택한 멤버 */
   selectedMember: string;
   /**set 함수 */
   handleSelectMember: (member: string) => void;
 }
 
-const ManagerSelectContainer: React.FC<ManagerSelectContainerProps> = ({
-  selectedMember,
-  handleSelectMember,
-}) => {
+const ManagerItems: React.FC<ManagerItemsProps> = ({ selectedMember, handleSelectMember }) => {
   const members = ['김민수', '이영희', '박지수', '최수진'];
 
   return (
@@ -27,4 +24,4 @@ const ManagerSelectContainer: React.FC<ManagerSelectContainerProps> = ({
   );
 };
 
-export default ManagerSelectContainer;
+export default ManagerItems;
