@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import MonthlyGrass from './MonthlyGrass';
 
 const meta = {
-  title: 'Components/MonthlyStatisticsContainer/MonthlyGrass',
+  title: 'components/statistics/monthly/MonthlyGrass',
   component: MonthlyGrass,
   tags: ['autodocs'],
 } satisfies Meta<typeof MonthlyGrass>;

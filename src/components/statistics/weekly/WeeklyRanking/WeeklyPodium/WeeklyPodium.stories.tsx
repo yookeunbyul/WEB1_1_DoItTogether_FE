@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import WeeklyPodium from '@/components/WeeklyRankingContainer/WeeklyPodium/WeeklyPodium';
+import WeeklyPodium from '@/components/statistics/weekly/WeeklyRanking/WeeklyPodium/WeeklyPodium';
 
 const meta = {
-  title: 'components/WeeklyRankingContainer/WeeklyPodium',
+  title: 'components/statistics/weekly/WeeklyRanking/WeeklyPodium',
   component: WeeklyPodium,
   tags: ['autodocs'],
 } satisfies Meta<typeof WeeklyPodium>;

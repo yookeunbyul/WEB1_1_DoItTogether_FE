@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import CompletionText from '@/components/WeeklyCompletionContainer/CompletionText/CompletionText';
+import CompletionText from '@/components/statistics/weekly/WeeklyCompletion/CompletionText/CompletionText';
 
 const meta = {
-  title: 'components/WeeklyCompletionContainer/CompletionText',
+  title: 'components/statistics/weekly/WeeklyCompletion/CompletionText',
   component: CompletionText,
   tags: ['autodocs'],
 } satisfies Meta<typeof CompletionText>;
