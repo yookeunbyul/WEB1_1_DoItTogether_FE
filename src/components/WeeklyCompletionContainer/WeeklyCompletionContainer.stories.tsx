@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import WeeklyCompletionContainer from '@/components/WeeklyCompletionContainer/WeeklyCompletionContainer';
 
 const meta = {
-  title: 'components/WeeklyCompletionContainer/WeeklyCompletionContainer',
+  title: 'components/WeeklyCompletionContainer',
   component: WeeklyCompletionContainer,
   tags: ['autodocs'],
 } satisfies Meta<typeof WeeklyCompletionContainer>;
