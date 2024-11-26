@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
-import HomeHeaderContainer from './HomeHeaderContainer';
+import HomeHeaderContainer from './HomeHeader';
 
 const meta = {
   title: 'components/HomeHeaderContainer',

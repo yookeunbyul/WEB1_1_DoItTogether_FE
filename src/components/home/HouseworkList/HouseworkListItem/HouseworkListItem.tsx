@@ -7,7 +7,7 @@ import ControlDropdown, {
   ControlDropdownProps,
 } from '@/components/ControlDropdown/ControlDropdown';
 
-export interface ListItemContainerProps
+export interface HouseworkListItemProps
   extends ListActionBtnProps,
     HouseworkCategoryTagProps,
     ControlDropdownProps {
@@ -21,7 +21,7 @@ export interface ListItemContainerProps
   time: string;
 }
 
-const ListItemContainer: React.FC<ListItemContainerProps> = ({
+const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
   actionStatus,
   handleAction,
   listTitle,
@@ -59,4 +59,4 @@ const ListItemContainer: React.FC<ListItemContainerProps> = ({
   );
 };
 
-export default ListItemContainer;
+export default HouseworkListItem;

@@ -2,15 +2,12 @@ import BottomSheetContainer from '@/components/common/BottomSheetContainer/Botto
 import GroupOptionContainer from '@/components/GroupOptionContainer/GroupOptionContainer';
 import React from 'react';
 
-interface GroupSelectSheetContainerProps {
+interface GroupSelectSheetProps {
   isOpen: boolean;
   handleSetOpen: (value: boolean) => void;
 }
 
-const GroupSelectSheetContainer: React.FC<GroupSelectSheetContainerProps> = ({
-  isOpen,
-  handleSetOpen,
-}) => {
+const GroupSelectSheet: React.FC<GroupSelectSheetProps> = ({ isOpen, handleSetOpen }) => {
   return (
     <BottomSheetContainer isOpen={isOpen} setOpen={handleSetOpen} title='그룹 변경'>
       <GroupOptionContainer />
@@ -18,4 +15,4 @@ const GroupSelectSheetContainer: React.FC<GroupSelectSheetContainerProps> = ({
   );
 };
 
-export default GroupSelectSheetContainer;
+export default GroupSelectSheet;

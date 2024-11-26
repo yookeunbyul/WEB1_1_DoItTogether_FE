@@ -1,11 +1,11 @@
 import React from 'react';
 import ListItemContainer, { ListItemContainerProps } from './ListItemContainer/ListItemContainer';
 
-export interface ListContainerProps {
+export interface HouseworkListProps {
   items: ListItemContainerProps[];
 }
 
-const ListContainer: React.FC<ListContainerProps> = ({ items }) => {
+const HouseworkList: React.FC<HouseworkListProps> = ({ items }) => {
   return (
     <div className='flex max-w flex-col gap-2 p-5'>
       {items.map(item => (
@@ -15,4 +15,4 @@ const ListContainer: React.FC<ListContainerProps> = ({ items }) => {
   );
 };
 
-export default ListContainer;
+export default HouseworkList;

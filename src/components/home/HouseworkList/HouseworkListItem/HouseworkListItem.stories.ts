@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ListItemContainer, { ListItemContainerProps } from './ListItemContainer';
+import ListItemContainer, { ListItemContainerProps } from './HouseworkListItem';
 import { fn } from '@storybook/test'; // Mock function을 가져오기
 
 const meta = {
