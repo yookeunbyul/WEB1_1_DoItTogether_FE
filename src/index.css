@@ -62,10 +62,18 @@
   }
 }
 
-.react-modal-sheet-container {
-  /* margin: 0 auto !important;
+body:has(.react-modal-sheet-container) {
+  overflow: hidden !important;
+  pointer-events: none;
+}
+
+.react-modal-sheet-backdrop {
   max-width: 430px !important;
-  width: 100% !important; */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+.react-modal-sheet-container {
   border-top-left-radius: 1rem !important;
   border-top-right-radius: 1rem !important;
   box-shadow: none !important;
