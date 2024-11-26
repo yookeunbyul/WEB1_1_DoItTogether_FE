@@ -1,5 +1,5 @@
-import BottomSheetContainer from '@/components/common/BottomSheetContainer/BottomSheetContainer';
-import GroupOptionContainer from '@/components/GroupOptionContainer/GroupOptionContainer';
+import BottomSheet from '@/components/common/bottomSheet/BottomSheet';
+import GroupOptions from '@/components/home/GroupSelectSheet/GroupOptions/GroupOptions';
 import React from 'react';
 
 interface GroupSelectSheetProps {
@@ -9,9 +9,9 @@ interface GroupSelectSheetProps {
 
 const GroupSelectSheet: React.FC<GroupSelectSheetProps> = ({ isOpen, handleSetOpen }) => {
   return (
-    <BottomSheetContainer isOpen={isOpen} setOpen={handleSetOpen} title='그룹 변경'>
-      <GroupOptionContainer />
-    </BottomSheetContainer>
+    <BottomSheet isOpen={isOpen} setOpen={handleSetOpen} title='그룹 변경'>
+      <GroupOptions />
+    </BottomSheet>
   );
 };
 

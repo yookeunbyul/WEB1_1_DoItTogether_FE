@@ -3,7 +3,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from '@/components/common/ui/dropdown-menu';
 
 export interface ControlDropdownProps {
   /** 수정 클릭 이벤트 */

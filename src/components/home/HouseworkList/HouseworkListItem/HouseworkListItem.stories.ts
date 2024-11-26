@@ -1,16 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ListItemContainer, { ListItemContainerProps } from './HouseworkListItem';
-import { fn } from '@storybook/test'; // Mock function을 가져오기
+import HouseworkListItem, {
+  HouseworkListItemProps,
+} from '@/components/home/HouseworkList/HouseworkListItem/HouseworkListItem';
+import { fn } from '@storybook/test';
 
 const meta = {
-  title: 'components/ListContainer/ListItemContainer',
-  component: ListItemContainer,
+  title: 'components/home/HouseworkList/HouseworkListItem',
+  component: HouseworkListItem,
   tags: ['autodocs'],
-} satisfies Meta<typeof ListItemContainer>;
+} satisfies Meta<typeof HouseworkListItem>;
 
 export default meta;
 
-type Story = StoryObj<ListItemContainerProps>;
+type Story = StoryObj<HouseworkListItemProps>;
 
 export const Default: Story = {
   args: {
@@ -22,10 +24,9 @@ export const Default: Story = {
     listTitle: '바닥 걸레질',
     charger: '종원',
     time: '오후 8:00',
-    handleEditOrDelete: fn(() => {
-      console.log('Edit or Delete triggered');
-    }),
     category: '거실',
+    handleEdit: () => console.log('edit clicked!'),
+    handleDelete: () => console.log('delete clicked!'),
   },
 };
 
@@ -39,9 +40,8 @@ export const Complete: Story = {
     listTitle: '청소',
     charger: '철수',
     time: '오후 9:00',
-    handleEditOrDelete: fn(() => {
-      console.log('Edit or Delete triggered');
-    }),
     category: '화장실',
+    handleEdit: () => console.log('edit clicked!'),
+    handleDelete: () => console.log('delete clicked!'),
   },
 };

@@ -1,9 +1,7 @@
 import React from 'react';
 
 /**
- * todo: 추후 기능 추가
- * - 아이콘
- * 1. 수정 / 삭제
+ * ! 삭제
  */
 
 export interface EditDeleteBtnProps {

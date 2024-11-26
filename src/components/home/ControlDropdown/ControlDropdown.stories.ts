@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import ControlDropdown from '@/components/ControlDropdown/ControlDropdown';
+import ControlDropdown from '@/components/home/ControlDropdown/ControlDropdown';
 
 const meta = {
-  title: 'components/ControlDropdown/ControlDropdown',
+  title: 'components/home/ControlDropdown',
   component: ControlDropdown,
   tags: ['autodocs'],
   argTypes: {},
