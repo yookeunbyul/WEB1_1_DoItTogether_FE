@@ -35,7 +35,7 @@ const PresetTabContainer: React.FC<PresetTabContainerProps> = ({ data }) => {
               <PresetItem
                 category={tabData.category}
                 housework={item.description}
-                handleClick={() => handleClick(item.description)}
+                handleSelectClick={() => handleClick(item.description)}
               />
             </div>
           ))}
