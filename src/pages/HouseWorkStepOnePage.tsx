@@ -4,20 +4,24 @@ import Button from '@/components/common/ButtonContainer/Button/Button';
 import SelectBtn from '@/components/common/SelectBtn/SelectBtn';
 import SelectedBtn from '@/components/common/SelectedBtn/SelectedBtn';
 import PageHeaderContainer from '@/components/PageHeaderContainer/PageHeaderContainer';
+import DueDateSheetContainer from '@/components/bottomSheet/DueDateSheetContainer/DueDateSheetContainer';
+import HouseWorkSheetContainer from '@/components/bottomSheet/HouseWorkSheetContainer/HouseWorkSheetContainer';
 
 const HouseWorkStepOnePage = () => {
   const navigate = useNavigate();
   const [houseWork, setHouseWork] = useState(null);
-  const [dueDate, setDueDate] = useState(null);
+  const [dueDate, setDueDate] = useState<Date | null>(null);
+  const [isHouseWorkSheetOpen, setHouseWorkSheetOpen] = useState(false);
+  const [isDueDateSheetOpen, setDueDateSheetOpen] = useState(false);
 
   const handleBackClick = () => {
     navigate(-1);
   };
   const handleHouseWorkClick = () => {
-    console.log('bottom sheet open!');
+    setHouseWorkSheetOpen(true);
   };
   const handleDueDateClick = () => {
-    console.log('bottom sheet open!');
+    setDueDateSheetOpen(true);
   };
   const handleNextClick = () => {
     navigate('/add-housework/step2');
@@ -42,6 +46,9 @@ const HouseWorkStepOnePage = () => {
         )}
       </section>
       <Button variant='full' size='large' label='다음' handleClick={handleNextClick} />
+
+      <HouseWorkSheetContainer isOpen={isHouseWorkSheetOpen} setOpen={setHouseWorkSheetOpen} />
+      <DueDateSheetContainer isOpen={isDueDateSheetOpen} setOpen={setDueDateSheetOpen} />
     </div>
   );
 };

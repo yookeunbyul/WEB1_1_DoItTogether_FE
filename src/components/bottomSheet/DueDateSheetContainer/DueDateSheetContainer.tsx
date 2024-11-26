@@ -1,16 +1,16 @@
-import { useState } from 'react';
 import BottomSheetContainer from '@/components/common/BottomSheetContainer/BottomSheetContainer';
 import Button from '@/components/common/ButtonContainer/Button/Button';
 import { Calendar } from '@/components/common/Calendar/Calendar';
 
-const DueDateSheetContainer = () => {
-  const [isOpen, setOpen] = useState(true);
-  const [dueDate, setDueDate] = useState<Date | null>(null);
+interface DueDateSheetContainerProps {
+  /** 바텀시트 오픈 여부 */
+  isOpen: boolean;
+  /** isOpen 바꾸는 set함수 */
+  setOpen: (isOpen: boolean) => void;
+}
 
-  const handleDateChange = (date: Date) => {
-    setDueDate(date);
-  };
-  const handleCompleteClick = () => {
+const DueDateSheetContainer = ({ isOpen, setOpen }: DueDateSheetContainerProps) => {
+  const handleDoneClick = () => {
     setOpen(false);
   };
 
@@ -21,7 +21,7 @@ const DueDateSheetContainer = () => {
           <Calendar />
         </section>
         <div className='px-5'>
-          <Button label='완료' variant='full' size='large' handleClick={handleCompleteClick} />
+          <Button label='완료' variant='full' size='large' handleClick={handleDoneClick} />
         </div>
       </div>
     </BottomSheetContainer>

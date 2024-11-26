@@ -1,14 +1,17 @@
 import BottomSheetContainer from '@/components/common/BottomSheetContainer/BottomSheetContainer';
-import ButtonContainer from '@/components/common/ButtonContainer/ButtonContainer';
+import Button from '@/components/common/ButtonContainer/Button/Button';
 import TabContainer from '@/components/common/TabContainer/TabContainer';
 import PresetTabContainer from '@/components/PresetTabContainer/PresetTabContainer';
 import { useState } from 'react';
 
-interface HouseWorkSheetContainerProps {}
+interface HouseWorkSheetContainerProps {
+  /** 바텀시트 오픈 여부 */
+  isOpen: boolean;
+  /** isOpen 바꾸는 set함수 */
+  setOpen: (isOpen: boolean) => void;
+}
 
-const HouseWorkSheetContainer: React.FC<HouseWorkSheetContainerProps> = ({}) => {
-  const [isOpen, setOpen] = useState(true);
-
+const HouseWorkSheetContainer: React.FC<HouseWorkSheetContainerProps> = ({ isOpen, setOpen }) => {
   const mockData = {
     userData: [
       {
@@ -68,6 +71,9 @@ const HouseWorkSheetContainer: React.FC<HouseWorkSheetContainerProps> = ({}) => 
   const chargers = Object.keys(mockData).map(key => ({
     name: key === 'userData' ? '사용자 정의' : '프리셋',
   }));
+  const handleDoneClick = () => {
+    setOpen(false);
+  };
 
   return (
     <BottomSheetContainer isOpen={isOpen} setOpen={setOpen} title='집안일 선택'>
@@ -83,18 +89,7 @@ const HouseWorkSheetContainer: React.FC<HouseWorkSheetContainerProps> = ({}) => 
           />
         </section>
         <div className='px-5'>
-          <ButtonContainer
-            buttonLeft={{
-              label: '설정',
-              variant: 'outline',
-              size: 'small',
-            }}
-            buttonRight={{
-              label: '선택',
-              variant: 'full',
-              size: 'large',
-            }}
-          />
+          <Button label='선택 완료' variant='full' size='large' handleClick={handleDoneClick} />
         </div>
       </div>
     </BottomSheetContainer>
