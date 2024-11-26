@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface GroupMemberManageProps {
   leader: boolean;
   member: string;

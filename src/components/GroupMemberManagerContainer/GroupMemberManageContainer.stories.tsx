@@ -1,5 +1,5 @@
+import GroupMemberManageContainer from '@/components/GroupMemberManagerContainer/GroupMemberManageContainer';
 import type { Meta, StoryObj } from '@storybook/react';
-import GroupMemberManageContainer from './GroupMemberManageContainer';
 
 const meta: Meta<typeof GroupMemberManageContainer> = {
   title: 'Components/GroupMemberManageContainer',

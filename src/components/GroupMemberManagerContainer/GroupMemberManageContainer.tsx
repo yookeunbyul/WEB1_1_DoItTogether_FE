@@ -1,4 +1,4 @@
-import GroupMemberManage from '@/components/common/GroupMemberManageContainer/GroupMemberManage/GroupMemberManage';
+import GroupMemberManage from '@/components/GroupMemberManagerContainer/GroupMemberManage/GroupMemberManage';
 import React from 'react';
 
 interface GroupMemberManageContainerProps {
