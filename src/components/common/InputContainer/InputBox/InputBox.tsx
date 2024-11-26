@@ -4,10 +4,10 @@ interface InputBoxProps {
   value?: string;
   placeholder?: string;
   disabled: boolean;
-  onChange?: (value: string) => void;
+  handleChange?: (value: string) => void;
 }
 
-const InputBox: React.FC<InputBoxProps> = ({ value, placeholder, disabled, onChange }) => {
+const InputBox: React.FC<InputBoxProps> = ({ value, placeholder, disabled, handleChange }) => {
   return (
     <div>
       <Input
@@ -15,7 +15,7 @@ const InputBox: React.FC<InputBoxProps> = ({ value, placeholder, disabled, onCha
         className='rounded-full text-16'
         disabled={disabled}
         value={value}
-        onChange={e => onChange?.(e.target.value)}
+        onChange={e => handleChange?.(e.target.value)}
       />
     </div>
   );
