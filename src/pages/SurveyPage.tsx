@@ -1,4 +1,4 @@
-import OnBoarding from '@/components/survey/onBoarding';
+import OnBoarding from '@/components/survey/OnBoarding';
 
 const SurveyPage = () => {
   return (
