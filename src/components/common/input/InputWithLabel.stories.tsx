@@ -2,7 +2,7 @@ import InputWithLabel from '@/components/common/input/InputWithLabel';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof InputWithLabel> = {
-  title: 'components/common/Input',
+  title: 'components/common/input/InputWithLabel',
   component: InputWithLabel,
   tags: ['autodocs'],
   argTypes: {

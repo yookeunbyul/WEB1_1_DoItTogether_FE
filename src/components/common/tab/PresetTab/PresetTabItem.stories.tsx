@@ -3,7 +3,7 @@ import { Tabs, TabsContent, TabsList } from '@/components/common/ui/tabs';
 import PresetTabItem from '@/components/common/tab/PresetTab/PresetTabItem';
 
 const meta: Meta<typeof PresetTabItem> = {
-  title: 'components/common/tab/PresetTab',
+  title: 'components/common/tab/PresetTab/PresetTabItem',
   component: PresetTabItem,
   tags: ['autodocs'],
 };

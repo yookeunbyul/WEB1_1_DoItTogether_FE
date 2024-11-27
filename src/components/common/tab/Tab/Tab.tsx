@@ -1,6 +1,6 @@
 import React from 'react';
-import TabItem from '@/components/common/tab/TabItem/TabItem';
 import { Tabs, TabsList } from '@/components/common/ui/tabs';
+import TabItem from '@/components/common/tab/Tab/TabItem';
 
 interface Charger {
   name: string;

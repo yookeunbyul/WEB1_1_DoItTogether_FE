@@ -3,7 +3,7 @@ import InputBox from '@/components/common/input/InputBox';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'components/common/InputBox',
+  title: 'components/common/input/InputBox',
   component: InputBox,
   tags: ['autodocs'],
   parameters: {

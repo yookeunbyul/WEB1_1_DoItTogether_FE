@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import PresetTab from '@/components/common/tab/PresetTab/PresetTab';
 
 const meta = {
-  title: 'components/common/tab/PresetTab',
+  title: 'components/common/tab/PresetTab/PresetTab',
   component: PresetTab,
   tags: ['autodocs'],
   parameters: {

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Tab from '@/components/common/tab/Tab';
+import Tab from '@/components/common/tab/Tab/Tab';
 
 const meta = {
-  title: 'components/common/tab',
+  title: 'components/common/tab/Tab/Tab',
   component: Tab,
   tags: ['autodocs'],
   parameters: {

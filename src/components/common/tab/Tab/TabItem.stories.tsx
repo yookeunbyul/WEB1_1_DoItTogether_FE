@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Tabs, TabsList } from '@/components/common/ui/tabs';
-import TabItem from '@/components/common/tab/TabItem/TabItem';
+import TabItem from '@/components/common/tab/Tab/TabItem';
 
 const meta = {
-  title: 'components/common/tab/TabItem',
+  title: 'components/common/tab/Tab/TabItem',
   component: TabItem,
   decorators: [
     Story => (

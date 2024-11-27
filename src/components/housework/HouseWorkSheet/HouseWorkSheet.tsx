@@ -1,7 +1,7 @@
 import BottomSheet from '@/components/common/bottomSheet/BottomSheet';
 import Button from '@/components/common/button/Button/Button';
 import PresetTab from '@/components/common/tab/PresetTab/PresetTab';
-import Tab from '@/components/common/tab/Tab';
+import Tab from '@/components/common/tab/Tab/Tab';
 import { useState } from 'react';
 
 interface HouseWorkSheetProps {

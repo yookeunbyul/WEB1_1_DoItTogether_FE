@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import HomeHeader from '@/components/home/HomeHeader/HomeHeader';
 import WeeklyDate from '@/components/statistics/weekly/WeeklyDate/WeeklyDate';
-import Tab from '@/components/common/tab/Tab';
+import Tab from '@/components/common/tab/Tab/Tab';
 import HouseworkList from '@/components/home/HouseworkList/HouseworkList';
 import GroupSelectSheet from '@/components/home/GroupSelectSheet/GroupSelectSheet';
 

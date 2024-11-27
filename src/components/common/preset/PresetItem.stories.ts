@@ -2,7 +2,7 @@ import PresetItem, { PresetItemProps } from '@/components/common/preset/PresetIt
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'components/common/preset',
+  title: 'components/common/preset/PresetItem',
   component: PresetItem,
   tags: ['autodocs'],
 } satisfies Meta<typeof PresetItem>;
