@@ -14,6 +14,8 @@ const WeeklyStatDate: React.FC<WeeklyStatDateProps> = ({
   handlePrevWeek,
   handleNextWeek,
 }) => {
+  // todo
+  // utils에 분리
   const getWeekText = (date: Date) => {
     const year = date.getFullYear();
     const month = date.getMonth(); // 0부터 시작하므로 11월은 10
@@ -27,7 +29,7 @@ const WeeklyStatDate: React.FC<WeeklyStatDateProps> = ({
   };
 
   return (
-    <div className='flex items-center justify-between'>
+    <div className='flex items-center justify-center gap-4'>
       <button onClick={handlePrevWeek}>이전 주</button>
       <span>{getWeekText(currentDate)}</span>
       <button onClick={handleNextWeek}>다음 주</button>
