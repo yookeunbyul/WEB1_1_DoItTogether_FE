@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import HomeHeader from '@/components/home/HomeHeader/HomeHeader';
-import WeeklyDate from '@/components/home/WeeklyDate/WeeklyDate';
-import Tab from '@/components/common/tab/Tab/Tab';
+import WeeklyDateAndTab from '@/components/home/WeeklyDateAndTab';
 import HouseworkList from '@/components/home/HouseworkList/HouseworkList';
 import GroupSelectSheet from '@/components/home/GroupSelectSheet/GroupSelectSheet';
 
@@ -192,10 +191,11 @@ const HomePage: React.FC<HomePageProps> = () => {
   return (
     <div>
       <HomeHeader handleSetOpen={setIsOpen} />
-      <div className='bg-white sticky top-0 z-10'>
-        <WeeklyDate />
-        <Tab activeTab={activeTab} handleSetActiveTab={setActiveTab} chargers={chargers} />
-      </div>
+      <WeeklyDateAndTab
+        activeTab={activeTab}
+        handleSetActiveTab={setActiveTab}
+        chargers={chargers}
+      />
       <HouseworkList
         items={data.filter(item => item.charger === activeTab || activeTab === '전체')}
       />

@@ -6,7 +6,7 @@ interface Charger {
   name: string;
 }
 
-interface TabProps {
+export interface TabProps {
   activeTab: string;
   handleSetActiveTab: React.Dispatch<React.SetStateAction<string>>;
   chargers: Charger[];
