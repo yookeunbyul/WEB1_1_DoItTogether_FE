@@ -11,11 +11,25 @@ interface ButtonProps {
   handleClick?: () => void;
   /** 커스텀 스타일 */
   className?: string;
+  disabled?: boolean;
 }
 
-const Button = ({ label, variant = 'full', size, handleClick, className }: ButtonProps) => {
+const Button = ({
+  label,
+  variant = 'full',
+  size,
+  handleClick,
+  className,
+  disabled = false,
+}: ButtonProps) => {
   return (
-    <ButtonComponent variant={variant} size={size} onClick={handleClick} className={className}>
+    <ButtonComponent
+      variant={variant}
+      size={size}
+      onClick={handleClick}
+      className={className}
+      disabled={disabled}
+    >
       {label}
     </ButtonComponent>
   );
