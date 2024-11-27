@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import MainLayout from '@/layout/MainLayout';
-import GroupLayout from '@/layout/GroupLayout';
 import StatisticsLayout from '@/layout/StatisticsLayout';
 
 import ErrorPage from '@/pages/ErrorPage';
@@ -11,8 +10,6 @@ import SurveyIntroPage from '@/pages/SurveyIntroPage';
 import SurveyPage from '@/pages/SurveyPage';
 import GroupCreatePage from '@/pages/GroupCreatePage';
 import GroupSelectPage from '@/pages/GroupSelectPage';
-import GroupInviteReceivePage from '@/pages/GroupInviteReceivePage';
-import GroupInviteSendPage from '@/pages/GroupInviteSendPage';
 import GroupSettingPage from '@/pages/GroupSettingPage';
 import HomePage from '@/pages/HomePage';
 import WeeklyStatisticsPage from '@/pages/WeeklyStatisticsPage';
@@ -22,6 +19,7 @@ import MyPage from '@/pages/MyPage';
 import MyPageEditPage from '@/pages/MyPageEditPage';
 import HouseWorkStepOnePage from '@/pages/HouseWorkStepOnePage';
 import HouseWorkStepTwoPage from '@/pages/HouseWorkStepTwoPage';
+import GroupInviteReceivePage from '@/pages/GroupInviteReceivePage';
 
 export const router = createBrowserRouter([
   {
