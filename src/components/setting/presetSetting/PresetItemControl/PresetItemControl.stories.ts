@@ -2,7 +2,7 @@ import PresetItemControl from '@/components/setting/presetSetting/PresetItemCont
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof PresetItemControl> = {
-  title: 'components/setting/presetSetting/PresetItemControl',
+  title: 'components/setting/presetSetting/PresetItemControl/PresetItemControl',
   component: PresetItemControl,
   tags: ['autodocs'],
 };
