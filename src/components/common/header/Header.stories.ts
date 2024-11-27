@@ -48,3 +48,11 @@ export const PresetSetting: Story = {
     isNeededDoneBtn: true,
   },
 };
+
+export const GroupSelect: Story = {
+  args: {
+    title: '방 만들기',
+    isNeededBackBtn: true,
+    isNeededDoneBtn: false,
+  },
+};
