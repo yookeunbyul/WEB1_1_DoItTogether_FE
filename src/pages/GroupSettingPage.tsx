@@ -19,7 +19,7 @@ const GroupSettingPage = () => {
   const [isEdited, setIsEdited] = useState(false);
 
   const handleMovePreset = () => {
-    navigate('/main/preset-setting');
+    navigate('/group-setting/preset-setting');
   };
 
   const handleGroupNameChange = (value: string) => {
