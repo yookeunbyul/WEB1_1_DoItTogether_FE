@@ -54,7 +54,11 @@ const HouseWorkStepTwoPage = () => {
               handleClick={handleManagerClick}
             />
           ) : (
-            <OpenSheetBtn text='책임자는 누구인가요?' handleClick={handleManagerClick} />
+            <OpenSheetBtn
+              text='책임자는 누구인가요?'
+              handleClick={handleManagerClick}
+              type='housework'
+            />
           )}
           <TimeControl onTimeChange={handleTimeChange} />
         </section>

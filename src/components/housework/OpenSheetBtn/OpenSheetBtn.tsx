@@ -5,13 +5,18 @@ interface OpenSheetBtnProps {
   text: string;
   /** 클릭하는 이벤트 */
   handleClick: () => void;
+  type: string;
 }
 
-const OpenSheetBtn: React.FC<OpenSheetBtnProps> = ({ text, handleClick }: OpenSheetBtnProps) => {
+const OpenSheetBtn: React.FC<OpenSheetBtnProps> = ({
+  text,
+  handleClick,
+  type,
+}: OpenSheetBtnProps) => {
   return (
     <Button variant='select' size='full' className='!justify-between' onClick={handleClick}>
       <div>{text}</div>
-      <div className='h-4 w-4 rounded-full bg-gray02'></div>
+      <div>{type === 'housework' ? '+' : '>'}</div>
     </Button>
   );
 };

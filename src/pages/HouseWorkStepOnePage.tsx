@@ -38,12 +38,20 @@ const HouseWorkStepOnePage = () => {
             handleClick={handleHouseWorkClick}
           />
         ) : (
-          <OpenSheetBtn text='어떤 집안일인가요?' handleClick={handleHouseWorkClick} />
+          <OpenSheetBtn
+            text='어떤 집안일인가요?'
+            handleClick={handleHouseWorkClick}
+            type='housework'
+          />
         )}
         {dueDate ? (
           <OpenSheetBtnWithLabel title='날짜' selected='dueDate' handleClick={handleDueDateClick} />
         ) : (
-          <OpenSheetBtn text='언제 해야 하나요?' handleClick={handleDueDateClick} />
+          <OpenSheetBtn
+            text='언제 해야 하나요?'
+            handleClick={handleDueDateClick}
+            type='housework'
+          />
         )}
       </section>
       <Button variant='full' size='large' label='다음' handleClick={handleNextClick} />
