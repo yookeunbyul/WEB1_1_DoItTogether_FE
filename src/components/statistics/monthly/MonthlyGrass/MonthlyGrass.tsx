@@ -1,59 +1,49 @@
-import { Calendar } from '@/components/common/ui/calendar';
-import { cn } from '@/lib/utils';
-import { useState } from 'react';
+import Calendar from 'react-calendar';
 
-interface WorkStatus {
-  day: string;
-  status: 'done' | 'soso' | 'no';
+enum CompletionStatus {
+  DONE = 'done',
+  SOSO = 'soso',
+  NO = 'no',
+}
+
+interface CompletionData {
+  date: string;
+  status: CompletionStatus;
 }
 
 interface MonthlyGrassProps {
-  workData: WorkStatus[];
+  completionData: CompletionData[];
 }
 
-const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ workData }) => {
-  const [date, setDate] = useState<Date>();
+const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ completionData }) => {
+  const getStatus = (date: Date): CompletionStatus => {
+    const dateString = date.toLocaleDateString('en-CA');
+    const dayData = completionData.find(data => data.date === dateString);
+    return dayData?.status || CompletionStatus.NO;
+  };
 
-  const getDayStatus = (day: Date | undefined) => {
-    if (!day) return '';
-
-    const found = workData.find(work => work.day === day.toISOString().split('T')[0]);
-
-    if (!found) return '';
-
-    return cn({
-      'bg-gray-800': found.status === 'done',
-      'bg-gray-300': found.status === 'soso',
-      'bg-white': found.status === 'no',
-    });
+  const getTileClassName = ({ date }: { date: Date }): string => {
+    const status = getStatus(date);
+    switch (status) {
+      case CompletionStatus.DONE:
+        return 'bg-[#989393] text-[#D9D9D9] rounded-full';
+      case CompletionStatus.SOSO:
+        return 'bg-[#D8D8D8] text-[#ACACAC] rounded-full';
+      default:
+        return 'bg-white03 text-[#ACACAC] rounded-full';
+    }
   };
 
   return (
-    <div className='h-80 max-w'>
-      <Calendar
-        mode='single'
-        selected={date}
-        onSelect={setDate}
-        className='rounded-md'
-        modifiersStyles={{
-          disabled: { opacity: 1 },
-        }}
-        modifiers={{
-          disabled: date => {
-            const today = new Date();
-            return date > today;
-          },
-        }}
-        modifiersClassNames={{
-          selected: getDayStatus(date),
-        }}
-        disabled={date => {
-          const today = new Date();
-          return date > today;
-        }}
-      />
-    </div>
+    <Calendar
+      tileClassName={getTileClassName}
+      view='month'
+      locale='ko'
+      minDetail='month'
+      maxDetail='month'
+      navigationLabel={({ date }) => `${date.getFullYear()}년 ${date.getMonth() + 1}월`}
+      formatDay={(locale, date) => date.getDate().toString()}
+    />
   );
 };
-
 export default MonthlyGrass;
