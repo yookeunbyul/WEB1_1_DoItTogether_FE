@@ -17,11 +17,11 @@ const StatisticsLayout = () => {
   }, [statTab, navigate]);
 
   return (
-    <div>
+    <div className='flex flex-col'>
       <div className='bg-white sticky top-0 z-10 w-full'>
         <Tab activeTab={statTab} handleSetActiveTab={setStatTab} chargers={STAT_DATA} />
       </div>
-      <div>
+      <div className='p-5'>
         <Outlet />
       </div>
     </div>

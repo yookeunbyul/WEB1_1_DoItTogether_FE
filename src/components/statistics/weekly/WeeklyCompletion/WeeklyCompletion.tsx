@@ -20,7 +20,7 @@ const WeeklyCompletion: React.FC<WeeklyCompletionProps> = ({
   notCompleted,
 }) => {
   return (
-    <Card className='border-none bg-white02 p-4 px-5 shadow-none'>
+    <Card className='mb-4 border-none bg-white02 p-4 px-5 shadow-none'>
       <div className='flex items-center justify-center gap-2'>
         <TextTag type='grayfill' label={groupName} />
         <p>주간 리스트</p>

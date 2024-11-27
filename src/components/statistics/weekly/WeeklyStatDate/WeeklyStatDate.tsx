@@ -29,7 +29,7 @@ const WeeklyStatDate: React.FC<WeeklyStatDateProps> = ({
   };
 
   return (
-    <div className='flex items-center justify-center gap-4'>
+    <div className='mb-4 flex items-center justify-center gap-4'>
       <button onClick={handlePrevWeek}>이전 주</button>
       <span>{getWeekText(currentDate)}</span>
       <button onClick={handleNextWeek}>다음 주</button>
