@@ -1,4 +1,4 @@
-import { Button as ButtonComponent } from '@/components/ui/button';
+import { Button as ButtonComponent } from '@/components/common/ui/button';
 
 interface ButtonProps {
   /** 라벨 */

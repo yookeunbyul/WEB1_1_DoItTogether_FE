@@ -1,9 +1,9 @@
+import InputWithLabel from '@/components/common/input/InputWithLabel';
 import type { Meta, StoryObj } from '@storybook/react';
-import InputContainer from './InputContainer/InputContainer';
 
-const meta: Meta<typeof InputContainer> = {
-  title: 'Components/common/InputContainer',
-  component: InputContainer,
+const meta: Meta<typeof InputWithLabel> = {
+  title: 'components/common/Input',
+  component: InputWithLabel,
   tags: ['autodocs'],
   argTypes: {
     label: { control: 'text' },
@@ -15,7 +15,7 @@ const meta: Meta<typeof InputContainer> = {
 
 export default meta;
 
-type Story = StoryObj<typeof InputContainer>;
+type Story = StoryObj<typeof InputWithLabel>;
 
 export const Default: Story = {
   args: {

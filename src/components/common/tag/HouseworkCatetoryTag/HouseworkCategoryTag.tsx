@@ -1,5 +1,4 @@
-import React from 'react';
-import { Badge } from '@/components/ui/badge';
+import { Badge } from '@/components/common/ui/badge';
 
 export interface HouseworkCategoryTagProps {
   /** 집안일 카테고리 */

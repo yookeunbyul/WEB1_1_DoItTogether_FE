@@ -1,4 +1,4 @@
-import { TabItemsTrigger } from '@/components/ui/TabItems';
+import { TabsTrigger } from '@/components/common/ui/tabs';
 
 interface TabItemProps {
   /** 멤버 이름 */
@@ -8,12 +8,12 @@ interface TabItemProps {
 
 const TabItem: React.FC<TabItemProps> = ({ name, value }) => {
   return (
-    <TabItemsTrigger
+    <TabsTrigger
       value={value}
       className='rounded-none px-6 py-2 text-14 data-[state=active]:border-b-4 data-[state=active]:border-black01 data-[state=active]:shadow-none'
     >
       {name}
-    </TabItemsTrigger>
+    </TabsTrigger>
   );
 };
 

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import BackBtn, { BackBtnProps } from '@/components/common/BackBtn/BackBtn';
+import BackBtn, { BackBtnProps } from '@/components/common/button/BackBtn/BackBtn';
 import { action } from '@storybook/addon-actions';
 
 const meta = {
-  title: 'components/common/BackBtn',
+  title: 'components/common/button/BackBtn',
   component: BackBtn,
   tags: ['autodocs'],
 } satisfies Meta<typeof BackBtn>;

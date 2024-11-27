@@ -1,5 +1,4 @@
-import { TabsTrigger } from '@/components/ui/tabs';
-import React from 'react';
+import { TabsTrigger } from '@/components/common/ui/tabs';
 
 interface PresetTabItemProps {
   name: string;

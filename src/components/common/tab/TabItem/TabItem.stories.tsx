@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Tab from './TabItem';
-import { Tabs, TabsList } from '@radix-ui/react-tabs';
+import { Tabs, TabsList } from '@/components/common/ui/tabs';
+import TabItem from '@/components/common/tab/TabItem/TabItem';
 
 const meta = {
-  title: 'Components/common/TabContainer/Tab',
-  component: Tab,
+  title: 'components/common/tab/TabItem',
+  component: TabItem,
   decorators: [
     Story => (
       <Tabs defaultValue='default'>
@@ -14,7 +14,7 @@ const meta = {
       </Tabs>
     ),
   ],
-} satisfies Meta<typeof Tab>;
+} satisfies Meta<typeof TabItem>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
