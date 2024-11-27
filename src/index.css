@@ -100,3 +100,34 @@ body:has(.react-modal-sheet-container) {
     @apply h-full w-full max-w;
   }
 }
+
+/* 캘린더 커스텀 */
+.react-calendar {
+  @apply w-full;
+}
+.react-calendar__navigation {
+  @apply mb-4 flex justify-center gap-4 text-center;
+}
+.react-calendar__navigation__label {
+  @apply grow-0 !important;
+}
+.react-calendar__navigation__next-button,
+.react-calendar__navigation__prev-button {
+  @apply text-24 text-gray02;
+}
+.react-calendar__navigation__next2-button,
+.react-calendar__navigation__prev2-button {
+  @apply hidden;
+}
+.react-calendar__month-view__weekdays .react-calendar__month-view__weekdays__weekday {
+  @apply hidden;
+}
+.react-calendar__month-view__days__day {
+  @apply aspect-square w-10 rounded-full;
+}
+.react-calendar__viewContainer {
+  @apply flex justify-center;
+}
+.react-calendar__month-view__days {
+  @apply !grid !grid-cols-7 gap-2;
+}
