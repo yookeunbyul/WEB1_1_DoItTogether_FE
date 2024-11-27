@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import HomeHeaderContainer from '@/components/HomeHeaderContainer/HomeHeaderContainer';
-import WeeklyDateContainer from '@/components/WeeklyDateContainer/WeeklyDateContainer';
-import TabContainer from '@/components/common/TabContainer/TabContainer';
-import ListContainer from '@/components/ListContainer/ListContainer';
-import GroupSelectSheetContainer from '@/components/bottomSheet/GroupSelectSheetContainer/GroupSelectSheetContainer';
+import HomeHeader from '@/components/home/HomeHeader/HomeHeader';
+import WeeklyDate from '@/components/statistics/weekly/WeeklyDate/WeeklyDate';
+import Tab from '@/components/common/tab/Tab/Tab';
+import HouseworkList from '@/components/home/HouseworkList/HouseworkList';
+import GroupSelectSheet from '@/components/home/GroupSelectSheet/GroupSelectSheet';
 
 export const data = [
   {
@@ -191,15 +191,15 @@ const HomePage: React.FC<HomePageProps> = () => {
 
   return (
     <div>
-      <HomeHeaderContainer handleSetOpen={setIsOpen} />
+      <HomeHeader handleSetOpen={setIsOpen} />
       <div className='bg-white sticky top-0 z-10'>
-        <WeeklyDateContainer />
-        <TabContainer activeTab={activeTab} handleSetActiveTab={setActiveTab} chargers={chargers} />
+        <WeeklyDate />
+        <Tab activeTab={activeTab} handleSetActiveTab={setActiveTab} chargers={chargers} />
       </div>
-      <ListContainer
+      <HouseworkList
         items={data.filter(item => item.charger === activeTab || activeTab === '전체')}
       />
-      <GroupSelectSheetContainer isOpen={isOpen} handleSetOpen={setIsOpen} />
+      <GroupSelectSheet isOpen={isOpen} handleSetOpen={setIsOpen} />
     </div>
   );
 };

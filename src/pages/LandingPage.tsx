@@ -1,4 +1,4 @@
-import Button from '@/components/common/ButtonContainer/Button/Button';
+import Button from '@/components/common/button/Button/Button';
 
 const LandingPage = () => {
   const handleLoginButton = () => {

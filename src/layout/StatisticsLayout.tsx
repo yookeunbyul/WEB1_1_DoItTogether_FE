@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from 'react-router-dom';
-import TabContainer from '@/components/common/TabContainer/TabContainer';
 import { useEffect, useState } from 'react';
+import Tab from '@/components/common/tab/Tab/Tab';
 
 const STAT_DATA = [{ name: '주간' }, { name: '월간' }];
 
@@ -19,7 +19,7 @@ const StatisticsLayout = () => {
   return (
     <div>
       <div className='bg-white sticky top-0 w-full'>
-        <TabContainer activeTab={statTab} handleSetActiveTab={setStatTab} chargers={STAT_DATA} />
+        <Tab activeTab={statTab} handleSetActiveTab={setStatTab} chargers={STAT_DATA} />
       </div>
       <div>
         <Outlet />

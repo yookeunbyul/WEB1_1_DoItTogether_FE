@@ -1,10 +1,10 @@
-import Button from '@/components/common/ButtonContainer/Button/Button';
-import InputContainer from '@/components/common/InputContainer/InputContainer';
-import SettingHeaderContainer from '@/components/common/SettingHeaderContainer/SettingHeaderContainer';
-import GroupMemberManageContainer from '@/components/GroupMemberManagerContainer/GroupMemberManageContainer';
-import InviteLinkContainer from '@/components/InviteLinkContainer/InviteLinkContainer';
+import SettingHeaderContainer from '@/components/common/header/Header';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from '@/components/common/button/Button/Button';
+import InputWithLabel from '@/components/common/input/InputWithLabel';
+import MemberItems from '@/components/setting/groupSetting/MemberItems/MemberItems';
+import InviteLinkWithLabel from '@/components/setting/groupSetting/InviteLink/InviteLinkWithLabel';
 
 const GroupSettingPage = () => {
   const dummyData = {
@@ -37,18 +37,18 @@ const GroupSettingPage = () => {
         />
       </div>
       <div className='flex flex-col gap-4 px-5 pt-20'>
-        <InputContainer
+        <InputWithLabel
           label='공간 이름'
           value={groupName}
           disabled={!dummyData.isLeader}
           handleChange={handleGroupNameChange}
         />
-        <GroupMemberManageContainer
+        <MemberItems
           leader={dummyData.isLeader}
           members={dummyData.members}
           currentUser={dummyData.currentUser}
         />
-        <InviteLinkContainer />
+        <InviteLinkWithLabel />
         <div className='flex flex-col gap-2'>
           <p className='text-14'>프리셋 관리</p>
           <Button
