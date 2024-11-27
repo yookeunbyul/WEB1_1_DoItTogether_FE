@@ -3,6 +3,7 @@ import { useState } from 'react';
 const ProfileImg = () => {
   const [profileImg, setProfileImg] = useState<string | null>(null);
 
+  // TODO 컴포넌트 역할 분리 (상태, 함수)
   const handleImgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
