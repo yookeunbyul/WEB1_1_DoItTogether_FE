@@ -1,5 +1,22 @@
+import Button from '@/components/common/button/Button/Button';
+import InputWithLabel from '@/components/common/input/InputWithLabel';
+import ProfileImg from '@/components/common/profile/ProfileImg';
+import TitleCenter from '@/components/common/title/TitleCenter';
+import RegisterNotice from '@/components/register/RegisterNotice';
+
 const RegisterPage = () => {
-  return <div>RegisterPage</div>;
+  const handleSubmitButton = () => {};
+  return (
+    <div className='flex h-screen flex-col items-center justify-between px-5 pt-10'>
+      <TitleCenter title={`사용하실 닉네임과\n프로필을 설정해주세요`} />
+      <ProfileImg />
+      <div className='flex w-full flex-col gap-4'>
+        <InputWithLabel label='이름' placeholder='이름을 입력해주세요' disabled={false} />
+        <RegisterNotice />
+      </div>
+      <Button label='확인' variant='full' size='large' handleClick={handleSubmitButton} />
+    </div>
+  );
 };
 
 export default RegisterPage;
