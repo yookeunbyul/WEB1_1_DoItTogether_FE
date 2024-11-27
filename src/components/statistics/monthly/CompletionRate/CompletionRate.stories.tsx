@@ -4,9 +4,7 @@ import CompletionRate from './CompletionRate';
 const meta = {
   title: 'components/statistics/monthly/CompletionRate',
   component: CompletionRate,
-  parameters: {
-    layout: 'centered',
-  },
+
   tags: ['autodocs'],
   argTypes: {
     rate: {
