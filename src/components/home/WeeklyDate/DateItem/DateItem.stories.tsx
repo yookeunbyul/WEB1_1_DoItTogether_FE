@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import DateItem from './DateItem';
 
 const meta = {
-  title: 'components/statistics/weekly/WeeklyDate/DateItem',
+  title: 'components/home/WeeklyDate/DateItem',
   component: DateItem,
   tags: ['autodocs'],
   argTypes: {
