@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import OnBoarding from '@/components/survey/onBoarding';
+import OnBoarding from '@/components/survey/OnBoarding';
 
 const meta = {
   title: 'components/survey/OnBoarding',
