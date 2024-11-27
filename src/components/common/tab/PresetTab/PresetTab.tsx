@@ -14,9 +14,19 @@ interface PresetData {
 
 interface PresetTabProps {
   data: PresetData[];
+  isInPresetSetting?: boolean;
+  deleteButtonStates?: Record<number, boolean>;
+  handleSettingClick?: (itemId: number) => void;
+  handleDeleteClick?: (itemId: number) => void;
 }
 
-const PresetTab: React.FC<PresetTabProps> = ({ data }) => {
+const PresetTab: React.FC<PresetTabProps> = ({
+  data,
+  isInPresetSetting = false,
+  deleteButtonStates = {},
+  handleSettingClick,
+  handleDeleteClick,
+}) => {
   const handleClick = (item: string) => {
     console.log(item);
   };
@@ -36,6 +46,10 @@ const PresetTab: React.FC<PresetTabProps> = ({ data }) => {
                 category={tabData.category}
                 housework={item.description}
                 handleSelectClick={() => handleClick(item.description)}
+                isInPresetSetting={isInPresetSetting}
+                isShowDeleteBtn={deleteButtonStates[item.id]} //각 아이템의 boolean값이 들어간다.
+                handleSettingClick={handleSettingClick && (() => handleSettingClick(item.id))}
+                handleDeleteClick={handleDeleteClick && (() => handleDeleteClick(item.id))}
               />
             </div>
           ))}

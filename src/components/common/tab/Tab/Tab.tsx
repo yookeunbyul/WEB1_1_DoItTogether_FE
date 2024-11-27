@@ -15,7 +15,7 @@ interface TabProps {
 const Tab: React.FC<TabProps> = ({ activeTab, handleSetActiveTab, chargers }) => {
   return (
     <Tabs defaultValue={activeTab} onValueChange={handleSetActiveTab}>
-      <TabsList className='flex h-9 w-full justify-start overflow-x-auto overflow-y-hidden rounded-none bg-white03 p-0 px-5 no-scrollbar'>
+      <TabsList className='h-15 flex w-full justify-start overflow-x-auto overflow-y-hidden rounded-none bg-white03 p-0 no-scrollbar'>
         {chargers?.map(charger => (
           <TabItem key={charger.name} name={charger.name} value={charger.name} />
         ))}
