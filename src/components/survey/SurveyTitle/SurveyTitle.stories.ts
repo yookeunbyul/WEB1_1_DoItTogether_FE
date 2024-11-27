@@ -1,4 +1,4 @@
-import SurveyTitle from '@/components/survey/SurveyTitle';
+import SurveyTitle from '@/components/survey/SurveyTitle/SurveyTitle';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof SurveyTitle> = {
