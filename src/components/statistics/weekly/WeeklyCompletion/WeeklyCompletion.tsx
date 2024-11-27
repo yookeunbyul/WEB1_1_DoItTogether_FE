@@ -2,6 +2,7 @@ import React from 'react';
 import TextTag from '@/components/common/tag/TextTag/TextTag';
 import CompletionText from '@/components/statistics/weekly/WeeklyCompletion/CompletionText/CompletionText';
 import CompletionBarGraph from '@/components/statistics/weekly/WeeklyCompletion/CompletionBarGraph/CompletionBarGraph';
+import { Card } from '@/components/common/ui/card';
 
 interface WeeklyCompletionProps {
   /** 그룹명 */
@@ -19,7 +20,7 @@ const WeeklyCompletion: React.FC<WeeklyCompletionProps> = ({
   notCompleted,
 }) => {
   return (
-    <div>
+    <Card className='border-none bg-white02 p-4 px-5 shadow-none'>
       <div className='flex items-center justify-center gap-2'>
         <TextTag type='grayfill' label={groupName} />
         <p>주간 리스트</p>
@@ -34,7 +35,7 @@ const WeeklyCompletion: React.FC<WeeklyCompletionProps> = ({
       <div>
         <CompletionBarGraph completed={completed} notCompleted={notCompleted} />
       </div>
-    </div>
+    </Card>
   );
 };
 
