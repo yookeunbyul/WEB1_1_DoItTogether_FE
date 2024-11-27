@@ -3,22 +3,14 @@ import HeaderWithTitle from '@/components/housework/HeaderWithTitle/HeaderWithTi
 import ManagerSelectSheet from '@/components/housework/ManagerSelectSheet/ManagerSelectSheet';
 import OpenSheetBtn from '@/components/common/button/OpenSheetBtn/OpenSheetBtn';
 import OpenSheetBtnWithLabel from '@/components/common/button/OpenSheetBtn/OpenSheetBtnWithLabel';
-import TimeControl from '@/components/housework/TimeControl/TimeControl';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-interface SelectedTime {
-  hour: string;
-  minute: string;
-  dayPart: 'AM' | 'PM';
-}
 
 const HouseWorkStepTwoPage = () => {
   const navigate = useNavigate();
   const [manager, setManager] = useState<string | null>(null);
   const [selectedMember, setSelectedMember] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [time, setTime] = useState<SelectedTime | null>(null);
 
   const handleBackClick = () => {
     navigate('/add-housework/step1');
@@ -35,11 +27,6 @@ const HouseWorkStepTwoPage = () => {
   const handleDoneClick = () => {
     setIsOpen(false);
     setManager(selectedMember);
-  };
-
-  const handleTimeChange = (newTime: SelectedTime | null) => {
-    setTime(newTime);
-    console.log(time);
   };
 
   return (
@@ -60,7 +47,6 @@ const HouseWorkStepTwoPage = () => {
               type='housework'
             />
           )}
-          <TimeControl onTimeChange={handleTimeChange} />
         </section>
         <Button label='다음' variant='full' size='large' handleClick={handleNextClick} />
       </div>

@@ -6,6 +6,13 @@ import OpenSheetBtnWithLabel from '@/components/common/button/OpenSheetBtn/OpenS
 import HeaderWithTitle from '@/components/housework/HeaderWithTitle/HeaderWithTitle';
 import HouseWorkSheet from '@/components/housework/HouseWorkSheet/HouseWorkSheet';
 import DueDateSheet from '@/components/housework/DueDateSheet/DueDateSheet';
+import TimeControl from '@/components/housework/TimeControl/TimeControl';
+
+interface SelectedTime {
+  hour: string;
+  minute: string;
+  dayPart: 'AM' | 'PM';
+}
 
 const HouseWorkStepOnePage = () => {
   const navigate = useNavigate();
@@ -13,6 +20,7 @@ const HouseWorkStepOnePage = () => {
   const [dueDate, setDueDate] = useState<Date | null>(null);
   const [isHouseWorkSheetOpen, setHouseWorkSheetOpen] = useState(false);
   const [isDueDateSheetOpen, setDueDateSheetOpen] = useState(false);
+  const [time, setTime] = useState<SelectedTime | null>(null);
 
   const handleBackClick = () => {
     navigate(-1);
@@ -25,6 +33,11 @@ const HouseWorkStepOnePage = () => {
   };
   const handleNextClick = () => {
     navigate('/add-housework/step2');
+  };
+
+  const handleTimeChange = (newTime: SelectedTime | null) => {
+    setTime(newTime);
+    console.log(time);
   };
 
   return (
@@ -53,6 +66,7 @@ const HouseWorkStepOnePage = () => {
             type='housework'
           />
         )}
+        <TimeControl onTimeChange={handleTimeChange} />
       </section>
       <Button variant='full' size='large' label='다음' handleClick={handleNextClick} />
 
