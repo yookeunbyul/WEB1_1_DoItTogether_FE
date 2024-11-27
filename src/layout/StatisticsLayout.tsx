@@ -18,7 +18,7 @@ const StatisticsLayout = () => {
 
   return (
     <div>
-      <div className='bg-white sticky top-0 w-full'>
+      <div className='bg-white sticky top-0 z-10 w-full'>
         <Tab activeTab={statTab} handleSetActiveTab={setStatTab} chargers={STAT_DATA} />
       </div>
       <div>
