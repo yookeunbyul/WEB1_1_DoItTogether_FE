@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@/components/common/button/Button/Button';
-import OpenSheetBtn from '@/components/housework/OpenSheetBtn/OpenSheetBtn';
-import OpenSheetBtnWithLabel from '@/components/housework/OpenSheetBtn/OpenSheetBtnWithLabel';
+import OpenSheetBtn from '@/components/common/button/OpenSheetBtn/OpenSheetBtn';
+import OpenSheetBtnWithLabel from '@/components/common/button/OpenSheetBtn/OpenSheetBtnWithLabel';
 import HeaderWithTitle from '@/components/housework/HeaderWithTitle/HeaderWithTitle';
 import HouseWorkSheet from '@/components/housework/HouseWorkSheet/HouseWorkSheet';
 import DueDateSheet from '@/components/housework/DueDateSheet/DueDateSheet';

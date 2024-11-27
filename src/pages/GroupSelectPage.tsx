@@ -1,7 +1,7 @@
 import Button from '@/components/common/button/Button/Button';
 import GroupSelectTitle from '@/components/groupSelect/GroupSelectTitle/GroupSelectTitle';
 import Logo from '@/components/groupSelect/Logo/Logo';
-import OpenSheetBtn from '@/components/housework/OpenSheetBtn/OpenSheetBtn';
+import OpenSheetBtn from '@/components/common/button/OpenSheetBtn/OpenSheetBtn';
 import { useState } from 'react';
 
 const GroupSelectPage = () => {
