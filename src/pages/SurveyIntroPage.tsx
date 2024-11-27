@@ -1,5 +1,5 @@
 import Button from '@/components/common/button/Button/Button';
-import SurveyTitle from '@/components/survey/SurveyTitle';
+import SurveyTitle from '@/components/survey/SurveyTitle/SurveyTitle';
 import SurveyIntroDesc from '@/components/survey/surveyIntro/SurveyIntroDesc';
 import SurveyIntroIcon from '@/components/survey/surveyIntro/SurveyIntroIcon';
 import React from 'react';
