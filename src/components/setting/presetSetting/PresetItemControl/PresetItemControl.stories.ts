@@ -1,14 +1,14 @@
-import PresetItemContainer from '@/components/PresetItemContainer/PresetItemContainer';
+import PresetItemControl from '@/components/setting/presetSetting/PresetItemControl/PresetItemControl';
 import type { Meta, StoryObj } from '@storybook/react';
 
-const meta: Meta<typeof PresetItemContainer> = {
-  title: 'Components/PresetItemContainer',
-  component: PresetItemContainer,
+const meta: Meta<typeof PresetItemControl> = {
+  title: 'components/setting/presetSetting/PresetItemControl',
+  component: PresetItemControl,
   tags: ['autodocs'],
 };
 
 export default meta;
-type Story = StoryObj<typeof PresetItemContainer>;
+type Story = StoryObj<typeof PresetItemControl>;
 
 export const Default: Story = {
   args: {},

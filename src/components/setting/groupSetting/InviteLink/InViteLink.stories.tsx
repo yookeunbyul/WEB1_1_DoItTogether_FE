@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import InviteLink from './InviteLink/InviteLink';
+import InviteLink from '@/components/setting/groupSetting/InviteLink/InviteLink';
 
 const meta: Meta<typeof InviteLink> = {
-  title: 'Components/InviteLinkContainer/InviteLink',
+  title: 'components/setting/groupSetting/InviteLink',
   component: InviteLink,
   tags: ['autodocs'],
 };

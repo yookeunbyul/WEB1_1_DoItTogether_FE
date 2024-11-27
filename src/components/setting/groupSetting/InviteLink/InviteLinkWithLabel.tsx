@@ -1,4 +1,4 @@
-import InviteLink from '@/components/InviteLinkWithLabel/InviteLink/InviteLink';
+import InviteLink from '@/components/setting/groupSetting/InviteLink/InviteLink';
 
 const InviteLinkWithLabel = () => {
   return (

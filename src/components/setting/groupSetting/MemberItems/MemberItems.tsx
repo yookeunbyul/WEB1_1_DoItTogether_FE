@@ -1,4 +1,4 @@
-import GroupMemberManage from '@/components/GroupMemberManagerContainer/GroupMemberManage/GroupMemberManage';
+import MemberItem from '@/components/setting/groupSetting/MemberItems/MemberItem';
 import React from 'react';
 
 interface MemberItemsProps {
@@ -14,7 +14,7 @@ const MemberItems: React.FC<MemberItemsProps> = ({ leader, members, currentUser,
       <p className='text-14'>그룹원 관리</p>
       <div className='flex flex-col gap-2'>
         {members.map((member, index) => (
-          <GroupMemberManage
+          <MemberItem
             key={index}
             leader={leader}
             member={member}
