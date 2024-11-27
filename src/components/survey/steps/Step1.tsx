@@ -21,14 +21,16 @@ const Step1: React.FC<Step1Props> = ({ title, questions, handleAnswer }) => {
         <SurveyTitle title={title} />
       </div>
 
-      {questions.map(question => (
-        <MenuSelect
-          type='full'
-          status={activeItem === question ? 'active' : 'inActive'}
-          content={question}
-          handleSelect={() => handleSelect(question)}
-        />
-      ))}
+      <div className='flex flex-wrap gap-3'>
+        {questions.map(question => (
+          <MenuSelect
+            type='tight'
+            status={activeItem === question ? 'active' : 'inActive'}
+            content={question}
+            handleSelect={() => handleSelect(question)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
