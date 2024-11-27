@@ -1,8 +1,14 @@
-const AddHouseWorkBtn = () => {
+import React from 'react';
+
+interface AddHouseWorkBtnProps {
+  handleClick?: () => void;
+}
+
+const AddHouseWorkBtn: React.FC<AddHouseWorkBtnProps> = ({ handleClick }) => {
   return (
     <button
-      className='bg-custom-gradient text-white01 h-12 w-12 rounded-full'
-      onClick={() => console.log('나중에 루트')}
+      className='h-12 w-12 rounded-full bg-custom-gradient text-white01'
+      onClick={handleClick}
     >
       +
     </button>
