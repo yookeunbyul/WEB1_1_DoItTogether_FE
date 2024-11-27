@@ -5,6 +5,7 @@ import { Progress } from '@/components/common/ui/progress';
 import { Button } from '@/components/common/ui/button';
 import Step1 from '@/components/survey/steps/Step1';
 import Step2 from '@/components/survey/steps/Step2';
+import Step3 from '@/components/survey/steps/Step3';
 
 // TODO 질문지 TITLE, QUESTION 하드코딩 하지말고, 상수파일로 관리하고 여기서는 가져와서 사용
 const DUMMY_QUESTION_STEP1 = [
@@ -20,6 +21,7 @@ const DUMMY_QUESTION_STEP2 = [
   '정리정돈의 욕구',
   '가족이나 동거인의 요구',
 ];
+const DUMMY_QUESTION_STEP3 = ['시간부족', '적합한 도구나 제품 부족', '체력부족', '동기부족'];
 
 interface OnBoardingProps {}
 
@@ -60,6 +62,13 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
           <Step2
             title={`주로 어떤 이유로\n청소를 하시나요?`}
             questions={DUMMY_QUESTION_STEP2}
+            handleAnswer={setAnswer}
+          />
+        )}
+        {step === 3 && (
+          <Step3
+            title={`청소할 때 가장 어려운 점은\n무엇인가요?`}
+            questions={DUMMY_QUESTION_STEP3}
             handleAnswer={setAnswer}
           />
         )}
