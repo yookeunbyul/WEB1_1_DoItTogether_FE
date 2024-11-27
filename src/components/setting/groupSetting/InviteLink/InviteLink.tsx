@@ -1,7 +1,13 @@
 import { useState } from 'react';
 
-const InviteLink = () => {
-  const [inviteLink, setInviteLink] = useState<string>('');
+import React from 'react';
+
+interface InviteLinkProps {
+  initialLink?: string;
+}
+
+const InviteLink: React.FC<InviteLinkProps> = ({ initialLink }) => {
+  const [inviteLink, setInviteLink] = useState<string>(initialLink || '');
 
   const handleGenerateLink = () => {
     // TODO: 나중에 API 호출로 바꾸기

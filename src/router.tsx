@@ -46,22 +46,12 @@ export const router = createBrowserRouter([
     element: <GroupSelectPage />,
   },
   {
-    path: '/group',
-    element: <GroupLayout />,
-    children: [
-      {
-        path: 'create',
-        element: <GroupCreatePage />,
-      },
-      {
-        path: 'invite-send',
-        element: <GroupInviteSendPage />,
-      },
-      {
-        path: 'invite-receive',
-        element: <GroupInviteReceivePage />,
-      },
-    ],
+    path: '/group/create',
+    element: <GroupCreatePage />,
+  },
+  {
+    path: '/group/invite-receive',
+    element: <GroupInviteReceivePage />,
   },
   {
     path: '/main',
