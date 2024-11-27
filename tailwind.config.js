@@ -58,29 +58,45 @@ export default {
           5: 'hsl(var(--chart-5))',
         },
       },
-    },
-    colors: {
-      black01: '#212121',
-      black02: '#464656',
-      gray01: '#626273',
-      gray02: '#9090A0',
-      gray03: '#C6C6D0',
-      white01: '#E9E9EE',
-      white02: '#F5F5F9',
-      white03: '#FFFFFF',
-    },
-    fontSize: {
-      10: '0.625rem',
-      12: '0.75rem',
-      14: '0.875rem',
-      16: '1rem',
-      18: '1.125rem',
-      20: '1.25rem',
-      24: '1.5rem',
-      28: '1.75rem',
-    },
-    maxWidth: {
-      DEFAULT: '430px',
+      // 애니메이션 추가
+      keyframes: {
+        bounce: {
+          '0%, 100%': {
+            transform: 'translateY(-50%)',
+            'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1)',
+          },
+          '50%': {
+            transform: 'translateY(25%)',
+            'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1)',
+          },
+        },
+      },
+      animation: {
+        bounce: 'bounce 1s infinite', // 애니메이션 등록
+      },
+      colors: {
+        black01: '#212121',
+        black02: '#464656',
+        gray01: '#626273',
+        gray02: '#9090A0',
+        gray03: '#C6C6D0',
+        white01: '#E9E9EE',
+        white02: '#F5F5F9',
+        white03: '#FFFFFF',
+      },
+      fontSize: {
+        10: '0.625rem',
+        12: '0.75rem',
+        14: '0.875rem',
+        16: '1rem',
+        18: '1.125rem',
+        20: '1.25rem',
+        24: '1.5rem',
+        28: '1.75rem',
+      },
+      maxWidth: {
+        DEFAULT: '430px',
+      },
     },
   },
   plugins: [
