@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import WeeklyStatAction from '@/components/WeeklyStatAction/WeeklyStatAction';
+import WeeklyStatAction from '@/components/statistics/weekly/WeeklyStatAction/WeeklyStatAction';
 
 const meta = {
-  title: 'components/WeeklyStatAction',
+  title: 'components/statistics/weekly/WeeklyStatAction',
   component: WeeklyStatAction,
   tags: ['autodocs'],
 } satisfies Meta<typeof WeeklyStatAction>;
@@ -11,7 +11,6 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// 부모 컴포넌트 정의
 const ParentWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <div className='flex gap-2'>{children}</div>
 );

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import WeeklyStatDate from './WeeklyStatDate'; // 경로에 맞게 수정
+import WeeklyStatDate from './WeeklyStatDate';
 
 const meta = {
-  title: 'components/WeeklyStatDate',
+  title: 'components/statistics/weekly/WeeklyStatDate',
   component: WeeklyStatDate,
   tags: ['autodocs'],
 } satisfies Meta<typeof WeeklyStatDate>;

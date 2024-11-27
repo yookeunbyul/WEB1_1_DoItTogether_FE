@@ -1,7 +1,9 @@
 import React from 'react';
 
 interface CompletionTextProps {
-  completedText: string;
+  /** 완료여부 */
+  completedText: '완료' | '미완료';
+  /** 개수 */
   num: number;
 }
 

@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import WeeklyRankingContainer from '@/components/WeeklyRankingContainer/WeeklyRankingContainer';
+import WeeklyRanking from '@/components/statistics/weekly/WeeklyRanking/WeeklyRanking';
 
 const meta = {
-  title: 'components/WeeklyRankingContainer',
-  component: WeeklyRankingContainer,
+  title: 'components/statistics/weekly/WeeklyRanking',
+  component: WeeklyRanking,
   tags: ['autodocs'],
-} satisfies Meta<typeof WeeklyRankingContainer>;
+} satisfies Meta<typeof WeeklyRanking>;
 
 export default meta;
 
@@ -13,5 +13,5 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {},
-  render: args => <WeeklyRankingContainer {...args} />,
+  render: args => <WeeklyRanking {...args} />,
 };

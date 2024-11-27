@@ -1,7 +1,7 @@
 import React from 'react';
-import TextTag from '@/components/common/TextTag/TextTag';
-import CompletionText from '@/components/WeeklyCompletion/CompletionText/CompletionText';
-import CompletionBarGraph from '@/components/WeeklyCompletion/CompletionBarGraph/CompletionBarGraph';
+import TextTag from '@/components/common/tag/TextTag/TextTag';
+import CompletionText from '@/components/statistics/weekly/WeeklyCompletion/CompletionText/CompletionText';
+import CompletionBarGraph from '@/components/statistics/weekly/WeeklyCompletion/CompletionBarGraph/CompletionBarGraph';
 
 interface WeeklyCompletionProps {
   /** 그룹명 */

@@ -1,8 +1,10 @@
 import React from 'react';
-import { Progress } from '@/components/ui/progress';
+import { Progress } from '@/components/common/ui/progress';
 
 interface CompletionBarGraphProps {
+  /** 완료된 개수 */
   completed: number;
+  /** 미완료된 개수 */
   notCompleted: number;
 }
 

@@ -1,8 +1,10 @@
 import React from 'react';
-import { Card } from '@/components/ui/card';
+import { Card } from '@/components/common/ui/card';
 
 interface WeeklyStatActionProps {
+  /** 칭찬, 찌르기 */
   type: 'compliment' | 'tease';
+  /** 개수 */
   num: number;
 }
 
