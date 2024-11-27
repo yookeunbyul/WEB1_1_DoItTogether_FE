@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import BottomSheetCloseBtn from './CloseBtn';
+import CloseBtn from './CloseBtn';
 import { fn } from '@storybook/test';
 
 const meta = {
-  title: 'components/common/BottomSheetContainer/BottomSheetCloseBtn',
-  component: BottomSheetCloseBtn,
+  title: 'ccomponents/common/bottomSheet/CloseBtn',
+  component: CloseBtn,
   tags: ['autodocs'],
   decorators: [
     Story => (
@@ -13,7 +13,7 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof BottomSheetCloseBtn>;
+} satisfies Meta<typeof CloseBtn>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
