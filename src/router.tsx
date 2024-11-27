@@ -7,6 +7,7 @@ import StatisticsLayout from '@/layout/StatisticsLayout';
 import ErrorPage from '@/pages/ErrorPage';
 import LandingPage from '@/pages/LandingPage';
 import RegisterPage from '@/pages/RegisterPage';
+import SurveyIntroPage from '@/pages/SurveyIntroPage';
 import SurveyPage from '@/pages/SurveyPage';
 import GroupCreatePage from '@/pages/GroupCreatePage';
 import GroupSelectPage from '@/pages/GroupSelectPage';
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
   {
     path: '/register',
     element: <RegisterPage />,
+  },
+  {
+    path: '/survey-intro',
+    element: <SurveyIntroPage />,
   },
   {
     path: '/survey',
