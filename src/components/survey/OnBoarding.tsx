@@ -22,6 +22,7 @@ const DUMMY_QUESTION_STEP2 = [
   '가족이나 동거인의 요구',
 ];
 const DUMMY_QUESTION_STEP3 = ['시간부족', '적합한 도구나 제품 부족', '체력부족', '동기부족'];
+const DUMMY_QUESTION_STEP4 = ['거실', '주방', '화장실', '침실'];
 
 interface OnBoardingProps {}
 
@@ -51,6 +52,7 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
 
       <Progress value={(step / 5) * 100} className='mb-8' />
       <div className='flex h-screen flex-col gap-8 px-5'>
+        {/* TODO STEP 동일구조라서 hook 으로 사용 고려 */}
         {step === 1 && (
           <Step1
             title={`집안일 청소는\n얼마나 자주 하세요?`}
@@ -69,6 +71,13 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
           <Step3
             title={`청소할 때 가장 어려운 점은\n무엇인가요?`}
             questions={DUMMY_QUESTION_STEP3}
+            handleAnswer={setAnswer}
+          />
+        )}
+        {step === 4 && (
+          <Step3
+            title={`청소할 때 최우선으로\n신경 쓰는 공간을 알려주세요!`}
+            questions={DUMMY_QUESTION_STEP4}
             handleAnswer={setAnswer}
           />
         )}
