@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 const meta = {
-  title: 'components/home/GroupSelectSheet/GroupOptions',
+  title: 'components/home/GroupSelectSheet',
   component: GroupSelectSheet,
   tags: ['autodocs'],
   argTypes: {
