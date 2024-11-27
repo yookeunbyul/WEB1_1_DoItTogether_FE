@@ -1,15 +1,7 @@
 import React from 'react';
+import { Ranking } from '@/components/statistics/weekly/WeeklyRanking/WeeklyRanking';
 
-interface WeeklyPodiumProps {
-  /** 등수 */
-  place: number;
-  /** 프로필 이미지 */
-  profile: string;
-  /** 이름 */
-  name: string;
-  /** 완료한 집안일 개수 */
-  num: number;
-}
+interface WeeklyPodiumProps extends Ranking {}
 
 const WeeklyPodium: React.FC<WeeklyPodiumProps> = ({ place, profile, name, num }) => {
   return (
