@@ -1,12 +1,12 @@
-import GroupSelectSheetContainer from '@/components/bottomSheet/GroupSelectSheetContainer/GroupSelectSheetContainer';
-import BottomSheetContainer from '@/components/common/BottomSheetContainer/BottomSheetContainer';
-import GroupOptionContainer from '@/components/GroupOptionContainer/GroupOptionContainer';
+import GroupSelectSheet from '@/components/home/GroupSelectSheet/GroupSelectSheet';
+import BottomSheet from '@/components/common/bottomSheet/BottomSheet';
+import GroupOptions from '@/components/home/GroupSelectSheet/GroupOptions/GroupOptions';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 const meta = {
-  title: 'components/common/bottomSheet/GroupSelectSheetContainer',
-  component: GroupSelectSheetContainer,
+  title: 'components/home/GroupSelectSheet/GroupOptions',
+  component: GroupSelectSheet,
   tags: ['autodocs'],
   argTypes: {
     isOpen: {
@@ -17,7 +17,7 @@ const meta = {
       description: '바텀시트 열고 닫는 함수',
     },
   },
-} satisfies Meta<typeof GroupSelectSheetContainer>;
+} satisfies Meta<typeof GroupSelectSheet>;
 
 export default meta;
 
@@ -27,14 +27,14 @@ const BottomSheetWithGroupOption = () => {
   return (
     <>
       <button onClick={() => setOpen(true)}>Open Bottom Sheet</button>
-      <BottomSheetContainer isOpen={isOpen} setOpen={setOpen} title='바텀시트 제목'>
-        <GroupOptionContainer />
-      </BottomSheetContainer>
+      <BottomSheet isOpen={isOpen} setOpen={setOpen} title='바텀시트 제목'>
+        <GroupOptions />
+      </BottomSheet>
     </>
   );
 };
 
-type Story = StoryObj<typeof GroupSelectSheetContainer>;
+type Story = StoryObj<typeof GroupSelectSheet>;
 
 export const Default: Story = {
   render: () => <BottomSheetWithGroupOption />,

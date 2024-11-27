@@ -1,10 +1,10 @@
-import GroupOptionContainer from '@/components/GroupOptionContainer/GroupOptionContainer';
+import GroupOptions from '@/components/home/GroupSelectSheet/GroupOptions/GroupOptions';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'components/GroupOptionContainer',
-  component: GroupOptionContainer,
-} satisfies Meta<typeof GroupOptionContainer>;
+  title: 'components/home/GroupSelectSheet/GroupOptions',
+  component: GroupOptions,
+} satisfies Meta<typeof GroupOptions>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

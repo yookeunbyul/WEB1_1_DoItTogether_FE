@@ -1,8 +1,8 @@
-import GroupOption from '@/components/GroupOptionContainer/GroupOption/GroupOption';
+import GroupOption from '@/components/home/GroupSelectSheet/GroupOptions/GroupOption';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'components/GroupOptionContainer/GroupOption',
+  title: 'components/home/GroupSelectSheet/GroupOption',
   component: GroupOption,
   tags: ['autodocs'],
 } satisfies Meta<typeof GroupOption>;

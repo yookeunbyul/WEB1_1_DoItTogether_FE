@@ -1,4 +1,4 @@
-import GroupOption from '@/components/GroupOptions/GroupOption/GroupOption';
+import GroupOption from '@/components/home/GroupSelectSheet/GroupOptions/GroupOption';
 
 const GroupOptions = () => {
   const groups = ['우리집', '회사'];

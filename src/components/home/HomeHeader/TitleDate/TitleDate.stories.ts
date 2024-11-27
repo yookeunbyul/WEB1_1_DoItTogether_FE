@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import TitleDate from './TitleDate';
 
 const meta = {
-  title: 'components/HomeHeaderContainer/TitleDate',
+  title: 'components/home/HomeHeader/TitleDate',
   component: TitleDate,
   tags: ['autodocs'],
 } satisfies Meta<typeof TitleDate>;

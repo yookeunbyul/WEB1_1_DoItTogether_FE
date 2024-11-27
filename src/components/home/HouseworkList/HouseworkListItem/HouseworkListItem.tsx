@@ -2,10 +2,10 @@ import React from 'react';
 import ListActionBtn, { ListActionBtnProps } from '../ListActionBtn/ListActionBtn';
 import HouseworkCategoryTag, {
   HouseworkCategoryTagProps,
-} from '@/components/common/HouseworkCatetoryTag/HouseworkCategoryTag';
+} from '@/components/common/tag/HouseworkCatetoryTag/HouseworkCategoryTag';
 import ControlDropdown, {
   ControlDropdownProps,
-} from '@/components/ControlDropdown/ControlDropdown';
+} from '@/components/home/ControlDropdown/ControlDropdown';
 
 export interface HouseworkListItemProps
   extends ListActionBtnProps,

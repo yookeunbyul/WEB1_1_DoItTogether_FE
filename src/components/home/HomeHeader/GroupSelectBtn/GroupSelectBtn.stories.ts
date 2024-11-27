@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import GroupSelectBtn from './GroupSelectBtn';
 
 const meta = {
-  title: 'components/HomeHeaderContainer/GroupSelectBtn',
+  title: 'components/home/HomeHeader/GroupSelectBtn',
   component: GroupSelectBtn,
   tags: ['autodocs'],
   argTypes: {

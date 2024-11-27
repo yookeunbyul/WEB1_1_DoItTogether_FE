@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import ListActionBtn, { ListActionBtnProps } from './ListActionBtn';
-import { fn } from '@storybook/test'; // Mock function을 가져오기
+import { fn } from '@storybook/test';
 
 const meta = {
-  title: 'components/ListContainer/ListActionBtn',
+  title: 'components/home/HouseworkList/ListActionBtn',
   component: ListActionBtn,
   tags: ['autodocs'],
 } satisfies Meta<typeof ListActionBtn>;
