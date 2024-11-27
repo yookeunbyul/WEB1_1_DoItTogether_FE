@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import WeeklyStatDate from '@/components/statistics/weekly/WeeklyStatDate/WeeklyStatDate';
 import WeeklyCompletion from '@/components/statistics/weekly/WeeklyCompletion/WeeklyCompletion';
-import WeeklyStatAction from '@/components/statistics/weekly/WeeklyStatAction/WeeklyStatAction';
+import WeeklyStatActions from '@/components/statistics/weekly/WeeklyStatAction/WeeklyStatActions';
 import WeeklyRanking from '@/components/statistics/weekly/WeeklyRanking/WeeklyRanking';
 import { DUMMY_RANKING } from '@/components/statistics/weekly/WeeklyRanking/WeeklyRanking.stories';
 
@@ -24,19 +24,16 @@ const WeeklyStatisticsPage: React.FC = () => {
     });
   };
   return (
-    <div className='flex flex-col gap-4 p-5'>
+    <>
       <WeeklyStatDate
         currentDate={currentDate}
         handlePrevWeek={handlePrevWeek}
         handleNextWeek={handleNextWeek}
       />
       <WeeklyCompletion groupName='두잇투게더' completed={10} notCompleted={3} />
-      <div className='flex justify-between gap-3'>
-        <WeeklyStatAction type='compliment' num={10} />
-        <WeeklyStatAction type='tease' num={3} />
-      </div>
+      <WeeklyStatActions numOfCompliment={10} numOfTease={3} />
       <WeeklyRanking rankings={DUMMY_RANKING} />
-    </div>
+    </>
   );
 };
 
