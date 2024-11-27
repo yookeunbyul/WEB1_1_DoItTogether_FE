@@ -3,7 +3,7 @@ import CloseBtn from './CloseBtn';
 import { fn } from '@storybook/test';
 
 const meta = {
-  title: 'ccomponents/common/bottomSheet/CloseBtn',
+  title: 'components/common/bottomSheet/CloseBtn',
   component: CloseBtn,
   tags: ['autodocs'],
   decorators: [

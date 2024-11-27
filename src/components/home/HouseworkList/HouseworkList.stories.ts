@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ListContainer, { ListContainerProps } from './HouseworkList';
+import HouseworkList, { HouseworkListProps } from '@/components/home/HouseworkList/HouseworkList';
 
 const meta = {
-  title: 'components/ListContainer',
-  component: ListContainer,
+  title: 'components/home/HouseworkList',
+  component: HouseworkList,
   tags: ['autodocs'],
-} satisfies Meta<typeof ListContainer>;
+} satisfies Meta<typeof HouseworkList>;
 
 export default meta;
 
-type Story = StoryObj<ListContainerProps>;
+type Story = StoryObj<HouseworkListProps>;
 
 const data = [
   {
@@ -21,10 +21,9 @@ const data = [
     listTitle: '바닥 걸레질',
     charger: '종원',
     time: '오후 8:00',
-    handleEditOrDelete: () => {
-      console.log('Edit or Delete triggered for 거실 바닥 걸레질');
-    },
     category: '거실',
+    handleEdit: () => console.log('edit clicked!'),
+    handleDelete: () => console.log('delete clicked!'),
   },
   {
     id: 2,
@@ -35,10 +34,9 @@ const data = [
     listTitle: '청소',
     charger: '민수',
     time: '오후 9:00',
-    handleEditOrDelete: () => {
-      console.log('Edit or Delete triggered for 주방 청소');
-    },
     category: '주방',
+    handleEdit: () => console.log('edit clicked!'),
+    handleDelete: () => console.log('delete clicked!'),
   },
   {
     id: 3,
@@ -49,10 +47,9 @@ const data = [
     listTitle: '세탁기 돌리기',
     charger: '지수',
     time: '오후 10:00',
-    handleEditOrDelete: () => {
-      console.log('Edit or Delete triggered for 세탁기 돌리기');
-    },
     category: '기타',
+    handleEdit: () => console.log('edit clicked!'),
+    handleDelete: () => console.log('delete clicked!'),
   },
   {
     id: 4,
@@ -63,10 +60,9 @@ const data = [
     listTitle: '정리 정돈',
     charger: '영희',
     time: '오후 7:00',
-    handleEditOrDelete: () => {
-      console.log('Edit or Delete triggered for 정리 정돈');
-    },
     category: '침실',
+    handleEdit: () => console.log('edit clicked!'),
+    handleDelete: () => console.log('delete clicked!'),
   },
 ];
 

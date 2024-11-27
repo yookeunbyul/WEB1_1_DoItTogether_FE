@@ -3,7 +3,7 @@ import DueDateSheet from '@/components/housework/DueDateSheet/DueDateSheet';
 import { action } from '@storybook/addon-actions';
 
 const meta = {
-  title: 'components/common/bottomSheet/DueDateSheet/DueDateSheet',
+  title: 'components/housework/DueDateSheet/DueDateSheet',
   component: DueDateSheet,
   tags: ['autodocs'],
 } satisfies Meta<typeof DueDateSheet>;
