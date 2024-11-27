@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import WeeklyDateContainer from './WeeklyDate';
 
 const meta = {
-  title: 'components/statistics/weekly/WeeklyDate',
+  title: 'components/home/WeeklyDate',
   component: WeeklyDateContainer,
   tags: ['autodocs'],
 } satisfies Meta<typeof WeeklyDateContainer>;

@@ -8,7 +8,7 @@ const WeeklyOthers: React.FC<WeeklyOthersProps> = ({ place, profile, name, num }
     <div className='flex items-center justify-between'>
       <div className='flex items-center gap-2'>
         <p>{place}</p>
-        <div className='flex h-8 w-8 items-center justify-center rounded-full border border-solid'>
+        <div className='flex h-8 w-8 items-center justify-center rounded-full border border-solid bg-white03'>
           <img src={profile} alt='' />
         </div>
         <p>{name}</p>
