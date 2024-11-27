@@ -1,11 +1,25 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BackBtn from '@/components/common/button/BackBtn/BackBtn';
 import { Progress } from '@/components/common/ui/progress';
-import Step1 from '@/components/survey/steps/Step1';
-import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/common/ui/button';
+import Step1 from '@/components/survey/steps/Step1';
+import Step2 from '@/components/survey/steps/Step2';
 
-const DUMMY_QUESTION = ['하지 않는다', '한 달에 1, 2회', '주에 1회', '주에 2, 3회', '매일'];
+// TODO 질문지 TITLE, QUESTION 하드코딩 하지말고, 상수파일로 관리하고 여기서는 가져와서 사용
+const DUMMY_QUESTION_STEP1 = [
+  '하지 않는다',
+  '한 달에 1, 2회',
+  '주에 1회',
+  '가족이나 동거인의 요구',
+  '매일',
+];
+const DUMMY_QUESTION_STEP2 = [
+  '손님방문',
+  '개인 위생 및 청결',
+  '정리정돈의 욕구',
+  '가족이나 동거인의 요구',
+];
 
 interface OnBoardingProps {}
 
@@ -37,8 +51,15 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
       <div className='flex h-screen flex-col gap-8 px-5'>
         {step === 1 && (
           <Step1
-            title={`집안일 청소는\n 얼마나 자주 하세요?`}
-            questions={DUMMY_QUESTION}
+            title={`집안일 청소는\n얼마나 자주 하세요?`}
+            questions={DUMMY_QUESTION_STEP1}
+            handleAnswer={setAnswer}
+          />
+        )}
+        {step === 2 && (
+          <Step2
+            title={`주로 어떤 이유로\n청소를 하시나요?`}
+            questions={DUMMY_QUESTION_STEP2}
             handleAnswer={setAnswer}
           />
         )}
