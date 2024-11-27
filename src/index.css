@@ -122,12 +122,18 @@ body:has(.react-modal-sheet-container) {
 .react-calendar__month-view__weekdays .react-calendar__month-view__weekdays__weekday {
   @apply hidden;
 }
-.react-calendar__month-view__days__day {
-  @apply aspect-square w-10 rounded-full;
-}
 .react-calendar__viewContainer {
-  @apply flex justify-center;
+  @apply flex w-full justify-center;
+}
+.react-calendar__month-view {
+  @apply w-full;
 }
 .react-calendar__month-view__days {
-  @apply !grid !grid-cols-7 gap-2;
+  @apply !grid w-full !grid-cols-7 justify-items-center gap-1;
+}
+.react-calendar__month-view__days__day {
+  @apply flex aspect-square w-10 items-center justify-center rounded-full;
+}
+.react-calendar__month-view__weekdays {
+  @apply !grid !grid-cols-7 !gap-0;
 }
