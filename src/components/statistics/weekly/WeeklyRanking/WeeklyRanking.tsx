@@ -1,45 +1,7 @@
 import React from 'react';
 import WeeklyPodium from '@/components/statistics/weekly/WeeklyRanking/WeeklyPodium/WeeklyPodium';
 import WeeklyOthers from '@/components/statistics/weekly/WeeklyRanking/WeeklyOthers/WeeklyOthers';
-
-const DUMMY_RANKING = [
-  {
-    place: 1,
-    profile: 'https://example.com/profile1.jpg',
-    name: '홍길동',
-    num: 5,
-  },
-  {
-    place: 2,
-    profile: 'https://example.com/profile2.jpg',
-    name: '김철수',
-    num: 4,
-  },
-  {
-    place: 3,
-    profile: 'https://example.com/profile3.jpg',
-    name: '이영희',
-    num: 3,
-  },
-  {
-    place: 4,
-    profile: 'https://example.com/profile4.jpg',
-    name: '박지민',
-    num: 2,
-  },
-  {
-    place: 5,
-    profile: 'https://example.com/profile5.jpg',
-    name: '최민수',
-    num: 1,
-  },
-  {
-    place: 6,
-    profile: 'https://example.com/profile6.jpg',
-    name: '정유진',
-    num: 0,
-  },
-];
+import { Card } from '@/components/common/ui/card';
 
 export interface Ranking {
   /** 등수 */
@@ -58,9 +20,19 @@ interface WeeklyRankingProps {
 
 const WeeklyRanking: React.FC<WeeklyRankingProps> = ({ rankings }) => {
   return (
-    <div>
-      <p>이번주 완료 개수 랭킹</p>
-    </div>
+    <Card className='flex flex-col justify-center gap-8 border border-solid p-8'>
+      <p className='text-center'>이번주 완료 개수 랭킹</p>
+      <div className='flex items-center justify-between'>
+        {rankings.slice(0, 3).map(ranker => (
+          <WeeklyPodium key={ranker.name} {...ranker} />
+        ))}
+      </div>
+      <div className='flex flex-col justify-center gap-2'>
+        {rankings.slice(3).map(ranker => (
+          <WeeklyOthers key={ranker.name} {...ranker} />
+        ))}
+      </div>
+    </Card>
   );
 };
 
