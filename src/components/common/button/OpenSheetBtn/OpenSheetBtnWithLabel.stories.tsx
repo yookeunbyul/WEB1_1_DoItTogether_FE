@@ -1,19 +1,23 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import OpenSheetBtn from '@/components/housework/OpenSheetBtn/OpenSheetBtn';
 import BottomSheet from '@/components/common/bottomSheet/BottomSheet';
+import OpenSheetBtnWithLabel from '@/components/common/button/OpenSheetBtn/OpenSheetBtnWithLabel';
+import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 const meta = {
-  title: 'components/housework/OpenSheetBtn/OpenSheetBtn',
-  component: OpenSheetBtn,
+  title: 'components/common/button/OpenSheetBtn/OpenSheetBtnWithLabel',
+  component: OpenSheetBtnWithLabel,
   tags: ['autodocs'],
   argTypes: {
-    text: {
-      description: '셀렉트버튼 제목',
+    title: {
+      description: '타이틀',
+      control: 'text',
+    },
+    selected: {
+      description: '셀렉된 값',
       control: 'text',
     },
   },
-} satisfies Meta<typeof OpenSheetBtn>;
+} satisfies Meta<typeof OpenSheetBtnWithLabel>;
 
 export default meta;
 
@@ -22,7 +26,11 @@ const SelectBtnWithBottomSheet = () => {
 
   return (
     <>
-      <OpenSheetBtn text='셀렉트버튼 제목' handleClick={() => setOpen(true)} />
+      <OpenSheetBtnWithLabel
+        title='타이틀'
+        selected='셀렉된 값'
+        handleClick={() => setOpen(true)}
+      />
       <BottomSheet isOpen={isOpen} setOpen={setOpen} title='바텀시트 제목'>
         <div className='p-4'>
           <p>바텀시트 컨텐츠입니다</p>

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@/components/common/button/Button/Button';
-import OpenSheetBtn from '@/components/housework/OpenSheetBtn/OpenSheetBtn';
-import OpenSheetBtnWithLabel from '@/components/housework/OpenSheetBtn/OpenSheetBtnWithLabel';
+import OpenSheetBtn from '@/components/common/button/OpenSheetBtn/OpenSheetBtn';
+import OpenSheetBtnWithLabel from '@/components/common/button/OpenSheetBtn/OpenSheetBtnWithLabel';
 import HeaderWithTitle from '@/components/housework/HeaderWithTitle/HeaderWithTitle';
 import HouseWorkSheet from '@/components/housework/HouseWorkSheet/HouseWorkSheet';
 import DueDateSheet from '@/components/housework/DueDateSheet/DueDateSheet';
@@ -38,12 +38,20 @@ const HouseWorkStepOnePage = () => {
             handleClick={handleHouseWorkClick}
           />
         ) : (
-          <OpenSheetBtn text='어떤 집안일인가요?' handleClick={handleHouseWorkClick} />
+          <OpenSheetBtn
+            text='어떤 집안일인가요?'
+            handleClick={handleHouseWorkClick}
+            type='housework'
+          />
         )}
         {dueDate ? (
           <OpenSheetBtnWithLabel title='날짜' selected='dueDate' handleClick={handleDueDateClick} />
         ) : (
-          <OpenSheetBtn text='언제 해야 하나요?' handleClick={handleDueDateClick} />
+          <OpenSheetBtn
+            text='언제 해야 하나요?'
+            handleClick={handleDueDateClick}
+            type='housework'
+          />
         )}
       </section>
       <Button variant='full' size='large' label='다음' handleClick={handleNextClick} />
