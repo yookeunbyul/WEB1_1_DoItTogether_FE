@@ -3,7 +3,7 @@ import BackBtn, { BackBtnProps } from '@/components/common/button/BackBtn/BackBt
 import { action } from '@storybook/addon-actions';
 
 const meta = {
-  title: 'components/common/button/BackBtn',
+  title: 'components/common/button/BackBtn/BackBtn',
   component: BackBtn,
   tags: ['autodocs'],
 } satisfies Meta<typeof BackBtn>;
