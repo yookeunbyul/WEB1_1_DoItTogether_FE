@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import BackBtn from '@/components/common/button/BackBtn/BackBtn';
 import { Progress } from '@/components/common/ui/progress';
-import Step1 from '@/components/survey/steps/step1';
+import Step1 from '@/components/survey/steps/Step1';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/common/ui/button';
 
