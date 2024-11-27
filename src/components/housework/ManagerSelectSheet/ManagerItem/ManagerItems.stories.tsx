@@ -1,10 +1,10 @@
-import ManagerSelectContainer from '@/components/ManagerSelectContainer/ManagerSelectContainer';
+import ManagerItems from '@/components/housework/ManagerSelectSheet/ManagerItem/ManagerItems';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 const meta = {
-  title: 'components/ManagerSelectContainer',
-  component: ManagerSelectContainer,
+  title: 'components/housework/ManagerSelectSheet/ManagerItem/ManagerItems',
+  component: ManagerItems,
   tags: ['autodocs'],
   argTypes: {
     selectedMember: {
@@ -15,21 +15,16 @@ const meta = {
       description: '멤버 선택 시 호출되는 함수',
     },
   },
-} satisfies Meta<typeof ManagerSelectContainer>;
+} satisfies Meta<typeof ManagerItems>;
 
 export default meta;
 const ManagerSelectWithState = () => {
   const [selectedMember, setSelectedMember] = useState('');
 
-  return (
-    <ManagerSelectContainer
-      selectedMember={selectedMember}
-      handleSelectMember={setSelectedMember}
-    />
-  );
+  return <ManagerItems selectedMember={selectedMember} handleSelectMember={setSelectedMember} />;
 };
 
-type Story = StoryObj<typeof ManagerSelectContainer>;
+type Story = StoryObj<typeof ManagerItems>;
 
 export const Default: Story = {
   render: () => <ManagerSelectWithState />,

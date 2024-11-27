@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/common/ui/button';
 
 interface OpenSheetBtnProps {
   /** 셀렉트 버튼 title*/

@@ -1,8 +1,8 @@
-import TimePicker from '@/components/TimeContainer/TimePicker/TimePicker';
+import TimePicker from '@/components/housework/TimeControl/TimePicker/TimePicker';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof TimePicker> = {
-  title: 'Components/TimeContainer/TimePicker',
+  title: 'components/housework/TimeControl/TimePicker/TimePicker',
   component: TimePicker,
   parameters: {
     layout: 'centered',
@@ -17,9 +17,17 @@ export const Default: Story = {
   args: {},
 };
 
+interface SelectedTime {
+  hour: string;
+  minute: string;
+  dayPart: 'AM' | 'PM';
+}
+
 export const CustomInitialTime: Story = {
-  args: {},
-  render: () => <TimePicker />,
+  args: {
+    onTimeChange: (time: SelectedTime) => console.log('Selected Time:', time),
+  },
+  render: args => <TimePicker {...args} />,
 };
 
 export const WithDarkBackground: Story = {

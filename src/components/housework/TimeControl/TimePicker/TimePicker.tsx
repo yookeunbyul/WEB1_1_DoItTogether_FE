@@ -1,4 +1,4 @@
-import Wheel from '@/components/TimeContainer/TimePicker/Wheel';
+import Wheel from '@/components/housework/TimeControl/TimePicker/Wheel';
 import { useEffect, useState } from 'react';
 
 interface SelectedTime {

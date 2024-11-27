@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Calendar } from '@/components/common/Calendar/Calendar';
 import { useState } from '@storybook/preview-api';
+import { Calendar } from '@/components/housework/DueDateSheet/Calendar/Calendar';
 
 const meta: Meta<typeof Calendar> = {
-  title: 'components/common/Calendar',
+  title: 'components/housework/DueDateSheet/Calendar/Calendar',
   component: Calendar,
   tags: ['autodocs'],
 };
