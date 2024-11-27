@@ -11,7 +11,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const DUMMY_RANKING = [
+export const DUMMY_RANKING = [
   {
     place: 1,
     profile: 'https://example.com/profile1.jpg',
