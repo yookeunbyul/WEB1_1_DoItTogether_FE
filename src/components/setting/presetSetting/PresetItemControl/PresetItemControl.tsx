@@ -1,4 +1,4 @@
-import PresetItemControl from '@/components/common/PresetItemControl/PresetItemControl';
+import PresetItem from '@/components/common/preset/PresetItem';
 import { useState } from 'react';
 
 const PresetItemControl = () => {
@@ -15,7 +15,7 @@ const PresetItemControl = () => {
   };
   return (
     <div className='flex'>
-      <PresetItemControl
+      <PresetItem
         category='거실'
         housework='쓰레기통 비우기'
         handleSettingClick={handleSettingClick}

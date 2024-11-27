@@ -1,4 +1,4 @@
-import PresetCategory from '@/components/PresetAddInput/PresetCategory/PresetCategory';
+import PresetCategory from '@/components/setting/presetSetting/PresetCategory';
 import React from 'react';
 
 interface PresetAddInputProps {}

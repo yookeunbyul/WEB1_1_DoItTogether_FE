@@ -1,8 +1,8 @@
-import PresetCategory from '@/components/PresetAddContainer/PresetCategory/PresetCategory';
+import PresetCategory from '@/components/setting/presetSetting/PresetCategory';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof PresetCategory> = {
-  title: 'Components/PresetAddContainer/PresetCategory',
+  title: 'components/setting/presetSetting/PresetCategory',
   component: PresetCategory,
   tags: ['autodocs'],
 };

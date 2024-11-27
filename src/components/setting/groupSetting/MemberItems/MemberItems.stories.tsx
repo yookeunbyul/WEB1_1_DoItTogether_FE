@@ -1,9 +1,9 @@
-import GroupMemberManageContainer from '@/components/GroupMemberManagerContainer/GroupMemberManageContainer';
+import MemberItems from '@/components/setting/groupSetting/MemberItems/MemberItems';
 import type { Meta, StoryObj } from '@storybook/react';
 
-const meta: Meta<typeof GroupMemberManageContainer> = {
-  title: 'Components/GroupMemberManageContainer',
-  component: GroupMemberManageContainer,
+const meta: Meta<typeof MemberItems> = {
+  title: 'components/setting/groupSetting/MemberItems',
+  component: MemberItems,
   tags: ['autodocs'],
   argTypes: {
     leader: { control: 'boolean' },
@@ -15,7 +15,7 @@ const meta: Meta<typeof GroupMemberManageContainer> = {
 
 export default meta;
 
-type Story = StoryObj<typeof GroupMemberManageContainer>;
+type Story = StoryObj<typeof MemberItems>;
 
 export const LeaderView: Story = {
   args: {
