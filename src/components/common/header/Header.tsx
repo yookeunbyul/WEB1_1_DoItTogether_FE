@@ -1,4 +1,4 @@
-import BackBtn from '@/components/common/BackBtn/BackBtn';
+import BackBtn from '@/components/common/button/BackBtn/BackBtn';
 import React from 'react';
 
 interface HeaderProps {

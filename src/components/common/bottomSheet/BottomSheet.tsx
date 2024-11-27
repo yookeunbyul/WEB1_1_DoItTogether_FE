@@ -1,8 +1,7 @@
 import { Sheet } from 'react-modal-sheet';
-import BottomSheetCloseBtn from './BottomSheetCloseBtn/BottomSheetCloseBtn';
-import BottomSheetTitle from './BottomSheetTitle/BottomSheetTitle';
-
 import React from 'react';
+import BottomSheetTitle from '@/components/common/bottomSheet/BottomSheetTitle/BottomSheetTitle';
+import CloseBtn from '@/components/common/bottomSheet/CloseBtn/CloseBtn';
 
 interface BottomSheetProps {
   /**바텀시트 오픈 여부 */
@@ -26,7 +25,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({ isOpen, setOpen, title, child
       >
         <div className='relative mx-auto h-full w-full max-w'>
           <Sheet.Container>
-            <BottomSheetCloseBtn handleClick={() => setOpen(false)} />
+            <CloseBtn handleClick={() => setOpen(false)} />
             <Sheet.Header>
               <BottomSheetTitle title={title} />
             </Sheet.Header>

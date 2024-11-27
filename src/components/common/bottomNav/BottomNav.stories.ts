@@ -1,12 +1,12 @@
+import BottomNav from '@/components/common/bottomNav/BottomNav';
 import type { Meta, StoryObj } from '@storybook/react';
-import BottomNavContainer from './BottomNavContainer/BottomNavContainer';
 
 const meta = {
-  title: 'Components/BottomNavContainer',
-  component: BottomNavContainer,
+  title: 'components/common/bottomNav/BottomNav',
+  component: BottomNav,
 
   tags: ['autodocs'],
-} satisfies Meta<typeof BottomNavContainer>;
+} satisfies Meta<typeof BottomNav>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

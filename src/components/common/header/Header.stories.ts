@@ -1,9 +1,9 @@
-import SettingHeaderContainer from '@/components/common/header/Header';
+import Header from '@/components/common/header/Header';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'components/common/SettingHeaderContainer',
-  component: SettingHeaderContainer,
+  title: 'components/common/header/Header',
+  component: Header,
   tags: ['autodocs'],
   argTypes: {
     title: {
@@ -19,11 +19,11 @@ const meta = {
       control: 'boolean',
     },
   },
-} satisfies Meta<typeof SettingHeaderContainer>;
+} satisfies Meta<typeof Header>;
 
 export default meta;
 
-type Story = StoryObj<typeof SettingHeaderContainer>;
+type Story = StoryObj<typeof Header>;
 
 export const GroupSetting: Story = {
   args: {
