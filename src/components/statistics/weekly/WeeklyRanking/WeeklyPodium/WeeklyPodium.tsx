@@ -5,7 +5,7 @@ interface WeeklyPodiumProps extends Ranking {}
 
 const WeeklyPodium: React.FC<WeeklyPodiumProps> = ({ place, profile, name, num }) => {
   return (
-    <div className='flex flex-col items-center justify-center'>
+    <div className={`flex flex-col items-center justify-center ${place === 2 && 'order-first'}`}>
       <div
         className={`relative ${place === 1 ? 'h-24 w-24' : 'h-16 w-16'} flex items-center justify-center rounded-full border border-solid`}
       >
