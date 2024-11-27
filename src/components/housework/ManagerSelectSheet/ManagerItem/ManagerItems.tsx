@@ -1,4 +1,4 @@
-import ManagerSelectItem from '@/components/ManagerItems/ManagerSelectItem/ManagerSelectItem';
+import ManagerItem from '@/components/housework/ManagerSelectSheet/ManagerItem/ManagerItem';
 
 interface ManagerItemsProps {
   /**선택한 멤버 */
@@ -13,7 +13,7 @@ const ManagerItems: React.FC<ManagerItemsProps> = ({ selectedMember, handleSelec
   return (
     <ul className='flex flex-col gap-y-4 pb-14 pt-8'>
       {members.map(member => (
-        <ManagerSelectItem
+        <ManagerItem
           key={member}
           name={member}
           handleClick={() => handleSelectMember(member)}

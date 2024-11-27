@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
-import TimePicker from './TimePicker/TimePicker';
+import { Label } from '@/components/common/ui/label';
+import { Switch } from '@/components/common/ui/switch';
+import TimePicker from '@/components/housework/TimeControl/TimePicker/TimePicker';
 
 interface SelectedTime {
   hour: string;

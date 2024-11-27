@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import PageHeaderContainer, {
-  PageHeaderContainerProps,
-} from '@/components/PageHeaderContainer/PageHeaderContainer';
 import { action } from '@storybook/addon-actions';
+import HeaderWithTitle, {
+  HeaderWithTitleProps,
+} from '@/components/housework/HeaderWithTitle/HeaderWithTitle';
 
 const meta = {
-  title: 'components/PageHeaderContainer',
-  component: PageHeaderContainer,
+  title: 'components/housework/HeaderWithTitle/HeaderWithTitle',
+  component: HeaderWithTitle,
   tags: ['autodocs'],
-} satisfies Meta<typeof PageHeaderContainer>;
+} satisfies Meta<typeof HeaderWithTitle>;
 
 export default meta;
 
-type Story = StoryObj<PageHeaderContainerProps>;
+type Story = StoryObj<HeaderWithTitleProps>;
 
 export const Default: Story = {
   args: {

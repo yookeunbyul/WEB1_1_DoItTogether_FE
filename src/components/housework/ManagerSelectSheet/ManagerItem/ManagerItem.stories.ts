@@ -1,10 +1,10 @@
 import { action } from '@storybook/addon-actions';
-import ManagerSelectItem from '@/components/ManagerSelectContainer/ManagerSelectItem/ManagerSelectItem';
+import ManagerItem from '@/components/housework/ManagerSelectSheet/ManagerItem/ManagerItem';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'components/ManagerSelectContainer/ManagerSelectItem',
-  component: ManagerSelectItem,
+  title: 'components/housework/ManagerSelectSheet/ManagerItem/ManagerItem',
+  component: ManagerItem,
   tags: ['autodocs'],
   /**컴포넌트의 props에 대한 추가적인 정보와 컨트롤을 정의 */
   argTypes: {
@@ -22,7 +22,7 @@ const meta = {
       description: '클릭 함수',
     },
   },
-} satisfies Meta<typeof ManagerSelectItem>;
+} satisfies Meta<typeof ManagerItem>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

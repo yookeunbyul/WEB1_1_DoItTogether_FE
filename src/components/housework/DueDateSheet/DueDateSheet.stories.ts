@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import DueDateSheetContainer from '@/components/bottomSheet/DueDateSheetContainer/DueDateSheetContainer';
+import DueDateSheet from '@/components/housework/DueDateSheet/DueDateSheet';
 import { action } from '@storybook/addon-actions';
 
 const meta = {
-  title: 'components/common/bottomSheet/DueDateSheetContainer',
-  component: DueDateSheetContainer,
+  title: 'components/common/bottomSheet/DueDateSheet/DueDateSheet',
+  component: DueDateSheet,
   tags: ['autodocs'],
-} satisfies Meta<typeof DueDateSheetContainer>;
+} satisfies Meta<typeof DueDateSheet>;
 
 export default meta;
 
