@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import HouseworkCategoryTag, {
   HouseworkCategoryTagProps,
-} from '@/components/common/HouseworkCatetoryTag/HouseworkCategoryTag';
+} from '@/components/common/tag/HouseworkCatetoryTag/HouseworkCategoryTag';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'components/common/HouseworkCategoryTag',
+  title: 'components/common/tag/HouseworkCategoryTag',
   component: HouseworkCategoryTag,
   tags: ['autodocs'],
 } satisfies Meta<typeof HouseworkCategoryTag>;

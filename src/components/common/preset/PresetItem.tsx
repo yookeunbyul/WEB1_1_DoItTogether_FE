@@ -1,7 +1,7 @@
-import React from 'react';
 import HouseworkCategoryTag, {
   HouseworkCategoryTagProps,
-} from '@/components/common/HouseworkCatetoryTag/HouseworkCategoryTag';
+} from '@/components/common/tag/HouseworkCatetoryTag/HouseworkCategoryTag';
+import React from 'react';
 
 export interface PresetItemProps extends HouseworkCategoryTagProps {
   /** 집안일 */

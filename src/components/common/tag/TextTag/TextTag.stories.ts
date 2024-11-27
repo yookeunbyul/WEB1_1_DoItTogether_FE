@@ -1,8 +1,8 @@
+import TextTag from '@/components/common/tag/TextTag/TextTag';
 import type { Meta, StoryObj } from '@storybook/react';
-import TextTag from '@/components/common/TextTag/TextTag';
 
 const meta = {
-  title: 'components/common/TextTag',
+  title: 'components/common/tag/TextTag',
   component: TextTag,
   tags: ['autodocs'],
 } satisfies Meta<typeof TextTag>;

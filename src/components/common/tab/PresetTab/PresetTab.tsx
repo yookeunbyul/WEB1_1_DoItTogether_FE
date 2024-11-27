@@ -1,6 +1,6 @@
-import PresetItem from '@/components/common/PresetItem/PresetItem';
-import PresetTab from '@/components/PresetTabContainer/PresetTab/PresetTab';
-import { Tabs, TabsContent, TabsList } from '@/components/ui/tabs';
+import PresetItem from '@/components/common/preset/PresetItem';
+import PresetTabItem from '@/components/common/tab/PresetTab/PresetTabItem';
+import { Tabs, TabsContent, TabsList } from '@/components/common/ui/tabs';
 
 interface PresetItem {
   id: number;
@@ -25,7 +25,7 @@ const PresetTab: React.FC<PresetTabProps> = ({ data }) => {
     <Tabs defaultValue={data[0]?.category}>
       <TabsList className='flex w-full justify-start gap-4 overflow-x-auto overflow-y-hidden bg-white03 p-0 px-5 no-scrollbar'>
         {data.map((tab, index) => (
-          <PresetTab key={index} name={tab.category} value={tab.category} icon='' />
+          <PresetTabItem key={index} name={tab.category} value={tab.category} icon='' />
         ))}
       </TabsList>
       {data.map(tabData => (

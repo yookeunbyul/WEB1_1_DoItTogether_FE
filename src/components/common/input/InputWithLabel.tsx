@@ -1,4 +1,4 @@
-import InputBox from '@/components/common/InputContainer/InputBox/InputBox';
+import InputBox from '@/components/common/input/InputBox';
 import React from 'react';
 
 interface InputWithLabelProps {
