@@ -1,19 +1,11 @@
 import React from 'react';
+import { Ranking } from '@/components/statistics/weekly/WeeklyRanking/WeeklyRanking';
 
-interface WeeklyPodiumProps {
-  /** 등수 */
-  place: number;
-  /** 프로필 이미지 */
-  profile: string;
-  /** 이름 */
-  name: string;
-  /** 완료한 집안일 개수 */
-  num: number;
-}
+interface WeeklyPodiumProps extends Ranking {}
 
 const WeeklyPodium: React.FC<WeeklyPodiumProps> = ({ place, profile, name, num }) => {
   return (
-    <div className='flex flex-col items-center justify-center'>
+    <div className={`flex flex-col items-center justify-center ${place === 2 && 'order-first'}`}>
       <div
         className={`relative ${place === 1 ? 'h-24 w-24' : 'h-16 w-16'} flex items-center justify-center rounded-full border border-solid`}
       >
