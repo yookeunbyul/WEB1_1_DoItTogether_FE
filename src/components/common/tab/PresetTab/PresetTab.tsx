@@ -39,7 +39,11 @@ const PresetTab: React.FC<PresetTabProps> = ({
         ))}
       </TabsList>
       {data.map(tabData => (
-        <TabsContent key={tabData.category} value={tabData.category}>
+        <TabsContent
+          key={tabData.category}
+          value={tabData.category}
+          className='h-[250px] overflow-y-auto no-scrollbar'
+        >
           {tabData.items.map(item => (
             <div key={item.id}>
               <PresetItem
