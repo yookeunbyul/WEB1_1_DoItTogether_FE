@@ -3,8 +3,8 @@ import { useState } from 'react';
 import React from 'react';
 
 interface ProfileImgProps {
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
 }
 
 const ProfileImg: React.FC<ProfileImgProps> = ({ width = 32, height = 32 }) => {
