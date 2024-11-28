@@ -1,6 +1,6 @@
 interface DateItemProps {
   /** 날짜 */
-  date: number;
+  date: string;
   /** 요일 */
   day: string;
   /** 미완료 집안일 개수 */

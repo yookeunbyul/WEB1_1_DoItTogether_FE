@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import HomeHeader from '@/components/home/HomeHeader/HomeHeader';
 import WeeklyDateAndTab from '@/components/home/WeeklyDateAndTab';
 import HouseworkList from '@/components/home/HouseworkList/HouseworkList';
 import GroupSelectSheet from '@/components/home/GroupSelectSheet/GroupSelectSheet';
+import useHomePageStore from '@/store/useHomePageStore';
+import getWeekText from '@/utils/getWeekText';
 
 export const data = [
   {
@@ -177,15 +179,18 @@ export const data = [
   },
 ];
 
-interface HomePageProps {}
-
-const HomePage: React.FC<HomePageProps> = () => {
+const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('전체');
+  const { setWeekText } = useHomePageStore();
 
   const chargers = [
     { name: '전체' },
     ...Array.from(new Set(data.map(item => item.charger))).map(charger => ({ name: charger })),
   ];
+
+  useEffect(() => {
+    setWeekText(getWeekText(new Date()));
+  }, []);
 
   return (
     <div>
