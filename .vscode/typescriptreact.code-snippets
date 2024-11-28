@@ -1,0 +1,39 @@
+{
+  "Typescript React component with no props": {
+    "prefix": "rfcn",
+    "body": [
+      "const ${1:${TM_FILENAME_BASE}} = () => {",
+      "  return (",
+      "    <div>",
+      "      ${1:${TM_FILENAME_BASE}}",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}};",
+    ],
+    "description": "Creates a React Functional Component with no props",
+  },
+  "Typescript React component with props": {
+    "prefix": "rfc",
+    "body": [
+      "import React from 'react'",
+      "",
+
+      "interface ${1:${TM_FILENAME_BASE}}Props {",
+      "  $2",
+      "};",
+      "",
+      "const ${1:${TM_FILENAME_BASE}}: React.FC<${1:${TM_FILENAME_BASE}}Props> = ({ $2 } ) => {",
+      "  return (",
+      "    <div>",
+      "      ${1:${TM_FILENAME_BASE}}",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}};",
+    ],
+    "description": "Creates a React Functional Component with props",
+  },
+}
