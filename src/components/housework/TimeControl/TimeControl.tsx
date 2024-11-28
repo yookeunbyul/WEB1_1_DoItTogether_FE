@@ -30,7 +30,7 @@ const TimeControl: React.FC<TimeControlProps> = ({ onTimeChange }) => {
   console.log(selectedTime);
 
   return (
-    <div className='flex flex-col gap-2 rounded-lg bg-white03 p-4 shadow'>
+    <div className='flex flex-col gap-2 rounded-2xl border-[1px] border-solid border-white01 bg-background px-3 py-4 text-black01 shadow-sm'>
       <div className='flex items-center justify-between'>
         {isAllDay ? (
           <Label htmlFor='time-mode'>하루종일 하기</Label>
