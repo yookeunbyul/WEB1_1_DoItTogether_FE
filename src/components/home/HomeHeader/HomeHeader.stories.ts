@@ -20,5 +20,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     handleSetOpen: action('i clicked!'),
+    groupName: '우리집',
   },
 };
