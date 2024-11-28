@@ -30,16 +30,12 @@ const GroupCreatePage = () => {
         inviteLink,
       });
     }
+    navigate('/main');
   };
 
   return (
     <div className='flex h-screen flex-col'>
-      <Header
-        title='방 만들기'
-        isNeededBackBtn={true}
-        isNeededDoneBtn={false}
-        handleBack={handleBack}
-      />
+      <Header title='방 만들기' isNeededDoneBtn={false} handleBack={handleBack} />
       <div className='flex-1'>
         {step === 'roomName' && (
           <GroupCreateStep1 handleNext={handleNext} roomName={roomName} setRoomName={setRoomName} />

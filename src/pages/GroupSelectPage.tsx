@@ -3,12 +3,21 @@ import GroupSelectTitle from '@/components/groupSelect/GroupSelectTitle/GroupSel
 import Logo from '@/components/groupSelect/Logo/Logo';
 import OpenSheetBtn from '@/components/common/button/OpenSheetBtn/OpenSheetBtn';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const GroupSelectPage = () => {
   const [groups] = useState(['우리집', '회사']);
-  const handleMakeGroupBtnClick = () => {};
-  const handleInvitedBtnClick = () => {};
-  const handleClick = () => {};
+  const navigate = useNavigate();
+
+  const handleMakeGroupBtnClick = () => {
+    navigate('/group/create');
+  };
+  const handleInvitedBtnClick = () => {
+    navigate('/group/invite-receive');
+  };
+  const handleClick = () => {
+    navigate('/main');
+  };
   return (
     <div className='flex min-h-screen flex-col'>
       <Logo />
