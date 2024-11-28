@@ -17,7 +17,7 @@ const MyPageEditPage = () => {
         <div className='m-auto'>
           <ProfileImg />
         </div>
-        <InputWithLabel label='이름' value={username} disabled={false} />
+        <InputWithLabel label='이름' value={username} disabled={false} handleChange={setUserName} />
       </div>
     </>
   );
