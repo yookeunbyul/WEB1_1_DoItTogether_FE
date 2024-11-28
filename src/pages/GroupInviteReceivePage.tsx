@@ -20,7 +20,7 @@ const GroupInviteReceivePage = () => {
   return (
     <div className='flex h-screen flex-col'>
       <Header
-        title='방 만들기'
+        title='초대받기'
         isNeededBackBtn={true}
         isNeededDoneBtn={false}
         handleBack={handleBack}
