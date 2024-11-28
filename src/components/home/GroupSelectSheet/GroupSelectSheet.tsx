@@ -4,19 +4,21 @@ import GroupOptions from '@/components/home/GroupSelectSheet/GroupOptions/GroupO
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-interface GroupSelectSheetProps {
-  isOpen: boolean;
-  handleSetOpen: (value: boolean) => void;
-}
+const GroupSelectSheet: React.FC = ({}) => {
+  const navigate = useNavigate();
 
-const GroupSelectSheet: React.FC<GroupSelectSheetProps> = ({ isOpen, handleSetOpen }) => {
-  const naviagate = useNavigate();
   const handleClick = () => {
-    naviagate('/group-select');
+    navigate('/group-select');
   };
+
+  /**
+   * todo
+   * GroupOptions 더미 데이터 파일로 교체
+   */
+
   return (
-    <BottomSheet isOpen={isOpen} setOpen={handleSetOpen} title='그룹 변경'>
-      <GroupOptions />
+    <BottomSheet title='그룹 변경'>
+      <GroupOptions groups={['우리집', '회사']} />
       <div className='flex justify-center pb-4'>
         <UnderlineBtn text='방 안내 페이지로 돌아가기' handleClick={handleClick} />
       </div>
