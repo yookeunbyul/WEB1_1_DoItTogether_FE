@@ -1,10 +1,10 @@
 import React from 'react';
 import GroupOption from '@/components/home/GroupSelectSheet/GroupOptions/GroupOption';
-interface GroupOptionsProps {
-  groups: Array<string>;
-}
+import useHomePageStore from '@/store/useHomePageStore';
 
-const GroupOptions: React.FC<GroupOptionsProps> = ({ groups }) => {
+const GroupOptions: React.FC = ({}) => {
+  const { groups } = useHomePageStore();
+
   return (
     <ul className='flex flex-col gap-y-6 px-5 pb-14 pt-8'>
       {groups.map(group => (

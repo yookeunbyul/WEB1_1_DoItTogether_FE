@@ -11,14 +11,9 @@ const GroupSelectSheet: React.FC = ({}) => {
     navigate('/group-select');
   };
 
-  /**
-   * todo
-   * GroupOptions 더미 데이터 파일로 교체
-   */
-
   return (
     <BottomSheet title='그룹 변경'>
-      <GroupOptions groups={['우리집', '회사']} />
+      <GroupOptions />
       <div className='flex justify-center pb-4'>
         <UnderlineBtn text='방 안내 페이지로 돌아가기' handleClick={handleClick} />
       </div>
