@@ -6,6 +6,8 @@ import { Button } from '@/components/common/ui/button';
 import Step1 from '@/components/survey/steps/Step1';
 import Step2 from '@/components/survey/steps/Step2';
 import Step3 from '@/components/survey/steps/Step3';
+import Step4 from '@/components/survey/steps/Step4';
+import Step5 from '@/components/survey/steps/Step5';
 
 // TODO 질문지 TITLE, QUESTION 하드코딩 하지말고, 상수파일로 관리하고 여기서는 가져와서 사용
 const DUMMY_QUESTION_STEP1 = [
@@ -30,9 +32,24 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
   const [step, setStep] = useState(1);
   const [answer, setAnswer] = useState<string>('');
   const [result, setResult] = useState<string[]>([]);
+  const [username, setUsername] = useState<string>('홍길동'); // 수정
   const navigate = useNavigate();
 
   const setNextStep = () => {
+    if (step === 4) {
+      // API CALL
+      const DUMMY_RESULT = [
+        '규칙적으로 청소',
+        '나 자신을 위해',
+        '청소 각오는 만땅!',
+        '화장실 청소 좋아!',
+      ];
+      // API 데이터 저장
+      setResult(DUMMY_RESULT);
+    }
+    if (step === 5) {
+      navigate('/group-select');
+    }
     setStep(prev => prev + 1);
   };
 
@@ -75,15 +92,16 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
           />
         )}
         {step === 4 && (
-          <Step3
+          <Step4
             title={`청소할 때 최우선으로\n신경 쓰는 공간을 알려주세요!`}
             questions={DUMMY_QUESTION_STEP4}
             handleAnswer={setAnswer}
           />
         )}
+        {step === 5 && <Step5 title={`${username}님의 청소성향은`} results={result} />}
 
         <Button size={'large'} onClick={setNextStep}>
-          이거 상태 관리
+          {step === 5 ? '확인' : '다음'}
         </Button>
       </div>
     </div>
