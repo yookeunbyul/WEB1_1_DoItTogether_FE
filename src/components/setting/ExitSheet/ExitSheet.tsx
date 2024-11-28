@@ -29,7 +29,7 @@ const ExitSheet: React.FC<ExitSheetProps> = ({
 }) => {
   return (
     <BottomSheet isOpen={isOpen} setOpen={setOpen} title={sheetTitle} closeBtn={false} tag={tag}>
-      <div className='flex flex-col gap-4 p-5'>
+      <div className='flex flex-row gap-4 p-5'>
         <Button
           label={btnText}
           size='large'
