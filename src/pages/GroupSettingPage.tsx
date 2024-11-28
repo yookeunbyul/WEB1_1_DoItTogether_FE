@@ -63,7 +63,7 @@ const GroupSettingPage = () => {
           isNeededDoneBtn={isEdited}
         />
       </div>
-      <div className='flex flex-col gap-4 px-5 pt-20'>
+      <div className='flex flex-col gap-6 px-5 pt-20'>
         <InputWithLabel
           label='공간 이름'
           value={groupName}
@@ -84,7 +84,6 @@ const GroupSettingPage = () => {
             size='large'
             label='프리셋 수정하기'
             handleClick={handleMovePreset}
-            className='h-12 rounded-full text-16 text-white02'
           />
         </div>
       </div>
