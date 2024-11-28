@@ -2,7 +2,7 @@ import { Button as ButtonComponent } from '@/components/common/ui/button';
 
 interface ButtonProps {
   /** 라벨 */
-  label: string;
+  label: React.ReactNode;
   /** 타입 */
   variant: 'full' | 'outline' | 'secondary' | 'ghost' | 'link';
   /** 사이즈 */
