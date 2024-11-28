@@ -8,7 +8,7 @@ interface Step4Props {
   handleAnswer: Dispatch<SetStateAction<string>>;
 }
 
-const Step4: React.FC<Step4Props> = ({ title, questions, handleAnswer }) => {
+const Step4: React.FC<Step4Props> = ({ title, questions }) => {
   const [activeItem, setActiveItem] = useState('');
 
   const handleSelect = (content: string) => {

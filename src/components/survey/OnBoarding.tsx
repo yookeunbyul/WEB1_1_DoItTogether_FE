@@ -34,7 +34,7 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
   const [answer, setAnswer] = useState<string>(''); // 사용자 답변
   const [isCompleted, setIsCompleted] = useState<boolean>(false); // 분석완료 여부
   const [result, setResult] = useState<string[]>([]); // 분석 결과
-  const [username, setUsername] = useState<string>('사용자'); // 사용자명
+  const [username] = useState<string>('사용자'); // 사용자명
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -72,6 +72,7 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
 
   useEffect(() => {
     if (step === 0) navigate('/survey-intro');
+    console.log(answer);
   }, [step]);
 
   return (
