@@ -16,8 +16,10 @@ interface SelectedTime {
 
 const HouseWorkStepOnePage = () => {
   const navigate = useNavigate();
-  const [houseWork, setHouseWork] = useState(null);
-  const [dueDate, setDueDate] = useState<Date | null>(null);
+  const [houseWork] = useState(null);
+  const [dueDate] = useState<Date | null>(null);
+  // const [houseWork, setHouseWork] = useState(null);
+  // const [dueDate, setDueDate] = useState<Date | null>(null);
   const [isHouseWorkSheetOpen, setHouseWorkSheetOpen] = useState(false);
   const [isDueDateSheetOpen, setDueDateSheetOpen] = useState(false);
   const [time, setTime] = useState<SelectedTime | null>(null);

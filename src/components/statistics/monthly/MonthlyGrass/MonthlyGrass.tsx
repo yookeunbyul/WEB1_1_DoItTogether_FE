@@ -42,7 +42,7 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ completionData }) => {
       minDetail='month'
       maxDetail='month'
       navigationLabel={({ date }) => `${date.getFullYear()}년 ${date.getMonth() + 1}월`}
-      formatDay={(locale, date) => date.getDate().toString()}
+      formatDay={(_locale, date) => date.getDate().toString()}
     />
   );
 };

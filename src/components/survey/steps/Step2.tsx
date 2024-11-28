@@ -8,7 +8,7 @@ interface Step2Props {
   handleAnswer: Dispatch<SetStateAction<string>>;
 }
 
-const Step2: React.FC<Step2Props> = ({ title, questions, handleAnswer }) => {
+const Step2: React.FC<Step2Props> = ({ title, questions }) => {
   const [activeItem, setActiveItem] = useState('');
 
   const handleSelect = (content: string) => {

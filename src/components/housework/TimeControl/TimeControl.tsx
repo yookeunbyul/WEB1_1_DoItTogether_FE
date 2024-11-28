@@ -27,6 +27,8 @@ const TimeControl: React.FC<TimeControlProps> = ({ onTimeChange }) => {
     onTimeChange(time);
   };
 
+  console.log(selectedTime);
+
   return (
     <div className='flex flex-col gap-2 rounded-lg bg-white03 p-4 shadow'>
       <div className='flex items-center justify-between'>

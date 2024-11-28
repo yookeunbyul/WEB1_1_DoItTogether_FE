@@ -8,7 +8,7 @@ interface Step1Props {
   handleAnswer: Dispatch<SetStateAction<string>>;
 }
 
-const Step1: React.FC<Step1Props> = ({ title, questions, handleAnswer }) => {
+const Step1: React.FC<Step1Props> = ({ title, questions }) => {
   const [activeItem, setActiveItem] = useState('');
 
   const handleSelect = (content: string) => {

@@ -8,7 +8,7 @@ interface Step3Props {
   handleAnswer: Dispatch<SetStateAction<string>>;
 }
 
-const Step3: React.FC<Step3Props> = ({ title, questions, handleAnswer }) => {
+const Step3: React.FC<Step3Props> = ({ title, questions }) => {
   const [activeItem, setActiveItem] = useState('');
 
   const handleSelect = (content: string) => {
