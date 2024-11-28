@@ -91,7 +91,7 @@ body:has(.react-modal-sheet-container) {
 
 @layer base {
   * {
-    @apply border-border;
+    @apply box-border;
   }
   html {
     @apply flex justify-center;

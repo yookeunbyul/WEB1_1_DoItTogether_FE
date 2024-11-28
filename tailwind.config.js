@@ -59,6 +59,21 @@ export default {
         },
       },
     },
+    keyframes: {
+      bounce: {
+        '0%, 100%': {
+          transform: 'translateY(-50%)',
+          'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1)',
+        },
+        '50%': {
+          transform: 'translateY(25%)',
+          'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1)',
+        },
+      },
+    },
+    animation: {
+      bounce: 'bounce 1s infinite', // 애니메이션 등록
+    },
     colors: {
       black01: '#212121',
       black02: '#464656',

@@ -11,7 +11,7 @@ const ManagerItems: React.FC<ManagerItemsProps> = ({ selectedMember, handleSelec
   const members = ['김민수', '이영희', '박지수', '최수진'];
 
   return (
-    <ul className='flex flex-col gap-y-4 pb-14 pt-8'>
+    <ul className='flex flex-col gap-2 py-5'>
       {members.map(member => (
         <ManagerItem
           key={member}
