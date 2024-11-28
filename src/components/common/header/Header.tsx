@@ -11,9 +11,11 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ title, isNeededBackBtn, isNeededDoneBtn, onBack }) => {
   return (
     <div className='flex items-center justify-between border-b-2 border-solid border-white01 px-5 py-4'>
-      {isNeededBackBtn && <BackBtn handleClick={onBack} />}
-      <div className='flex-1 text-center'>{title}</div>
-      {isNeededDoneBtn && <button className='text-black02'>완료</button>}
+      <div className='flex-1 bg-white03'>{isNeededBackBtn && <BackBtn handleClick={onBack} />}</div>
+      <div className='flex-1 bg-white03 text-center'>{title}</div>
+      <div className='flex-1 bg-white03 text-end'>
+        {isNeededDoneBtn && <button className='text-black02'>완료</button>}
+      </div>
     </div>
   );
 };

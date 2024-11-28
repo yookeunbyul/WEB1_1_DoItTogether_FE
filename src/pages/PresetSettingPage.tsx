@@ -90,7 +90,7 @@ const PresetSettingPage = () => {
 
   return (
     <div className='flex min-h-screen flex-col'>
-      <Header title='프리셋 관리' isNeededBackBtn={true} isNeededDoneBtn={true} />
+      <Header title='프리셋 관리' isNeededBackBtn={true} isNeededDoneBtn={false} />
       <Tab activeTab={activeTab} handleSetActiveTab={setActiveTab} chargers={chargers} />
       <div className='mt-4 flex-1'>
         <PresetTab
