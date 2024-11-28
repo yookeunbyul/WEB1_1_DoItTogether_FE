@@ -38,7 +38,7 @@ const GroupCreatePage = () => {
         title='방 만들기'
         isNeededBackBtn={true}
         isNeededDoneBtn={false}
-        onBack={handleBack}
+        handleBack={handleBack}
       />
       <div className='flex-1'>
         {step === 'roomName' && (
