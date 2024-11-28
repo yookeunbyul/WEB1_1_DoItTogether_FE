@@ -14,6 +14,7 @@ const AccountManagePage = () => {
 
   const handleLeave = () => {
     console.log('탈퇴');
+    navigate('/my-page/leave');
   };
 
   return (

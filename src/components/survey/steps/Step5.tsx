@@ -15,7 +15,7 @@ const Step5: React.FC<Step5Props> = ({ title, results }) => {
 
       <div className='flex flex-wrap gap-3'>
         {results.map(result => (
-          <TextTag type='darkfill' label={`# ${result}`} />
+          <TextTag key={result} type='darkfill' label={`# ${result}`} />
         ))}
       </div>
     </div>

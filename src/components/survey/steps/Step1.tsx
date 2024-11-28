@@ -24,6 +24,7 @@ const Step1: React.FC<Step1Props> = ({ title, questions, handleAnswer }) => {
       <div className='flex flex-wrap gap-3'>
         {questions.map(question => (
           <MenuSelect
+            key={question}
             type='tight'
             status={activeItem === question ? 'active' : 'inActive'}
             content={question}
