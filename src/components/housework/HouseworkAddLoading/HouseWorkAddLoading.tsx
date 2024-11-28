@@ -8,7 +8,7 @@ interface HouseWorkAddLoadingProps {
 
 const HouseWorkAddLoading: React.FC<HouseWorkAddLoadingProps> = ({ date, housework, member }) => {
   return (
-    <div className='flex h-screen w-full max-w flex-col gap-4 px-5'>
+    <div className='flex h-screen w-full max-w flex-col gap-4'>
       <p className='mt-16 text-24'>{date}에</p>
       <div className='flex flex-wrap items-center gap-2'>
         <TextTag type='darkfill' label={housework} />
