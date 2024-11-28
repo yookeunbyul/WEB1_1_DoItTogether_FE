@@ -18,6 +18,7 @@ import PresetSettingPage from '@/pages/PresetSettingPage';
 import MyPage from '@/pages/MyPage';
 import MyPageEditPage from '@/pages/MyPageEditPage';
 import AccountManagePage from '@/pages/AccountManagePage';
+import LeavePage from '@/pages/LeavePage';
 import HouseWorkStepOnePage from '@/pages/HouseWorkStepOnePage';
 import HouseWorkStepTwoPage from '@/pages/HouseWorkStepTwoPage';
 import GroupInviteReceivePage from '@/pages/GroupInviteReceivePage';
@@ -91,6 +92,10 @@ export const router = createBrowserRouter([
   {
     path: 'my-page/account-manage',
     element: <AccountManagePage />,
+  },
+  {
+    path: 'my-page/leave',
+    element: <LeavePage />,
   },
   {
     path: '/group-setting/preset-setting',
