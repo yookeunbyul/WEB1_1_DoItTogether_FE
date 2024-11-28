@@ -1,8 +1,12 @@
 import Button from '@/components/common/button/Button/Button';
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+
   const handleLoginButton = () => {
     console.log('kakao login API call!');
+    navigate('/register');
   };
 
   return (

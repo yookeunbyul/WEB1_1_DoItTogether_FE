@@ -3,6 +3,7 @@ import PresetTab from '@/components/common/tab/PresetTab/PresetTab';
 import Tab from '@/components/common/tab/Tab/Tab';
 import PresetAddInput from '@/components/setting/presetSetting/PresetAddInput';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const PresetSettingPage = () => {
   const mockData = {
@@ -60,6 +61,7 @@ const PresetSettingPage = () => {
     ],
   };
 
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<string>('사용자 정의');
   const chargers = Object.keys(mockData).map(key => ({
     name: key === 'userData' ? '사용자 정의' : '프리셋',
@@ -88,9 +90,13 @@ const PresetSettingPage = () => {
     }));
   };
 
+  const handleBack = () => {
+    navigate(-1);
+  };
+
   return (
     <div className='flex min-h-screen flex-col'>
-      <Header title='프리셋 관리' isNeededBackBtn={true} isNeededDoneBtn={false} />
+      <Header title='프리셋 관리' isNeededDoneBtn={false} handleBack={handleBack} />
       <Tab activeTab={activeTab} handleSetActiveTab={setActiveTab} chargers={chargers} />
       <div className='mt-4 flex-1'>
         <PresetTab

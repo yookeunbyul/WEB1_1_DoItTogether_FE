@@ -3,9 +3,14 @@ import InputWithLabel from '@/components/common/input/InputWithLabel';
 import ProfileImg from '@/components/common/profile/ProfileImg';
 import TitleCenter from '@/components/common/title/TitleCenter';
 import RegisterNotice from '@/components/register/RegisterNotice';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
-  const handleSubmitButton = () => {};
+  const navigate = useNavigate();
+
+  const handleSubmitButton = () => {
+    navigate('/survey-intro');
+  };
   return (
     <div className='flex h-screen flex-col items-center justify-between px-5 pt-10'>
       <TitleCenter title={`사용하실 닉네임과\n프로필을 설정해주세요`} />

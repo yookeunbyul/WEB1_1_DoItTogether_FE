@@ -15,16 +15,12 @@ const GroupInviteReceivePage = () => {
   // TODO: 백엔드랑 연결
   const handleGoIn = () => {
     console.log(inviteLink);
+    navigate('/main');
   };
 
   return (
     <div className='flex h-screen flex-col'>
-      <Header
-        title='초대받기'
-        isNeededBackBtn={true}
-        isNeededDoneBtn={false}
-        handleBack={handleBack}
-      />
+      <Header title='초대받기' isNeededDoneBtn={false} handleBack={handleBack} />
       <div className='flex-1 p-5'>
         <InputBox
           placeholder='공유받은 링크를 입력해주세요'
@@ -35,7 +31,7 @@ const GroupInviteReceivePage = () => {
       </div>
       <div className='p-5'>
         <Button
-          label='다음'
+          label='입장하기'
           size='large'
           variant='full'
           className='mb-0'
