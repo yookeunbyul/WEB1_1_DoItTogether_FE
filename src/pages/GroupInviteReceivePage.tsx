@@ -26,7 +26,7 @@ const GroupInviteReceivePage = () => {
           placeholder='공유받은 링크를 입력해주세요'
           disabled={false}
           value={inviteLink}
-          handleChange={e => setInviteLink(e.target.value)}
+          handleChange={setInviteLink}
         />
       </div>
       <div className='p-5'>

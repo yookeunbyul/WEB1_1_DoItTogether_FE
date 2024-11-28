@@ -20,7 +20,7 @@ const GroupCreateStep1: React.FC<GroupCreateStep1Props> = ({
           placeholder='방 이름을 입력해주세요'
           disabled={false}
           value={roomName}
-          handleChange={e => setRoomName(e.target.value)}
+          handleChange={setRoomName}
         />
       </div>
       <div>
