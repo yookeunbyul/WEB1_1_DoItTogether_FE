@@ -17,6 +17,7 @@ import MonthlyStatisticsPage from '@/pages/MonthlyStatisticsPage';
 import PresetSettingPage from '@/pages/PresetSettingPage';
 import MyPage from '@/pages/MyPage';
 import MyPageEditPage from '@/pages/MyPageEditPage';
+import AccountManagePage from '@/pages/AccountManagePage';
 import HouseWorkStepOnePage from '@/pages/HouseWorkStepOnePage';
 import HouseWorkStepTwoPage from '@/pages/HouseWorkStepTwoPage';
 import GroupInviteReceivePage from '@/pages/GroupInviteReceivePage';
@@ -86,6 +87,10 @@ export const router = createBrowserRouter([
         element: <MyPageEditPage />,
       },
     ],
+  },
+  {
+    path: 'my-page/account-manage',
+    element: <AccountManagePage />,
   },
   {
     path: '/group-setting/preset-setting',
