@@ -7,10 +7,7 @@ interface GroupSelectBtnProps {
   handleSetOpen: (value: boolean) => void;
 }
 
-const GroupSelectBtn: React.FC<GroupSelectBtnProps> = ({
-  groupName,
-  handleSetOpen,
-}: GroupSelectBtnProps) => {
+const GroupSelectBtn: React.FC<GroupSelectBtnProps> = ({ groupName, handleSetOpen }) => {
   return (
     <>
       <button
