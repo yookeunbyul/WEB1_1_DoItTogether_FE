@@ -23,7 +23,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
   setOpen,
   tag,
   title,
-  closeBtn,
+  closeBtn = true,
   children,
 }) => {
   return (
