@@ -16,7 +16,7 @@ export interface ListActionBtnProps {
   handleAction: () => void;
 }
 
-const ListActionBtn: React.FC<ListActionBtnProps> = ({ actionStatus, handleAction }) => {
+const ListActionBtn: React.FC<ListActionBtnProps> = ({ handleAction }) => {
   return <div className='h-5 w-5 cursor-pointer border border-solid' onClick={handleAction}></div>;
 };
 

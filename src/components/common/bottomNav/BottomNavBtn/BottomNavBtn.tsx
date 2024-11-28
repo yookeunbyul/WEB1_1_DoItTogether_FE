@@ -14,6 +14,8 @@ const BottomNavBtn: React.FC<BottomNavBtnProps> = ({
   /** click */
   handleClick,
 }) => {
+  console.log(icon);
+
   return (
     <button className='flex flex-col items-center gap-1 px-3' onClick={handleClick}>
       {/* <div>{icon}</div> */}

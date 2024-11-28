@@ -12,11 +12,21 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: { type: 'full', status: 'active', content: '주에 2, 3회' },
+  args: {
+    type: 'full',
+    status: 'active',
+    content: '주에 2, 3회',
+    handleSelect: () => console.log('selected'),
+  },
   render: args => <MenuSelect {...args} />,
 };
 
 export const Tight: Story = {
-  args: { type: 'tight', status: 'inActive', content: '정리정돈의 욕구' },
+  args: {
+    type: 'tight',
+    status: 'inActive',
+    content: '정리정돈의 욕구',
+    handleSelect: () => console.log('selected'),
+  },
   render: args => <MenuSelect {...args} />,
 };
