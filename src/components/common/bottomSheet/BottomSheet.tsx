@@ -8,13 +8,24 @@ interface BottomSheetProps {
   isOpen: boolean;
   /**isOpen 바꾸는 set함수 */
   setOpen: (value: boolean) => void;
+  /**바텀시트 태그 */
+  tag?: string;
   /**바텀시트 타이틀 */
   title: string;
+  /**바텀시트 close 버튼 */
+  closeBtn?: boolean;
   /**바텀시트 컨텐츠 */
   children: React.ReactNode;
 }
 
-const BottomSheet: React.FC<BottomSheetProps> = ({ isOpen, setOpen, title, children }) => {
+const BottomSheet: React.FC<BottomSheetProps> = ({
+  isOpen,
+  setOpen,
+  tag,
+  title,
+  closeBtn,
+  children,
+}) => {
   return (
     <>
       <Sheet
@@ -25,9 +36,9 @@ const BottomSheet: React.FC<BottomSheetProps> = ({ isOpen, setOpen, title, child
       >
         <div className='relative mx-auto h-full w-full max-w'>
           <Sheet.Container>
-            <CloseBtn handleClick={() => setOpen(false)} />
+            {closeBtn && <CloseBtn handleClick={() => setOpen(false)} />}
             <Sheet.Header>
-              <BottomSheetTitle title={title} />
+              <BottomSheetTitle tag={tag} title={title} />
             </Sheet.Header>
             <Sheet.Content>{children}</Sheet.Content>
           </Sheet.Container>

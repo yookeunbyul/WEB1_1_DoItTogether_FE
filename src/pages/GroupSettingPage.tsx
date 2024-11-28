@@ -5,6 +5,7 @@ import Button from '@/components/common/button/Button/Button';
 import InputWithLabel from '@/components/common/input/InputWithLabel';
 import MemberItems from '@/components/setting/groupSetting/MemberItems/MemberItems';
 import InviteLinkWithLabel from '@/components/setting/groupSetting/InviteLink/InviteLinkWithLabel';
+import ExitSheet from '@/components/setting/ExitSheet/ExitSheet';
 
 const GroupSettingPage = () => {
   const dummyData = {
@@ -17,6 +18,10 @@ const GroupSettingPage = () => {
   const navigate = useNavigate();
   const [groupName, setGroupName] = useState(dummyData.groupName);
   const [isEdited, setIsEdited] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [tag, setTag] = useState('');
+  const [sheetTitle, setSheetTitle] = useState('');
+  const [btnText, setBtnText] = useState('');
 
   const handleMovePreset = () => {
     navigate('/group-setting/preset-setting');
@@ -25,6 +30,28 @@ const GroupSettingPage = () => {
   const handleGroupNameChange = (value: string) => {
     setGroupName(value);
     setIsEdited(value !== dummyData.groupName);
+  };
+
+  const handleExit = (name: string) => {
+    if (dummyData.isLeader && dummyData.currentUser === name) {
+      setBtnText('나갈래요');
+      setTag(dummyData.groupName);
+      setSheetTitle(`에서 정말 나가시나요?`);
+    } else if (dummyData.isLeader) {
+      setBtnText('내보낼래요');
+      setTag(name);
+      setSheetTitle(`님을 정말 내보내시나요?`);
+    } else {
+      setBtnText('나갈래요');
+      setTag(dummyData.groupName);
+      setSheetTitle(`에서 정말 나가시나요?`);
+    }
+    console.log(name);
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -47,6 +74,7 @@ const GroupSettingPage = () => {
           leader={dummyData.isLeader}
           members={dummyData.members}
           currentUser={dummyData.currentUser}
+          handleClick={handleExit}
         />
         <InviteLinkWithLabel />
         <div className='flex flex-col gap-2'>
@@ -60,6 +88,14 @@ const GroupSettingPage = () => {
           />
         </div>
       </div>
+      <ExitSheet
+        tag={tag}
+        sheetTitle={sheetTitle}
+        btnText={btnText}
+        isOpen={isOpen}
+        setOpen={setIsOpen}
+        handleClose={handleClose}
+      />
     </>
   );
 };
