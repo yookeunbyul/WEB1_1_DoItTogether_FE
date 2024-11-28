@@ -9,6 +9,9 @@ interface HomePageState {
 
   groups: Array<string>;
   setGroups: (groups: Array<string>) => void;
+
+  weekText: string;
+  setWeekText: (weekText: string) => void;
 }
 
 const useHomePageStore = create<HomePageState>(set => ({
@@ -20,6 +23,9 @@ const useHomePageStore = create<HomePageState>(set => ({
 
   groups: ['기본 그룹명'],
   setGroups: groups => set({ groups: groups }),
+
+  weekText: '',
+  setWeekText: weekText => set({ weekText: weekText }),
 }));
 
 export default useHomePageStore;
