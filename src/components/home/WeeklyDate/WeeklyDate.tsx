@@ -56,8 +56,6 @@ const WeeklyDate = () => {
     setCurrWeek(newWeekDates);
   };
 
-  console.log(current);
-
   return (
     <Carousel opts={{ loop: true }} setApi={setApi}>
       <CarouselContent>
@@ -70,7 +68,7 @@ const WeeklyDate = () => {
                   date={week.date.split('.')[2]}
                   day={week.day}
                   pendingCnt={0}
-                  isActive={activeDate === week.date}
+                  isActive={activeDate === week.date && current === i}
                   handleClick={() => handleActiveDate(week.date)}
                 />
               ))}
