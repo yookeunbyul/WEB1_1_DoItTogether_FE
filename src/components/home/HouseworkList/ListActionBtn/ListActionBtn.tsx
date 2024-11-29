@@ -13,11 +13,18 @@ export interface ListActionBtnProps {
   /** 상태 */
   actionStatus: string;
   /** 액션 */
-  handleAction: () => void;
+  handleAction: (id: number) => void;
+  /** 아이디 */
+  id: number;
 }
 
-const ListActionBtn: React.FC<ListActionBtnProps> = ({ handleAction }) => {
-  return <div className='h-5 w-5 cursor-pointer border border-solid' onClick={handleAction}></div>;
+const ListActionBtn: React.FC<ListActionBtnProps> = ({ handleAction, id }) => {
+  return (
+    <div
+      className='h-5 w-5 cursor-pointer border border-solid'
+      onClick={() => handleAction(id)}
+    ></div>
+  );
 };
 
 export default ListActionBtn;

@@ -2,12 +2,24 @@ import Button from '@/components/common/button/Button/Button';
 import GroupSelectTitle from '@/components/groupSelect/GroupSelectTitle/GroupSelectTitle';
 import Logo from '@/components/groupSelect/Logo/Logo';
 import OpenSheetBtn from '@/components/common/button/OpenSheetBtn/OpenSheetBtn';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useHomePageStore from '@/store/useHomePageStore';
+import { getMyGroup } from '@/services/groupSelect/getMyGroup';
 
 const GroupSelectPage = () => {
-  const [groups] = useState(['우리집', '회사']);
   const navigate = useNavigate();
+  const { setGroupName, groups, setGroups } = useHomePageStore();
+
+  useEffect(() => {
+    const fetchMyGroup = async () => {
+      const groups = await getMyGroup();
+      console.log(groups.result.channelList);
+      setGroups(groups.result.channelList);
+    };
+
+    fetchMyGroup();
+  }, []);
 
   const handleMakeGroupBtnClick = () => {
     navigate('/group/create');
@@ -15,9 +27,11 @@ const GroupSelectPage = () => {
   const handleInvitedBtnClick = () => {
     navigate('/group/invite-receive');
   };
-  const handleClick = () => {
+  const handleClick = (group: string) => {
+    setGroupName(group);
     navigate('/main');
   };
+
   return (
     <div className='flex min-h-screen flex-col'>
       <Logo />
@@ -25,7 +39,12 @@ const GroupSelectPage = () => {
       <div className='flex flex-1 flex-col gap-y-4 px-5 py-4'>
         {groups.length > 0 ? (
           groups.map(group => (
-            <OpenSheetBtn key={group} text={group} handleClick={handleClick} type='groupSelect' />
+            <OpenSheetBtn
+              key={group.channelId}
+              text={group.name}
+              handleClick={() => handleClick(group.name)}
+              type='groupSelect'
+            />
           ))
         ) : (
           <div className='flex flex-1 items-center justify-center whitespace-pre-line text-center text-gray03'>
