@@ -62,6 +62,7 @@ export interface BanUserRes extends BaseRes {
   result: {
     /** 추방된 유저 이메일 */
     email: string;
+    nickName: string;
   };
 }
 
@@ -112,5 +113,23 @@ export interface JoinGroupRes extends BaseRes {
     name: string;
     /** 사용자가 성공적으로 입장했는지 여부 */
     joinedSuccessfully: boolean;
+  };
+}
+
+/** 그룹 정보 */
+interface Channel {
+  /** 그룹 아이디 */
+  channelId: number;
+  /** 그룹명 */
+  name: string;
+}
+
+/** 내 그룹 목록 조회 */
+export interface GetMyGroupRes extends BaseRes {
+  result: {
+    /** 유저 아이디 */
+    userId: number;
+    /** 그룹 목록 */
+    channelList: Array<Channel>;
   };
 }
