@@ -14,8 +14,12 @@ const GroupSelectSheet: React.FC = ({}) => {
     setIsGroupSelectSheetOpen(false);
   };
 
+  const handleClose = () => {
+    setIsGroupSelectSheetOpen(false);
+  };
+
   return (
-    <BottomSheet title='그룹 변경' isOpen={isGroupSelectSheetOpen}>
+    <BottomSheet title='그룹 변경' isOpen={isGroupSelectSheetOpen} setOpen={handleClose}>
       <GroupOptions />
       <div className='flex justify-center pb-4'>
         <UnderlineBtn text='방 안내 페이지로 돌아가기' handleClick={handleClick} />
