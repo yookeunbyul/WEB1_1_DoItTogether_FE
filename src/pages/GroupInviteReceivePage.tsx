@@ -20,7 +20,9 @@ const GroupInviteReceivePage = () => {
       const joinResult = await postJoinGroup({ inviteLink });
       navigate(`/main/${joinResult.result.channelId}`);
     } catch (error) {
-      toast({ title: '에러가 발생했습니다 ㅠㅠ', description: '유효한 링크인지 확인해주세요!' });
+      if (error instanceof Error) {
+        toast({ title: '에러가 발생했습니다 ㅠㅠ', description: error.message });
+      }
     }
   };
 
