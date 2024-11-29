@@ -16,11 +16,11 @@ const InviteLink: React.FC<InviteLinkProps> = ({ initialLink }) => {
   };
 
   const handleCopyLink = () => {
+    toast({
+      title: '링크가 복사되었어요!',
+    });
     if (inviteLink) {
       navigator.clipboard.writeText(inviteLink);
-      toast({
-        title: '링크가 복사되었어요!',
-      });
     }
   };
 
