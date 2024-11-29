@@ -29,16 +29,24 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 const RootLayout = () => {
   const location = useLocation();
 
+  // main 경로에 대해서는 애니메이션 제외
+  const shouldAnimate = !location.pathname.startsWith('/main');
+
   return (
     <>
       <ScrollToTop />
-      <Outlet />
+      {shouldAnimate ? (
+        <TransitionGroup>
+          <CSSTransition key={location.pathname} timeout={300} classNames='page'>
+            <div className='page'>
+              <Outlet />
+            </div>
+          </CSSTransition>
+        </TransitionGroup>
+      ) : (
+        <Outlet />
+      )}
       <Toaster />
-      <TransitionGroup>
-        <CSSTransition key={location.pathname} timeout={300} classNames='page'>
-          <Outlet />
-        </CSSTransition>
-      </TransitionGroup>
     </>
   );
 };
@@ -88,6 +96,10 @@ export const router = createBrowserRouter([
             path: 'statistics',
             element: <StatisticsLayout />,
             children: [
+              {
+                index: true, // 기본 리다이렉트
+                element: <WeeklyStatisticsPage />,
+              },
               {
                 path: 'weekly',
                 element: <WeeklyStatisticsPage />,
