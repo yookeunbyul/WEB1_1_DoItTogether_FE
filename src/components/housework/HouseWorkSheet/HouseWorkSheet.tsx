@@ -30,6 +30,7 @@ const HouseWorkSheet: React.FC<HouseWorkSheetProps> = ({ isOpen, setOpen }) => {
           </div>
           <PresetTab
             data={activeTab === '사용자 정의' ? housework.userData : housework.presetData}
+            isBottomSheet={true}
           />
         </section>
         <div className='px-5'>
