@@ -6,13 +6,18 @@ import OpenSheetBtnWithLabel from '@/components/common/button/OpenSheetBtn/OpenS
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HouseWorkAddLoading from '@/components/housework/HouseworkAddLoading/HouseWorkAddLoading';
+import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 
 const HouseWorkStepTwoPage = () => {
   const navigate = useNavigate();
-  const [manager, setManager] = useState<string | null>(null);
-  const [selectedMember, setSelectedMember] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { task, category, startDate, startTime, assigneeId, setAssigneeId } =
+    useAddHouseWorkStore();
+
+  const [selectedValue, setSelectedValue] = useState(assigneeId || null);
+
+  console.log('전역:', task, category, startDate, startTime, assigneeId);
 
   const handleBackClick = () => {
     navigate('/add-housework/step1');
@@ -32,27 +37,24 @@ const HouseWorkStepTwoPage = () => {
 
   const handleDoneClick = () => {
     setIsOpen(false);
-    setManager(selectedMember);
+    setAssigneeId(selectedValue);
   };
 
   return (
     <>
-      <div className='flex h-screen flex-col gap-6 px-5'>
+      <div className='flex h-screen flex-col gap-6 px-5 pb-6'>
         {isLoading ? (
           <>
-            <HouseWorkAddLoading member={selectedMember} housework='일단 몰라' date='2024-11-28' />
+            <HouseWorkAddLoading member={assigneeId} housework={task} date={startDate} />
           </>
         ) : (
           <>
-            <HeaderWithTitle
-              title='새로운 집안일을 추가해보세요(2/2)'
-              handleClick={handleBackClick}
-            />
+            <HeaderWithTitle title={`담당자를\n지정해보세요`} handleClick={handleBackClick} />
             <section aria-label='집안일 추가 컨텐츠' className='flex flex-1 flex-col gap-6'>
-              {manager ? (
+              {assigneeId ? (
                 <OpenSheetBtnWithLabel
                   title='담당자'
-                  selected={manager}
+                  selected={assigneeId}
                   handleClick={handleManagerClick}
                 />
               ) : (
@@ -63,7 +65,13 @@ const HouseWorkStepTwoPage = () => {
                 />
               )}
             </section>
-            <Button label='완료' variant='full' size='large' handleClick={handleNextClick} />
+            <Button
+              label='완료'
+              variant='full'
+              size='large'
+              handleClick={handleNextClick}
+              disabled={!assigneeId}
+            />
           </>
         )}
       </div>
@@ -71,8 +79,8 @@ const HouseWorkStepTwoPage = () => {
       <ManagerSelectSheet
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        selectedMember={selectedMember}
-        handleSetSelectMember={setSelectedMember}
+        setSelectedValue={setSelectedValue}
+        selectedValue={selectedValue}
         handleDoneClick={handleDoneClick}
       />
     </>

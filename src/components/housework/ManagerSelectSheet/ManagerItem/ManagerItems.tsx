@@ -1,23 +1,37 @@
 import ManagerItem from '@/components/housework/ManagerSelectSheet/ManagerItem/ManagerItem';
+import { members } from '@/mock/addHousework';
+import { Dispatch, SetStateAction } from 'react';
 
 interface ManagerItemsProps {
-  /**선택한 멤버 */
-  selectedMember: string;
-  /**set 함수 */
-  handleSelectMember: (member: string) => void;
+  isAiCardOpen: boolean;
+  setSelectedValue: Dispatch<SetStateAction<number | null>>;
+  selectedValue: number | null;
 }
 
-const ManagerItems: React.FC<ManagerItemsProps> = ({ selectedMember, handleSelectMember }) => {
-  const members = ['김민수', '이영희', '박지수', '최수진'];
+const ManagerItems: React.FC<ManagerItemsProps> = ({
+  isAiCardOpen,
+  setSelectedValue,
+  selectedValue,
+}) => {
+  const handleClick = (id: number) => {
+    console.log(id);
+    if (selectedValue === id) {
+      setSelectedValue(null); // 같은 아이템 클릭 시 선택 해제
+    } else {
+      setSelectedValue(id); // 다른 아이템 클릭 시 선택
+    }
+  };
 
   return (
-    <ul className='flex flex-col gap-2 py-5'>
+    <ul
+      className={`flex ${isAiCardOpen ? 'mb-8 mt-4 h-[160px]' : 'my-4 h-[220px]'} flex-col gap-4 overflow-y-auto pt-2 no-scrollbar`}
+    >
       {members.map(member => (
         <ManagerItem
-          key={member}
-          name={member}
-          handleClick={() => handleSelectMember(member)}
-          selectState={selectedMember === member ? 'person' : 'default'}
+          key={member.id}
+          name={member.name}
+          handleClick={() => handleClick(member.id)}
+          selectState={selectedValue === member.id ? 'person' : 'default'}
         />
       ))}
     </ul>

@@ -3,6 +3,7 @@ import Button from '@/components/common/button/Button/Button';
 import PresetTab from '@/components/common/tab/PresetTab/PresetTab';
 import Tab from '@/components/common/tab/Tab/Tab';
 import { housework } from '@/mock/addHousework';
+import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 import { useState } from 'react';
 
 interface HouseWorkSheetProps {
@@ -14,10 +15,21 @@ interface HouseWorkSheetProps {
 
 const HouseWorkSheet: React.FC<HouseWorkSheetProps> = ({ isOpen, setOpen }) => {
   const [activeTab, setActiveTab] = useState<string>('사용자 정의');
+  const [selectedHouseWork, setSelectedHouseWork] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const { setTask, setCategory } = useAddHouseWorkStore();
+
   const chargers = Object.keys(housework).map(key => ({
     name: key === 'userData' ? '사용자 정의' : '프리셋',
   }));
+
   const handleDoneClick = () => {
+    if (selectedHouseWork) {
+      setTask(selectedHouseWork);
+    }
+    if (selectedCategory) {
+      setCategory(selectedCategory);
+    }
     setOpen(false);
   };
 
@@ -31,6 +43,8 @@ const HouseWorkSheet: React.FC<HouseWorkSheetProps> = ({ isOpen, setOpen }) => {
           <PresetTab
             data={activeTab === '사용자 정의' ? housework.userData : housework.presetData}
             isBottomSheet={true}
+            setSelectedHouseWork={setSelectedHouseWork}
+            setSelectedCategory={setSelectedCategory}
           />
         </section>
         <div className='px-5'>

@@ -10,20 +10,18 @@ interface ManagerSelectSheetProps {
   isOpen: boolean;
   /**isOpen 바꾸는 set함수 */
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  /**선택된 담당자 */
-  selectedMember: string;
-  /**담당자 바꾸는 set함수 */
-  handleSetSelectMember: Dispatch<SetStateAction<string>>;
   /**선택 완료 후 처리하는 함수 */
   handleDoneClick: () => void;
+  setSelectedValue: Dispatch<SetStateAction<number | null>>;
+  selectedValue: number | null;
 }
 
 const ManagerSelectSheet: React.FC<ManagerSelectSheetProps> = ({
   isOpen,
   setIsOpen,
-  selectedMember,
-  handleSetSelectMember,
+  selectedValue,
   handleDoneClick,
+  setSelectedValue,
 }) => {
   const [isAiCardOpen, setIsAiCardOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -44,10 +42,14 @@ const ManagerSelectSheet: React.FC<ManagerSelectSheetProps> = ({
 
   return (
     <BottomSheet isOpen={isOpen} setOpen={setIsOpen} title='담당자 고르기'>
-      <div className='flex flex-col px-5 pb-6'>
+      <div className='flex flex-col px-5'>
         {isAiCardOpen && <AiChoice isLoading={isLoading} tags={tags} />}
-        <ManagerItems selectedMember={selectedMember} handleSelectMember={handleSetSelectMember} />
-        <div className='flex gap-3'>
+        <ManagerItems
+          isAiCardOpen={isAiCardOpen}
+          setSelectedValue={setSelectedValue}
+          selectedValue={selectedValue}
+        />
+        <div className='flex gap-3 pb-6'>
           <Button label='ai 선택' variant='outline' size='large' handleClick={handleClick} />
           <Button label='완료' variant='full' size='large' handleClick={handleDoneClick} />
         </div>
