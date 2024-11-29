@@ -18,6 +18,7 @@ interface PresetTabProps {
   deleteButtonStates?: Record<number, boolean>;
   handleSettingClick?: (itemId: number) => void;
   handleDeleteClick?: (itemId: number) => void;
+  isBottomSheet?: boolean;
 }
 
 const PresetTab: React.FC<PresetTabProps> = ({
@@ -26,6 +27,7 @@ const PresetTab: React.FC<PresetTabProps> = ({
   deleteButtonStates = {},
   handleSettingClick,
   handleDeleteClick,
+  isBottomSheet = false,
 }) => {
   const handleClick = (item: string) => {
     console.log(item);
@@ -42,7 +44,7 @@ const PresetTab: React.FC<PresetTabProps> = ({
         <TabsContent
           key={tabData.category}
           value={tabData.category}
-          className='h-[250px] overflow-y-auto no-scrollbar'
+          className={`${isBottomSheet ? 'h-[250px]' : 'h-auto'} overflow-y-auto no-scrollbar`}
         >
           {tabData.items.map(item => (
             <div key={item.id}>
