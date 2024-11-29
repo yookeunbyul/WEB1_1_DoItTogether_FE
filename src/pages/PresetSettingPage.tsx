@@ -36,6 +36,20 @@ const PresetSettingPage = () => {
           { id: 1, description: '매일 아침 화장실 청소하기' },
           { id: 2, description: '거실 바닥 청소하기' },
           { id: 3, description: '거실 청소기 돌리기' },
+          { id: 4, description: '거실 청소기 돌리기' },
+          { id: 5, description: '거실 청소기 돌리기' },
+          { id: 6, description: '거실 청소기 돌리기' },
+          { id: 7, description: '거실 청소기 돌리기' },
+          { id: 8, description: '거실 청소기 돌리기' },
+          { id: 9, description: '거실 청소기 돌리기' },
+          { id: 10, description: '거실 청소기 돌리기' },
+          { id: 11, description: '거실 청소기 돌리기' },
+          { id: 12, description: '거실 청소기 돌리기' },
+          { id: 13, description: '거실 청소기 돌리기' },
+          { id: 14, description: '거실 청소기 돌리기' },
+          { id: 15, description: '거실 청소기 돌리기' },
+          { id: 16, description: '거실 청소기 돌리기' },
+          { id: 17, description: '거실 청소기 돌리기' },
         ],
       },
       {
@@ -62,9 +76,9 @@ const PresetSettingPage = () => {
   };
 
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<string>('사용자 정의');
+  const [activeTab, setActiveTab] = useState<string>('사용자정의');
   const chargers = Object.keys(mockData).map(key => ({
-    name: key === 'userData' ? '사용자 정의' : '프리셋',
+    name: key === 'userData' ? '사용자정의' : '프리셋',
   }));
 
   /**
@@ -72,7 +86,7 @@ const PresetSettingPage = () => {
     1: false,
     2: false,
     3: false
-  } 
+  }
   */
   const [deleteButtonStates, setDeleteButtonStates] = useState<Record<number, boolean>>({});
 
@@ -96,9 +110,11 @@ const PresetSettingPage = () => {
 
   return (
     <div className='flex min-h-screen flex-col'>
-      <Header title='프리셋 관리' isNeededDoneBtn={false} handleBack={handleBack} />
-      <Tab activeTab={activeTab} handleSetActiveTab={setActiveTab} chargers={chargers} />
-      <div className='mt-4 flex-1'>
+      <div className='sticky top-0 z-10 bg-[#fff]'>
+        <Header title='프리셋 관리' isNeededDoneBtn={false} handleBack={handleBack} />
+        <Tab activeTab={activeTab} handleSetActiveTab={setActiveTab} chargers={chargers} />
+      </div>
+      <div className='mt-5 flex-1'>
         <PresetTab
           data={activeTab === '사용자 정의' ? mockData.userData : mockData.presetData}
           isInPresetSetting={true}
@@ -107,7 +123,7 @@ const PresetSettingPage = () => {
           handleDeleteClick={handleDeleteClick}
         />
       </div>
-      <div className='bg-white sticky bottom-0'>
+      <div className='sticky bottom-0 bg-[#fff]'>
         <PresetAddInput />
       </div>
     </div>

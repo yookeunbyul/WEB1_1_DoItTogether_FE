@@ -23,7 +23,7 @@ const PresetItem: React.FC<PresetItemProps> = ({
 }) => {
   return (
     <li
-      className={`flex flex-1 cursor-pointer list-none items-center justify-between border-b pl-5 ${
+      className={`flex flex-1 cursor-pointer list-none items-center justify-between border-b-[1px] border-solid border-white02 pl-5 ${
         isInPresetSetting ? '' : 'p-5'
       }`}
       onClick={handleSelectClick}
@@ -39,7 +39,7 @@ const PresetItem: React.FC<PresetItemProps> = ({
               삭제
             </button>
           ) : (
-            <div className='p-5'>
+            <div className='p-4 text-14'>
               <button onClick={handleSettingClick}>선택</button>
             </div>
           )}
