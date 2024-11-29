@@ -5,6 +5,8 @@ import CloseBtn from '@/components/common/bottomSheet/CloseBtn/CloseBtn';
 import useHomePageStore from '@/store/useHomePageStore';
 
 interface BottomSheetProps {
+  /** 바텀시트 오픈 여부 */
+  isOpen: boolean;
   /**바텀시트 태그 */
   tag?: string;
   /**바텀시트 타이틀 */
@@ -15,13 +17,19 @@ interface BottomSheetProps {
   children: React.ReactNode;
 }
 
-const BottomSheet: React.FC<BottomSheetProps> = ({ tag, title, closeBtn = true, children }) => {
-  const { isGroupSelectSheetOpen, setIsGroupSelectSheetOpen } = useHomePageStore();
+const BottomSheet: React.FC<BottomSheetProps> = ({
+  isOpen,
+  tag,
+  title,
+  closeBtn = true,
+  children,
+}) => {
+  const { setIsGroupSelectSheetOpen } = useHomePageStore();
 
   return (
     <>
       <Sheet
-        isOpen={isGroupSelectSheetOpen}
+        isOpen={isOpen}
         onClose={() => setIsGroupSelectSheetOpen(false)}
         detent='content-height'
         disableDrag={true}
