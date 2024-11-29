@@ -75,6 +75,7 @@ export default {
       bounce: 'bounce 1s infinite', // 애니메이션 등록
     },
     colors: {
+      transparent: 'transparent',
       black01: '#212121',
       black02: '#464656',
       gray01: '#626273',
