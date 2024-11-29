@@ -1,6 +1,6 @@
 import { useState } from 'react';
-
 import React from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 interface InviteLinkProps {
   initialLink?: string;
@@ -8,6 +8,7 @@ interface InviteLinkProps {
 
 const InviteLink: React.FC<InviteLinkProps> = ({ initialLink }) => {
   const [inviteLink, setInviteLink] = useState<string>(initialLink || '');
+  const { toast } = useToast();
 
   const handleGenerateLink = () => {
     // TODO: 나중에 API 호출로 바꾸기
@@ -17,7 +18,9 @@ const InviteLink: React.FC<InviteLinkProps> = ({ initialLink }) => {
   const handleCopyLink = () => {
     if (inviteLink) {
       navigator.clipboard.writeText(inviteLink);
-      alert('복사완료'); //TODO: 토스트로 처리?
+      toast({
+        title: '링크가 복사되었어요!',
+      });
     }
   };
 
