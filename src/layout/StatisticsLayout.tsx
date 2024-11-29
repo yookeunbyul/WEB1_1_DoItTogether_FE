@@ -5,7 +5,8 @@ import Tab from '@/components/common/tab/Tab/Tab';
 const STAT_DATA = [{ name: '주간' }, { name: '월간' }];
 
 const StatisticsLayout = () => {
-  const [statTab, setStatTab] = useState('주간');
+  const initialTab = location.pathname.includes('monthly') ? '월간' : '주간';
+  const [statTab, setStatTab] = useState(initialTab);
   const navigate = useNavigate();
 
   useEffect(() => {

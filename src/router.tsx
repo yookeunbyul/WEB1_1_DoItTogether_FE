@@ -1,4 +1,4 @@
-import { createBrowserRouter, Outlet } from 'react-router-dom';
+import { createBrowserRouter, Outlet, useLocation } from 'react-router-dom';
 
 import MainLayout from '@/layout/MainLayout';
 import StatisticsLayout from '@/layout/StatisticsLayout';
@@ -23,12 +23,30 @@ import HouseWorkStepOnePage from '@/pages/HouseWorkStepOnePage';
 import HouseWorkStepTwoPage from '@/pages/HouseWorkStepTwoPage';
 import GroupInviteReceivePage from '@/pages/GroupInviteReceivePage';
 import ScrollToTop from '@/components/common/scroll/ScrollToTop';
+import { Toaster } from '@/components/common/ui/toaster';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const RootLayout = () => {
+  const location = useLocation();
+
+  // main 경로에 대해서는 애니메이션 제외
+  const shouldAnimate = !location.pathname.startsWith('/main');
+
   return (
     <>
       <ScrollToTop />
-      <Outlet />
+      {shouldAnimate ? (
+        <TransitionGroup>
+          <CSSTransition key={location.pathname} timeout={300} classNames='page'>
+            <div className='page'>
+              <Outlet />
+            </div>
+          </CSSTransition>
+        </TransitionGroup>
+      ) : (
+        <Outlet />
+      )}
+      <Toaster />
     </>
   );
 };
@@ -78,6 +96,10 @@ export const router = createBrowserRouter([
             path: 'statistics',
             element: <StatisticsLayout />,
             children: [
+              {
+                index: true, // 기본 리다이렉트
+                element: <WeeklyStatisticsPage />,
+              },
               {
                 path: 'weekly',
                 element: <WeeklyStatisticsPage />,
