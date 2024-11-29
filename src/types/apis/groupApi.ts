@@ -1,4 +1,4 @@
-import { BaseRes } from '@/types/apis/baseResposne';
+import { BaseRes } from '@/types/apis/baseResponse';
 
 /**
  * --------------------------------------------------
