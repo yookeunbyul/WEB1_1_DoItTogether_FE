@@ -39,8 +39,8 @@ const HomePage: React.FC = () => {
   const handleEdit = () => {
     console.log('edit');
   };
-  const handleDelete = () => {
-    console.log('delete');
+  const handleDelete = (id: number) => {
+    setHouseworkList(houseworkList.filter(housework => housework.id !== id));
   };
 
   return (
