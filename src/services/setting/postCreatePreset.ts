@@ -1,13 +1,9 @@
 import { axiosInstance } from '@/services/axiosInstance';
-import { PresetSettingResponse } from '@/types/apis/presetSetting';
+import { CreatePresetReq, CreatePresetRes } from '@/types/apis/presetApi';
 
-interface CreatePresetRequest {
-  category: string;
-}
-
-export const postCreatePreset = async (channelId: number, data: CreatePresetRequest) => {
+export const postCreatePreset = async (channelId: number, data: CreatePresetReq) => {
   try {
-    const response = await axiosInstance.post<PresetSettingResponse>(
+    const response = await axiosInstance.post<CreatePresetRes>(
       `/api/v1/channels/${channelId}/presets/categories`,
       data
     );
