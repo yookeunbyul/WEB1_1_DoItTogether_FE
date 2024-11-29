@@ -2,9 +2,12 @@ import { Sheet } from 'react-modal-sheet';
 import React from 'react';
 import BottomSheetTitle from '@/components/common/bottomSheet/BottomSheetTitle/BottomSheetTitle';
 import CloseBtn from '@/components/common/bottomSheet/CloseBtn/CloseBtn';
-import useHomePageStore from '@/store/useHomePageStore';
 
 interface BottomSheetProps {
+  /** 바텀시트 오픈 여부 */
+  isOpen: boolean;
+  /** isOpen 바꾸는 set함수 */
+  setOpen: (isOpen: boolean) => void;
   /**바텀시트 태그 */
   tag?: string;
   /**바텀시트 타이틀 */
@@ -15,20 +18,25 @@ interface BottomSheetProps {
   children: React.ReactNode;
 }
 
-const BottomSheet: React.FC<BottomSheetProps> = ({ tag, title, closeBtn = true, children }) => {
-  const { isGroupSelectSheetOpen, setIsGroupSelectSheetOpen } = useHomePageStore();
-
+const BottomSheet: React.FC<BottomSheetProps> = ({
+  isOpen,
+  setOpen,
+  tag,
+  title,
+  closeBtn = true,
+  children,
+}) => {
   return (
     <>
       <Sheet
-        isOpen={isGroupSelectSheetOpen}
-        onClose={() => setIsGroupSelectSheetOpen(false)}
+        isOpen={isOpen}
+        onClose={() => setOpen(false)}
         detent='content-height'
         disableDrag={true}
       >
         <div className='relative mx-auto h-full w-full max-w'>
           <Sheet.Container>
-            {closeBtn && <CloseBtn handleClick={() => setIsGroupSelectSheetOpen(false)} />}
+            {closeBtn && <CloseBtn handleClick={() => setOpen(false)} />}
             <Sheet.Header>
               <BottomSheetTitle tag={tag} title={title} />
             </Sheet.Header>

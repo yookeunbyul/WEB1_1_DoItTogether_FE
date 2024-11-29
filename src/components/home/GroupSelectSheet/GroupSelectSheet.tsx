@@ -7,15 +7,19 @@ import useHomePageStore from '@/store/useHomePageStore';
 
 const GroupSelectSheet: React.FC = ({}) => {
   const navigate = useNavigate();
-  const { setIsGroupSelectSheetOpen } = useHomePageStore();
+  const { isGroupSelectSheetOpen, setIsGroupSelectSheetOpen } = useHomePageStore();
 
   const handleClick = () => {
     navigate('/group-select');
     setIsGroupSelectSheetOpen(false);
   };
 
+  const handleClose = () => {
+    setIsGroupSelectSheetOpen(false);
+  };
+
   return (
-    <BottomSheet title='그룹 변경'>
+    <BottomSheet title='그룹 변경' isOpen={isGroupSelectSheetOpen} setOpen={handleClose}>
       <GroupOptions />
       <div className='flex justify-center pb-4'>
         <UnderlineBtn text='방 안내 페이지로 돌아가기' handleClick={handleClick} />

@@ -97,7 +97,7 @@ export default function Wheel(props: {
         }}
       />
       <div
-        className={`transform-style-preserve-3d flex h-[16%] w-full items-center justify-center ${
+        className={`flex h-[16%] w-full items-center justify-center border-b-[1px] border-t-[1px] border-solid border-gray03 transform-style-preserve-3d ${
           perspective === 'right'
             ? 'perspective-origin-[calc(50%+100px)_50%] translate-x-2.5'
             : perspective === 'left'
@@ -109,7 +109,7 @@ export default function Wheel(props: {
         <div className='relative h-full w-full' style={{ width: props.width + 'px' }}>
           {slideValues().map(({ style, value }, idx) => (
             <div
-              className='text-xl backface-hidden absolute flex h-full w-full items-center justify-center'
+              className='text-xl absolute flex h-full w-full items-center justify-center backface-hidden'
               style={style}
               key={idx}
             >
