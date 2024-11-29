@@ -1,7 +1,15 @@
 import { BaseRes } from '@/types/apis/baseResposne';
 
+/**
+ * --------------------------------------------------
+ * todo
+ * - api 함수 매개변수 타입 적용 (Req)
+ *  : 현재는 수정 범위가 광범위해 시간상 나중으로 미룸
+ * --------------------------------------------------
+ */
+
 /** 그룹 정보 */
-export interface Channel {
+export interface Group {
   /** 그룹 아이디 */
   channelId: number;
   /** 그룹명 */
@@ -15,29 +23,7 @@ export interface CreateGroupReq {
 }
 
 export interface CreateGroupRes extends BaseRes {
-  result: Channel;
-}
-
-/** 집안일 */
-interface Housework {
-  /** 집안일 아이디 */
-  houseworkId: number;
-  /** 집안일 시작 시간 */
-  startDateTime: string;
-  /** 집안일 상태 */
-  status: string;
-  /** 집안일 배정 사용자 아이디 */
-  userId: number;
-}
-
-/** 집안일 목록 조회 */
-export interface GetHouseworkListRes extends BaseRes {
-  result: {
-    /** 그룹 아이디 */
-    channelId: number;
-    /** 그룹 내의 집안일 리스트 */
-    houseworkLIst: Array<Housework>;
-  };
+  result: Group;
 }
 
 /** 초대 링크(코드) 생성 */
@@ -56,17 +42,30 @@ export interface CreateInviteLinkRes extends BaseRes {
 }
 
 /** 특정 유저 추방 */
-export interface BanUserReq {
+export interface KickUserReq {
+  /** 그룹 아이디 */
+  channelId: number;
   /** 유저 이메일 */
   email: string;
 }
 
-export interface BanUserRes extends BaseRes {
+export interface KickUserRes extends BaseRes {
   result: {
     /** 추방된 유저 이메일 */
     email: string;
+    /** 유저 닉네임 */
     nickName: string;
   };
+}
+
+/** 일반 참가자가 채널 나가기 */
+export interface LeaveGroupReq {
+  /** 그룹 아이디 */
+  channelId: number;
+}
+
+export interface LeaveGroupRes extends BaseRes {
+  result?: {};
 }
 
 /** 그룹명 변경 */
@@ -101,6 +100,10 @@ export interface GetGroupUserRes extends BaseRes {
     channelId: number;
     /** 그룹 내의 모든 회원 리스트 */
     userList: Array<User>;
+    /** 총 사용자 수 */
+    totalElements: number;
+    /** 총 페이지 수 */
+    totalPages: number;
   };
 }
 
@@ -111,14 +114,7 @@ export interface JoinGroupReq {
 }
 
 export interface JoinGroupRes extends BaseRes {
-  result: {
-    /** 그룹 아이디 */
-    channelId: number;
-    /** 그룹명 */
-    name: string;
-    /** 사용자가 성공적으로 입장했는지 여부 */
-    joinedSuccessfully: boolean;
-  };
+  result: Group;
 }
 
 /** 내 그룹 목록 조회 */
@@ -127,6 +123,6 @@ export interface GetMyGroupRes extends BaseRes {
     /** 유저 아이디 */
     userId: number;
     /** 그룹 목록 */
-    channelList: Array<Channel>;
+    channelList: Array<Group>;
   };
 }
