@@ -11,7 +11,7 @@ const SurveyIntroPage: React.FC<SurveyIntroPageProps> = ({}) => {
   const navigate = useNavigate();
 
   return (
-    <div className='flex h-screen flex-col justify-between px-5 pt-10'>
+    <div className='flex h-screen flex-col justify-between px-5 pb-6 pt-10'>
       <div className='flex flex-col gap-5'>
         <SurveyTitle title={`당신만의 청소 스타일을\n완성해보세요`} />
         <SurveyIntroDesc />

@@ -5,14 +5,15 @@ import MenuSelect from '@/components/survey/MenuSelect/MenuSelect';
 interface Step4Props {
   title: string;
   questions: string[];
-  handleAnswer: Dispatch<SetStateAction<string>>;
+  handleAnswer: (text: string) => void;
 }
 
-const Step4: React.FC<Step4Props> = ({ title, questions }) => {
+const Step4: React.FC<Step4Props> = ({ title, questions, handleAnswer }) => {
   const [activeItem, setActiveItem] = useState('');
 
   const handleSelect = (content: string) => {
     setActiveItem(content);
+    handleAnswer(content);
   };
 
   return (
