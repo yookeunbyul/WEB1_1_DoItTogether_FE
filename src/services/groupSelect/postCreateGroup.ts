@@ -1,13 +1,9 @@
 import { axiosInstance } from '@/services/axiosInstance';
-import { CreateChannelResponse } from '@/types/apis/chnnel';
+import { CreateGroupReq, CreateGroupRes } from '@/types/apis/groupApi';
 
-interface CreateChannelRequest {
-  name: string;
-}
-
-export const postCreateGroup = async (data: CreateChannelRequest) => {
+export const postCreateGroup = async (data: CreateGroupReq) => {
   try {
-    const response = await axiosInstance.post<CreateChannelResponse>('/api/v1/channels', data);
+    const response = await axiosInstance.post<CreateGroupRes>('/api/v1/channels', data);
     return response.data;
   } catch (error) {
     console.error('채널 생성 실패:', error);
