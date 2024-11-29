@@ -4,6 +4,8 @@ import GroupCreateStep1 from '@/components/group/create/GroupCreateStep1';
 import GroupCreateStep2 from '@/components/group/create/GroupCreateStep2';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { postCreateGroup } from '@/services/groupSelect/postCreateGroup';
+import { postCreateInviteLink } from '@/services/groupSelect/postCreateInviteLink';
 
 type StepType = 'roomName' | 'invite';
 
@@ -13,9 +15,11 @@ const GroupCreatePage = () => {
   const [roomName, setRoomName] = useState('');
   const [inviteLink, setInviteLink] = useState('sadsad');
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (roomName.trim()) {
-      setInviteLink('임시 링크~~~');
+      const createResult = await postCreateGroup(roomName);
+      const createLink = await postCreateInviteLink(createResult.result.channelId);
+      setInviteLink(createLink.result.inviteLink);
       setStep('invite');
     }
   };

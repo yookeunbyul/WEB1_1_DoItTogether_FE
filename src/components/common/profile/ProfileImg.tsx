@@ -1,12 +1,15 @@
+import { cn } from '@/lib/utils';
+
 interface ProfileImgProps {
+  classname?: string;
   imageUrl?: string;
 }
 
-const ProfileImg: React.FC<ProfileImgProps> = ({ imageUrl = '' }) => {
+const ProfileImg: React.FC<ProfileImgProps> = ({ classname, imageUrl = '' }) => {
   // TODO 컴포넌트 역할 분리 (상태, 함수)
 
   return (
-    <div className={`relative aspect-square h-36 w-36 overflow-hidden`}>
+    <div className={cn(`relative aspect-square h-36 w-36 overflow-hidden`, classname)}>
       <div className='flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-gray03'>
         {imageUrl ? (
           <img
