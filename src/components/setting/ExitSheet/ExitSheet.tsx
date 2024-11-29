@@ -2,8 +2,6 @@ import BottomSheet from '@/components/common/bottomSheet/BottomSheet';
 import Button from '@/components/common/button/Button/Button';
 
 interface ExitSheetProps {
-  /** sheet Title tag */
-  tag?: string;
   /** sheet Title */
   sheetTitle: string;
   /** 버튼 text */
@@ -19,7 +17,6 @@ interface ExitSheetProps {
 }
 
 const ExitSheet: React.FC<ExitSheetProps> = ({
-  tag,
   sheetTitle,
   btnText,
   isOpen,
@@ -28,7 +25,7 @@ const ExitSheet: React.FC<ExitSheetProps> = ({
   handleClose,
 }) => {
   return (
-    <BottomSheet isOpen={isOpen} setOpen={setOpen} title={sheetTitle} closeBtn={false} tag={tag}>
+    <BottomSheet isOpen={isOpen} setOpen={setOpen} title={sheetTitle} closeBtn={false}>
       <div className='flex flex-row gap-4 p-5'>
         <Button
           label={btnText}
