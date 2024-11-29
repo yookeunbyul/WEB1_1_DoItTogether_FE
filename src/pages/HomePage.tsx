@@ -181,7 +181,6 @@ interface HomePageProps {}
 
 const HomePage: React.FC<HomePageProps> = () => {
   const [activeTab, setActiveTab] = useState<string>('전체');
-  const [isOpen, setIsOpen] = useState(false);
 
   const chargers = [
     { name: '전체' },
@@ -190,7 +189,7 @@ const HomePage: React.FC<HomePageProps> = () => {
 
   return (
     <div>
-      <HomeHeader handleSetOpen={setIsOpen} />
+      <HomeHeader />
       <WeeklyDateAndTab
         activeTab={activeTab}
         handleSetActiveTab={setActiveTab}
@@ -199,7 +198,7 @@ const HomePage: React.FC<HomePageProps> = () => {
       <HouseworkList
         items={data.filter(item => item.charger === activeTab || activeTab === '전체')}
       />
-      <GroupSelectSheet isOpen={isOpen} handleSetOpen={setIsOpen} />
+      <GroupSelectSheet />
     </div>
   );
 };
