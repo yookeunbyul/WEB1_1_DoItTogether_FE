@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Channel } from '@/types/apis/groupApi';
+import { Group } from '@/types/apis/groupApi';
 
 interface HomePageState {
   groupName: string;
@@ -8,8 +8,8 @@ interface HomePageState {
   isGroupSelectSheetOpen: boolean;
   setIsGroupSelectSheetOpen: (isOpen: boolean) => void;
 
-  groups: Array<Channel>;
-  setGroups: (groups: Array<Channel>) => void;
+  groups: Array<Group>;
+  setGroups: (groups: Array<Group>) => void;
 
   weekText: string;
   setWeekText: (weekText: string) => void;
