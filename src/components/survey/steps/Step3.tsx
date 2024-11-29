@@ -5,14 +5,15 @@ import MenuSelect from '@/components/survey/MenuSelect/MenuSelect';
 interface Step3Props {
   title: string;
   questions: string[];
-  handleAnswer: Dispatch<SetStateAction<string>>;
+  handleAnswer: (text: string) => void;
 }
 
-const Step3: React.FC<Step3Props> = ({ title, questions }) => {
+const Step3: React.FC<Step3Props> = ({ title, questions, handleAnswer }) => {
   const [activeItem, setActiveItem] = useState('');
 
   const handleSelect = (content: string) => {
     setActiveItem(content);
+    handleAnswer(content);
   };
 
   return (

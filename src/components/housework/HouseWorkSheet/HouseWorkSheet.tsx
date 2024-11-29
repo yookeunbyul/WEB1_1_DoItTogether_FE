@@ -2,7 +2,7 @@ import BottomSheet from '@/components/common/bottomSheet/BottomSheet';
 import Button from '@/components/common/button/Button/Button';
 import PresetTab from '@/components/common/tab/PresetTab/PresetTab';
 import Tab from '@/components/common/tab/Tab/Tab';
-import { housework } from '@/mock/add-housework';
+import { housework } from '@/mock/addHousework';
 import { useState } from 'react';
 
 interface HouseWorkSheetProps {
