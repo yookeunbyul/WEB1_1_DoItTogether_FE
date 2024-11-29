@@ -4,15 +4,21 @@ import Logo from '@/components/groupSelect/Logo/Logo';
 import OpenSheetBtn from '@/components/common/button/OpenSheetBtn/OpenSheetBtn';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { GROUP_OPTIONS } from '@/mock/mockHomePage';
 import useHomePageStore from '@/store/useHomePageStore';
+import { getMyGroup } from '@/services/groupSelect/getMyGroup';
 
 const GroupSelectPage = () => {
   const navigate = useNavigate();
   const { setGroupName, groups, setGroups } = useHomePageStore();
 
   useEffect(() => {
-    setGroups(GROUP_OPTIONS);
+    const fetchMyGroup = async () => {
+      const groups = await getMyGroup();
+      console.log(groups.result.channelList);
+      setGroups(groups.result.channelList);
+    };
+
+    fetchMyGroup();
   }, []);
 
   const handleMakeGroupBtnClick = () => {
@@ -34,9 +40,9 @@ const GroupSelectPage = () => {
         {groups.length > 0 ? (
           groups.map(group => (
             <OpenSheetBtn
-              key={group}
-              text={group}
-              handleClick={() => handleClick(group)}
+              key={group.channelId}
+              text={group.name}
+              handleClick={() => handleClick(group.name)}
               type='groupSelect'
             />
           ))
