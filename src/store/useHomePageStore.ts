@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { Channel } from '@/types/apis/groupApi';
 
 interface HomePageState {
   groupName: string;
@@ -7,8 +8,8 @@ interface HomePageState {
   isGroupSelectSheetOpen: boolean;
   setIsGroupSelectSheetOpen: (isOpen: boolean) => void;
 
-  groups: Array<string>;
-  setGroups: (groups: Array<string>) => void;
+  groups: Array<Channel>;
+  setGroups: (groups: Array<Channel>) => void;
 
   weekText: string;
   setWeekText: (weekText: string) => void;
@@ -21,7 +22,7 @@ const useHomePageStore = create<HomePageState>(set => ({
   isGroupSelectSheetOpen: false,
   setIsGroupSelectSheetOpen: isOpen => set({ isGroupSelectSheetOpen: isOpen }),
 
-  groups: ['기본 그룹명'],
+  groups: [{ channelId: 0, name: '기본 그룹명' }],
   setGroups: groups => set({ groups: groups }),
 
   weekText: '',
