@@ -1,22 +1,28 @@
 import SettingHeaderContainer from '@/components/common/header/Header';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@/components/common/button/Button/Button';
 import InputWithLabel from '@/components/common/input/InputWithLabel';
 import MemberItems from '@/components/setting/groupSetting/MemberItems/MemberItems';
 import InviteLinkWithLabel from '@/components/setting/groupSetting/InviteLink/InviteLinkWithLabel';
 import ExitSheet from '@/components/setting/ExitSheet/ExitSheet';
-import { groupSettingMockData } from '@/mock/groupSettingMockData';
+import { getGroupUser } from '@/services/setting/getGroupUser';
+import { User } from '@/types/apis/groupApi';
 
 const GroupSettingPage = () => {
   const navigate = useNavigate();
 
-  const [groupName, setGroupName] = useState(groupSettingMockData.group.group_name);
+  // TODO: group name 전역에서 받아오기
+  const [groupName, setGroupName] = useState('우리집');
   const [isEdited, setIsEdited] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const [sheetTitle, setSheetTitle] = useState('');
   const [btnText, setBtnText] = useState('');
+
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [members, setMembers] = useState<User[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleMovePreset = () => {
     navigate('/group-setting/preset-setting');
@@ -24,7 +30,7 @@ const GroupSettingPage = () => {
 
   const handleGroupNameChange = (value: string) => {
     setGroupName(value);
-    setIsEdited(value !== groupSettingMockData.group.group_name);
+    setIsEdited(value !== '우리집');
   };
 
   // 여기서 그룹 이름 수정 시 저장 처리
@@ -33,23 +39,24 @@ const GroupSettingPage = () => {
     console.log('완료');
   };
 
-  // 그룹장인지 체크
-  const isAdmin =
-    groupSettingMockData.members.find(
-      m => m.member_id === groupSettingMockData.currentUser.member_id
-    )?.role === 'ADMIN';
-
   // 바텀시트 문구 체크
-  const handleSheet = (member: (typeof groupSettingMockData.members)[0]) => {
-    if (isAdmin && member.member_id === groupSettingMockData.currentUser.member_id) {
+  const isAdmin = members.some(
+    member => member.role === 'ADMIN' && member.email === 'gaeun@gmail.com'
+  );
+  const handleSheet = (member: User) => {
+    const isCurrentUser = member.email === 'gaeun@gmail.com';
+    if (isAdmin && isCurrentUser) {
+      // 내가 그룹장일 때
       setBtnText('나갈래요');
-      setSheetTitle(`${groupSettingMockData.group.group_name}에서 정말 나가시나요?`);
+      setSheetTitle(`${groupName}에서 정말 나가시나요?`);
     } else if (isAdmin) {
+      // 다른 멤버를 선택했을 때
       setBtnText('내보낼래요');
-      setSheetTitle(`${member.name}님을 정말 내보내시나요?`);
+      setSheetTitle(`${member.nickName}님을 정말 내보내시나요?`);
     } else {
+      // 내가 일반 멤버일 때
       setBtnText('나갈래요');
-      setSheetTitle(`${groupSettingMockData.group.group_name}에서 정말 나가시나요?`);
+      setSheetTitle(`${groupName}에서 정말 나가시나요?`);
     }
     setIsOpen(true);
   };
@@ -64,6 +71,27 @@ const GroupSettingPage = () => {
   const handleClose = () => {
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    const fetchGroupMembers = async () => {
+      try {
+        // TODO: channelId를 실제 값으로 교체해야 함
+        const channelId = 6; // 임시 값
+        const response = await getGroupUser(channelId);
+
+        // TODO: 받아온 데이터 형식에 맞게 매핑 필요
+        setMembers(response.result.userList);
+        const current = response.result.userList.find(user => user.email === 'gaeun@gmail.com');
+        setCurrentUser(current || null);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('멤버 조회 실패:', error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchGroupMembers();
+  }, []);
 
   return (
     <>
@@ -83,8 +111,8 @@ const GroupSettingPage = () => {
         />
         <MemberItems
           leader={isAdmin}
-          members={groupSettingMockData.members}
-          currentUser={groupSettingMockData.currentUser}
+          members={members}
+          currentUser={currentUser}
           handleClick={handleSheet}
         />
         <InviteLinkWithLabel />
