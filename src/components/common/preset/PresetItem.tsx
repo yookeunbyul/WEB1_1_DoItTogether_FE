@@ -35,7 +35,7 @@ const PresetItem: React.FC<PresetItemProps> = ({
       {isInPresetSetting && (
         <div className='flex items-center'>
           {isShowDeleteBtn ? (
-            <button className='bg-gray03 p-5' onClick={handleDeleteClick}>
+            <button className='bg-gray03 p-4 text-14' onClick={handleDeleteClick}>
               삭제
             </button>
           ) : (
