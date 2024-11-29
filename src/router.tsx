@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Outlet } from 'react-router-dom';
 
 import MainLayout from '@/layout/MainLayout';
 import StatisticsLayout from '@/layout/StatisticsLayout';
@@ -22,91 +22,106 @@ import LeavePage from '@/pages/LeavePage';
 import HouseWorkStepOnePage from '@/pages/HouseWorkStepOnePage';
 import HouseWorkStepTwoPage from '@/pages/HouseWorkStepTwoPage';
 import GroupInviteReceivePage from '@/pages/GroupInviteReceivePage';
+import ScrollToTop from '@/components/common/scroll/ScrollToTop';
+
+const RootLayout = () => {
+  return (
+    <>
+      <ScrollToTop />
+      <Outlet />
+    </>
+  );
+};
 
 export const router = createBrowserRouter([
   {
-    path: '/',
-    element: <LandingPage />,
+    element: <RootLayout />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: '/register',
-    element: <RegisterPage />,
-  },
-  {
-    path: '/survey-intro',
-    element: <SurveyIntroPage />,
-  },
-  {
-    path: '/survey',
-    element: <SurveyPage />,
-  },
-  {
-    path: '/group-select',
-    element: <GroupSelectPage />,
-  },
-  {
-    path: '/group/create',
-    element: <GroupCreatePage />,
-  },
-  {
-    path: '/group/invite-receive',
-    element: <GroupInviteReceivePage />,
-  },
-  {
-    path: '/main',
-    element: <MainLayout />,
     children: [
       {
-        index: true,
-        element: <HomePage />,
+        path: '/',
+        element: <LandingPage />,
       },
       {
-        path: 'statistics',
-        element: <StatisticsLayout />,
+        path: '/register',
+        element: <RegisterPage />,
+      },
+      {
+        path: '/survey-intro',
+        element: <SurveyIntroPage />,
+      },
+      {
+        path: '/survey',
+        element: <SurveyPage />,
+      },
+      {
+        path: '/group-select',
+        element: <GroupSelectPage />,
+      },
+      {
+        path: '/group/create',
+        element: <GroupCreatePage />,
+      },
+      {
+        path: '/group/invite-receive',
+        element: <GroupInviteReceivePage />,
+      },
+      {
+        path: '/main',
+        element: <MainLayout />,
         children: [
           {
-            path: 'weekly',
-            element: <WeeklyStatisticsPage />,
+            index: true,
+            element: <HomePage />,
           },
           {
-            path: 'monthly',
-            element: <MonthlyStatisticsPage />,
+            path: 'statistics',
+            element: <StatisticsLayout />,
+            children: [
+              {
+                path: 'weekly',
+                element: <WeeklyStatisticsPage />,
+              },
+              {
+                path: 'monthly',
+                element: <MonthlyStatisticsPage />,
+              },
+            ],
+          },
+          {
+            path: 'group-setting',
+            element: <GroupSettingPage />,
+          },
+          {
+            path: 'my-page',
+            element: <MyPage />,
+          },
+          {
+            path: 'my-page/edit',
+            element: <MyPageEditPage />,
           },
         ],
       },
       {
-        path: 'group-setting',
-        element: <GroupSettingPage />,
+        path: 'my-page/account-manage',
+        element: <AccountManagePage />,
       },
       {
-        path: 'my-page',
-        element: <MyPage />,
+        path: 'my-page/leave',
+        element: <LeavePage />,
       },
       {
-        path: 'my-page/edit',
-        element: <MyPageEditPage />,
+        path: '/group-setting/preset-setting',
+        element: <PresetSettingPage />,
+      },
+      {
+        path: '/add-housework/step1',
+        element: <HouseWorkStepOnePage />,
+      },
+      {
+        path: '/add-housework/step2',
+        element: <HouseWorkStepTwoPage />,
       },
     ],
-  },
-  {
-    path: 'my-page/account-manage',
-    element: <AccountManagePage />,
-  },
-  {
-    path: 'my-page/leave',
-    element: <LeavePage />,
-  },
-  {
-    path: '/group-setting/preset-setting',
-    element: <PresetSettingPage />,
-  },
-  {
-    path: '/add-housework/step1',
-    element: <HouseWorkStepOnePage />,
-  },
-  {
-    path: '/add-housework/step2',
-    element: <HouseWorkStepTwoPage />,
   },
 ]);
