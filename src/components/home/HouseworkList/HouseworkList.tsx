@@ -12,7 +12,7 @@ export interface HouseworkListProps {
   }[];
   handleAction: (id: number) => void;
   handleEdit: () => void;
-  handleDelete: () => void;
+  handleDelete: (id: number) => void;
 }
 
 const HouseworkList: React.FC<HouseworkListProps> = ({

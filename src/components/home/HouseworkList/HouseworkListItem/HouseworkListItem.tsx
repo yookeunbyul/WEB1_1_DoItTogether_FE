@@ -49,7 +49,7 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
           <p className='text-12'>{charger}</p>
         </div>
         <div className='flex flex-col items-end justify-center gap-2'>
-          <ControlDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
+          <ControlDropdown id={id} handleEdit={handleEdit} handleDelete={() => handleDelete(id)} />
           <div className='flex items-center gap-1'>
             <div className='h-5 w-5 border border-solid'></div>
             <p className='text-12'>{time}</p>
