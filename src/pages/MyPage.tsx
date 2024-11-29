@@ -9,7 +9,7 @@ const MyPage = () => {
     <div>
       <AccountSetBtn />
       <div className='px-5 py-2'>
-        <ProfileImg width={20} height={20} />
+        <ProfileImg classname='w-20 h-20' />
       </div>
       <div className='flex items-center justify-between px-5 pb-3 pt-2'>
         <AccountInfo nickname='스페이스천사' account='example@example' />
