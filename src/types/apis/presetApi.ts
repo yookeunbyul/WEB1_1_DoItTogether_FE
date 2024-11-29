@@ -1,4 +1,4 @@
-import { BaseRes } from '@/types/apis/baseResposne';
+import { BaseRes } from '@/types/apis/baseResponse';
 import { Common } from '@/types/apis/commonApi';
 
 /** 프리셋 카테고리 생성 */

@@ -1,4 +1,4 @@
-import { BaseRes } from '@/types/apis/baseResposne';
+import { BaseRes } from '@/types/apis/baseResponse';
 
 /** 그룹 정보 */
 export interface Channel {
