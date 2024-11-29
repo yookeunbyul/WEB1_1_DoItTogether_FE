@@ -22,6 +22,7 @@ export interface HouseworkListItemProps
 }
 
 const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
+  id,
   actionStatus,
   handleAction,
   listTitle,
@@ -35,7 +36,7 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
     <li
       className={`flex list-none items-center rounded-2xl border border-solid ${actionStatus === 'complete' ? `bg-gray03` : `bg-black02`} p-5 text-white01`}
     >
-      <ListActionBtn actionStatus={actionStatus} handleAction={handleAction} />
+      <ListActionBtn actionStatus={actionStatus} handleAction={() => handleAction(id)} id={id} />
       <div className='flex w-full justify-between pl-4'>
         <div className='flex flex-col items-start justify-center gap-2'>
           <div className='flex items-center gap-2'>
