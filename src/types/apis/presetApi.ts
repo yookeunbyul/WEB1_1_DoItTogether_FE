@@ -25,15 +25,19 @@ export interface DeletePresetReq {
   presetCategoryId: number;
 }
 
-export interface DeletePresetRes {
-  /** 프리셋 카테고리 아이디 */
-  presetCategoryId: number;
+export interface DeletePresetRes extends BaseRes {
+  result: {
+    /** 프리셋 카테고리 아이디 */
+    presetCategoryId: number;
+  };
 }
 
 /** 모든 프리셋 카테고리 이름 조회 */
-export interface GetAllPresetRes {
-  /** 카테고리 이름 리스트 */
-  categoryList: Array<Preset>;
+export interface GetAllPresetRes extends BaseRes {
+  result: {
+    /** 카테고리 이름 리스트 */
+    categoryList: Array<Preset>;
+  };
 }
 
 /** 프리셋 리스트 정보 */
@@ -42,30 +46,41 @@ export interface PresetList {
   presetCategoryId: number;
   /** 프리셋 카테고리 이름 */
   category: string;
-  /** 프리셋 아이디 */
+  /** 프리셋 아이템 아이디 */
+  // TODO 백엔드 키값 수정되면 여기도 수정 'presetItemId'
   presetId: number;
   /** 프리셋 아이템 이름 */
   // TODO 백엔드 키값 수정되면 여기도 수정 'name'
   value: string;
 }
 
-/** 전체 프리셋 리스트 조회 */
-export interface GetAllPresetListRes {
-  presetKeywordList: Array<PresetList>;
+/** 전체 프리셋 키워드(카테고리-아이템) 리스트 조회 */
+export interface GetAllPresetListRes extends BaseRes {
+  result: {
+    /** 프리셋 키워드(카테고리-아이템) 리스트 */
+    presetKeywordList: Array<PresetList>;
+  };
 }
 
 /** 프리셋 아이템 정보 */
 export interface PresetItem {
+  /** 프리셋 아이템 아이디 */
   presetItemId: number;
+  /** 프리셋 아이템 이름 */
   // TODO 백엔드 키값 수정되면 여기도 수정 'name'
   value: string;
 }
 
 /** 특정 프리셋 카테고리의 프리셋 아이템 리스트 조회 */
-export interface GetPresetListRes {
-  presetCategoryId: number;
-  category: string;
-  presetList: Array<PresetItem>;
+export interface GetPresetListRes extends BaseRes {
+  result: {
+    /** 프리셋 카테고리 아이디 */
+    presetCategoryId: number;
+    /** 프리셋 카테고리 이름 */
+    category: string;
+    /** 프리셋 아이템 리스트 */
+    presetList: Array<PresetItem>;
+  };
 }
 
 /** 프리셋 아이템 생성 */
@@ -75,13 +90,15 @@ export interface CreatePresetItemReq {
   /** 프리셋 아이템 이름 */
   name: string;
 }
-export interface CreatePresetItemRes {
-  /** 프리셋 카테고리 아이디 */
-  presetCategoryId: number;
-  /** 프리셋 아이템 아이디 */
-  presetItemId: number;
-  /** 프리셋 아이템 카테고리 */
-  category: string;
+export interface CreatePresetItemRes extends BaseRes {
+  result: {
+    /** 프리셋 카테고리 아이디 */
+    presetCategoryId: number;
+    /** 프리셋 아이템 아이디 */
+    presetItemId: number;
+    /** 프리셋 아이템 카테고리 */
+    category: string;
+  };
 }
 
 /** 프리셋 아이템 삭제 */
@@ -89,7 +106,9 @@ export interface DeletePresetItemReq {
   /** 프리셋 아이템 아이디 */
   presetItemId: number;
 }
-export interface DeletePresetItemRes {
-  /** 프리셋 아이템 아이디 */
-  presetItemId: number;
+export interface DeletePresetItemRes extends BaseRes {
+  result: {
+    /** 프리셋 아이템 아이디 */
+    presetItemId: number;
+  };
 }
