@@ -12,6 +12,7 @@ import { User } from '@/types/apis/groupApi';
 const GroupSettingPage = () => {
   const navigate = useNavigate();
 
+  // TODO: group name 전역에서 받아오기
   const [groupName, setGroupName] = useState('우리집');
   const [isEdited, setIsEdited] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
