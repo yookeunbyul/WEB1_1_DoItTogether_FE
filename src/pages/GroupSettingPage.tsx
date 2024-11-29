@@ -6,19 +6,15 @@ import InputWithLabel from '@/components/common/input/InputWithLabel';
 import MemberItems from '@/components/setting/groupSetting/MemberItems/MemberItems';
 import InviteLinkWithLabel from '@/components/setting/groupSetting/InviteLink/InviteLinkWithLabel';
 import ExitSheet from '@/components/setting/ExitSheet/ExitSheet';
+import { groupSettingMockData } from '@/mock/groupSettingMockData';
 
 const GroupSettingPage = () => {
-  const dummyData = {
-    groupName: '우리집 꾸미기 모임',
-    isLeader: true,
-    currentUser: '영희',
-    members: ['영희', '철수', '민수', '지영', '수진'],
-  };
-
   const navigate = useNavigate();
-  const [groupName, setGroupName] = useState(dummyData.groupName);
+
+  const [groupName, setGroupName] = useState(groupSettingMockData.group.group_name);
   const [isEdited, setIsEdited] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
   const [tag, setTag] = useState('');
   const [sheetTitle, setSheetTitle] = useState('');
   const [btnText, setBtnText] = useState('');
@@ -29,27 +25,46 @@ const GroupSettingPage = () => {
 
   const handleGroupNameChange = (value: string) => {
     setGroupName(value);
-    setIsEdited(value !== dummyData.groupName);
+    setIsEdited(value !== groupSettingMockData.group.group_name);
   };
 
-  const handleExit = (name: string) => {
-    if (dummyData.isLeader && dummyData.currentUser === name) {
+  // 여기서 그룹 이름 수정 시 저장 처리
+  const handleDone = () => {
+    console.log(groupName);
+    console.log('완료');
+  };
+
+  // 그룹장인지 체크
+  const isAdmin =
+    groupSettingMockData.members.find(
+      m => m.member_id === groupSettingMockData.currentUser.member_id
+    )?.role === 'ADMIN';
+
+  // 바텀시트 문구 체크
+  const handleSheet = (member: (typeof groupSettingMockData.members)[0]) => {
+    if (isAdmin && member.member_id === groupSettingMockData.currentUser.member_id) {
       setBtnText('나갈래요');
-      setTag(dummyData.groupName);
+      setTag(groupSettingMockData.group.group_name);
       setSheetTitle(`에서 정말 나가시나요?`);
-    } else if (dummyData.isLeader) {
+    } else if (isAdmin) {
       setBtnText('내보낼래요');
-      setTag(name);
+      setTag(member.name);
       setSheetTitle(`님을 정말 내보내시나요?`);
     } else {
       setBtnText('나갈래요');
-      setTag(dummyData.groupName);
+      setTag(groupSettingMockData.group.group_name);
       setSheetTitle(`에서 정말 나가시나요?`);
     }
-    console.log(name);
     setIsOpen(true);
   };
 
+  // 멤버 방출 or 나가기 처리
+  const handleExit = () => {
+    console.log('잘있어');
+    setIsOpen(false);
+  };
+
+  // 바텀시트 닫기
   const handleClose = () => {
     setIsOpen(false);
   };
@@ -57,20 +72,24 @@ const GroupSettingPage = () => {
   return (
     <>
       <div className='fixed left-0 right-0 top-0 z-10 m-auto max-w bg-white03'>
-        <SettingHeaderContainer title='그룹 설정' isNeededDoneBtn={isEdited} />
+        <SettingHeaderContainer
+          title='그룹 설정'
+          isNeededDoneBtn={isEdited}
+          handleDone={handleDone}
+        />
       </div>
       <div className='flex flex-col gap-6 px-5 pt-20'>
         <InputWithLabel
           label='공간 이름'
           value={groupName}
-          disabled={!dummyData.isLeader}
+          disabled={!isAdmin}
           handleChange={handleGroupNameChange}
         />
         <MemberItems
-          leader={dummyData.isLeader}
-          members={dummyData.members}
-          currentUser={dummyData.currentUser}
-          handleClick={handleExit}
+          leader={isAdmin}
+          members={groupSettingMockData.members}
+          currentUser={groupSettingMockData.currentUser}
+          handleClick={handleSheet}
         />
         <InviteLinkWithLabel />
         <div className='flex flex-col gap-2'>
@@ -89,6 +108,7 @@ const GroupSettingPage = () => {
         btnText={btnText}
         isOpen={isOpen}
         setOpen={setIsOpen}
+        handleExit={handleExit}
         handleClose={handleClose}
       />
     </>
