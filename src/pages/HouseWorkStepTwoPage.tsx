@@ -12,7 +12,7 @@ const HouseWorkStepTwoPage = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { task, category, startDate, startTime, assigneeId, setAssigneeId } =
+  const { task, category, startDate, startTime, assigneeId, setAssigneeId, reset } =
     useAddHouseWorkStore();
 
   const [selectedValue, setSelectedValue] = useState(assigneeId || null);
@@ -26,8 +26,12 @@ const HouseWorkStepTwoPage = () => {
   const handleNextClick = () => {
     setIsLoading(true);
     setTimeout(() => {
-      setIsLoading(false);
-      navigate('/main');
+      navigate('/main'); // 먼저 화면 전환
+      setTimeout(() => {
+        // 약간의 지연 후 reset 실행
+        reset();
+        setIsLoading(false);
+      }, 100);
     }, 1500);
   };
 
