@@ -1,16 +1,18 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import DateItem from './DateItem/DateItem';
 import getWeekDates, { WeekDates } from '@/utils/getWeekDates';
 import getTodayIdx from '@/utils/getTodayIdx';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/common/ui/carousel';
 import getWeekText from '@/utils/getWeekText';
 import useHomePageStore from '@/store/useHomePageStore';
+import { type CarouselApi } from '@/components/common/ui/carousel';
 
 const WeeklyDate = () => {
   const [activeWeek, setActiveWeek] = useState(new Date());
   const [activeDate, setActiveDate] = useState<number>();
   const [currWeek, setCurrWeek] = useState<WeekDates[]>([]);
-  const startX = useRef<number | null>(null);
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(1);
   const { setWeekText } = useHomePageStore();
 
   useEffect(() => {
@@ -20,6 +22,21 @@ const WeeklyDate = () => {
     const todayIndex = getTodayIdx(activeWeek, weekDates);
     if (todayIndex !== -1) setActiveDate(todayIndex);
   }, []);
+
+  useEffect(() => {
+    if (!api) return;
+
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+      const curr = current;
+      const next = api.selectedScrollSnap() + 1;
+
+      if (next > curr && next - curr === 1) console.log('현재', current);
+      console.log('다음', api.selectedScrollSnap() + 1);
+    });
+  }, [api, current]);
 
   const handleActiveDate = (idx: number) => {
     setActiveDate(idx);
@@ -43,33 +60,11 @@ const WeeklyDate = () => {
     if (todayIndex !== -1) setActiveDate(todayIndex);
   };
 
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    startX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (startX.current !== null) {
-      const endX = e.changedTouches[0].clientX;
-      const diffX = startX.current - endX;
-
-      if (diffX > 50) {
-        changeWeek('next');
-      } else if (diffX < -50) {
-        changeWeek('previous');
-      }
-    }
-    startX.current = null; // 리셋
-  };
-
   return (
-    <Carousel opts={{ loop: true }}>
+    <Carousel opts={{ loop: true }} setApi={setApi}>
       <CarouselContent>
         <CarouselItem>
-          <div
-            className='flex touch-none items-center justify-between bg-white03 px-5 py-2'
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-          >
+          <div className='flex touch-none items-center justify-between bg-white03 px-5 py-2'>
             {currWeek.map((week, idx) => (
               <DateItem
                 key={idx}
@@ -83,17 +78,27 @@ const WeeklyDate = () => {
           </div>
         </CarouselItem>
         <CarouselItem>
-          <div
-            className='flex touch-none items-center justify-between bg-white03 px-5 py-2'
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-          >
+          <div className='flex touch-none items-center justify-between bg-white03 px-5 py-2'>
             {currWeek.map((week, idx) => (
               <DateItem
                 key={idx}
                 date={week.date.split('.')[2]}
                 day={week.day}
                 pendingCnt={1}
+                isActive={activeDate === idx}
+                handleClick={() => handleActiveDate(idx)}
+              />
+            ))}
+          </div>
+        </CarouselItem>
+        <CarouselItem>
+          <div className='flex touch-none items-center justify-between bg-white03 px-5 py-2'>
+            {currWeek.map((week, idx) => (
+              <DateItem
+                key={idx}
+                date={week.date.split('.')[2]}
+                day={week.day}
+                pendingCnt={2}
                 isActive={activeDate === idx}
                 handleClick={() => handleActiveDate(idx)}
               />
