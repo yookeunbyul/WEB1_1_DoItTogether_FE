@@ -1,5 +1,13 @@
 import { BaseRes } from '@/types/apis/baseResposne';
 
+/** 그룹 정보 */
+export interface Channel {
+  /** 그룹 아이디 */
+  channelId: number;
+  /** 그룹명 */
+  name: string;
+}
+
 /** 그룹 생성 */
 export interface CreateGroupReq {
   /** 그룹명 */
@@ -7,12 +15,7 @@ export interface CreateGroupReq {
 }
 
 export interface CreateGroupRes extends BaseRes {
-  result: {
-    /** 그룹 아이디 */
-    channelId: number;
-    /** 그룹명 */
-    name: string;
-  };
+  result: Channel;
 }
 
 /** 집안일 */
@@ -38,17 +41,17 @@ export interface GetHouseworkListRes extends BaseRes {
 }
 
 /** 초대 링크(코드) 생성 */
-export interface CreateViteCodeReq {
+export interface CreateViteLinkReq {
   /** 그룹 아이디 */
   channelId: number;
 }
 
-export interface CreateInviteCodeRes extends BaseRes {
+export interface CreateInviteLinkRes extends BaseRes {
   result: {
     /** 그룹 아이디 */
     channelId: number;
     /** 초대 코드 */
-    inviteCode: string;
+    inviteLink: string;
   };
 }
 
@@ -80,13 +83,15 @@ export interface ChangeGroupNameRes extends BaseRes {
 }
 
 /** 유저 */
-interface User {
+export interface User {
   /** 유저 아이디 */
   userId: number;
   /** 유저 이메일 */
   email: string;
   /** 닉네임 */
-  nickname: string;
+  nickName: string;
+  /** 역할 (ADMIN 또는 PARTICIPANT) */
+  role: 'ADMIN' | 'PARTICIPANT';
 }
 
 /** 그룹 사용자 조회 */
@@ -102,7 +107,7 @@ export interface GetGroupUserRes extends BaseRes {
 /** 초대 링크(코드)로 방 입장 */
 export interface JoinGroupReq {
   /** 초대 코드 */
-  inviteCode: string;
+  inviteLink: string;
 }
 
 export interface JoinGroupRes extends BaseRes {
@@ -114,14 +119,6 @@ export interface JoinGroupRes extends BaseRes {
     /** 사용자가 성공적으로 입장했는지 여부 */
     joinedSuccessfully: boolean;
   };
-}
-
-/** 그룹 정보 */
-interface Channel {
-  /** 그룹 아이디 */
-  channelId: number;
-  /** 그룹명 */
-  name: string;
 }
 
 /** 내 그룹 목록 조회 */
