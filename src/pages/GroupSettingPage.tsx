@@ -15,7 +15,6 @@ const GroupSettingPage = () => {
   const [isEdited, setIsEdited] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const [tag, setTag] = useState('');
   const [sheetTitle, setSheetTitle] = useState('');
   const [btnText, setBtnText] = useState('');
 
@@ -44,16 +43,13 @@ const GroupSettingPage = () => {
   const handleSheet = (member: (typeof groupSettingMockData.members)[0]) => {
     if (isAdmin && member.member_id === groupSettingMockData.currentUser.member_id) {
       setBtnText('나갈래요');
-      setTag(groupSettingMockData.group.group_name);
-      setSheetTitle(`에서 정말 나가시나요?`);
+      setSheetTitle(`${groupSettingMockData.group.group_name}에서 정말 나가시나요?`);
     } else if (isAdmin) {
       setBtnText('내보낼래요');
-      setTag(member.name);
-      setSheetTitle(`님을 정말 내보내시나요?`);
+      setSheetTitle(`${member.name}님을 정말 내보내시나요?`);
     } else {
       setBtnText('나갈래요');
-      setTag(groupSettingMockData.group.group_name);
-      setSheetTitle(`에서 정말 나가시나요?`);
+      setSheetTitle(`${groupSettingMockData.group.group_name}에서 정말 나가시나요?`);
     }
     setIsOpen(true);
   };
@@ -103,7 +99,6 @@ const GroupSettingPage = () => {
         </div>
       </div>
       <ExitSheet
-        tag={tag}
         sheetTitle={sheetTitle}
         btnText={btnText}
         isOpen={isOpen}
