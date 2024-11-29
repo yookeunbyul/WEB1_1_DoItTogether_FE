@@ -1,4 +1,4 @@
-import { createBrowserRouter, Outlet } from 'react-router-dom';
+import { createBrowserRouter, Outlet, useLocation } from 'react-router-dom';
 
 import MainLayout from '@/layout/MainLayout';
 import StatisticsLayout from '@/layout/StatisticsLayout';
@@ -24,13 +24,21 @@ import HouseWorkStepTwoPage from '@/pages/HouseWorkStepTwoPage';
 import GroupInviteReceivePage from '@/pages/GroupInviteReceivePage';
 import ScrollToTop from '@/components/common/scroll/ScrollToTop';
 import { Toaster } from '@/components/common/ui/toaster';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const RootLayout = () => {
+  const location = useLocation();
+
   return (
     <>
       <ScrollToTop />
       <Outlet />
       <Toaster />
+      <TransitionGroup>
+        <CSSTransition key={location.pathname} timeout={300} classNames='page'>
+          <Outlet />
+        </CSSTransition>
+      </TransitionGroup>
     </>
   );
 };
