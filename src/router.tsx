@@ -23,6 +23,7 @@ import HouseWorkStepOnePage from '@/pages/HouseWorkStepOnePage';
 import HouseWorkStepTwoPage from '@/pages/HouseWorkStepTwoPage';
 import GroupInviteReceivePage from '@/pages/GroupInviteReceivePage';
 import ScrollToTop from '@/components/common/scroll/ScrollToTop';
+import { Toaster } from '@/components/common/ui/toaster';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const RootLayout = () => {
