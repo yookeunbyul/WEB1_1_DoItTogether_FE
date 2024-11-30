@@ -20,6 +20,8 @@ export interface Housework {
   userId: number;
   /** 작업 담당자 assigneeId */
   assigneeId: number;
+  /** 완료 여부 */
+  status: string;
 }
 
 interface HouseworkCommonReq
