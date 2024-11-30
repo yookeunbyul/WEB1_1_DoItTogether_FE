@@ -4,19 +4,29 @@ import { useEffect, useState } from 'react';
 interface SelectedTime {
   hour: string;
   minute: string;
-  dayPart: 'AM' | 'PM';
+  ampm: 'AM' | 'PM';
 }
 
 interface TimePickerProps {
   onTimeChange: (time: SelectedTime) => void;
+  initialTime?: SelectedTime | null;
 }
 
-const TimePicker: React.FC<TimePickerProps> = ({ onTimeChange }) => {
-  const [selectedTime, setSelectedTime] = useState<SelectedTime>({
-    hour: '01',
-    minute: '00',
-    dayPart: 'AM',
-  });
+const TimePicker: React.FC<TimePickerProps> = ({ onTimeChange, initialTime }) => {
+  const [selectedTime, setSelectedTime] = useState<SelectedTime>(
+    () =>
+      initialTime || {
+        hour: '01',
+        minute: '00',
+        ampm: 'AM',
+      }
+  );
+
+  useEffect(() => {
+    if (initialTime) {
+      setSelectedTime(initialTime);
+    }
+  }, [initialTime]);
 
   const formatHour = (relative: number) => {
     const hour = relative + 1;
@@ -44,6 +54,18 @@ const TimePicker: React.FC<TimePickerProps> = ({ onTimeChange }) => {
     setSelectedTime(prev => ({ ...prev, ampm: value as 'AM' | 'PM' }));
   };
 
+  const getInitialHourIndex = (hour: string) => {
+    return parseInt(hour) - 1; // '01'은 0, '12'는 11
+  };
+
+  const getInitialMinuteIndex = (minute: string) => {
+    return Math.floor(parseInt(minute) / 5); // '00'은 0, '55'는 11
+  };
+
+  const getInitialAMPMIndex = (ampm: 'AM' | 'PM') => {
+    return ampm === 'AM' ? 0 : 1;
+  };
+
   useEffect(() => {
     onTimeChange(selectedTime);
   }, [selectedTime, onTimeChange]);
@@ -52,7 +74,7 @@ const TimePicker: React.FC<TimePickerProps> = ({ onTimeChange }) => {
     <div className='flex justify-center gap-4'>
       <div className='h-48 w-20'>
         <Wheel
-          initIdx={0}
+          initIdx={initialTime ? getInitialHourIndex(initialTime.hour) : 0}
           length={12}
           width={23}
           loop={false}
@@ -63,7 +85,7 @@ const TimePicker: React.FC<TimePickerProps> = ({ onTimeChange }) => {
       </div>
       <div className='h-48 w-20'>
         <Wheel
-          initIdx={0}
+          initIdx={initialTime ? getInitialMinuteIndex(initialTime.minute) : 0}
           length={12}
           width={23}
           loop={false}
@@ -74,7 +96,7 @@ const TimePicker: React.FC<TimePickerProps> = ({ onTimeChange }) => {
       </div>
       <div className='h-48 w-20'>
         <Wheel
-          initIdx={0}
+          initIdx={initialTime ? getInitialAMPMIndex(initialTime.ampm) : 0}
           length={2}
           width={40}
           loop={false}

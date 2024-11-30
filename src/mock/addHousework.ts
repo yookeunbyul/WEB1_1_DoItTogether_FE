@@ -4,9 +4,9 @@ export const housework = {
       category: '전체',
       items: [
         { id: 1, description: '매일 아침 화장실 청소하기' },
-        { id: 3, description: '1번 방 바닥 청소' },
-        { id: 4, description: '2번 방 옷장 정리' },
-        { id: 5, description: '3번 방 나가기' },
+        { id: 2, description: '1번 방 바닥 청소' },
+        { id: 3, description: '2번 방 옷장 정리' },
+        { id: 4, description: '3번 방 나가기' },
         { id: 5, description: '3번 방 나가기' },
       ],
     },
@@ -16,15 +16,15 @@ export const housework = {
     },
     {
       category: '주방',
-      items: [{ id: 3, description: '1번 방 바닥 청소' }],
+      items: [{ id: 2, description: '1번 방 바닥 청소' }],
     },
     {
       category: '욕실',
-      items: [{ id: 4, description: '2번 방 옷장 정리' }],
+      items: [{ id: 3, description: '2번 방 옷장 정리' }],
     },
     {
       category: '침실',
-      items: [{ id: 5, description: '3번 방 나가기' }],
+      items: [{ id: 4, description: '3번 방 나가기' }],
     },
     {
       category: '기타',
@@ -76,3 +76,10 @@ export const housework = {
     },
   ],
 };
+
+export const members = [
+  { id: 1, name: '김민수' },
+  { id: 2, name: '이영희' },
+  { id: 3, name: '박지수' },
+  { id: 4, name: '박지민' },
+];
