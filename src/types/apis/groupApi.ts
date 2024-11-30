@@ -27,7 +27,7 @@ export interface CreateGroupRes extends BaseRes {
 }
 
 /** 초대 링크(코드) 생성 */
-export interface CreateViteLinkReq {
+export interface CreateInviteLinkReq {
   /** 그룹 아이디 */
   channelId: number;
 }
