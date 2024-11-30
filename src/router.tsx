@@ -85,7 +85,7 @@ export const router = createBrowserRouter([
         element: <GroupInviteReceivePage />,
       },
       {
-        path: '/main',
+        path: '/main/:channelId',
         element: <MainLayout />,
         children: [
           {
