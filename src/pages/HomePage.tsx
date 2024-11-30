@@ -15,13 +15,7 @@ const HomePage: React.FC = () => {
   const [houseworkList, setHouseworkList] = useState(DUMMY_HOUSEWORKS);
   const { setWeekText, setCurrentGroup, setGroups } = useHomePageStore();
   const { channelId } = useParams();
-
-  const chargers = [
-    { name: '전체' },
-    ...Array.from(new Set(DUMMY_HOUSEWORKS.map(item => item.charger))).map(charger => ({
-      name: charger,
-    })),
-  ];
+  const [chargers, setChargers] = useState<{ name: string }[]>([{ name: '전체' }]);
 
   useEffect(() => {
     const fetchMyGroups = async () => {
@@ -34,17 +28,25 @@ const HomePage: React.FC = () => {
       }
     };
 
+    setWeekText(getWeekText(new Date()));
+    fetchMyGroups();
+  }, []);
+
+  useEffect(() => {
     const fetchGroupUsers = async () => {
       if (!channelId) return;
       const newChannelId = Number(channelId);
       const getGroupUsersResult = await getGroupUser({ channelId: newChannelId });
-      console.log(getGroupUsersResult);
+      const newChargers = [
+        { name: '전체' },
+        ...Array.from(new Set(getGroupUsersResult.result.userList.map(user => user.nickName))).map(
+          charger => ({ name: charger })
+        ),
+      ];
+      setChargers(newChargers);
     };
-
-    setWeekText(getWeekText(new Date()));
-    fetchMyGroups();
     fetchGroupUsers();
-  }, []);
+  }, [channelId]);
 
   const handleAction = (id: number) => {
     setHouseworkList(

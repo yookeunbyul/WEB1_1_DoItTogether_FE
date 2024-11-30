@@ -1,5 +1,5 @@
 export interface WeekDates {
-  date: string;
+  date: string; // 'YYYY-MM-DD' 형식으로 변경
   day: string;
 }
 
@@ -18,12 +18,13 @@ export default function getWeekDates(date: Date): WeekDates[] {
     const currentDate = new Date(startOfWeek);
     currentDate.setDate(startOfWeek.getDate() + i);
 
-    const options: Intl.DateTimeFormatOptions = {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-    };
-    const formattedDate = currentDate.toLocaleDateString('ko-KR', options);
+    // YYYY-MM-DD 형식으로 변환
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // 0~11을 1~12로
+    const day = String(currentDate.getDate()).padStart(2, '0');
+
+    // YYYY-MM-DD 형식으로 날짜 생성
+    const formattedDate = `${year}-${month}-${day}`;
     const dayName = daysShort[i]; // 축약된 요일 사용
 
     weekDates.push({ date: formattedDate, day: dayName });

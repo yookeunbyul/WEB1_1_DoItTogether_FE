@@ -5,7 +5,9 @@ export default function getWeekText(date: Date) {
   const firstDayOfWeek = firstDayOfMonth.getDay();
 
   // 한 주의 시작이 월요일부터 시작되도록 함
-  const weekNumber = Math.ceil((date.getDate() + firstDayOfWeek - 1) / 7);
+  // 주차 계산을 위해 요일을 월요일 기준으로 조정
+  const adjustedDay = date.getDate() + (firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1);
+  const weekNumber = Math.ceil(adjustedDay / 7);
 
   return `${year}년 ${new Intl.DateTimeFormat('ko-KR', { month: 'long' }).format(date)} ${weekNumber}주차`;
 }
