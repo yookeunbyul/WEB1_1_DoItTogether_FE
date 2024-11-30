@@ -18,7 +18,7 @@ const GroupCreatePage = () => {
   const handleNext = async () => {
     if (roomName.trim()) {
       const createResult = await postCreateGroup(roomName);
-      const createLink = await postCreateInviteLink(createResult.result.channelId);
+      const createLink = await postCreateInviteLink({ channelId: createResult.result.channelId });
       setInviteLink(createLink.result.inviteLink);
       setStep('invite');
     }
