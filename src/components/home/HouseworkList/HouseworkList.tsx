@@ -1,15 +1,9 @@
 import React from 'react';
 import HouseworkListItem from '@/components/home/HouseworkList/HouseworkListItem/HouseworkListItem';
+import { Housework } from '@/types/apis/houseworkApi';
 
 export interface HouseworkListProps {
-  items: {
-    id: number;
-    actionStatus: string;
-    listTitle: string;
-    charger: string;
-    time: string;
-    category: string;
-  }[];
+  items: Housework[];
   handleAction: (id: number) => void;
   handleEdit: () => void;
   handleDelete: (id: number) => void;
@@ -25,7 +19,7 @@ const HouseworkList: React.FC<HouseworkListProps> = ({
     <div className='flex max-w flex-col gap-2 p-5'>
       {items.map(item => (
         <HouseworkListItem
-          key={item.id}
+          key={item.houseworkId}
           {...item}
           handleAction={handleAction}
           handleEdit={handleEdit}
