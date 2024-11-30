@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { Group } from '@/types/apis/groupApi';
+import { Housework } from '@/types/apis/houseworkApi';
 
 interface HomePageState {
   currentGroup: Group;
@@ -13,6 +14,9 @@ interface HomePageState {
 
   weekText: string;
   setWeekText: (weekText: string) => void;
+
+  houseworks: Array<Housework>;
+  setHouseworks: (newHouseworks: Array<Housework>) => void;
 }
 
 const useHomePageStore = create<HomePageState>(set => ({
@@ -27,6 +31,9 @@ const useHomePageStore = create<HomePageState>(set => ({
 
   weekText: '',
   setWeekText: weekText => set({ weekText: weekText }),
+
+  houseworks: [],
+  setHouseworks: newHouseworks => set({ houseworks: newHouseworks }),
 }));
 
 export default useHomePageStore;
