@@ -1,7 +1,7 @@
 import PresetItem from '@/components/common/preset/PresetItem';
 import PresetTabItem from '@/components/common/tab/PresetTab/PresetTabItem';
 import { Tabs, TabsContent, TabsList } from '@/components/common/ui/tabs';
-import { Category as PresetCategory } from '@/constants/Category';
+import { Category as PresetCategory } from '@/constants/category';
 
 interface PresetItem {
   id: number;
@@ -15,7 +15,7 @@ interface PresetData {
 
 interface PresetTabProps {
   data: PresetData[];
-  isInPresetSetting?: boolean;
+  isPresetSettingCustom?: boolean;
   deleteButtonStates?: Record<number, boolean>;
   handleSettingClick?: (itemId: number) => void;
   handleDeleteClick?: (itemId: number) => void;
@@ -26,7 +26,7 @@ interface PresetTabProps {
 
 const PresetTab: React.FC<PresetTabProps> = ({
   data,
-  isInPresetSetting = false,
+  isPresetSettingCustom = false,
   deleteButtonStates = {},
   handleSettingClick,
   handleDeleteClick,
@@ -62,7 +62,8 @@ const PresetTab: React.FC<PresetTabProps> = ({
               handleSelectClick={() =>
                 handleClick && handleClick(item.id, item.description, item.category)
               }
-              isInPresetSetting={isInPresetSetting}
+              isBottomSheet={isBottomSheet}
+              isPresetSettingCustom={isPresetSettingCustom}
               isShowDeleteBtn={deleteButtonStates[item.id]} //각 아이템의 boolean값이 들어간다.
               handleSettingClick={handleSettingClick && (() => handleSettingClick(item.id))}
               handleDeleteClick={handleDeleteClick && (() => handleDeleteClick(item.id))}
@@ -86,7 +87,8 @@ const PresetTab: React.FC<PresetTabProps> = ({
                 handleSelectClick={() =>
                   handleClick && handleClick(item.id, item.description, tabData.category)
                 }
-                isInPresetSetting={isInPresetSetting}
+                isBottomSheet={isBottomSheet}
+                isPresetSettingCustom={isPresetSettingCustom}
                 isShowDeleteBtn={deleteButtonStates[item.id]} //각 아이템의 boolean값이 들어간다.
                 handleSettingClick={handleSettingClick && (() => handleSettingClick(item.id))}
                 handleDeleteClick={handleDeleteClick && (() => handleDeleteClick(item.id))}
