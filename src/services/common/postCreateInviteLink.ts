@@ -1,7 +1,7 @@
 import { axiosInstance } from '@/services/axiosInstance';
-import { CreateInviteLinkRes } from '@/types/apis/groupApi';
+import { CreateInviteLinkReq, CreateInviteLinkRes } from '@/types/apis/groupApi';
 
-export const postCreateInviteLink = async (channelId: number) => {
+export const postCreateInviteLink = async ({ channelId }: CreateInviteLinkReq) => {
   try {
     const response = await axiosInstance.post<CreateInviteLinkRes>(
       `/api/v1/channels/${channelId}/invite-link`
