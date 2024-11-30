@@ -1,9 +1,9 @@
 import { axiosInstance } from '@/services/axiosInstance';
-import { GetGroupUserRes } from '@/types/apis/groupApi';
+import { GetGroupUserReq, GetGroupUserRes } from '@/types/apis/groupApi';
 import { GetPageParams } from '@/types/apis/pageApi';
 
 export const getGroupUser = async (
-  channelId: number,
+  { channelId }: GetGroupUserReq,
   params: GetPageParams = { page: 0, size: 20 }
 ) => {
   try {
@@ -13,7 +13,6 @@ export const getGroupUser = async (
     );
     return response.data;
   } catch (error) {
-    console.error('그룹 멤버 조회 실패:', error);
-    throw error;
+    throw new Error('그룹 사용자 조회에 실패했습니다');
   }
 };
