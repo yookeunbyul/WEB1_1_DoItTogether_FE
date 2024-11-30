@@ -101,7 +101,7 @@ const GroupSettingPage = () => {
       try {
         // TODO: channelId를 실제 값으로 교체해야 함
         const channelId = 6; // 임시 값
-        const response = await getGroupUser(channelId);
+        const response = await getGroupUser({ channelId });
 
         // TODO: 나중에는 토큰값으로 확인
         setMembers(response.result.userList);

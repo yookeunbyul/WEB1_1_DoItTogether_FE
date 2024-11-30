@@ -8,6 +8,7 @@ import getWeekText from '@/utils/getWeekText';
 import { DUMMY_HOUSEWORKS } from '@/mock/mockHomePage';
 import { useParams } from 'react-router-dom';
 import { getMyGroup } from '@/services/groupSelect/getMyGroup';
+import { getGroupUser } from '@/services/setting/getGroupUser';
 
 const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('전체');
@@ -33,8 +34,16 @@ const HomePage: React.FC = () => {
       }
     };
 
+    const fetchGroupUsers = async () => {
+      if (!channelId) return;
+      const newChannelId = Number(channelId);
+      const getGroupUsersResult = await getGroupUser({ channelId: newChannelId });
+      console.log(getGroupUsersResult);
+    };
+
     setWeekText(getWeekText(new Date()));
     fetchMyGroups();
+    fetchGroupUsers();
   }, []);
 
   const handleAction = (id: number) => {

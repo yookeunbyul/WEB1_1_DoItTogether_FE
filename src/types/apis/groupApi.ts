@@ -94,6 +94,8 @@ export interface User {
 }
 
 /** 그룹 사용자 조회 */
+
+export interface GetGroupUserReq extends Pick<Group, 'channelId'> {}
 export interface GetGroupUserRes extends BaseRes {
   result: {
     /** 그룹 아이디 */
