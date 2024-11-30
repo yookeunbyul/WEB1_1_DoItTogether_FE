@@ -7,12 +7,21 @@ import { useNavigate } from 'react-router-dom';
 import { mockData } from '@/mock/mockPresetSettingPage';
 import { PresetDefault, PresetTabName } from '@/constants';
 import { convertTabNameToChargers } from '@/utils/convertUtils';
+import usePresetSetting from '@/hooks/usePresetSetting';
+import usePresetSettingStore from '@/store/usePresetSettingStore';
+import useHomePageStore from '@/store/useHomePageStore';
 
 const PresetSettingPage = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<string>(PresetTabName.USER_DATA);
+  const [activeTab, setActiveTab] = useState<string>(PresetTabName.PRESET_DATA);
   const [deleteButtonStates, setDeleteButtonStates] = useState<Record<number, boolean>>({});
+  const { categoryList } = usePresetSettingStore();
 
+  const { currentGroup } = useHomePageStore();
+  const channelId = currentGroup.channelId;
+  usePresetSetting(channelId);
+
+  // TODO HOOK으로 이동
   const handleSettingClick = (itemId: number) => {
     setDeleteButtonStates(prev => ({
       ...prev,
@@ -55,7 +64,7 @@ const PresetSettingPage = () => {
         />
       </div>
       <div className='sticky bottom-0 bg-[#fff]'>
-        <PresetAddInput />
+        <PresetAddInput categoryList={categoryList} />
       </div>
     </div>
   );
