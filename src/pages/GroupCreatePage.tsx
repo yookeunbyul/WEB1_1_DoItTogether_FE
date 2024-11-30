@@ -9,17 +9,24 @@ import { postCreateInviteLink } from '@/services/groupSelect/postCreateInviteLin
 
 type StepType = 'roomName' | 'invite';
 
+/**
+ * todo
+ * 1. channelId를 전역으로 관리
+ */
+
 const GroupCreatePage = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState<StepType>('roomName');
   const [roomName, setRoomName] = useState('');
-  const [inviteLink, setInviteLink] = useState('sadsad');
+  const [inviteLink, setInviteLink] = useState('');
+  const [channelId, setChannelId] = useState(-1);
 
   const handleNext = async () => {
     if (roomName.trim()) {
-      const createResult = await postCreateGroup(roomName);
+      const createResult = await postCreateGroup({ name: roomName });
       const createLink = await postCreateInviteLink(createResult.result.channelId);
       setInviteLink(createLink.result.inviteLink);
+      setChannelId(createResult.result.channelId);
       setStep('invite');
     }
   };
@@ -29,13 +36,7 @@ const GroupCreatePage = () => {
   };
 
   const handleSubmit = () => {
-    if (inviteLink.trim()) {
-      console.log({
-        roomName,
-        inviteLink,
-      });
-    }
-    navigate('/main');
+    navigate(`/main/${channelId}`);
   };
 
   return (
