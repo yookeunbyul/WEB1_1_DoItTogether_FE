@@ -77,7 +77,7 @@ const GroupSettingPage = () => {
       console.log(member);
       if (isAdmin && !isCurrentUser) {
         // 관리자가 다른 멤버를 방출하는 경우
-        await postBanUser(channelId, { email: member.email });
+        await postBanUser({ channelId: channelId, email: member.email });
         setMembers(prev => prev.filter(m => m.email !== member.email));
       } else {
         // 자신이 나가는 경우 (관리자든 일반 멤버든)
