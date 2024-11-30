@@ -8,6 +8,8 @@ import InviteLinkWithLabel from '@/components/setting/groupSetting/InviteLink/In
 import ExitSheet from '@/components/setting/ExitSheet/ExitSheet';
 import { getGroupUser } from '@/services/setting/getGroupUser';
 import { User } from '@/types/apis/groupApi';
+import { postBanUser } from '@/services/setting/postBanUser';
+import { deleteGroupUser } from '@/services/setting/deleteGroupUser';
 
 const GroupSettingPage = () => {
   const navigate = useNavigate();
@@ -22,6 +24,8 @@ const GroupSettingPage = () => {
 
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [members, setMembers] = useState<User[]>([]);
+
+  const [selectedMember, setSelectedMember] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const handleMovePreset = () => {
@@ -44,6 +48,7 @@ const GroupSettingPage = () => {
     member => member.role === 'ADMIN' && member.email === 'gaeun@gmail.com'
   );
   const handleSheet = (member: User) => {
+    setSelectedMember(member); // 선택된 멤버 저장
     const isCurrentUser = member.email === 'gaeun@gmail.com';
     if (isAdmin && isCurrentUser) {
       // 내가 그룹장일 때
@@ -62,9 +67,28 @@ const GroupSettingPage = () => {
   };
 
   // 멤버 방출 or 나가기 처리
-  const handleExit = () => {
-    console.log('잘있어');
-    setIsOpen(false);
+  const handleExit = async (member: User) => {
+    try {
+      // TODO: 실제 channelId로 교체 필요
+      const channelId = 6;
+      // TODO: 나중에는 토큰값으로 확인
+      const isCurrentUser = member.email === 'gaeun@gmail.com';
+
+      console.log(member);
+      if (isAdmin && !isCurrentUser) {
+        // 관리자가 다른 멤버를 방출하는 경우
+        await postBanUser(channelId, { email: member.email });
+        setMembers(prev => prev.filter(m => m.email !== member.email));
+      } else {
+        // 자신이 나가는 경우 (관리자든 일반 멤버든)
+        await deleteGroupUser(channelId);
+        navigate('/group-select');
+      }
+
+      setIsOpen(false);
+    } catch (error) {
+      console.error('멤버 방출/그룹 나가기 실패:', error);
+    }
   };
 
   // 바텀시트 닫기
@@ -79,7 +103,7 @@ const GroupSettingPage = () => {
         const channelId = 6; // 임시 값
         const response = await getGroupUser(channelId);
 
-        // TODO: 받아온 데이터 형식에 맞게 매핑 필요
+        // TODO: 나중에는 토큰값으로 확인
         setMembers(response.result.userList);
         const current = response.result.userList.find(user => user.email === 'gaeun@gmail.com');
         setCurrentUser(current || null);
@@ -131,6 +155,7 @@ const GroupSettingPage = () => {
         btnText={btnText}
         isOpen={isOpen}
         setOpen={setIsOpen}
+        selectedMember={selectedMember}
         handleExit={handleExit}
         handleClose={handleClose}
       />
