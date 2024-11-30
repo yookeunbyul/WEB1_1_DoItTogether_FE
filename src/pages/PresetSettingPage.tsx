@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { mockData } from '@/mock/mockPresetSettingPage';
 import { PresetDefault, PresetTabName } from '@/constants';
-import { convertTabNameToChargers } from '@/utils/ConvertUtils';
+import { convertTabNameToChargers } from '@/utils/convertUtils';
 
 const PresetSettingPage = () => {
   const navigate = useNavigate();
