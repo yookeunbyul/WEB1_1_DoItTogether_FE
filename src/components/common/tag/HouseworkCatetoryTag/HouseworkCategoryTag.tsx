@@ -6,18 +6,20 @@ export interface HouseworkCategoryTagProps {
   /** 상태 */
   status?: string;
   isDark?: boolean;
+  isSelected?: boolean;
 }
 
 const HouseworkCategoryTag: React.FC<HouseworkCategoryTagProps> = ({
   category,
   status,
   isDark,
+  isSelected,
 }) => {
   return (
     <div>
       <Badge
         variant={'secondary'}
-        className={`px-1 text-12 ${isDark && 'dark'} ${status === 'complete' && 'border-none bg-gray02'}`}
+        className={`px-1 text-12 ${isDark && 'dark'} ${status === 'complete' && 'border-none bg-gray02'} ${isSelected && 'bg-[#1FCFBA]'}`}
       >
         {category}
       </Badge>

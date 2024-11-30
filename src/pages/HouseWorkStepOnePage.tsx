@@ -7,23 +7,26 @@ import HeaderWithTitle from '@/components/housework/HeaderWithTitle/HeaderWithTi
 import HouseWorkSheet from '@/components/housework/HouseWorkSheet/HouseWorkSheet';
 import DueDateSheet from '@/components/housework/DueDateSheet/DueDateSheet';
 import TimeControl from '@/components/housework/TimeControl/TimeControl';
+import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 
-interface SelectedTime {
+export interface SelectedTime {
   hour: string;
   minute: string;
-  dayPart: 'AM' | 'PM';
+  ampm: 'AM' | 'PM';
 }
 
 const HouseWorkStepOnePage = () => {
   const navigate = useNavigate();
-  const [houseWork, setHouseWork] = useState(null);
-  const [dueDate, setDueDate] = useState<Date | null>(null);
+  const { task, category, startDate, startTime, setStartTime } = useAddHouseWorkStore();
+
   const [isHouseWorkSheetOpen, setHouseWorkSheetOpen] = useState(false);
   const [isDueDateSheetOpen, setDueDateSheetOpen] = useState(false);
-  const [time, setTime] = useState<SelectedTime | null>(null);
+  const [time, setTime] = useState<SelectedTime | null>(startTime);
+
+  console.log('전역:', task, category, startDate, startTime);
 
   const handleBackClick = () => {
-    navigate(-1);
+    navigate('/main');
   };
   const handleHouseWorkClick = () => {
     setHouseWorkSheetOpen(true);
@@ -31,23 +34,28 @@ const HouseWorkStepOnePage = () => {
   const handleDueDateClick = () => {
     setDueDateSheetOpen(true);
   };
+
   const handleNextClick = () => {
+    if (time) {
+      setStartTime(time);
+    }
     navigate('/add-housework/step2');
   };
 
   const handleTimeChange = (newTime: SelectedTime | null) => {
-    setTime(newTime);
-    console.log(time);
+    if (newTime) {
+      setTime(newTime);
+    }
   };
 
   return (
     <div className='flex h-screen flex-col gap-6 px-5 pb-6'>
-      <HeaderWithTitle title='새로운 집안일을 추가해보세요(1/2)' handleClick={handleBackClick} />
+      <HeaderWithTitle title={`새로운 집안일을\n추가해보세요`} handleClick={handleBackClick} />
       <section className='flex flex-1 flex-col gap-6' aria-label='집안일 추가 컨텐츠'>
-        {houseWork ? (
+        {task ? (
           <OpenSheetBtnWithLabel
             title='집안일'
-            selected='houseWork'
+            selected={task}
             handleClick={handleHouseWorkClick}
           />
         ) : (
@@ -57,8 +65,12 @@ const HouseWorkStepOnePage = () => {
             type='housework'
           />
         )}
-        {dueDate ? (
-          <OpenSheetBtnWithLabel title='날짜' selected='dueDate' handleClick={handleDueDateClick} />
+        {startDate ? (
+          <OpenSheetBtnWithLabel
+            title='날짜'
+            selected={startDate}
+            handleClick={handleDueDateClick}
+          />
         ) : (
           <OpenSheetBtn
             text='언제 해야 하나요?'
@@ -68,7 +80,13 @@ const HouseWorkStepOnePage = () => {
         )}
         <TimeControl onTimeChange={handleTimeChange} />
       </section>
-      <Button variant='full' size='large' label='다음' handleClick={handleNextClick} />
+      <Button
+        variant='full'
+        size='large'
+        label='다음'
+        handleClick={handleNextClick}
+        disabled={!task || !startDate}
+      />
 
       <HouseWorkSheet isOpen={isHouseWorkSheetOpen} setOpen={setHouseWorkSheetOpen} />
       <DueDateSheet isOpen={isDueDateSheetOpen} setOpen={setDueDateSheetOpen} />
