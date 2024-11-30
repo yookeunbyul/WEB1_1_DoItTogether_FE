@@ -1,9 +1,8 @@
 import { BaseRes } from '@/types/apis/baseResponse';
 import { Common } from '@/types/apis/commonApi';
-import { Preset } from './../../components/common/tab/Tab/TabItem.stories';
 
 /** 프리셋 카테고리 정보 */
-export interface Preset {
+export interface PresetCategory {
   /** 프리셋 카테고리 아이디 */
   presetCategoryId: number;
   /** 카테고리 이름 */
@@ -11,21 +10,21 @@ export interface Preset {
 }
 
 /** 프리셋 카테고리 생성 */
-export interface CreatePresetReq extends Pick<Common, 'channelId'> {
+export interface CreatePresetCategoryReq extends Pick<Common, 'channelId'> {
   /** 카테고리 이름 */
   category: string;
 }
-export interface CreatePresetRes extends BaseRes {
-  result: Preset;
+export interface CreatePresetCategoryRes extends BaseRes {
+  result: PresetCategory;
 }
 
 /** 프리셋 카테고리 삭제 */
-export interface DeletePresetReq {
+export interface DeletePresetCategoryReq extends Pick<Common, 'channelId'> {
   /** 프리셋 카테고리 아이디 */
   presetCategoryId: number;
 }
 
-export interface DeletePresetRes extends BaseRes {
+export interface DeletePresetCategoryRes extends BaseRes {
   result: {
     /** 프리셋 카테고리 아이디 */
     presetCategoryId: number;
@@ -33,10 +32,11 @@ export interface DeletePresetRes extends BaseRes {
 }
 
 /** 모든 프리셋 카테고리 이름 조회 */
-export interface GetAllPresetRes extends BaseRes {
+export interface GetAllPresetCategoryReq extends Pick<Common, 'channelId'> {}
+export interface GetAllPresetCategoryRes extends BaseRes {
   result: {
     /** 카테고리 이름 리스트 */
-    categoryList: Array<Preset>;
+    categoryList: Array<PresetCategory>;
   };
 }
 
@@ -55,6 +55,7 @@ export interface PresetList {
 }
 
 /** 전체 프리셋 키워드(카테고리-아이템) 리스트 조회 */
+export interface GetAllPresetListReq extends Pick<Common, 'channelId'> {}
 export interface GetAllPresetListRes extends BaseRes {
   result: {
     /** 프리셋 키워드(카테고리-아이템) 리스트 */
@@ -72,7 +73,11 @@ export interface PresetItem {
 }
 
 /** 특정 프리셋 카테고리의 프리셋 아이템 리스트 조회 */
-export interface GetPresetListRes extends BaseRes {
+export interface GetSinglePresetListReq extends Pick<Common, 'channelId'> {
+  /** 프리셋 카테고리 아이디 */
+  presetCategoryId: number;
+}
+export interface GetSinglePresetListRes extends BaseRes {
   result: {
     /** 프리셋 카테고리 아이디 */
     presetCategoryId: number;
@@ -84,7 +89,7 @@ export interface GetPresetListRes extends BaseRes {
 }
 
 /** 프리셋 아이템 생성 */
-export interface CreatePresetItemReq {
+export interface CreatePresetItemReq extends Pick<Common, 'channelId'> {
   /** 프리셋 카테고리 아이디 */
   presetCategoryId: number;
   /** 프리셋 아이템 이름 */
@@ -102,7 +107,7 @@ export interface CreatePresetItemRes extends BaseRes {
 }
 
 /** 프리셋 아이템 삭제 */
-export interface DeletePresetItemReq {
+export interface DeletePresetItemReq extends Pick<Common, 'channelId'> {
   /** 프리셋 아이템 아이디 */
   presetItemId: number;
 }
