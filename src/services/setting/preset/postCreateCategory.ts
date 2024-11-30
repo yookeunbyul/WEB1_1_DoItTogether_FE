@@ -1,11 +1,11 @@
 import { axiosInstance } from '@/services/axiosInstance';
 import { CreatePresetCategoryReq, CreatePresetCategoryRes } from '@/types/apis/presetApi';
 
-export const postCreateCategory = async (data: CreatePresetCategoryReq) => {
+export const postCreateCategory = async ({ channelId, category }: CreatePresetCategoryReq) => {
   try {
     const response = await axiosInstance.post<CreatePresetCategoryRes>(
-      `/api/v1/channels/${data.channelId}/presets/categories`,
-      data.category
+      `/api/v1/channels/${channelId}/presets/categories`,
+      { category }
     );
     return response.data;
   } catch (error) {

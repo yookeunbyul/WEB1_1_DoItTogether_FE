@@ -3,12 +3,12 @@ import { GetAllPresetCategoryReq, GetAllPresetCategoryRes } from '@/types/apis/p
 import { GetPageParams } from '@/types/apis/pageApi';
 
 export const getAllCategoryName = async (
-  data: GetAllPresetCategoryReq,
+  { channelId }: GetAllPresetCategoryReq,
   params: GetPageParams = { page: 0, size: 20 }
 ) => {
   try {
     const response = await axiosInstance.get<GetAllPresetCategoryRes>(
-      `/api/v1/channels/${data.channelId}/presets/categories/names`,
+      `/api/v1/channels/${channelId}/presets/categories/names`,
       { params }
     );
     return response.data;
