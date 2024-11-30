@@ -65,7 +65,7 @@ const WeeklyDate = () => {
               {currWeek.map((week, idx) => (
                 <DateItem
                   key={idx}
-                  date={week.date.split('.')[2]}
+                  date={week.date.split('-')[2]}
                   day={week.day}
                   pendingCnt={0}
                   isActive={activeDate === week.date && current === i}
