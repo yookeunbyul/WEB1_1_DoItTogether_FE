@@ -5,7 +5,7 @@ export const putChangeGroupName = async ({ channelId, name }: ChangeGroupNameReq
   try {
     const response = await axiosInstance.put<ChangeGroupNameRes>(
       `/api/v1/channels/${channelId}/name`,
-      name
+      { name }
     );
     return response.data;
   } catch (error) {
