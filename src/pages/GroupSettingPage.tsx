@@ -77,7 +77,7 @@ const GroupSettingPage = () => {
       try {
         // TODO: channelId를 실제 값으로 교체해야 함
         const channelId = 6; // 임시 값
-        const response = await getGroupUser(channelId);
+        const response = await getGroupUser({ channelId });
 
         // TODO: 받아온 데이터 형식에 맞게 매핑 필요
         setMembers(response.result.userList);
