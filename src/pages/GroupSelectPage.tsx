@@ -10,12 +10,11 @@ import { Group } from '@/types/apis/groupApi';
 
 const GroupSelectPage = () => {
   const navigate = useNavigate();
-  const { setGroupName, groups, setGroups } = useHomePageStore();
+  const { setCurrentGroup, groups, setGroups } = useHomePageStore();
 
   useEffect(() => {
     const fetchMyGroup = async () => {
       const groups = await getMyGroup();
-      console.log(groups.result.channelList);
       setGroups(groups.result.channelList);
     };
 
@@ -29,15 +28,15 @@ const GroupSelectPage = () => {
     navigate('/group/invite-receive');
   };
   const handleClick = (group: Group) => {
-    setGroupName(group.name);
+    setCurrentGroup(group);
     navigate(`/main/${group.channelId}`);
   };
 
   return (
-    <div className='flex flex-col min-h-screen'>
+    <div className='flex min-h-screen flex-col'>
       <Logo />
       <GroupSelectTitle />
-      <div className='flex flex-col flex-1 px-5 py-4 gap-y-4'>
+      <div className='flex flex-1 flex-col gap-y-4 px-5 py-4'>
         {groups.length > 0 ? (
           groups.map(group => (
             <OpenSheetBtn
@@ -48,12 +47,12 @@ const GroupSelectPage = () => {
             />
           ))
         ) : (
-          <div className='flex items-center justify-center flex-1 text-center whitespace-pre-line text-gray03'>
+          <div className='flex flex-1 items-center justify-center whitespace-pre-line text-center text-gray03'>
             {'현재 방이 없어요\n새로운 방을 만들어보세요'}
           </div>
         )}
       </div>
-      <div className='flex px-5 pt-6 gap-x-4'>
+      <div className='flex gap-x-4 px-5 pt-6'>
         <Button
           label='방만들기'
           variant='full'
