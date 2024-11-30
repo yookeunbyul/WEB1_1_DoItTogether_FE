@@ -6,7 +6,7 @@ import Tab from '@/components/common/tab/Tab/Tab';
 import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 import { mockData } from '@/mock/mockPresetSettingPage';
 import { PresetDefault, PresetTabName } from '@/constants';
-import { convertTabNameToChargers } from '@/utils/ConvertUtils';
+import { convertTabNameToChargers } from '@/utils/convertUtils';
 
 interface HouseWorkSheetProps {
   /** 바텀시트 오픈 여부 */
@@ -16,7 +16,7 @@ interface HouseWorkSheetProps {
 }
 
 const HouseWorkSheet: React.FC<HouseWorkSheetProps> = ({ isOpen, setOpen }) => {
-  const [activeTab, setActiveTab] = useState<string>(PresetTabName.USER_DATA);
+  const [activeTab, setActiveTab] = useState<string>(PresetTabName.PRESET_DATA);
   const [selectedHouseWork, setSelectedHouseWork] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
