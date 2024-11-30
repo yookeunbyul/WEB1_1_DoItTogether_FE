@@ -8,6 +8,7 @@ import HouseWorkSheet from '@/components/housework/HouseWorkSheet/HouseWorkSheet
 import DueDateSheet from '@/components/housework/DueDateSheet/DueDateSheet';
 import TimeControl from '@/components/housework/TimeControl/TimeControl';
 import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
+import useHomePageStore from '@/store/useHomePageStore';
 
 export interface SelectedTime {
   hour: string;
@@ -18,7 +19,7 @@ export interface SelectedTime {
 const HouseWorkStepOnePage = () => {
   const navigate = useNavigate();
   const { task, category, startDate, startTime, setStartTime } = useAddHouseWorkStore();
-
+  const { currentGroup } = useHomePageStore();
   const [isHouseWorkSheetOpen, setHouseWorkSheetOpen] = useState(false);
   const [isDueDateSheetOpen, setDueDateSheetOpen] = useState(false);
   const [time, setTime] = useState<SelectedTime | null>(startTime);
@@ -26,7 +27,7 @@ const HouseWorkStepOnePage = () => {
   console.log('전역:', task, category, startDate, startTime);
 
   const handleBackClick = () => {
-    navigate('/main');
+    navigate(`/main/${currentGroup.channelId}`);
   };
   const handleHouseWorkClick = () => {
     setHouseWorkSheetOpen(true);
