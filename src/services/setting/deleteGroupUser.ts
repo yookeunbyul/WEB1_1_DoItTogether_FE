@@ -1,7 +1,7 @@
 import { axiosInstance } from '@/services/axiosInstance';
-import { LeaveGroupRes } from '@/types/apis/groupApi';
+import { LeaveGroupReq, LeaveGroupRes } from '@/types/apis/groupApi';
 
-export const deleteGroupUser = async (channelId: number) => {
+export const deleteGroupUser = async ({ channelId }: LeaveGroupReq) => {
   try {
     const response = await axiosInstance.delete<LeaveGroupRes>(
       `/api/v1/channels/${channelId}/leave`
