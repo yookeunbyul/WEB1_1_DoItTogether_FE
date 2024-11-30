@@ -38,7 +38,7 @@ const GroupSettingPage = () => {
 
   const handleGroupNameChange = (value: string) => {
     setGroupName(value);
-    setIsEdited(value !== '우리집');
+    setIsEdited(value !== currentGroup.name);
   };
 
   // 여기서 그룹 이름 수정 시 저장 처리
