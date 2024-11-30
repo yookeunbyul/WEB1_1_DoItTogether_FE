@@ -10,12 +10,14 @@ import { getGroupUser } from '@/services/setting/getGroupUser';
 import { User } from '@/types/apis/groupApi';
 import { postBanUser } from '@/services/setting/postBanUser';
 import { deleteGroupUser } from '@/services/setting/deleteGroupUser';
+import useHomePageStore from '@/store/useHomePageStore';
 
 const GroupSettingPage = () => {
   const navigate = useNavigate();
+  const { currentGroup } = useHomePageStore();
 
   // TODO: group name 전역에서 받아오기
-  const [groupName, setGroupName] = useState('우리집');
+  const [groupName, setGroupName] = useState(currentGroup.name);
   const [isEdited, setIsEdited] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -69,8 +71,7 @@ const GroupSettingPage = () => {
   // 멤버 방출 or 나가기 처리
   const handleExit = async (member: User) => {
     try {
-      // TODO: 실제 channelId로 교체 필요
-      const channelId = 6;
+      const channelId = currentGroup.channelId;
       // TODO: 나중에는 토큰값으로 확인
       const isCurrentUser = member.email === 'gaeun@gmail.com';
 
@@ -81,7 +82,7 @@ const GroupSettingPage = () => {
         setMembers(prev => prev.filter(m => m.email !== member.email));
       } else {
         // 자신이 나가는 경우 (관리자든 일반 멤버든)
-        await deleteGroupUser(channelId);
+        await deleteGroupUser({ channelId });
         navigate('/group-select');
       }
 
@@ -99,8 +100,7 @@ const GroupSettingPage = () => {
   useEffect(() => {
     const fetchGroupMembers = async () => {
       try {
-        // TODO: channelId를 실제 값으로 교체해야 함
-        const channelId = 6; // 임시 값
+        const channelId = currentGroup.channelId;
         const response = await getGroupUser({ channelId });
 
         // TODO: 나중에는 토큰값으로 확인
