@@ -24,28 +24,28 @@ import HouseWorkStepTwoPage from '@/pages/HouseWorkStepTwoPage';
 import GroupInviteReceivePage from '@/pages/GroupInviteReceivePage';
 import ScrollToTop from '@/components/common/scroll/ScrollToTop';
 import { Toaster } from '@/components/common/ui/toaster';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+// import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const RootLayout = () => {
-  const location = useLocation();
+  // const location = useLocation();
 
   // main 경로에 대해서는 애니메이션 제외
-  const shouldAnimate = !location.pathname.startsWith('/main');
+  // const shouldAnimate = !location.pathname.startsWith('/main');
 
   return (
     <>
       <ScrollToTop />
-      {shouldAnimate ? (
+      {/* {shouldAnimate ? (
         <TransitionGroup>
           <CSSTransition key={location.pathname} timeout={300} classNames='page'>
-            <div className='page'>
-              <Outlet />
-            </div>
+            <div className='page'> */}
+      <Outlet />
+      {/* </div>
           </CSSTransition>
         </TransitionGroup>
       ) : (
         <Outlet />
-      )}
+      )} */}
       <Toaster />
     </>
   );

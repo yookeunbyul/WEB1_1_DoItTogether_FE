@@ -139,7 +139,7 @@ body:has(.react-modal-sheet-container) {
 }
 
 /* 페이지 전환 애니메이션 */
-.page {
+/* .page {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -168,4 +168,4 @@ body:has(.react-modal-sheet-container) {
   opacity: 0;
   transform: translateX(-100%);
   transition: all 300ms ease-in-out;
-}
+} */
