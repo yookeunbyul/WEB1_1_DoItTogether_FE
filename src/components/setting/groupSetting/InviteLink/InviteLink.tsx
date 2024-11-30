@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import React from 'react';
 import { useToast } from '@/hooks/use-toast';
+import useHomePageStore from '@/store/useHomePageStore';
+import { postCreateInviteLink } from '@/services/common/postCreateInviteLink';
 
 interface InviteLinkProps {
   initialLink?: string;
@@ -8,11 +10,14 @@ interface InviteLinkProps {
 
 const InviteLink: React.FC<InviteLinkProps> = ({ initialLink }) => {
   const [inviteLink, setInviteLink] = useState<string>(initialLink || '');
+  const { currentGroup } = useHomePageStore();
   const { toast } = useToast();
 
-  const handleGenerateLink = () => {
-    // TODO: 나중에 API 호출로 바꾸기
-    setInviteLink('https://contents.ohou.contents.ohoucontents.ohou...');
+  const handleGenerateLink = async () => {
+    const channelId = currentGroup.channelId;
+    const response = await postCreateInviteLink({ channelId: channelId });
+    // setInviteLink(`http://121.88.130.215/${response.result.inviteLink}`);
+    setInviteLink(`${response.result.inviteLink}`);
   };
 
   const handleCopyLink = () => {
