@@ -6,6 +6,8 @@ import { Carousel, CarouselContent, CarouselItem } from '@/components/common/ui/
 import getWeekText from '@/utils/getWeekText';
 import useHomePageStore from '@/store/useHomePageStore';
 import { type CarouselApi } from '@/components/common/ui/carousel';
+import { getHouseworks } from '@/services/housework/getHouseworks';
+import { PAGE_SIZE } from '@/constants/common';
 
 const WeeklyDate = () => {
   const [activeWeek, setActiveWeek] = useState(new Date());
@@ -13,8 +15,8 @@ const WeeklyDate = () => {
   const [currWeek, setCurrWeek] = useState<WeekDates[]>([]);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-
-  const { setWeekText } = useHomePageStore();
+  const [pageNumber, setPageNumber] = useState(0);
+  const { setWeekText, setHouseworks, currentGroup } = useHomePageStore();
 
   useEffect(() => {
     const weekDates = getWeekDates(activeWeek);
@@ -37,9 +39,16 @@ const WeeklyDate = () => {
     });
   }, [api, current]);
 
-  const handleActiveDate = (date: string) => {
+  const handleActiveDate = async (date: string) => {
     setActiveDate(date);
     // 추후에 해당 날짜 집안일 리스트 불러오기
+    const getHouseworksResult = await getHouseworks({
+      channelId: currentGroup.channelId,
+      targetDate: date,
+      pageNumber: pageNumber,
+      pageSize: PAGE_SIZE,
+    });
+    setHouseworks(getHouseworksResult.result.responses);
   };
 
   const changeWeek = (direction: 'next' | 'previous') => {
