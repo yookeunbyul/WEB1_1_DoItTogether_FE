@@ -88,14 +88,20 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
 
   return (
     <div className='flex h-screen flex-col gap-3 overflow-hidden'>
-      <div className='p-5'>
-        <BackBtn handleClick={setPrevStep} />
-      </div>
+      {step <= 4 && (
+        <>
+          <div className='p-5'>
+            <BackBtn handleClick={setPrevStep} />
+          </div>
+          <Progress value={(step / 5) * 100} className='mb-8' />
+        </>
+      )}
 
-      <Progress value={(step / 5) * 100} className='mb-8' />
       <div className='flex h-screen flex-col gap-8 px-5'>
         {loading ? (
-          <LoadingScreen username={username} isCompleted={isCompleted} />
+          <div className='h-full pt-28'>
+            <LoadingScreen username={username} isCompleted={isCompleted} />
+          </div>
         ) : (
           <>
             {/* TODO STEP 동일구조라서 hook 으로 사용 고려 */}
@@ -127,7 +133,11 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
                 handleAnswer={handleAnswer}
               />
             )}
-            {step === 5 && <Step5 title={`${username}님의 청소성향은`} results={result} />}
+            {step === 5 && (
+              <div className='h-full pt-28'>
+                <Step5 title={`${username}님의 청소성향은`} results={result} />
+              </div>
+            )}
           </>
         )}
 
