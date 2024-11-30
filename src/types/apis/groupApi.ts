@@ -43,8 +43,6 @@ export interface CreateInviteLinkRes extends BaseRes {
 
 /** 특정 유저 추방 */
 export interface KickUserReq {
-  /** 그룹 아이디 */
-  channelId: number;
   /** 유저 이메일 */
   email: string;
 }
