@@ -1,4 +1,6 @@
 import { BaseRes } from '@/types/apis/baseResponse';
+import { Common } from '@/types/apis/commonApi';
+import { Group } from 'lucide-react';
 
 /**
  * --------------------------------------------------
@@ -9,28 +11,20 @@ import { BaseRes } from '@/types/apis/baseResponse';
  */
 
 /** 그룹 정보 */
-export interface Group {
-  /** 그룹 아이디 */
-  channelId: number;
+export interface Group extends Pick<Common, 'channelId'> {
   /** 그룹명 */
   name: string;
 }
 
 /** 그룹 생성 */
-export interface CreateGroupReq {
-  /** 그룹명 */
-  name: string;
-}
+export interface CreateGroupReq extends Pick<Group, 'name'> {}
 
 export interface CreateGroupRes extends BaseRes {
   result: Group;
 }
 
 /** 초대 링크(코드) 생성 */
-export interface CreateInviteLinkReq {
-  /** 그룹 아이디 */
-  channelId: number;
-}
+export interface CreateInviteLinkReq extends Pick<Group, 'channelId'> {}
 
 export interface CreateInviteLinkRes extends BaseRes {
   result: {
@@ -42,9 +36,7 @@ export interface CreateInviteLinkRes extends BaseRes {
 }
 
 /** 특정 유저 추방 */
-export interface KickUserReq {
-  /** 그룹 아이디 */
-  channelId: number;
+export interface KickUserReq extends Pick<Group, 'channelId'> {
   /** 유저 이메일 */
   email: string;
 }
@@ -59,17 +51,14 @@ export interface KickUserRes extends BaseRes {
 }
 
 /** 일반 참가자가 채널 나가기 */
-export interface LeaveGroupReq {
-  /** 그룹 아이디 */
-  channelId: number;
-}
+export interface LeaveGroupReq extends Pick<Group, 'channelId'> {}
 
 export interface LeaveGroupRes extends BaseRes {
   result?: {};
 }
 
 /** 그룹명 변경 */
-export interface ChangeGroupNameReq {
+export interface ChangeGroupNameReq extends Pick<Group, 'channelId'> {
   /** 변경될 그룹명 */
   name: string;
 }
