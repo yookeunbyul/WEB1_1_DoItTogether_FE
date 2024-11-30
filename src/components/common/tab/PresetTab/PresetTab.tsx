@@ -21,7 +21,7 @@ interface PresetTabProps {
   handleDeleteClick?: (itemId: number) => void;
   isBottomSheet?: boolean;
   handleClick?: (id: number, description: string, category: string) => void;
-  selectedItem: number | null;
+  selectedItem?: number | null;
 }
 
 const PresetTab: React.FC<PresetTabProps> = ({
