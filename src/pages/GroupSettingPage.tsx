@@ -11,6 +11,8 @@ import { User } from '@/types/apis/groupApi';
 import { postBanUser } from '@/services/setting/postBanUser';
 import { deleteGroupUser } from '@/services/setting/deleteGroupUser';
 import useHomePageStore from '@/store/useHomePageStore';
+import { putChangeGroupName } from '@/services/setting/putChangeGroupName';
+import { toast } from '@/hooks/use-toast';
 
 const GroupSettingPage = () => {
   const navigate = useNavigate();
@@ -40,9 +42,16 @@ const GroupSettingPage = () => {
   };
 
   // 여기서 그룹 이름 수정 시 저장 처리
-  const handleDone = () => {
-    console.log(groupName);
-    console.log('완료');
+  const handleDone = async () => {
+    await putChangeGroupName({
+      channelId: currentGroup.channelId,
+      name: groupName,
+    });
+
+    setIsEdited(false);
+    toast({
+      title: '그룹 이름이 변경되었어요',
+    });
   };
 
   // 바텀시트 문구 체크
@@ -140,7 +149,7 @@ const GroupSettingPage = () => {
           handleClick={handleSheet}
         />
         <InviteLinkWithLabel />
-        <div className='flex flex-col gap-2'>
+        <div className='flex flex-col gap-2 pb-6'>
           <p className='text-14'>프리셋 관리</p>
           <Button
             variant='full'
