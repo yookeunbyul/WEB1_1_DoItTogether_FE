@@ -6,11 +6,14 @@ import GroupSelectSheet from '@/components/home/GroupSelectSheet/GroupSelectShee
 import useHomePageStore from '@/store/useHomePageStore';
 import getWeekText from '@/utils/getWeekText';
 import { DUMMY_HOUSEWORKS } from '@/mock/mockHomePage';
+import { useParams } from 'react-router-dom';
+import { getMyGroup } from '@/services/groupSelect/getMyGroup';
 
 const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('전체');
   const [houseworkList, setHouseworkList] = useState(DUMMY_HOUSEWORKS);
-  const { setWeekText } = useHomePageStore();
+  const { setWeekText, setCurrentGroup, setGroups } = useHomePageStore();
+  const { channelId } = useParams();
 
   const chargers = [
     { name: '전체' },
@@ -20,7 +23,18 @@ const HomePage: React.FC = () => {
   ];
 
   useEffect(() => {
+    const fetchMyGroups = async () => {
+      const getMyGroupResult = await getMyGroup();
+      const myGroups = getMyGroupResult.result.channelList;
+      setGroups(myGroups);
+      if (channelId) {
+        const currentGroup = myGroups.find(group => group.channelId === Number(channelId));
+        setCurrentGroup(currentGroup!);
+      }
+    };
+
     setWeekText(getWeekText(new Date()));
+    fetchMyGroups();
   }, []);
 
   const handleAction = (id: number) => {

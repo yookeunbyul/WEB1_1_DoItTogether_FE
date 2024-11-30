@@ -2,7 +2,7 @@ import React from 'react';
 import useHomePageStore from '@/store/useHomePageStore';
 
 const GroupSelectBtn: React.FC = ({}) => {
-  const { groupName, setIsGroupSelectSheetOpen } = useHomePageStore();
+  const { currentGroup, setIsGroupSelectSheetOpen } = useHomePageStore();
 
   return (
     <>
@@ -11,7 +11,7 @@ const GroupSelectBtn: React.FC = ({}) => {
         onClick={() => setIsGroupSelectSheetOpen(true)}
       >
         <div className='h-4 w-4 rounded-full bg-gray01'></div>
-        <div className='pl-2'>{groupName}</div>
+        <div className='pl-2'>{currentGroup.name}</div>
       </button>
     </>
   );

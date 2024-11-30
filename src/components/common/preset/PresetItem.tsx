@@ -10,6 +10,7 @@ export interface PresetItemProps extends HouseworkCategoryTagProps {
   isShowDeleteBtn?: boolean;
   handleSettingClick?: () => void;
   handleDeleteClick?: () => void;
+  isSelected?: boolean;
 }
 
 const PresetItem: React.FC<PresetItemProps> = ({
@@ -20,6 +21,7 @@ const PresetItem: React.FC<PresetItemProps> = ({
   isShowDeleteBtn,
   handleSettingClick,
   handleDeleteClick,
+  isSelected,
 }) => {
   return (
     <li
@@ -29,7 +31,7 @@ const PresetItem: React.FC<PresetItemProps> = ({
       onClick={handleSelectClick}
     >
       <div className='flex items-center'>
-        <HouseworkCategoryTag category={category} />
+        <HouseworkCategoryTag category={category} isSelected={isSelected} />
         <p className='pl-4 text-14'>{housework}</p>
       </div>
       {isInPresetSetting && (

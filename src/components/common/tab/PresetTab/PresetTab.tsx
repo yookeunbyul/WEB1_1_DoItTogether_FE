@@ -1,6 +1,7 @@
 import PresetItem from '@/components/common/preset/PresetItem';
 import PresetTabItem from '@/components/common/tab/PresetTab/PresetTabItem';
 import { Tabs, TabsContent, TabsList } from '@/components/common/ui/tabs';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { Category as PresetCategory } from '@/constants/Category';
 
 interface PresetItem {
@@ -20,6 +21,8 @@ interface PresetTabProps {
   handleSettingClick?: (itemId: number) => void;
   handleDeleteClick?: (itemId: number) => void;
   isBottomSheet?: boolean;
+  handleClick?: (id: number, description: string, category: string) => void;
+  selectedItem: number | null;
 }
 
 const PresetTab: React.FC<PresetTabProps> = ({
@@ -29,11 +32,9 @@ const PresetTab: React.FC<PresetTabProps> = ({
   handleSettingClick,
   handleDeleteClick,
   isBottomSheet = false,
+  handleClick,
+  selectedItem,
 }) => {
-  const handleClick = (item: string) => {
-    console.log(item);
-  };
-
   const allPresetData = {
     category: PresetCategory.ALL,
     items: data.flatMap(category =>
@@ -59,11 +60,14 @@ const PresetTab: React.FC<PresetTabProps> = ({
             <PresetItem
               category={item.category}
               housework={item.description}
-              handleSelectClick={() => handleClick(item.description)}
+              handleSelectClick={() =>
+                handleClick && handleClick(item.id, item.description, item.category)
+              }
               isInPresetSetting={isInPresetSetting}
               isShowDeleteBtn={deleteButtonStates[item.id]} //각 아이템의 boolean값이 들어간다.
               handleSettingClick={handleSettingClick && (() => handleSettingClick(item.id))}
               handleDeleteClick={handleDeleteClick && (() => handleDeleteClick(item.id))}
+              isSelected={selectedItem === item.id}
             />
           </div>
         ))}
@@ -80,11 +84,14 @@ const PresetTab: React.FC<PresetTabProps> = ({
               <PresetItem
                 category={tabData.category}
                 housework={item.description}
-                handleSelectClick={() => handleClick(item.description)}
+                handleSelectClick={() =>
+                  handleClick && handleClick(item.id, item.description, tabData.category)
+                }
                 isInPresetSetting={isInPresetSetting}
                 isShowDeleteBtn={deleteButtonStates[item.id]} //각 아이템의 boolean값이 들어간다.
                 handleSettingClick={handleSettingClick && (() => handleSettingClick(item.id))}
                 handleDeleteClick={handleDeleteClick && (() => handleDeleteClick(item.id))}
+                isSelected={selectedItem === item.id}
               />
             </div>
           ))}

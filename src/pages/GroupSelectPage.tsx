@@ -6,15 +6,15 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useHomePageStore from '@/store/useHomePageStore';
 import { getMyGroup } from '@/services/groupSelect/getMyGroup';
+import { Group } from '@/types/apis/groupApi';
 
 const GroupSelectPage = () => {
   const navigate = useNavigate();
-  const { setGroupName, groups, setGroups } = useHomePageStore();
+  const { setCurrentGroup, groups, setGroups } = useHomePageStore();
 
   useEffect(() => {
     const fetchMyGroup = async () => {
       const groups = await getMyGroup();
-      console.log(groups.result.channelList);
       setGroups(groups.result.channelList);
     };
 
@@ -27,9 +27,9 @@ const GroupSelectPage = () => {
   const handleInvitedBtnClick = () => {
     navigate('/group/invite-receive');
   };
-  const handleClick = (group: string) => {
-    setGroupName(group);
-    navigate('/main');
+  const handleClick = (group: Group) => {
+    setCurrentGroup(group);
+    navigate(`/main/${group.channelId}`);
   };
 
   return (
@@ -42,7 +42,7 @@ const GroupSelectPage = () => {
             <OpenSheetBtn
               key={group.channelId}
               text={group.name}
-              handleClick={() => handleClick(group.name)}
+              handleClick={() => handleClick(group)}
               type='groupSelect'
             />
           ))

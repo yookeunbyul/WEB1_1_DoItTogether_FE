@@ -8,7 +8,7 @@ const GroupOptions: React.FC = ({}) => {
   return (
     <ul className='flex flex-col gap-y-6 px-5 pb-14 pt-8'>
       {groups.map(group => (
-        <GroupOption key={group} groupName={group} />
+        <GroupOption key={group.channelId} group={group} />
       ))}
     </ul>
   );

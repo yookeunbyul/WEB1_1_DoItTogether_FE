@@ -2,8 +2,8 @@ import { create } from 'zustand';
 import { Group } from '@/types/apis/groupApi';
 
 interface HomePageState {
-  groupName: string;
-  setGroupName: (groupName: string) => void;
+  currentGroup: Group;
+  setCurrentGroup: (group: Group) => void;
 
   isGroupSelectSheetOpen: boolean;
   setIsGroupSelectSheetOpen: (isOpen: boolean) => void;
@@ -16,8 +16,8 @@ interface HomePageState {
 }
 
 const useHomePageStore = create<HomePageState>(set => ({
-  groupName: '기본 그룹명',
-  setGroupName: name => set({ groupName: name }),
+  currentGroup: { channelId: 0, name: '기본 그룹명' },
+  setCurrentGroup: group => set({ currentGroup: group }),
 
   isGroupSelectSheetOpen: false,
   setIsGroupSelectSheetOpen: isOpen => set({ isGroupSelectSheetOpen: isOpen }),
