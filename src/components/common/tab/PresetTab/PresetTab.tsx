@@ -1,7 +1,6 @@
 import PresetItem from '@/components/common/preset/PresetItem';
 import PresetTabItem from '@/components/common/tab/PresetTab/PresetTabItem';
 import { Tabs, TabsContent, TabsList } from '@/components/common/ui/tabs';
-import { Dispatch, SetStateAction, useState } from 'react';
 import { Category as PresetCategory } from '@/constants/Category';
 
 interface PresetItem {
