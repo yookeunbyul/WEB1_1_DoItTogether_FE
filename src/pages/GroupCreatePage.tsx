@@ -5,7 +5,7 @@ import GroupCreateStep2 from '@/components/group/create/GroupCreateStep2';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postCreateGroup } from '@/services/groupSelect/postCreateGroup';
-import { postCreateInviteLink } from '@/services/groupSelect/postCreateInviteLink';
+import { postCreateInviteLink } from '@/services/common/postCreateInviteLink';
 
 type StepType = 'roomName' | 'invite';
 
@@ -24,7 +24,7 @@ const GroupCreatePage = () => {
   const handleNext = async () => {
     if (roomName.trim()) {
       const createResult = await postCreateGroup({ name: roomName });
-      const createLink = await postCreateInviteLink(createResult.result.channelId);
+      const createLink = await postCreateInviteLink({ channelId: createResult.result.channelId });
       setInviteLink(createLink.result.inviteLink);
       setChannelId(createResult.result.channelId);
       setStep('invite');
