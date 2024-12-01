@@ -3,16 +3,17 @@ import {
   deletePresetItem,
   getAllCategoryName,
   postCreatePresetItem,
+  getAllCategoryList,
 } from '@/services/setting/preset';
 import usePresetSettingStore from '@/store/usePresetSettingStore';
 import { useNavigate } from 'react-router-dom';
-import { mockData } from '@/mock/mockPresetSettingPage';
 import { PresetDefault, PresetTabName } from '@/constants';
 import useHomePageStore from '@/store/useHomePageStore';
 
 const usePresetSetting = () => {
   const navigate = useNavigate();
-  const { setCategoryList, setDeleteButtonStates, activeTab } = usePresetSettingStore();
+  const { setCategoryList, setDeleteButtonStates, activeTab, setPresetData } =
+    usePresetSettingStore();
   const { currentGroup } = useHomePageStore();
   const channelId = currentGroup.channelId;
 
@@ -30,6 +31,24 @@ const usePresetSetting = () => {
     }
   };
 
+  useEffect(() => {
+    getPresetData();
+  }, [activeTab]);
+
+  const getPresetData = async () => {
+    setPresetData([]);
+    if (activeTab === PresetTabName.USER_DATA) {
+      try {
+        const response = await getAllCategoryList({ channelId });
+        setPresetData(response.result.presetCategoryList);
+      } catch (error) {
+        console.error('프리셋 리스트 조회 오류: ', error);
+      }
+    } else {
+      setPresetData(PresetDefault);
+    }
+  };
+
   const handleAddInput = async (name: string, presetCategoryId: number) => {
     try {
       await postCreatePresetItem({
@@ -37,6 +56,8 @@ const usePresetSetting = () => {
         presetCategoryId,
         name,
       });
+      // 업데이트된 아이템 리스트 조회
+      await getPresetData();
     } catch (error) {
       console.error('프리셋 아이템 추가 오류: ', error);
     }
@@ -57,6 +78,8 @@ const usePresetSetting = () => {
 
     try {
       await deletePresetItem({ channelId, presetItemId });
+      // 업데이트된 아이템 리스트 조회
+      await getPresetData();
     } catch (error) {
       console.error('프리셋 아이템 삭제 오류: ', error);
     }
@@ -66,16 +89,11 @@ const usePresetSetting = () => {
     navigate(-1);
   };
 
-  const getPresetData = () => {
-    return activeTab === PresetTabName.USER_DATA ? mockData.userData : PresetDefault;
-  };
-
   return {
     handleAddInput,
     handleSettingClick,
     handleDeleteClick,
     handleBack,
-    getPresetData,
   };
 };
 

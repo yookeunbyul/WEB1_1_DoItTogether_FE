@@ -8,7 +8,7 @@ export const getAllCategoryList = async (
 ) => {
   try {
     const response = await axiosInstance.get<GetAllPresetListRes>(
-      `/api/v1/channels/${data.channelId}/presets/keywords`,
+      `/api/v1/channels/${data.channelId}/presets/categories/items`,
       { params }
     );
     return response.data;
