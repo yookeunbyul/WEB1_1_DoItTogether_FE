@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { Group } from '@/types/apis/groupApi';
 import { Housework } from '@/types/apis/houseworkApi';
+import getFormattedDate from '@/utils/getFormattedDate';
 
 interface HomePageState {
   currentGroup: Group;
@@ -17,6 +18,12 @@ interface HomePageState {
 
   houseworks: Array<Housework>;
   setHouseworks: (newHouseworks: Array<Housework>) => void;
+
+  activeDate: string;
+  setActiveDate: (newDate: string) => void;
+
+  homePageNumber: number;
+  setHomePageNumber: (newPage: number) => void;
 }
 
 const useHomePageStore = create<HomePageState>(set => ({
@@ -34,6 +41,12 @@ const useHomePageStore = create<HomePageState>(set => ({
 
   houseworks: [],
   setHouseworks: newHouseworks => set({ houseworks: newHouseworks }),
+
+  activeDate: getFormattedDate(new Date()),
+  setActiveDate: newDate => set({ activeDate: newDate }),
+
+  homePageNumber: 0,
+  setHomePageNumber: newPageNumber => set({ homePageNumber: newPageNumber }),
 }));
 
 export default useHomePageStore;
