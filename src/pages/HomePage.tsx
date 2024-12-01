@@ -12,12 +12,7 @@ import { PAGE_SIZE } from '@/constants/common';
 import { getHouseworks } from '@/services/housework/getHouseworks';
 import { deleteHousework } from '@/services/housework/deleteHouswork';
 import { useQuery } from '@tanstack/react-query';
-
-/**
- * todo
- * 무한 스크롤 구현
- * housework는 전역 상태가 아니라 리액트 쿼리로 관리?
- */
+import { useToast } from '@/hooks/use-toast';
 
 const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('전체');
@@ -30,10 +25,12 @@ const HomePage: React.FC = () => {
     data: houseworks,
     error,
     isLoading,
+    refetch,
   } = useQuery({
     queryKey: ['houseworks', channelId, activeDate],
     queryFn: async () => await fetchHouseworks(activeDate),
   });
+  const { toast } = useToast();
 
   useEffect(() => {
     const fetchMyGroups = async () => {
@@ -79,26 +76,19 @@ const HomePage: React.FC = () => {
   };
 
   const handleAction = (id: number) => {
-    /**
-     * todo
-     * 해당 id에 해당하는 집안일 완료 처리
-     */
+    // 해당 id에 해당하는 집안일 완료 처리
   };
+
   const handleEdit = () => {
-    /**
-     * todo
-     * 해당 id에 해당하는 집안일을 집안일 추가페이지에 보내줌
-     * navigate로 라우팅하는데 파라미터를 집안일 id를 넘겨주면 됨
-     */
+    // 해당 id에 해당하는 집안일을 집안일 추가페이지에 보내줌
     console.log('edit');
   };
+
   const handleDelete = async (houseworkId: number) => {
-    /**
-     * todo
-     * 해당 id에 해당하는 집안일 삭제 처리
-     */
     const newChannelId = Number(channelId);
-    const deleteHouseworkResult = await deleteHousework({ channelId: newChannelId, houseworkId });
+    await deleteHousework({ channelId: newChannelId, houseworkId });
+    toast({ title: '집안일이 삭제되었습니다!' });
+    refetch();
   };
 
   return (
