@@ -8,9 +8,9 @@ import usePresetSetting from '@/hooks/usePresetSetting';
 import usePresetSettingStore from '@/store/usePresetSettingStore';
 
 const PresetSettingPage = () => {
-  const { categoryList, activeTab, setActiveTab, deleteButtonStates } = usePresetSettingStore();
-  const { handleAddInput, handleSettingClick, handleDeleteClick, handleBack, getPresetData } =
-    usePresetSetting();
+  const { categoryList, activeTab, setActiveTab, deleteButtonStates, presetData } =
+    usePresetSettingStore();
+  const { handleAddInput, handleSettingClick, handleDeleteClick, handleBack } = usePresetSetting();
 
   return (
     <div className='flex min-h-screen flex-col'>
@@ -26,7 +26,7 @@ const PresetSettingPage = () => {
         <>
           <div className='mt-5 flex-1'>
             <PresetTab
-              data={getPresetData()}
+              presetData={presetData}
               isPresetSettingCustom={true}
               deleteButtonStates={deleteButtonStates}
               handleSettingClick={handleSettingClick}
@@ -39,7 +39,7 @@ const PresetSettingPage = () => {
         </>
       ) : (
         <div className='mt-5 flex-1'>
-          <PresetTab data={getPresetData()} isPresetSettingCustom={false} />
+          <PresetTab presetData={presetData} isPresetSettingCustom={false} />
         </div>
       )}
     </div>

@@ -2,8 +2,20 @@ import { create } from 'zustand';
 import { Category, PresetTabName } from '@/constants';
 
 interface Category {
+  // 프리셋 카테고리 아이디
   presetCategoryId: number;
+  // 프리셋 카테고리 이름
   category: string;
+}
+
+interface PresetItem {
+  // 프리셋 아이템 아이디
+  presetItemId: number;
+  // 프리셋 아이템 이름
+  name: string;
+}
+interface PresetList extends Category {
+  presetItemList: Array<PresetItem>;
 }
 
 interface PresetState {
@@ -27,6 +39,9 @@ interface PresetState {
   setDeleteButtonStates: (
     updateFn: (prevState: Record<number, boolean>) => Record<number, boolean>
   ) => void;
+  // 프리셋 리스트 데이터
+  presetData: PresetList[];
+  setPresetData: (presetData: PresetList[]) => void;
 }
 
 const usePresetSettingStore = create<PresetState>(set => ({
@@ -47,6 +62,8 @@ const usePresetSettingStore = create<PresetState>(set => ({
   deleteButtonStates: {},
   setDeleteButtonStates: updateFn =>
     set(state => ({ deleteButtonStates: updateFn(state.deleteButtonStates) })),
+  presetData: [],
+  setPresetData: (presetData: PresetList[]) => set({ presetData }),
 }));
 
 export default usePresetSettingStore;
