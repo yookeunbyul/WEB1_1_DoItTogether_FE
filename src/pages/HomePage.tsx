@@ -47,10 +47,6 @@ const HomePage: React.FC = () => {
     fetchMyGroups();
   }, []);
 
-  /**
-   * todo
-   * 집안일도 다시 패치해와야 함
-   */
   useEffect(() => {
     const fetchGroupUsers = async () => {
       if (!channelId) return;
@@ -73,7 +69,6 @@ const HomePage: React.FC = () => {
         pageNumber: homePageNumber,
         pageSize: PAGE_SIZE,
       });
-      console.log(getHouseworksResult);
       setHouseworks(getHouseworksResult.result.responses);
     };
 
