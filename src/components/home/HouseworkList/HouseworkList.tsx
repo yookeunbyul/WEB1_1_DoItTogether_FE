@@ -4,9 +4,9 @@ import { Housework } from '@/types/apis/houseworkApi';
 
 export interface HouseworkListProps {
   items: Housework[];
-  handleAction: (id: number) => void;
-  handleEdit: () => void;
-  handleDelete: (id: number) => void;
+  handleAction: (houseworkId: number) => void;
+  handleEdit: (houseworkId: number) => void;
+  handleDelete: (houseworkId: number) => void;
 }
 
 const HouseworkList: React.FC<HouseworkListProps> = ({

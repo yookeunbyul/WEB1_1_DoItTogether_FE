@@ -13,24 +13,20 @@ import { getHouseworks } from '@/services/housework/getHouseworks';
 import { deleteHousework } from '@/services/housework/deleteHouswork';
 import { useQuery } from '@tanstack/react-query';
 import { useToast } from '@/hooks/use-toast';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('전체');
-
   const { setWeekText, setCurrentGroup, setGroups, activeDate, homePageNumber } =
     useHomePageStore();
   const { channelId } = useParams();
   const [chargers, setChargers] = useState<{ name: string }[]>([{ name: '전체' }]);
-  const {
-    data: houseworks,
-    error,
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data: houseworks, refetch } = useQuery({
     queryKey: ['houseworks', channelId, activeDate],
     queryFn: async () => await fetchHouseworks(activeDate),
   });
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMyGroups = async () => {
@@ -75,13 +71,13 @@ const HomePage: React.FC = () => {
     return getHouseworksResult.result.responses;
   };
 
-  const handleAction = (id: number) => {
+  const handleAction = (houseworkId: number) => {
     // 해당 id에 해당하는 집안일 완료 처리
+    console.log(houseworkId);
   };
 
-  const handleEdit = () => {
-    // 해당 id에 해당하는 집안일을 집안일 추가페이지에 보내줌
-    console.log('edit');
+  const handleEdit = (houseworkId: number) => {
+    navigate(`/add-housework/edit/${channelId}/${houseworkId}/step1`);
   };
 
   const handleDelete = async (houseworkId: number) => {
