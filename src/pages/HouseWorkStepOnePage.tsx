@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@/components/common/button/Button/Button';
 import OpenSheetBtn from '@/components/common/button/OpenSheetBtn/OpenSheetBtn';
@@ -9,6 +9,7 @@ import DueDateSheet from '@/components/housework/DueDateSheet/DueDateSheet';
 import TimeControl from '@/components/housework/TimeControl/TimeControl';
 import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 import useHomePageStore from '@/store/useHomePageStore';
+import { useParams } from 'react-router-dom';
 
 export interface SelectedTime {
   hour: string;
@@ -23,8 +24,14 @@ const HouseWorkStepOnePage = () => {
   const [isHouseWorkSheetOpen, setHouseWorkSheetOpen] = useState(false);
   const [isDueDateSheetOpen, setDueDateSheetOpen] = useState(false);
   const [time, setTime] = useState<SelectedTime | null>(startTime);
+  const { channelId, houseworkId } = useParams();
 
-  console.log('전역:', task, category, startDate, startTime);
+  useEffect(() => {
+    if (channelId && houseworkId) {
+      // todo
+      // task, category, startDate, startTime을 미리 채워넣으면 됨
+    }
+  }, []);
 
   const handleBackClick = () => {
     navigate(`/main/${currentGroup.channelId}`);
