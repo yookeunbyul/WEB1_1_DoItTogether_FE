@@ -3,6 +3,7 @@ import ListActionBtn from '../ListActionBtn/ListActionBtn';
 import HouseworkCategoryTag from '@/components/common/tag/HouseworkCatetoryTag/HouseworkCategoryTag';
 import ControlDropdown from '@/components/home/ControlDropdown/ControlDropdown';
 import { Housework } from '@/types/apis/houseworkApi';
+import { HOUSEWORK_STATUS } from '@/constants/homePage';
 
 export interface HouseworkListItemProps extends Housework {
   handleAction: (id: number) => void;
@@ -23,7 +24,7 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
 }) => {
   return (
     <li
-      className={`flex list-none items-center rounded-2xl border border-solid ${status === 'complete' ? `bg-gray03` : `bg-black02`} p-5 text-white01`}
+      className={`flex list-none items-center rounded-2xl border border-solid ${status === HOUSEWORK_STATUS.COMPLETE ? `bg-gray03` : `bg-black02`} p-5 text-white01`}
     >
       <ListActionBtn
         actionStatus={status}
@@ -33,7 +34,9 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
       <div className='flex w-full justify-between pl-4'>
         <div className='flex flex-col items-start justify-center gap-2'>
           <div className='flex items-center gap-2'>
-            <p className={`text-18 ${status === 'COMPLETE' && 'line-through'}`}>{task}</p>
+            <p className={`text-18 ${status === HOUSEWORK_STATUS.COMPLETE && 'line-through'}`}>
+              {task}
+            </p>
             <HouseworkCategoryTag category={category} status={status} isDark={true} />
           </div>
 
