@@ -5,15 +5,30 @@ import HouseworkList from '@/components/home/HouseworkList/HouseworkList';
 import GroupSelectSheet from '@/components/home/GroupSelectSheet/GroupSelectSheet';
 import useHomePageStore from '@/store/useHomePageStore';
 import getWeekText from '@/utils/getWeekText';
-import { DUMMY_HOUSEWORKS } from '@/mock/mockHomePage';
 import { useParams } from 'react-router-dom';
 import { getMyGroup } from '@/services/groupSelect/getMyGroup';
 import { getGroupUser } from '@/services/setting/getGroupUser';
+import { PAGE_SIZE } from '@/constants/common';
+import { getHouseworks } from '@/services/housework/getHouseworks';
+
+/**
+ * todo
+ * 무한 스크롤 구현
+ * housework는 전역 상태가 아니라 리액트 쿼리로 관리?
+ */
 
 const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('전체');
-  const [houseworkList, setHouseworkList] = useState(DUMMY_HOUSEWORKS);
-  const { setWeekText, setCurrentGroup, setGroups } = useHomePageStore();
+
+  const {
+    setWeekText,
+    setCurrentGroup,
+    setGroups,
+    houseworks,
+    setHouseworks,
+    activeDate,
+    homePageNumber,
+  } = useHomePageStore();
   const { channelId } = useParams();
   const [chargers, setChargers] = useState<{ name: string }[]>([{ name: '전체' }]);
 
@@ -32,6 +47,10 @@ const HomePage: React.FC = () => {
     fetchMyGroups();
   }, []);
 
+  /**
+   * todo
+   * 집안일도 다시 패치해와야 함
+   */
   useEffect(() => {
     const fetchGroupUsers = async () => {
       if (!channelId) return;
@@ -45,27 +64,42 @@ const HomePage: React.FC = () => {
       ];
       setChargers(newChargers);
     };
+
+    const fetchHouseworks = async (date: string) => {
+      const newChannelId = Number(channelId);
+      const getHouseworksResult = await getHouseworks({
+        channelId: newChannelId,
+        targetDate: date,
+        pageNumber: homePageNumber,
+        pageSize: PAGE_SIZE,
+      });
+      console.log(getHouseworksResult);
+      setHouseworks(getHouseworksResult.result.responses);
+    };
+
     fetchGroupUsers();
-  }, [channelId]);
+    fetchHouseworks(activeDate);
+  }, [channelId, activeDate]);
 
   const handleAction = (id: number) => {
-    setHouseworkList(
-      houseworkList.map(housework => {
-        if (housework.id === id) {
-          return {
-            ...housework,
-            actionStatus: housework.actionStatus === 'complete' ? 'incomplete' : 'complete',
-          };
-        }
-        return housework;
-      })
-    );
+    /**
+     * todo
+     * 해당 id에 해당하는 집안일 완료 처리
+     */
   };
   const handleEdit = () => {
+    /**
+     * todo
+     * 해당 id에 해당하는 집안일을 집안일 추가페이지에 보내줌
+     * navigate로 라우팅하는데 파라미터를 집안일 id를 넘겨주면 됨
+     */
     console.log('edit');
   };
   const handleDelete = (id: number) => {
-    setHouseworkList(houseworkList.filter(housework => housework.id !== id));
+    /**
+     * todo
+     * 해당 id에 해당하는 집안일 삭제 처리
+     */
   };
 
   return (
@@ -77,7 +111,7 @@ const HomePage: React.FC = () => {
         chargers={chargers}
       />
       <HouseworkList
-        items={houseworkList.filter(item => item.charger === activeTab || activeTab === '전체')}
+        items={houseworks.filter(item => item.assignee === activeTab || activeTab === '전체')}
         handleAction={handleAction}
         handleEdit={handleEdit}
         handleDelete={handleDelete}
