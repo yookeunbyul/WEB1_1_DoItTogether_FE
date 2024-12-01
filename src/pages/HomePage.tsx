@@ -10,6 +10,8 @@ import { getMyGroup } from '@/services/groupSelect/getMyGroup';
 import { getGroupUser } from '@/services/setting/getGroupUser';
 import { PAGE_SIZE } from '@/constants/common';
 import { getHouseworks } from '@/services/housework/getHouseworks';
+import { deleteHousework } from '@/services/housework/deleteHouswork';
+import { useQuery } from '@tanstack/react-query';
 
 /**
  * todo
@@ -20,17 +22,18 @@ import { getHouseworks } from '@/services/housework/getHouseworks';
 const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('전체');
 
-  const {
-    setWeekText,
-    setCurrentGroup,
-    setGroups,
-    houseworks,
-    setHouseworks,
-    activeDate,
-    homePageNumber,
-  } = useHomePageStore();
+  const { setWeekText, setCurrentGroup, setGroups, activeDate, homePageNumber } =
+    useHomePageStore();
   const { channelId } = useParams();
   const [chargers, setChargers] = useState<{ name: string }[]>([{ name: '전체' }]);
+  const {
+    data: houseworks,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ['houseworks', channelId, activeDate],
+    queryFn: async () => await fetchHouseworks(activeDate),
+  });
 
   useEffect(() => {
     const fetchMyGroups = async () => {
@@ -61,20 +64,19 @@ const HomePage: React.FC = () => {
       setChargers(newChargers);
     };
 
-    const fetchHouseworks = async (date: string) => {
-      const newChannelId = Number(channelId);
-      const getHouseworksResult = await getHouseworks({
-        channelId: newChannelId,
-        targetDate: date,
-        pageNumber: homePageNumber,
-        pageSize: PAGE_SIZE,
-      });
-      setHouseworks(getHouseworksResult.result.responses);
-    };
-
     fetchGroupUsers();
-    fetchHouseworks(activeDate);
-  }, [channelId, activeDate]);
+  }, [channelId]);
+
+  const fetchHouseworks = async (date: string) => {
+    const newChannelId = Number(channelId);
+    const getHouseworksResult = await getHouseworks({
+      channelId: newChannelId,
+      targetDate: date,
+      pageNumber: homePageNumber,
+      pageSize: PAGE_SIZE,
+    });
+    return getHouseworksResult.result.responses;
+  };
 
   const handleAction = (id: number) => {
     /**
@@ -90,11 +92,13 @@ const HomePage: React.FC = () => {
      */
     console.log('edit');
   };
-  const handleDelete = (id: number) => {
+  const handleDelete = async (houseworkId: number) => {
     /**
      * todo
      * 해당 id에 해당하는 집안일 삭제 처리
      */
+    const newChannelId = Number(channelId);
+    const deleteHouseworkResult = await deleteHousework({ channelId: newChannelId, houseworkId });
   };
 
   return (
@@ -105,12 +109,15 @@ const HomePage: React.FC = () => {
         handleSetActiveTab={setActiveTab}
         chargers={chargers}
       />
-      <HouseworkList
-        items={houseworks.filter(item => item.assignee === activeTab || activeTab === '전체')}
-        handleAction={handleAction}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-      />
+      {houseworks && (
+        <HouseworkList
+          items={houseworks.filter(item => item.assignee === activeTab || activeTab === '전체')}
+          handleAction={handleAction}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+        />
+      )}
+
       <GroupSelectSheet />
     </div>
   );
