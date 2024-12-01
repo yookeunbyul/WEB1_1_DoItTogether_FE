@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import DateItem from './DateItem/DateItem';
 import getWeekDates, { WeekDates } from '@/utils/getWeekDates';
-import getFormattedDate from '@/utils/getFormattedDate';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/common/ui/carousel';
 import getWeekText from '@/utils/getWeekText';
 import useHomePageStore from '@/store/useHomePageStore';
@@ -9,12 +8,10 @@ import { type CarouselApi } from '@/components/common/ui/carousel';
 
 const WeeklyDate = () => {
   const [activeWeek, setActiveWeek] = useState(new Date());
-  const [activeDate, setActiveDate] = useState<string>(getFormattedDate(new Date()));
   const [currWeek, setCurrWeek] = useState<WeekDates[]>([]);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-
-  const { setWeekText } = useHomePageStore();
+  const { setWeekText, activeDate, setActiveDate } = useHomePageStore();
 
   useEffect(() => {
     const weekDates = getWeekDates(activeWeek);
@@ -37,9 +34,8 @@ const WeeklyDate = () => {
     });
   }, [api, current]);
 
-  const handleActiveDate = (date: string) => {
+  const handleActiveDate = async (date: string) => {
     setActiveDate(date);
-    // 추후에 해당 날짜 집안일 리스트 불러오기
   };
 
   const changeWeek = (direction: 'next' | 'previous') => {

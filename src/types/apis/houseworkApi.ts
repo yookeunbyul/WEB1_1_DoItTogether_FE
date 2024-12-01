@@ -1,7 +1,7 @@
 import { BaseRes } from '@/types/apis/baseResponse';
 import { Common } from '@/types/apis/commonApi';
 
-interface Housework {
+export interface Housework {
   /** 집안일 ID */
   houseworkId: number;
   /** 카테고리 이름 */
@@ -20,6 +20,8 @@ interface Housework {
   userId: number;
   /** 작업 담당자 assigneeId */
   assigneeId: number;
+  /** 완료 여부 */
+  status: string;
 }
 
 interface HouseworkCommonReq
