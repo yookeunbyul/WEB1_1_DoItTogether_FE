@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import {
+  deletePresetItem,
   getAllCategoryName,
   postCreateCategory,
   postCreatePresetItem,
@@ -66,12 +67,11 @@ const usePresetSetting = () => {
 
   const handleAddInput = async (name: string, presetCategoryId: number) => {
     try {
-      const response = await postCreatePresetItem({
+      await postCreatePresetItem({
         channelId,
         presetCategoryId,
         name,
       });
-      console.log(response);
     } catch (error) {
       console.error('프리셋 아이템 추가 오류: ', error);
     }
@@ -84,11 +84,17 @@ const usePresetSetting = () => {
     }));
   };
 
-  const handleDeleteClick = (itemId: number) => {
+  const handleDeleteClick = async (presetItemId: number) => {
     setDeleteButtonStates(prev => ({
       ...prev,
-      [itemId]: false,
+      [presetItemId]: false,
     }));
+
+    try {
+      await deletePresetItem({ channelId, presetItemId });
+    } catch (error) {
+      console.error('프리셋 아이템 삭제 오류: ', error);
+    }
   };
 
   const handleBack = () => {
