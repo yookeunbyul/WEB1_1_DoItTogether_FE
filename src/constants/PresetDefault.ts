@@ -1,4 +1,4 @@
-import { Category } from '@/constants/Category';
+import { Category } from '@/constants/category';
 
 export const PresetDefault = [
   {

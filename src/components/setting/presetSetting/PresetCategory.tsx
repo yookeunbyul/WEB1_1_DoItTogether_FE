@@ -6,7 +6,7 @@ interface Category {
 }
 interface PresetCategoryProps {
   activeCate: string;
-  handleCateClick: (cate: string) => void;
+  handleCateClick: (cate: string, categoryId: number) => void;
   categoryList: Category[];
 }
 
@@ -21,7 +21,7 @@ const PresetCategory: React.FC<PresetCategoryProps> = ({
         <button
           key={item.presetCategoryId}
           className={`pr-4 text-14 ${activeCate === item.category ? 'text-black01' : 'text-gray03'}`}
-          onClick={() => handleCateClick(item.category)}
+          onClick={() => handleCateClick(item.category, item.presetCategoryId)}
         >
           {item.category}
         </button>
