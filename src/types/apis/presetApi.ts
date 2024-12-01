@@ -40,8 +40,8 @@ export interface GetAllPresetCategoryRes extends BaseRes {
   };
 }
 
-/** 프리셋 리스트 정보 */
-export interface PresetList {
+/** 프리셋 키워드 리스트 정보 */
+export interface PresetKeywordList {
   /** 프리셋 카테고리 아이디 */
   presetCategoryId: number;
   /** 프리셋 카테고리 이름 */
@@ -55,11 +55,11 @@ export interface PresetList {
 }
 
 /** 전체 프리셋 키워드(카테고리-아이템) 리스트 조회 */
-export interface GetAllPresetListReq extends Pick<Common, 'channelId'> {}
-export interface GetAllPresetListRes extends BaseRes {
+export interface GetAllPresetKeywordListReq extends Pick<Common, 'channelId'> {}
+export interface GetAllPresetKeywordListRes extends BaseRes {
   result: {
     /** 프리셋 키워드(카테고리-아이템) 리스트 */
-    presetKeywordList: Array<PresetList>;
+    presetKeywordList: Array<PresetKeywordList>;
   };
 }
 
@@ -68,8 +68,7 @@ export interface PresetItem {
   /** 프리셋 아이템 아이디 */
   presetItemId: number;
   /** 프리셋 아이템 이름 */
-  // TODO 백엔드 키값 수정되면 여기도 수정 'name'
-  value: string;
+  name: string;
 }
 
 /** 특정 프리셋 카테고리의 프리셋 아이템 리스트 조회 */
@@ -115,5 +114,22 @@ export interface DeletePresetItemRes extends BaseRes {
   result: {
     /** 프리셋 아이템 아이디 */
     presetItemId: number;
+  };
+}
+
+/** 프리셋 리스트 정보 */
+export interface PresetList {
+  /** 프리셋 카테고리 아이디 */
+  presetCategoryId: number;
+  /** 프리셋 카테고리 이름 */
+  category: string;
+  presetItemList: Array<PresetItem>;
+}
+
+/** 전체 프리셋 카테고리와 해당 아이템 리스트 조회 */
+export interface GetAllPresetListReq extends Pick<Common, 'channelId'> {}
+export interface GetAllPresetListRes extends BaseRes {
+  result: {
+    presetCategoryList: Array<PresetList>;
   };
 }
