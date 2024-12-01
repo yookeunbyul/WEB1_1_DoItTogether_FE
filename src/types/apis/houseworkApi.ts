@@ -36,9 +36,9 @@ export interface AddHouseworkRes extends BaseRes {
 }
 
 // 집안일 수정
-export interface EditHouseworkReq extends HouseworkCommonReq, Pick<Housework, 'houseworkId'> {}
+export interface PutHouseworkReq extends HouseworkCommonReq, Pick<Housework, 'houseworkId'> {}
 
-export interface EditHouseworkRes extends BaseRes {
+export interface PutHouseworkRes extends BaseRes {
   result: {};
 }
 
