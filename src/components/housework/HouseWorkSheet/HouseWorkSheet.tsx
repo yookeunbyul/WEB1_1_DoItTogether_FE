@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BottomSheet from '@/components/common/bottomSheet/BottomSheet';
 import Button from '@/components/common/button/Button/Button';
 import PresetTab from '@/components/common/tab/PresetTab/PresetTab';
 import Tab from '@/components/common/tab/Tab/Tab';
 import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
-import { mockData } from '@/mock/mockPresetSettingPage';
 import { PresetDefault, PresetTabName } from '@/constants';
 import { convertTabNameToChargers } from '@/utils/convertUtils';
+import useHomePageStore from '@/store/useHomePageStore';
+import { getAllCategoryList } from '@/services/setting/preset';
 
 interface HouseWorkSheetProps {
   /** 바텀시트 오픈 여부 */
@@ -15,12 +16,49 @@ interface HouseWorkSheetProps {
   setOpen: (isOpen: boolean) => void;
 }
 
+interface PresetItem {
+  // 프리셋 아이템 아이디
+  presetItemId: number;
+  // 프리셋 아이템 이름
+  name: string;
+}
+interface PresetList {
+  // 프리셋 카테고리 아이디
+  presetCategoryId: number;
+  // 프리셋 카테고리 이름
+  category: string;
+  // 프리셋 아이템 리스트
+  presetItemList: Array<PresetItem>;
+}
+
 const HouseWorkSheet: React.FC<HouseWorkSheetProps> = ({ isOpen, setOpen }) => {
   const [activeTab, setActiveTab] = useState<string>(PresetTabName.PRESET_DATA);
+  const [presetData, setPresetData] = useState<PresetList[]>([]);
   const [selectedHouseWork, setSelectedHouseWork] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
   const { setTask, setCategory } = useAddHouseWorkStore();
+
+  // 현재 입장한 채널
+  const { currentGroup } = useHomePageStore();
+  const channelId = currentGroup.channelId;
+
+  useEffect(() => {
+    const getPresetData = async () => {
+      setPresetData([]);
+      if (activeTab === PresetTabName.USER_DATA) {
+        try {
+          const response = await getAllCategoryList({ channelId });
+          setPresetData(response.result.presetCategoryList);
+        } catch (error) {
+          console.error('프리셋 리스트 조회 오류: ', error);
+        }
+      } else {
+        setPresetData(PresetDefault);
+      }
+    };
+    getPresetData();
+  }, [activeTab]);
 
   const handleDoneClick = () => {
     if (selectedHouseWork) {
@@ -45,10 +83,6 @@ const HouseWorkSheet: React.FC<HouseWorkSheetProps> = ({ isOpen, setOpen }) => {
     }
   };
 
-  const getPresetData = () => {
-    return activeTab === PresetTabName.USER_DATA ? mockData.userData : PresetDefault;
-  };
-
   return (
     <BottomSheet isOpen={isOpen} setOpen={setOpen} title='집안일 선택'>
       <div className='flex min-h-96 flex-col gap-y-6 pb-6'>
@@ -61,7 +95,7 @@ const HouseWorkSheet: React.FC<HouseWorkSheetProps> = ({ isOpen, setOpen }) => {
             />
           </div>
           <PresetTab
-            data={getPresetData()}
+            presetData={presetData}
             isBottomSheet={true}
             handleClick={handleClick}
             selectedItem={selectedItem}
