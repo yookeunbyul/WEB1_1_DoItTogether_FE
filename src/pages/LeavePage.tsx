@@ -3,13 +3,15 @@ import Header from '@/components/common/header/Header';
 import { Checkbox } from '@/components/common/ui/checkbox';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const LeavePage = () => {
   const navigate = useNavigate();
+  const { channelId } = useParams();
   const [isChecked, setIsChecked] = useState(false);
 
   const handleBack = () => {
-    navigate('/my-page/account-manage');
+    navigate(`/my-page/account-manage/${channelId}`);
   };
 
   const handleCheckboxChange = () => {
