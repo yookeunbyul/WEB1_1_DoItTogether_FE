@@ -1,5 +1,5 @@
 interface ArrowLeftIconProps {
-  className: string;
+  className?: string;
 }
 
 const ArrowLeftIcon: React.FC<ArrowLeftIconProps> = ({ className }) => {

@@ -10,18 +10,16 @@ import { getGroupUser } from '@/services/group/getGroupUser';
 import { User } from '@/types/apis/groupApi';
 import { postBanUser } from '@/services/group/postBanUser';
 import { deleteGroupUser } from '@/services/group/deleteGroupUser';
-import useHomePageStore from '@/store/useHomePageStore';
 import { putChangeGroupName } from '@/services/group/putChangeGroupName';
 import { toast } from '@/hooks/use-toast';
 import { useParams } from 'react-router-dom';
 
 const GroupSettingPage = () => {
   const navigate = useNavigate();
-  const { currentGroup } = useHomePageStore();
   const { channelId: strChannelId } = useParams();
 
   // TODO: group name api에서 받아오기
-  const [groupName, setGroupName] = useState(currentGroup.name);
+  const [groupName, setGroupName] = useState('');
   const [isEdited, setIsEdited] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -41,8 +39,9 @@ const GroupSettingPage = () => {
       try {
         const response = await getGroupUser({ channelId });
 
-        // TODO: 나중에는 토큰값으로 확인
+        setGroupName(response.result.name);
         setMembers(response.result.userList);
+        // TODO: 나중에는 토큰값으로 확인
         const current = response.result.userList.find(user => user.email === 'gaeun@gmail.com');
         setCurrentUser(current || null);
         setIsLoading(false);
@@ -61,12 +60,12 @@ const GroupSettingPage = () => {
 
   const handleGroupNameChange = (value: string) => {
     setGroupName(value);
-    setIsEdited(value !== currentGroup.name);
+    setIsEdited(value !== groupName);
   };
 
   const handleDone = async () => {
     await putChangeGroupName({
-      channelId: currentGroup.channelId,
+      channelId: channelId,
       name: groupName,
     });
 
@@ -126,6 +125,10 @@ const GroupSettingPage = () => {
   const handleClose = () => {
     setIsOpen(false);
   };
+
+  if (isLoading) {
+    return <div>로딩 컴포넌트 나중에 넣자</div>;
+  }
 
   return (
     <>

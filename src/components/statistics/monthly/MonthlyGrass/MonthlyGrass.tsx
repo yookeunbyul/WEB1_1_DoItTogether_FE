@@ -1,4 +1,6 @@
 import Calendar from 'react-calendar';
+import { ArrowLeftIcon, ArrowRightIcon } from '@/components/common/icon';
+import { useState } from 'react';
 
 enum CompletionStatus {
   ALL_DONE = 'ALL_DONE',
@@ -22,6 +24,9 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ completionData, onMonthChan
   const today = new Date();
   const firstDayCurrentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
   const lastDayPreviousMonth = new Date(firstDayCurrentMonth.getTime() - 1);
+
+  const [currentDate, setCurrentDate] = useState(lastDayPreviousMonth);
+  const maxDate = lastDayPreviousMonth;
 
   const getStatus = (date: Date): CompletionStatus => {
     const dateString = date.toLocaleDateString('en-CA');
@@ -60,9 +65,25 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ completionData, onMonthChan
       locale='ko'
       minDetail='month'
       maxDetail='month'
-      onActiveStartDateChange={handleMonthChange}
+      onActiveStartDateChange={props => {
+        if (props.activeStartDate) {
+          setCurrentDate(props.activeStartDate);
+          handleMonthChange(props);
+        }
+      }}
       navigationLabel={({ date }) => `${date.getFullYear()}년 ${date.getMonth() + 1}월`}
       formatDay={(_locale, date) => date.getDate().toString()}
+      prevLabel={<ArrowLeftIcon />}
+      nextLabel={
+        <ArrowRightIcon
+          className={`text-main transition-colors ${
+            currentDate.getFullYear() === maxDate.getFullYear() &&
+            currentDate.getMonth() >= maxDate.getMonth()
+              ? 'opacity-30'
+              : ''
+          }`}
+        />
+      }
     />
   );
 };
