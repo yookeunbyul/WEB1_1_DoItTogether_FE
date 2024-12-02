@@ -13,12 +13,14 @@ import { deleteGroupUser } from '@/services/group/deleteGroupUser';
 import useHomePageStore from '@/store/useHomePageStore';
 import { putChangeGroupName } from '@/services/group/putChangeGroupName';
 import { toast } from '@/hooks/use-toast';
+import { useParams } from 'react-router-dom';
 
 const GroupSettingPage = () => {
   const navigate = useNavigate();
   const { currentGroup } = useHomePageStore();
+  const { channelId } = useParams();
 
-  // TODO: group name 전역에서 받아오기
+  // TODO: group name api에서 받아오기
   const [groupName, setGroupName] = useState(currentGroup.name);
   const [isEdited, setIsEdited] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -32,6 +34,27 @@ const GroupSettingPage = () => {
   const [selectedMember, setSelectedMember] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchGroupMembers = async () => {
+      try {
+        const response = await getGroupUser({ channelId: newChannelId });
+
+        // TODO: 나중에는 토큰값으로 확인
+        setMembers(response.result.userList);
+        const current = response.result.userList.find(user => user.email === 'gaeun@gmail.com');
+        setCurrentUser(current || null);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('멤버 조회 실패:', error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchGroupMembers();
+  }, []);
+
+  const newChannelId = Number(channelId);
+
   const handleMovePreset = () => {
     navigate('/group-setting/preset-setting');
   };
@@ -41,7 +64,6 @@ const GroupSettingPage = () => {
     setIsEdited(value !== currentGroup.name);
   };
 
-  // 여기서 그룹 이름 수정 시 저장 처리
   const handleDone = async () => {
     await putChangeGroupName({
       channelId: currentGroup.channelId,
@@ -80,18 +102,17 @@ const GroupSettingPage = () => {
   // 멤버 방출 or 나가기 처리
   const handleExit = async (member: User) => {
     try {
-      const channelId = currentGroup.channelId;
       // TODO: 나중에는 토큰값으로 확인
       const isCurrentUser = member.email === 'gaeun@gmail.com';
 
       console.log(member);
       if (isAdmin && !isCurrentUser) {
         // 관리자가 다른 멤버를 방출하는 경우
-        await postBanUser({ channelId: channelId, email: member.email });
+        await postBanUser({ channelId: newChannelId, email: member.email });
         setMembers(prev => prev.filter(m => m.email !== member.email));
       } else {
         // 자신이 나가는 경우 (관리자든 일반 멤버든)
-        await deleteGroupUser({ channelId });
+        await deleteGroupUser({ channelId: newChannelId });
         navigate('/group-select');
       }
 
@@ -105,26 +126,6 @@ const GroupSettingPage = () => {
   const handleClose = () => {
     setIsOpen(false);
   };
-
-  useEffect(() => {
-    const fetchGroupMembers = async () => {
-      try {
-        const channelId = currentGroup.channelId;
-        const response = await getGroupUser({ channelId });
-
-        // TODO: 나중에는 토큰값으로 확인
-        setMembers(response.result.userList);
-        const current = response.result.userList.find(user => user.email === 'gaeun@gmail.com');
-        setCurrentUser(current || null);
-        setIsLoading(false);
-      } catch (error) {
-        console.error('멤버 조회 실패:', error);
-        setIsLoading(false);
-      }
-    };
-
-    fetchGroupMembers();
-  }, []);
 
   return (
     <>
