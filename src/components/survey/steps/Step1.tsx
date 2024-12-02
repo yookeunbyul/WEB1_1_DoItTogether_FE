@@ -40,7 +40,7 @@ const Step1: React.FC<Step1Props> = ({ title, questions, handleAnswer }) => {
         <SurveyTitle title={title} />
       </div>
 
-      <div className='flex flex-wrap gap-3'>
+      <div className='flex flex-wrap gap-4'>
         {questions.map(question => (
           <MenuSelect
             key={question}
