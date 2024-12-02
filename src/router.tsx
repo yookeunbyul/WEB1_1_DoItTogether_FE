@@ -125,19 +125,19 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: 'my-page/account-manage',
+        path: 'my-page/account-manage/:channelId',
         element: <AccountManagePage />,
       },
       {
-        path: 'my-page/leave',
+        path: 'my-page/leave/:channelId',
         element: <LeavePage />,
       },
       {
-        path: '/group-setting/preset-setting',
+        path: '/group-setting/:channelId/preset-setting',
         element: <PresetSettingPage />,
       },
       {
-        path: '/add-housework/step1',
+        path: '/add-housework/:channelId/step1',
         element: <HouseWorkStepOnePage />,
       },
       {
@@ -145,7 +145,7 @@ export const router = createBrowserRouter([
         element: <HouseWorkStepOnePage />,
       },
       {
-        path: '/add-housework/step2',
+        path: '/add-housework/:channelId/step2',
         element: <HouseWorkStepTwoPage />,
       },
     ],
