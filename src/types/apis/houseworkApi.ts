@@ -51,6 +51,15 @@ export interface DeleteHouseworkRes extends BaseRes {
   result: {};
 }
 
+// 집안일 상태 변경
+export interface ChangeHouseworkStatusReq
+  extends Pick<Common, 'channelId'>,
+    Pick<Housework, 'houseworkId'> {}
+
+export interface ChangeHouseworkStatusRes extends BaseRes {
+  result: {};
+}
+
 // 집안일 목록 조회
 export interface GetHouseworkReq extends Pick<Common, 'channelId'> {
   targetDate: string;
