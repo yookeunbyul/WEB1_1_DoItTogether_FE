@@ -150,7 +150,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/add-housework/edit/:channelId/:houseworkId/step2/',
-        element: <HouseWorkStepOnePage />,
+        element: <HouseWorkStepTwoPage />,
       },
     ],
   },
