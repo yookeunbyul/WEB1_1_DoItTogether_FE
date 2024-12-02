@@ -1,28 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import WeeklyStatDate from '@/components/statistics/weekly/WeeklyStatDate/WeeklyStatDate';
 import WeeklyCompletion from '@/components/statistics/weekly/WeeklyCompletion/WeeklyCompletion';
 import WeeklyStatActions from '@/components/statistics/weekly/WeeklyStatAction/WeeklyStatActions';
 import WeeklyRanking from '@/components/statistics/weekly/WeeklyRanking/WeeklyRanking';
 import { DUMMY_RANKING } from '@/components/statistics/weekly/WeeklyRanking/WeeklyRanking.stories';
+import useWeeklyStateStore from '@/store/useWeeklyStatisticsStore';
+import useWeeklyStatistics from '@/hooks/useWeeklyStatistics';
+import useHomePageStore from '@/store/useHomePageStore';
 
 const WeeklyStatisticsPage: React.FC = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const { currentDate, totalCountData } = useWeeklyStateStore();
+  const { handlePrevWeek, handleNextWeek } = useWeeklyStatistics();
+  const { currentGroup } = useHomePageStore();
 
-  const handlePrevWeek = () => {
-    setCurrentDate(prevDate => {
-      const newDate = new Date(prevDate);
-      newDate.setDate(newDate.getDate() - 7);
-      return newDate;
-    });
-  };
-
-  const handleNextWeek = () => {
-    setCurrentDate(prevDate => {
-      const newDate = new Date(prevDate);
-      newDate.setDate(newDate.getDate() + 7);
-      return newDate;
-    });
-  };
   return (
     <>
       <WeeklyStatDate
@@ -30,8 +20,15 @@ const WeeklyStatisticsPage: React.FC = () => {
         handlePrevWeek={handlePrevWeek}
         handleNextWeek={handleNextWeek}
       />
-      <WeeklyCompletion groupName='두잇투게더' completed={10} notCompleted={3} />
-      <WeeklyStatActions numOfCompliment={10} numOfTease={3} />
+      <WeeklyCompletion
+        groupName={currentGroup.name}
+        completed={totalCountData.completeCount}
+        notCompleted={totalCountData.notCompleteCount}
+      />
+      <WeeklyStatActions
+        numOfCompliment={totalCountData.complimentCount}
+        numOfTease={totalCountData.pokeCount}
+      />
       <WeeklyRanking rankings={DUMMY_RANKING} />
     </>
   );
