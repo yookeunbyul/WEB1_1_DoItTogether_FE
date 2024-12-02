@@ -1,3 +1,4 @@
+import { ArrowLeftIcon } from '@/components/common/icon';
 import React from 'react';
 
 export interface BackBtnProps {
@@ -7,10 +8,9 @@ export interface BackBtnProps {
 
 const BackBtn: React.FC<BackBtnProps> = ({ handleClick }) => {
   return (
-    <div
-      className='h-5 w-5 cursor-pointer border border-solid border-black02'
-      onClick={handleClick}
-    ></div>
+    <div onClick={handleClick}>
+      <ArrowLeftIcon className='text-gray6 cursor-pointer' />
+    </div>
   );
 };
 
