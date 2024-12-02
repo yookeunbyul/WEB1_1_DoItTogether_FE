@@ -1,3 +1,4 @@
+import { PlusIcon } from '@/components/common/icon';
 import React from 'react';
 
 interface AddHouseWorkBtnProps {
@@ -7,10 +8,10 @@ interface AddHouseWorkBtnProps {
 const AddHouseWorkBtn: React.FC<AddHouseWorkBtnProps> = ({ handleClick }) => {
   return (
     <button
-      className='h-12 w-12 rounded-full bg-custom-gradient text-white01'
+      className='flex h-12 w-12 items-center justify-center rounded-full bg-custom-gradient text-white01'
       onClick={handleClick}
     >
-      +
+      <PlusIcon className='text-white' />
     </button>
   );
 };
