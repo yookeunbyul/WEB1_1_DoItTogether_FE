@@ -8,9 +8,11 @@ import { useNavigate } from 'react-router-dom';
 import HouseWorkAddLoading from '@/components/housework/HouseworkAddLoading/HouseWorkAddLoading';
 import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 import useHomePageStore from '@/store/useHomePageStore';
+import { useParams } from 'react-router-dom';
 
 const HouseWorkStepTwoPage = () => {
   const navigate = useNavigate();
+  const { channelId, houseworkId } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { task, category, startDate, startTime, assigneeId, setAssigneeId, reset } =
@@ -21,7 +23,8 @@ const HouseWorkStepTwoPage = () => {
   console.log('전역:', task, category, startDate, startTime, assigneeId);
 
   const handleBackClick = () => {
-    navigate('/add-housework/step1');
+    if (houseworkId) navigate(`/add-housework/${channelId}/${houseworkId}/step1`);
+    else navigate(`/add-housework/${channelId}/step1`);
   };
 
   const handleNextClick = () => {

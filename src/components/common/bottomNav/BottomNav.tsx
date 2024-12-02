@@ -30,7 +30,7 @@ const BottomNav = () => {
         name={navItems[1].name}
         handleClick={() => handleClick(`/main/${channelId}/statistics/weekly`)}
       />
-      <AddHouseWorkBtn handleClick={() => handleClick('/add-housework/step1')} />
+      <AddHouseWorkBtn handleClick={() => handleClick(`/add-housework/${channelId}/step1`)} />
       <BottomNavBtn
         icon={navItems[2].icon}
         name={navItems[2].name}
