@@ -16,6 +16,7 @@ import {
   DUMMY_QUESTION_STEP4,
   DUMMY_RESULT,
 } from '@/constants/onBoarding';
+import { motion } from 'framer-motion';
 
 interface OnBoardingProps {}
 
@@ -40,6 +41,17 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
+  const item = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        duration: 0.5, // 0.3초 동안 애니메이션 실행
+        ease: 'easeIn', // 가속도 곡선 설정
+      },
+    },
+  };
+
   const setNextStep = () => {
     if (step === 4) {
       setLoading(true);
@@ -54,7 +66,7 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
         setTimeout(() => {
           setLoading(false);
         }, 1000);
-      }, 1000); // 1초 동안 메세지 표시
+      }, 2000); // 1초 동안 메세지 표시
     }
     if (step === 5) {
       navigate('/group-select');
@@ -89,15 +101,15 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
   return (
     <div className='flex h-screen flex-col gap-3 overflow-hidden'>
       {step <= 4 && (
-        <>
+        <motion.div variants={item} initial='hidden' animate='show'>
           <div className='p-5'>
             <BackBtn handleClick={setPrevStep} />
           </div>
           <Progress value={(step / 5) * 100} className='mb-8' />
-        </>
+        </motion.div>
       )}
 
-      <div className='flex h-screen flex-col gap-8 px-5'>
+      <motion.div className='flex h-screen flex-col gap-8 px-5'>
         {loading ? (
           <div className='h-full pt-28'>
             <LoadingScreen username={username} isCompleted={isCompleted} />
@@ -142,13 +154,13 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
         )}
 
         {!loading && (
-          <div className='bg-white sticky bottom-0 pb-6'>
+          <motion.div className='bg-white sticky bottom-0 pb-6'>
             <Button size={'large'} onClick={setNextStep} disabled={!isStepVaild()}>
               {step === 5 ? '완료' : '다음'}
             </Button>
-          </div>
+          </motion.div>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 };
