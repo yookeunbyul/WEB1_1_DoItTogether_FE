@@ -155,7 +155,12 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
 
         {!loading && (
           <motion.div className='bg-white sticky bottom-0 pb-6'>
-            <Button size={'large'} onClick={setNextStep} disabled={!isStepVaild()}>
+            <Button
+              size={'large'}
+              variant={!isStepVaild() ? 'disabled' : 'full'}
+              onClick={setNextStep}
+              disabled={!isStepVaild()}
+            >
               {step === 5 ? '완료' : '다음'}
             </Button>
           </motion.div>
