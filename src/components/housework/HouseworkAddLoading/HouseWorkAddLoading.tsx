@@ -1,14 +1,20 @@
 import TextTag from '@/components/common/tag/TextTag/TextTag';
-import { members } from '@/mock/addHousework';
+import { User } from '@/types/apis/groupApi';
 
 interface HouseWorkAddLoadingProps {
   date: string;
   housework: string;
   member: number | null;
+  members: User[];
 }
 
-const HouseWorkAddLoading: React.FC<HouseWorkAddLoadingProps> = ({ date, housework, member }) => {
-  const findNameByMember = members.find(mem => mem.id === member)?.name;
+const HouseWorkAddLoading: React.FC<HouseWorkAddLoadingProps> = ({
+  date,
+  housework,
+  member,
+  members,
+}) => {
+  const findNameByMember = members.find(mem => mem.userId === member)?.nickName;
   return (
     <div className='flex h-screen w-full max-w flex-col gap-4'>
       <p className='mt-16 text-24'>{date}에</p>

@@ -6,8 +6,8 @@ import Tab from '@/components/common/tab/Tab/Tab';
 import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 import { PresetDefault, PresetTabName } from '@/constants';
 import { convertTabNameToChargers } from '@/utils/convertUtils';
-import useHomePageStore from '@/store/useHomePageStore';
 import { getAllCategoryList } from '@/services/preset';
+import { useParams } from 'react-router-dom';
 
 interface HouseWorkSheetProps {
   /** 바텀시트 오픈 여부 */
@@ -32,16 +32,15 @@ interface PresetList {
 }
 
 const HouseWorkSheet: React.FC<HouseWorkSheetProps> = ({ isOpen, setOpen }) => {
+  const { setTask, setCategory, selectedItem, setSelectedItem } = useAddHouseWorkStore();
   const [activeTab, setActiveTab] = useState<string>(PresetTabName.PRESET_DATA);
   const [presetData, setPresetData] = useState<PresetList[]>([]);
   const [selectedHouseWork, setSelectedHouseWork] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedItem, setSelectedItem] = useState<number | null>(null);
-  const { setTask, setCategory } = useAddHouseWorkStore();
 
   // 현재 입장한 채널
-  const { currentGroup } = useHomePageStore();
-  const channelId = currentGroup.channelId;
+  const { channelId: strChannelId } = useParams();
+  const channelId = Number(strChannelId);
 
   useEffect(() => {
     const getPresetData = async () => {
@@ -60,27 +59,23 @@ const HouseWorkSheet: React.FC<HouseWorkSheetProps> = ({ isOpen, setOpen }) => {
     getPresetData();
   }, [activeTab]);
 
-  const handleDoneClick = () => {
-    if (selectedHouseWork) {
-      setTask(selectedHouseWork);
-    }
-    if (selectedCategory) {
-      setCategory(selectedCategory);
-    }
-    setOpen(false);
-  };
-
   const handleClick = (id: number, description: string, category: string) => {
-    setSelectedItem(selectedItem === id ? null : id); //id가 같으면 선택해제되도록
+    const isDeselecting = selectedItem === id;
+    setSelectedItem(isDeselecting ? null : id);
 
-    console.log(id, category);
-
-    if (setSelectedHouseWork) {
+    if (isDeselecting) {
+      setSelectedHouseWork(null);
+      setSelectedCategory(null);
+    } else {
       setSelectedHouseWork(description);
-    }
-    if (setSelectedCategory) {
       setSelectedCategory(category);
     }
+  };
+
+  const handleDoneClick = () => {
+    setTask(selectedHouseWork ?? '');
+    setCategory(selectedCategory ?? '');
+    setOpen(false);
   };
 
   return (

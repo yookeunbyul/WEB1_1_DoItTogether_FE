@@ -1,20 +1,21 @@
 import ManagerItem from '@/components/housework/ManagerSelectSheet/ManagerItem/ManagerItem';
-import { members } from '@/mock/addHousework';
 import { Dispatch, SetStateAction } from 'react';
+import { User } from '@/types/apis/groupApi';
 
 interface ManagerItemsProps {
   isAiCardOpen: boolean;
   setSelectedValue: Dispatch<SetStateAction<number | null>>;
   selectedValue: number | null;
+  members: User[];
 }
 
 const ManagerItems: React.FC<ManagerItemsProps> = ({
   isAiCardOpen,
   setSelectedValue,
   selectedValue,
+  members,
 }) => {
   const handleClick = (id: number) => {
-    console.log(id);
     if (selectedValue === id) {
       setSelectedValue(null); // 같은 아이템 클릭 시 선택 해제
     } else {
@@ -28,10 +29,10 @@ const ManagerItems: React.FC<ManagerItemsProps> = ({
     >
       {members.map(member => (
         <ManagerItem
-          key={member.id}
-          name={member.name}
-          handleClick={() => handleClick(member.id)}
-          selectState={selectedValue === member.id ? 'person' : 'default'}
+          key={member.userId}
+          name={member.nickName}
+          handleClick={() => handleClick(member.userId)}
+          selectState={selectedValue === member.userId ? 'person' : 'default'}
         />
       ))}
     </ul>

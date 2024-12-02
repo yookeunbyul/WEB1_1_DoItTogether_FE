@@ -12,11 +12,11 @@ interface DueDateSheetProps {
 }
 
 const DueDateSheet = ({ isOpen, setOpen }: DueDateSheetProps) => {
-  const [date, setDate] = useState<Date | undefined>(undefined);
-  const { setStartDate } = useAddHouseWorkStore();
+  const { setStartDate, selectedDate, setSelectedDate } = useAddHouseWorkStore();
   const handleDoneClick = () => {
-    if (date) {
-      const formattedDate = date
+    if (selectedDate) {
+      //string으로 전역저장(2024년 11월 30일)
+      const formattedDate = selectedDate
         .toLocaleDateString('ko-KR', {
           year: 'numeric',
           month: 'long',
@@ -24,20 +24,22 @@ const DueDateSheet = ({ isOpen, setOpen }: DueDateSheetProps) => {
         })
         .replace(' ', '');
       setStartDate(formattedDate);
+    } else {
+      setStartDate('');
     }
 
     setOpen(false);
   };
 
-  const handleDateSelect = (selectedDate: Date | undefined) => {
-    setDate(selectedDate);
+  const handleDateSelect = (date: Date | undefined) => {
+    setSelectedDate(date);
   };
 
   return (
     <BottomSheet isOpen={isOpen} setOpen={setOpen} title='날짜 선택'>
       <div className='mt-4 flex min-h-96 flex-col gap-y-6 pb-6'>
         <section aria-label='집안일 할당 바텀 시트' className='flex flex-1 flex-col gap-6'>
-          <Calendar mode='single' selected={date} onSelect={handleDateSelect} />
+          <Calendar mode='single' selected={selectedDate} onSelect={handleDateSelect} />
         </section>
         <div className='px-5'>
           <Button label='완료' variant='full' size='large' handleClick={handleDoneClick} />
