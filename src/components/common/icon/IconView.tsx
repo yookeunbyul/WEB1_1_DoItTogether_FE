@@ -33,7 +33,7 @@ import {
 
 const IconView = () => {
   return (
-    <div className='grid grid-cols-4 gap-6 p-6'>
+    <div className='grid grid-cols-2 gap-6 p-6'>
       <div className='flex flex-col items-center gap-2'>
         <p className='text-sm text-gray-600'>DotsIcon</p>
         <DotsIcon />
