@@ -1,4 +1,5 @@
-import CompletionDate from '@/components/statistics/monthly/Completion/Completion';
+import { ChartIcon, CheckFillIcon } from '@/components/common/icon';
+import Completion from '@/components/statistics/monthly/Completion/Completion';
 import MonthlyGoodBad from '@/components/statistics/monthly/MonthlyGoodBad/MonthlyGoodBad';
 import MonthlyGrass from '@/components/statistics/monthly/MonthlyGrass/MonthlyGrass';
 import { monthlyGoodBad } from '@/mock/monthlyGoodBad';
@@ -28,14 +29,14 @@ const MonthlyStatisticsPage = () => {
   return (
     <div className='flex flex-col gap-4'>
       <MonthlyGrass completionData={monthlyGrassData.dates} onMonthChange={handleMonthChange} />
-      <p className='text-gray1 font-label flex items-center gap-3'>
+      <p className='flex items-center gap-3 text-gray1 font-label'>
         이번달에는
         <p className='flex items-center gap-3'>
-          <span className='text-main flex items-center'>
-            <CompletionDate count={currentMonthStats.completionRate} color='text-main' />%
+          <span className='flex items-center text-main'>
+            <Completion count={currentMonthStats.completionRate} icon={<ChartIcon />} />%
           </span>
-          <span className='text-main flex items-center'>
-            <CompletionDate count={currentMonthStats.completedDays} color='text-main' />
+          <span className='flex items-center text-main'>
+            <Completion count={currentMonthStats.completedDays} icon={<CheckFillIcon />} />
             개의
           </span>
         </p>
