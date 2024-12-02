@@ -1,9 +1,9 @@
 import Calendar from 'react-calendar';
 
 enum CompletionStatus {
-  DONE = 'done',
-  SOSO = 'soso',
-  NO = 'no',
+  ALL_DONE = 'ALL_DONE',
+  INCOMPLETE_REMAINING = 'INCOMPLETE_REMAINING',
+  NO_HOUSEWORK = 'NO_HOUSEWORK',
 }
 
 interface DailyTask {
@@ -14,7 +14,7 @@ interface DailyTask {
 }
 
 interface MonthlyGrassProps {
-  completionData: { [key: string]: DailyTask };
+  completionData: DailyTask[];
   onMonthChange: (monthKey: string) => void;
 }
 
@@ -25,23 +25,23 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ completionData, onMonthChan
 
   const getStatus = (date: Date): CompletionStatus => {
     const dateString = date.toLocaleDateString('en-CA');
-    const dayData = completionData[dateString];
-    return dayData?.status || CompletionStatus.NO;
+    const dayData = completionData.find(data => data.date === dateString);
+    return dayData?.status || CompletionStatus.NO_HOUSEWORK;
   };
 
   const getTileClassName = ({ date }: { date: Date }): string => {
     const status = getStatus(date);
     switch (status) {
-      case CompletionStatus.DONE:
+      case CompletionStatus.ALL_DONE:
         return 'bg-[#1FCFBA] text-[#FDFDFD] rounded-lg font-body';
-      case CompletionStatus.SOSO:
+      case CompletionStatus.INCOMPLETE_REMAINING:
         return 'bg-[#8DE8D7] text-[#FDFDFD] rounded-full font-body';
       default:
         return 'bg-white03 text-[#B4B4B5] font-body';
     }
   };
 
-  // TODO: 나중에 여기서 api 호출 -> 현재 달 기준으로 전과 후
+  // TODO: 여기서 api 처리
   const handleMonthChange = ({ activeStartDate }: { activeStartDate: Date | null }) => {
     if (activeStartDate) {
       const year = activeStartDate.getFullYear();
