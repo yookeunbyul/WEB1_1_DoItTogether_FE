@@ -2,13 +2,18 @@ import { Badge } from '@/components/common/ui/badge';
 
 interface TextTagProps {
   /** 타입 */
-  type: 'darkfill' | 'grayfill';
+  type: 'darkfill' | 'grayfill' | 'secondary';
   /** 라벨 */
   label: string;
+  className: string;
 }
 
-const TextTag = ({ type, label }: TextTagProps) => {
-  return <Badge variant={type}>{label}</Badge>;
+const TextTag = ({ type, label, className }: TextTagProps) => {
+  return (
+    <Badge variant={type} className={className}>
+      {label}
+    </Badge>
+  );
 };
 
 export default TextTag;
