@@ -119,28 +119,28 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
             {/* TODO STEP 동일구조라서 hook 으로 사용 고려 */}
             {step === 1 && (
               <Step1
-                title={`집안일 청소는\n얼마나 자주 하세요?`}
+                title={`평소 정리정돈에 대해\n어떻게 생각하시나요?`}
                 questions={DUMMY_QUESTION_STEP1}
                 handleAnswer={handleAnswer}
               />
             )}
             {step === 2 && (
               <Step2
-                title={`주로 어떤 이유로\n청소를 하시나요?`}
+                title={`어떤 방식으로 일하는 것을\n선호하시나요?`}
                 questions={DUMMY_QUESTION_STEP2}
                 handleAnswer={handleAnswer}
               />
             )}
             {step === 3 && (
               <Step3
-                title={`청소할 때 가장 어려운 점은\n무엇인가요?`}
+                title={`주변 환경이\n작업에 얼마나 영향을 주나요?`}
                 questions={DUMMY_QUESTION_STEP3}
                 handleAnswer={handleAnswer}
               />
             )}
             {step === 4 && (
               <Step4
-                title={`청소할 때 최우선으로\n신경 쓰는 공간을 알려주세요!`}
+                title={`집안일을 할 때\n어떤 감정을 느끼시나요?`}
                 questions={DUMMY_QUESTION_STEP4}
                 handleAnswer={handleAnswer}
               />
