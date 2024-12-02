@@ -148,6 +148,10 @@ export const router = createBrowserRouter([
         path: '/add-housework/:channelId/step2',
         element: <HouseWorkStepTwoPage />,
       },
+      {
+        path: '/add-housework/edit/:channelId/:houseworkId/step2/',
+        element: <HouseWorkStepOnePage />,
+      },
     ],
   },
 ]);
