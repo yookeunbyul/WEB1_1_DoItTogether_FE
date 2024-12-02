@@ -44,7 +44,7 @@ const Step3: React.FC<Step3Props> = ({ title, questions, handleAnswer }) => {
         {questions.map(question => (
           <MenuSelect
             key={question}
-            type='tight'
+            type='large'
             status={activeItem === question ? 'active' : 'inActive'}
             content={question}
             handleSelect={() => handleSelect(question)}

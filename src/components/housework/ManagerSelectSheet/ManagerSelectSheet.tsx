@@ -54,8 +54,8 @@ const ManagerSelectSheet: React.FC<ManagerSelectSheetProps> = ({
           members={members}
         />
         <div className='flex gap-3 pb-6'>
-          <Button label='ai 선택' variant='outline' size='large' handleClick={handleClick} />
-          <Button label='완료' variant='full' size='large' handleClick={handleDoneClick} />
+          <Button label='ai 선택' variant='secondary' size='small' handleClick={handleClick} />
+          <Button label='완료' variant='full' size='small' handleClick={handleDoneClick} />
         </div>
       </div>
     </BottomSheet>
