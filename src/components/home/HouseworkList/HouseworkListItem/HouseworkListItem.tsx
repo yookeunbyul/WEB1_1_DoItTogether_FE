@@ -39,7 +39,10 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
             <p className={`text-18 ${status === HOUSEWORK_STATUS.COMPLETE && 'line-through'}`}>
               {task}
             </p>
-            <HouseworkCategoryTag category={category} status={status} isDark={true} />
+            <HouseworkCategoryTag
+              category={category}
+              variant={status === HOUSEWORK_STATUS.COMPLETE ? 'disabled' : 'primary'}
+            />
           </div>
 
           <p className='text-12'>{assignee}</p>
