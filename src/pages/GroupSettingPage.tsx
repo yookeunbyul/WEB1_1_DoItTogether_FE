@@ -6,12 +6,12 @@ import InputWithLabel from '@/components/common/input/InputWithLabel';
 import MemberItems from '@/components/setting/groupSetting/MemberItems/MemberItems';
 import InviteLinkWithLabel from '@/components/setting/groupSetting/InviteLink/InviteLinkWithLabel';
 import ExitSheet from '@/components/setting/ExitSheet/ExitSheet';
-import { getGroupUser } from '@/services/setting/getGroupUser';
+import { getGroupUser } from '@/services/group/getGroupUser';
 import { User } from '@/types/apis/groupApi';
-import { postBanUser } from '@/services/setting/postBanUser';
-import { deleteGroupUser } from '@/services/setting/deleteGroupUser';
+import { postBanUser } from '@/services/group/postBanUser';
+import { deleteGroupUser } from '@/services/group/deleteGroupUser';
 import useHomePageStore from '@/store/useHomePageStore';
-import { putChangeGroupName } from '@/services/setting/putChangeGroupName';
+import { putChangeGroupName } from '@/services/group/putChangeGroupName';
 import { toast } from '@/hooks/use-toast';
 
 const GroupSettingPage = () => {

@@ -3,7 +3,7 @@ import Header from '@/components/common/header/Header';
 import InputBox from '@/components/common/input/InputBox';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { postJoinGroup } from '@/services/groupSelect/postJoinGroup';
+import { postJoinGroup } from '@/services/group/postJoinGroup';
 import { useToast } from '@/hooks/use-toast';
 
 const GroupInviteReceivePage = () => {

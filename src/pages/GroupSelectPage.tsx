@@ -5,7 +5,7 @@ import OpenSheetBtn from '@/components/common/button/OpenSheetBtn/OpenSheetBtn';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useHomePageStore from '@/store/useHomePageStore';
-import { getMyGroup } from '@/services/groupSelect/getMyGroup';
+import { getMyGroup } from '@/services/group/getMyGroup';
 import { Group } from '@/types/apis/groupApi';
 
 const GroupSelectPage = () => {
