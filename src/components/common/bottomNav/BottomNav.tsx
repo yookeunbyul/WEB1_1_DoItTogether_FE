@@ -2,16 +2,17 @@ import { useNavigate } from 'react-router-dom';
 import AddHouseWorkBtn from './AddHouseWorkBtn/AddHouseWorkBtn';
 import BottomNavBtn from './BottomNavBtn/BottomNavBtn';
 import { useParams } from 'react-router-dom';
+import { ChartIcon, GroupIcon, HomeIcon, ProfileIcon } from '@/components/common/icon';
 
 const BottomNav = () => {
   const navigate = useNavigate();
   const { channelId } = useParams();
 
   const navItems = [
-    { name: '홈', icon: null },
-    { name: '통계', icon: null },
-    { name: '설정', icon: null },
-    { name: '마이', icon: null },
+    { name: '홈', icon: <HomeIcon /> },
+    { name: '통계', icon: <ChartIcon /> },
+    { name: '그룹', icon: <GroupIcon /> },
+    { name: '마이페이지', icon: <ProfileIcon /> },
   ];
 
   const handleClick = (path: string) => {
@@ -19,7 +20,7 @@ const BottomNav = () => {
   };
 
   return (
-    <div className='flex w-full max-w justify-between bg-white02 px-5 py-2'>
+    <div className='rounded-tr-4xl rounded-tl-4xl flex w-full max-w justify-between bg-white px-5 py-2 shadow-[0px_0px_7.2px_0px_rgba(217,250,245,1.0)]'>
       <BottomNavBtn
         icon={navItems[0].icon}
         name={navItems[0].name}
