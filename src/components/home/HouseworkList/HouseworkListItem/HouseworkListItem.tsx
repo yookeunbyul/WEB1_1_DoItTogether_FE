@@ -26,7 +26,7 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
 }) => {
   return (
     <li
-      className={`flex list-none items-center rounded-2xl border border-solid ${status === HOUSEWORK_STATUS.COMPLETE ? `bg-gray03` : `bg-black02`} p-5 text-white01`}
+      className={`flex list-none items-center rounded-2xl border border-solid ${status === HOUSEWORK_STATUS.COMPLETE ? `bg-gray03` : `bg-main`} p-5 text-white01`}
     >
       <ListActionBtn
         status={status}
@@ -36,7 +36,9 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
       <div className='flex w-full justify-between pl-4'>
         <div className='flex flex-col items-start justify-center gap-2'>
           <div className='flex items-center gap-2'>
-            <p className={`text-18 ${status === HOUSEWORK_STATUS.COMPLETE && 'line-through'}`}>
+            <p
+              className={`text-white03 font-head ${status === HOUSEWORK_STATUS.COMPLETE && 'line-through'}`}
+            >
               {task}
             </p>
             <HouseworkCategoryTag
@@ -45,7 +47,7 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
             />
           </div>
 
-          <p className='text-12'>{assignee}</p>
+          <p className='text-white font-caption'>{assignee}</p>
         </div>
         <div className='flex flex-col items-end justify-center gap-2'>
           <ControlDropdown
