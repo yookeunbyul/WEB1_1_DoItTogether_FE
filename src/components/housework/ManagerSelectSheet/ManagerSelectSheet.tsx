@@ -4,6 +4,7 @@ import BottomSheet from '@/components/common/bottomSheet/BottomSheet';
 import ManagerItems from '@/components/housework/ManagerSelectSheet/ManagerItem/ManagerItems';
 import Button from '@/components/common/button/Button/Button';
 import AiChoice from '@/components/housework/AiChoice/AiChoice';
+import { User } from '@/types/apis/groupApi';
 
 interface ManagerSelectSheetProps {
   /**바텀시트 오픈 여부 */
@@ -14,6 +15,7 @@ interface ManagerSelectSheetProps {
   handleDoneClick: () => void;
   setSelectedValue: Dispatch<SetStateAction<number | null>>;
   selectedValue: number | null;
+  members: User[];
 }
 
 const ManagerSelectSheet: React.FC<ManagerSelectSheetProps> = ({
@@ -22,6 +24,7 @@ const ManagerSelectSheet: React.FC<ManagerSelectSheetProps> = ({
   selectedValue,
   handleDoneClick,
   setSelectedValue,
+  members,
 }) => {
   const [isAiCardOpen, setIsAiCardOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -48,6 +51,7 @@ const ManagerSelectSheet: React.FC<ManagerSelectSheetProps> = ({
           isAiCardOpen={isAiCardOpen}
           setSelectedValue={setSelectedValue}
           selectedValue={selectedValue}
+          members={members}
         />
         <div className='flex gap-3 pb-6'>
           <Button label='ai 선택' variant='outline' size='large' handleClick={handleClick} />

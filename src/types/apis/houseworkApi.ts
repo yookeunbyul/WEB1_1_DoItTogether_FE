@@ -11,7 +11,7 @@ export interface Housework {
   /** 진행 날짜 */
   startDate: string;
   /** 진행 시간 */
-  startTime?: string;
+  startTime: string | null;
   /** 하루 종일 여부 */
   isAllDay: boolean;
   /** 작업 담당자 이름 */

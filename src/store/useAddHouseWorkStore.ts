@@ -7,7 +7,9 @@ interface AddHouseWorkState {
   task: string;
   startDate: string;
   startTime: SelectedTime | null;
-  assigneeId: number | null;
+  userId: number | null;
+  selectedItem: number | null;
+  selectedDate: Date | undefined;
 }
 
 interface AddHouseWorkActions {
@@ -16,7 +18,9 @@ interface AddHouseWorkActions {
   setTask: (task: string) => void;
   setStartDate: (date: string) => void;
   setStartTime: (time: SelectedTime | null) => void;
-  setAssigneeId: (id: number | null) => void;
+  setUserId: (id: number | null) => void;
+  setSelectedItem: (itemId: number | null) => void;
+  setSelectedDate: (date: Date | undefined) => void;
   reset: () => void;
 }
 
@@ -26,7 +30,9 @@ const initialState: AddHouseWorkState = {
   task: '',
   startDate: '',
   startTime: null,
-  assigneeId: null,
+  userId: null,
+  selectedItem: null,
+  selectedDate: undefined,
 };
 
 const useAddHouseWorkStore = create<AddHouseWorkState & AddHouseWorkActions>(set => ({
@@ -37,7 +43,9 @@ const useAddHouseWorkStore = create<AddHouseWorkState & AddHouseWorkActions>(set
   setTask: task => set({ task }),
   setStartDate: startDate => set({ startDate }),
   setStartTime: startTime => set({ startTime }),
-  setAssigneeId: assigneeId => set({ assigneeId }),
+  setUserId: userId => set({ userId }),
+  setSelectedItem: selectedItem => set({ selectedItem }),
+  setSelectedDate: selectedDate => set({ selectedDate }),
   reset: () => set(initialState),
 }));
 

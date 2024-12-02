@@ -8,7 +8,6 @@ import HouseWorkSheet from '@/components/housework/HouseWorkSheet/HouseWorkSheet
 import DueDateSheet from '@/components/housework/DueDateSheet/DueDateSheet';
 import TimeControl from '@/components/housework/TimeControl/TimeControl';
 import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
-import useHomePageStore from '@/store/useHomePageStore';
 import { useParams } from 'react-router-dom';
 
 export interface SelectedTime {
@@ -20,7 +19,6 @@ export interface SelectedTime {
 const HouseWorkStepOnePage = () => {
   const navigate = useNavigate();
   const { task, category, startDate, startTime, setStartTime } = useAddHouseWorkStore();
-  const { currentGroup } = useHomePageStore();
   const [isHouseWorkSheetOpen, setHouseWorkSheetOpen] = useState(false);
   const [isDueDateSheetOpen, setDueDateSheetOpen] = useState(false);
   const [time, setTime] = useState<SelectedTime | null>(startTime);
@@ -34,7 +32,7 @@ const HouseWorkStepOnePage = () => {
   }, []);
 
   const handleBackClick = () => {
-    navigate(`/main/${currentGroup.channelId}`);
+    navigate(`/main/${channelId}`);
   };
   const handleHouseWorkClick = () => {
     setHouseWorkSheetOpen(true);
@@ -44,17 +42,14 @@ const HouseWorkStepOnePage = () => {
   };
 
   const handleNextClick = () => {
-    if (time) {
-      setStartTime(time);
-    }
+    setStartTime(time);
+
     if (houseworkId) navigate(`/add-housework/${channelId}/${houseworkId}/step2`);
     else navigate(`/add-housework/${channelId}/step2`);
   };
 
   const handleTimeChange = (newTime: SelectedTime | null) => {
-    if (newTime) {
-      setTime(newTime);
-    }
+    setTime(newTime);
   };
 
   return (
