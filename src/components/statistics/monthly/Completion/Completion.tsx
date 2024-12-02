@@ -1,15 +1,15 @@
-interface CompletionDateProps {
+interface CompletionProps {
   count: number;
-  color?: string;
+  icon: React.ReactNode;
 }
 
-const CompletionDate: React.FC<CompletionDateProps> = ({ count, color = 'text-[#989393]' }) => {
+const Completion: React.FC<CompletionProps> = ({ count, icon }) => {
   return (
-    <div className={`font-label flex items-center gap-2 ${color}`}>
-      <i className='h-4 w-4 border border-solid border-black02'></i>
+    <div className={`flex items-center gap-1 font-label`}>
+      {icon}
       <p>{count}</p>
     </div>
   );
 };
 
-export default CompletionDate;
+export default Completion;
