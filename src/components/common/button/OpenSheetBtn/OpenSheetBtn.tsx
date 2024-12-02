@@ -14,7 +14,7 @@ const OpenSheetBtn: React.FC<OpenSheetBtnProps> = ({
   type,
 }: OpenSheetBtnProps) => {
   return (
-    <Button variant='select' size='full' className='!justify-between' onClick={handleClick}>
+    <Button variant='select' size='large' className='!justify-between' onClick={handleClick}>
       <div>{text}</div>
       <div>{type === 'housework' ? '+' : '>'}</div>
     </Button>
