@@ -14,6 +14,7 @@ import { deleteHousework } from '@/services/housework/deleteHouswork';
 import { useQuery } from '@tanstack/react-query';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
+import { changeHouseworkStatus } from '@/services/housework/changeHouseworkStatus';
 
 const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('전체');
@@ -71,9 +72,15 @@ const HomePage: React.FC = () => {
     return getHouseworksResult.result.responses;
   };
 
-  const handleAction = (houseworkId: number) => {
+  const handleAction = async (houseworkId: number) => {
     // 해당 id에 해당하는 집안일 완료 처리
     console.log(houseworkId);
+    const newChannelId = Number(channelId);
+    const houseworkStatusChangeResult = await changeHouseworkStatus({
+      channelId: newChannelId,
+      houseworkId,
+    });
+    console.log(houseworkStatusChangeResult);
   };
 
   const handleEdit = (houseworkId: number) => {
