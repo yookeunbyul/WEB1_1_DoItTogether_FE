@@ -89,6 +89,8 @@ export interface GetGroupUserRes extends BaseRes {
   result: {
     /** 그룹 아이디 */
     channelId: number;
+    /** 그룹 이름 */
+    name: string;
     /** 그룹 내의 모든 회원 리스트 */
     userList: Array<User>;
     /** 총 사용자 수 */
