@@ -32,13 +32,24 @@ const TimeControl: React.FC<TimeControlProps> = ({ onTimeChange }) => {
 
   return (
     <div className='flex flex-col gap-2 rounded-2xl border-[1px] border-solid border-white01 bg-white03 px-3 py-4 shadow-sm'>
-      <div className='flex items-center justify-between'>
+      <div className='font-body text-gray flex items-center justify-between'>
         {isAllday ? (
-          <Label htmlFor='time-mode'>하루종일 하기</Label>
+          <Label htmlFor='time-mode' className='flex items-center gap-4'>
+            <i className='text-main h-4 w-4 border border-solid'></i>
+            <p>하루종일 하기</p>
+          </Label>
         ) : (
-          <Label htmlFor='time-mode'>시작시간이 언제인가요?</Label>
+          <Label htmlFor='time-mode' className='text-main flex items-center gap-4'>
+            <i className='h-4 w-4 border border-solid'></i>
+            <p>시작시간이 언제인가요?</p>
+          </Label>
         )}
-        <Switch id='time-mode' checked={isAllday} onCheckedChange={handleSwitchChange} />
+        <Switch
+          id='time-mode'
+          checked={isAllday}
+          onCheckedChange={handleSwitchChange}
+          className='data-[state=checked]:bg-main data-[state=checked]:border-sub2 border'
+        />
       </div>
       {!isAllday && <TimePicker onTimeChange={handleTimeChange} initialTime={startTime} />}
     </div>
