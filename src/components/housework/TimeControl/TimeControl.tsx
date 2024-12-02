@@ -3,6 +3,8 @@ import { Label } from '@/components/common/ui/label';
 import { Switch } from '@/components/common/ui/switch';
 import TimePicker from '@/components/housework/TimeControl/TimePicker/TimePicker';
 import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
+import { cn } from '@/lib/utils';
+import { ClockIcon } from '@/components/common/icon';
 
 interface SelectedTime {
   hour: string;
@@ -38,16 +40,21 @@ const TimeControl: React.FC<TimeControlProps> = ({ onTimeChange }) => {
   };
 
   return (
-    <div className='flex flex-col gap-2 rounded-2xl border-[1px] border-solid border-white01 bg-white03 px-3 py-4 shadow-sm'>
-      <div className='font-body text-gray flex items-center justify-between'>
+    <div
+      className={cn(
+        'flex flex-col justify-center gap-2 rounded-2xl border-b-2 border-solid border-gray5 border-opacity-30 bg-white03 px-2',
+        isAllday ? 'h-14' : 'h-auto py-4'
+      )}
+    >
+      <div className='flex items-center justify-between text-gray font-body'>
         {isAllday ? (
           <Label htmlFor='time-mode' className='flex items-center gap-4'>
-            <i className='text-main h-4 w-4 border border-solid'></i>
+            <ClockIcon />
             <p>하루종일 하기</p>
           </Label>
         ) : (
-          <Label htmlFor='time-mode' className='text-main flex items-center gap-4'>
-            <i className='h-4 w-4 border border-solid'></i>
+          <Label htmlFor='time-mode' className='flex items-center gap-4 text-main'>
+            <ClockIcon />
             <p>시작시간이 언제인가요?</p>
           </Label>
         )}
@@ -55,7 +62,7 @@ const TimeControl: React.FC<TimeControlProps> = ({ onTimeChange }) => {
           id='time-mode'
           checked={isAllday}
           onCheckedChange={handleSwitchChange}
-          className='data-[state=checked]:bg-main data-[state=checked]:border-sub2 border'
+          className='border data-[state=checked]:border-sub2 data-[state=checked]:bg-main'
         />
       </div>
       {!isAllday && <TimePicker onTimeChange={handleTimeChange} initialTime={startTime} />}
