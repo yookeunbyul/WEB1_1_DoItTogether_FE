@@ -9,12 +9,13 @@ export default {
         Pretendard: ['Pretendard'],
       },
       backgroundImage: {
-        'custom-gradient': 'linear-gradient(to right, rgba(72, 77, 84, 0.5), rgba(72, 77, 84, 1))',
+        'custom-gradient': 'linear-gradient(to bottom, #1FCFBA 50%, #FFFFFF 100%)',
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+        '4xl': '1.875rem',
       },
       colors: {
         background: 'hsl(var(--background))',
