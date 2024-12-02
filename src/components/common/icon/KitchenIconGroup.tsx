@@ -23,7 +23,7 @@ const KitchenIconGroup: React.FC<KitchenIconGroupProps> = ({}) => {
         <path
           d='M163.905 57.1111C167.384 51.0846 165.32 43.3786 159.293 39.8993L115.926 14.8615C109.9 11.3821 102.194 13.4469 98.7147 19.4733L85.5794 42.2244L150.77 79.8621L163.905 57.1111Z'
           fill='#00A18E'
-          fill-opacity='0.7'
+          fillOpacity='0.7'
         />
         <path
           d='M155.896 87.876L76.3878 41.9716L45.9638 94.6676C42.083 101.389 44.386 109.985 51.1078 113.865L106.275 145.716C112.996 149.597 121.592 147.294 125.472 140.572L155.896 87.876Z'
@@ -39,9 +39,9 @@ const KitchenIconGroup: React.FC<KitchenIconGroupProps> = ({}) => {
           y2='21.7317'
           gradientUnits='userSpaceOnUse'
         >
-          <stop offset='0.5' stop-color='#8DE8D7' />
-          <stop offset='0.947356' stop-color='#1FCFBA' />
-          <stop offset='0.947456' stop-color='#09AF9B' />
+          <stop offset='0.5' stopColor='#8DE8D7' />
+          <stop offset='0.947356' stopColor='#1FCFBA' />
+          <stop offset='0.947456' stopColor='#09AF9B' />
         </linearGradient>
       </defs>
     </svg>
