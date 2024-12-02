@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import AddHouseWorkBtn from './AddHouseWorkBtn/AddHouseWorkBtn';
 import BottomNavBtn from './BottomNavBtn/BottomNavBtn';
-import useHomePageStore from '@/store/useHomePageStore';
+import { useParams } from 'react-router-dom';
 
 const BottomNav = () => {
   const navigate = useNavigate();
-  const { currentGroup } = useHomePageStore();
+  const { channelId } = useParams();
 
   const navItems = [
     { name: '홈', icon: null },
@@ -23,23 +23,23 @@ const BottomNav = () => {
       <BottomNavBtn
         icon={navItems[0].icon}
         name={navItems[0].name}
-        handleClick={() => handleClick(`/main/${currentGroup.channelId}`)}
+        handleClick={() => handleClick(`/main/${channelId}`)}
       />
       <BottomNavBtn
         icon={navItems[1].icon}
         name={navItems[1].name}
-        handleClick={() => handleClick(`/main/${currentGroup.channelId}/statistics/weekly`)}
+        handleClick={() => handleClick(`/main/${channelId}/statistics/weekly`)}
       />
       <AddHouseWorkBtn handleClick={() => handleClick('/add-housework/step1')} />
       <BottomNavBtn
         icon={navItems[2].icon}
         name={navItems[2].name}
-        handleClick={() => handleClick(`/main/${currentGroup.channelId}/group-setting`)}
+        handleClick={() => handleClick(`/main/${channelId}/group-setting`)}
       />
       <BottomNavBtn
         icon={navItems[3].icon}
         name={navItems[3].name}
-        handleClick={() => handleClick(`/main/${currentGroup.channelId}/my-page`)}
+        handleClick={() => handleClick(`/main/${channelId}/my-page`)}
       />
     </div>
   );
