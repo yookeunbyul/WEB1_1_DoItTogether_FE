@@ -40,7 +40,7 @@ const HouseWorkStepTwoPage = () => {
   console.log('전역:', task, category, startDate, startTime, userId);
 
   const handleBackClick = () => {
-    if (houseworkId) navigate(`/add-housework/${channelId}/${houseworkId}/step1`);
+    if (houseworkId) navigate(`/add-housework/edit/${channelId}/${houseworkId}/step1`);
     else navigate(`/add-housework/${channelId}/step1`);
   };
 
