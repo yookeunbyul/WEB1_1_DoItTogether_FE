@@ -97,6 +97,7 @@ export default {
       gray2: '#B4B4B5',
       gray3: '#DFDDDD',
       gray4: '#F2F8F6',
+      kakao: '#FEE500',
     },
     fontSize: {
       10: '0.625rem', // 삭제
