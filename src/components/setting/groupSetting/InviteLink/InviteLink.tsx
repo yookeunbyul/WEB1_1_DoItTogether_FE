@@ -2,7 +2,7 @@ import { useState } from 'react';
 import React from 'react';
 import { useToast } from '@/hooks/use-toast';
 import useHomePageStore from '@/store/useHomePageStore';
-import { postCreateInviteLink } from '@/services/common/postCreateInviteLink';
+import { postCreateInviteLink } from '@/services/group/postCreateInviteLink';
 
 interface InviteLinkProps {
   initialLink?: string;

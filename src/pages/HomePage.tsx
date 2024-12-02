@@ -6,8 +6,8 @@ import GroupSelectSheet from '@/components/home/GroupSelectSheet/GroupSelectShee
 import useHomePageStore from '@/store/useHomePageStore';
 import getWeekText from '@/utils/getWeekText';
 import { useParams } from 'react-router-dom';
-import { getMyGroup } from '@/services/groupSelect/getMyGroup';
-import { getGroupUser } from '@/services/setting/getGroupUser';
+import { getMyGroup } from '@/services/group/getMyGroup';
+import { getGroupUser } from '@/services/group/getGroupUser';
 import { PAGE_SIZE } from '@/constants/common';
 import { getHouseworks } from '@/services/housework/getHouseworks';
 import { deleteHousework } from '@/services/housework/deleteHouswork';

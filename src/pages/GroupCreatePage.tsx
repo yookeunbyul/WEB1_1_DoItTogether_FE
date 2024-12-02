@@ -4,8 +4,8 @@ import GroupCreateStep1 from '@/components/group/create/GroupCreateStep1';
 import GroupCreateStep2 from '@/components/group/create/GroupCreateStep2';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { postCreateGroup } from '@/services/groupSelect/postCreateGroup';
-import { postCreateInviteLink } from '@/services/common/postCreateInviteLink';
+import { postCreateGroup } from '@/services/group/postCreateGroup';
+import { postCreateInviteLink } from '@/services/group/postCreateInviteLink';
 
 type StepType = 'roomName' | 'invite';
 
