@@ -71,8 +71,8 @@ const TimePicker: React.FC<TimePickerProps> = ({ onTimeChange, initialTime }) =>
   }, [selectedTime, onTimeChange]);
 
   return (
-    <div className='flex justify-center gap-4'>
-      <div className='h-48 w-20'>
+    <div className='flex w-full justify-center px-8'>
+      <div className='h-48 flex-1'>
         <Wheel
           initIdx={initialTime ? getInitialHourIndex(initialTime.hour) : 0}
           length={12}
@@ -81,9 +81,10 @@ const TimePicker: React.FC<TimePickerProps> = ({ onTimeChange, initialTime }) =>
           setValue={formatHour}
           perspective='center'
           onDragEnd={handleHourDragEnd}
+          className='rounded-l-lg'
         />
       </div>
-      <div className='h-48 w-20'>
+      <div className='h-48 flex-1'>
         <Wheel
           initIdx={initialTime ? getInitialMinuteIndex(initialTime.minute) : 0}
           length={12}
@@ -94,7 +95,7 @@ const TimePicker: React.FC<TimePickerProps> = ({ onTimeChange, initialTime }) =>
           onDragEnd={handleMinuteDragEnd}
         />
       </div>
-      <div className='h-48 w-20'>
+      <div className='h-48 flex-1'>
         <Wheel
           initIdx={initialTime ? getInitialAMPMIndex(initialTime.ampm) : 0}
           length={2}
@@ -103,6 +104,7 @@ const TimePicker: React.FC<TimePickerProps> = ({ onTimeChange, initialTime }) =>
           setValue={formatAMPM}
           perspective='center'
           onDragEnd={handleAMPMDragEnd}
+          className='rounded-r-lg'
         />
       </div>
     </div>
