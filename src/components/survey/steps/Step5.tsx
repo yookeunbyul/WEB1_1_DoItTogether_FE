@@ -53,7 +53,12 @@ const Step5: React.FC<Step5Props> = ({ title, results }) => {
 
       <motion.div className='flex flex-wrap gap-3' variants={item}>
         {results.map(result => (
-          <TextTag key={result} type='darkfill' label={`# ${result}`} />
+          <TextTag
+            key={result}
+            type='secondary'
+            label={`# ${result}`}
+            className='font-body border-main/50 rounded-2xl border-2 px-4 py-3'
+          />
         ))}
       </motion.div>
     </motion.div>
