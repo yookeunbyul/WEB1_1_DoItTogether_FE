@@ -1,6 +1,17 @@
-const ArrowLeftIcon = () => {
+interface ArrowLeftIconProps {
+  className?: string;
+}
+
+const ArrowLeftIcon: React.FC<ArrowLeftIconProps> = ({ className }) => {
   return (
-    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      className={className}
+    >
       <g clip-path='url(#clip0_2309_15909)'>
         <path
           fill-rule='evenodd'
