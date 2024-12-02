@@ -6,16 +6,15 @@ import {
   getAllCategoryList,
 } from '@/services/preset';
 import usePresetSettingStore from '@/store/usePresetSettingStore';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { PresetDefault, PresetTabName } from '@/constants';
-import useHomePageStore from '@/store/useHomePageStore';
 
 const usePresetSetting = () => {
   const navigate = useNavigate();
   const { setCategoryList, setDeleteButtonStates, activeTab, setPresetData } =
     usePresetSettingStore();
-  const { currentGroup } = useHomePageStore();
-  const channelId = currentGroup.channelId;
+  const { channelId: strChannelId } = useParams();
+  const channelId = Number(strChannelId);
 
   useEffect(() => {
     initCategoryList();
