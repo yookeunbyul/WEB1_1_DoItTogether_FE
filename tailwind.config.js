@@ -133,31 +133,43 @@ export default {
           'font-size': '1.5rem',
           'line-height': '2.25rem',
           'letter-spacing': '0.57%',
+          'font-weight': 600,
+          'font-family': 'Pretendard JP',
         },
         '.font-head': {
           'font-size': '1.25rem',
           'line-height': '1.5rem',
           'letter-spacing': '0%',
+          'font-weight': 600,
+          'font-family': 'Pretendard JP',
         },
         '.font-subhead': {
           'font-size': '1rem',
           'line-height': '1.5rem',
           'letter-spacing': '-1%',
+          'font-weight': 600,
+          'font-family': 'Pretendard JP',
         },
         '.font-body': {
           'font-size': '1rem',
           'line-height': '1.25rem',
           'letter-spacing': '-1%',
+          'font-weight': 500,
+          'font-family': 'Pretendard JP',
         },
         '.font-label': {
           'font-size': '0.875rem',
           'line-height': '1.125rem',
           'letter-spacing': '-1.5%',
+          'font-weight': 500,
+          'font-family': 'Pretendard JP',
         },
         '.font-caption': {
           'font-size': '0.75rem',
           'line-height': '1rem',
           'letter-spacing': '1%',
+          'font-weight': 500,
+          'font-family': 'Pretendard JP',
         },
       };
       addUtilities(newUtilities);
