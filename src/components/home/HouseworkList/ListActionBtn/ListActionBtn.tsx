@@ -21,7 +21,7 @@ export interface ListActionBtnProps {
 const ListActionBtn: React.FC<ListActionBtnProps> = ({ status, handleAction, id }) => {
   return (
     <div
-      className='flex cursor-pointer items-center justify-center rounded-[4px] bg-sub2'
+      className={`flex cursor-pointer items-center justify-center rounded-[4px] ${status === HOUSEWORK_STATUS.COMPLETE ? 'bg-main' : 'bg-sub2'}`}
       onClick={() => handleAction(id)}
     >
       {status === HOUSEWORK_STATUS.COMPLETE ? <CheckFillIcon /> : <CheckEmptyIcon />}
