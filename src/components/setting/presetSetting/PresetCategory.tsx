@@ -16,11 +16,11 @@ const PresetCategory: React.FC<PresetCategoryProps> = ({
   categoryList,
 }) => {
   return (
-    <div className='flex px-5'>
+    <div className='flex gap-2 px-5 py-4'>
       {categoryList.map(item => (
         <button
           key={item.presetCategoryId}
-          className={`pr-4 text-14 ${activeCate === item.category ? 'text-black01' : 'text-gray03'}`}
+          className={`rounded-xl px-2 py-[6px] font-label ${activeCate === item.category ? 'bg-white text-main' : 'text-white'}`}
           onClick={() => handleCateClick(item.category, item.presetCategoryId)}
         >
           {item.category}
