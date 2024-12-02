@@ -75,7 +75,7 @@ export default {
       bounce: 'bounce 1s infinite', // 애니메이션 등록
     },
     colors: {
-      transparent: 'transparent',
+      // TODO: remove
       black01: '#212121',
       black02: '#464656',
       gray01: '#626273',
@@ -84,16 +84,29 @@ export default {
       white01: '#E9E9EE',
       white02: '#F5F5F9',
       white03: '#FFFFFF',
+      // end
+
+      transparent: 'transparent',
+      main: '#1FCFBA',
+      sub: '#8DE8D7',
+      sub2: '#D9FAF5',
+      black: '#1F2425',
+      white: '#FDFDFD',
+      gray: '#4D4F4F',
+      gray1: '#747677',
+      gray2: '#B4B4B5',
+      gray3: '#DFDDDD',
+      gray4: '#F2F8F6',
     },
     fontSize: {
-      10: '0.625rem',
+      10: '0.625rem', // 삭제
       12: '0.75rem',
       14: '0.875rem',
       16: '1rem',
-      18: '1.125rem',
+      18: '1.125rem', // 삭제
       20: '1.25rem',
       24: '1.5rem',
-      28: '1.75rem',
+      28: '1.75rem', // 삭제
     },
     maxWidth: {
       DEFAULT: '430px',
@@ -115,6 +128,36 @@ export default {
         },
         '.transform-style-preserve-3d': {
           'transform-style': 'preserve-3d',
+        },
+        '.font-title': {
+          'font-size': '1.5rem',
+          'line-height': '2.25rem',
+          'letter-spacing': '0.57%',
+        },
+        '.font-head': {
+          'font-size': '1.25rem',
+          'line-height': '1.5rem',
+          'letter-spacing': '0%',
+        },
+        '.font-subhead': {
+          'font-size': '1rem',
+          'line-height': '1.5rem',
+          'letter-spacing': '-1%',
+        },
+        '.font-body': {
+          'font-size': '1rem',
+          'line-height': '1.25rem',
+          'letter-spacing': '-1%',
+        },
+        '.font-label': {
+          'font-size': '0.875rem',
+          'line-height': '1.125rem',
+          'letter-spacing': '-1.5%',
+        },
+        '.font-caption': {
+          'font-size': '0.75rem',
+          'line-height': '1rem',
+          'letter-spacing': '1%',
         },
       };
       addUtilities(newUtilities);
