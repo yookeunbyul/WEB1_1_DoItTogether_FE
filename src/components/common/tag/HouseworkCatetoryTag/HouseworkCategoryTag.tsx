@@ -1,29 +1,16 @@
 import { Badge } from '@/components/common/ui/badge';
-import { HOUSEWORK_STATUS } from '@/constants/homePage';
 
 export interface HouseworkCategoryTagProps {
   /** 집안일 카테고리 */
   category: string;
   /** 상태 */
-  status?: string;
-  isDark?: boolean;
-  isSelected?: boolean;
+  variant: 'primary' | 'secondary' | 'disabled' | 'grayfill' | 'darkfill';
 }
 
-const HouseworkCategoryTag: React.FC<HouseworkCategoryTagProps> = ({
-  category,
-  status,
-  isDark,
-  isSelected,
-}) => {
+const HouseworkCategoryTag: React.FC<HouseworkCategoryTagProps> = ({ category, variant }) => {
   return (
     <div>
-      <Badge
-        variant={'secondary'}
-        className={`px-1 text-12 ${isDark && 'dark'} ${status === HOUSEWORK_STATUS.COMPLETE && 'border-none bg-gray02'} ${isSelected && 'bg-[#1FCFBA]'}`}
-      >
-        {category}
-      </Badge>
+      <Badge variant={variant}>{category}</Badge>
     </div>
   );
 };
