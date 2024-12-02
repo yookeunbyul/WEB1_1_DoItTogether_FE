@@ -4,7 +4,7 @@ import {
   getAllCategoryName,
   postCreatePresetItem,
   getAllCategoryList,
-} from '@/services/setting/preset';
+} from '@/services/preset';
 import usePresetSettingStore from '@/store/usePresetSettingStore';
 import { useNavigate } from 'react-router-dom';
 import { PresetDefault, PresetTabName } from '@/constants';

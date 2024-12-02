@@ -7,7 +7,7 @@ import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 import { PresetDefault, PresetTabName } from '@/constants';
 import { convertTabNameToChargers } from '@/utils/convertUtils';
 import useHomePageStore from '@/store/useHomePageStore';
-import { getAllCategoryList } from '@/services/setting/preset';
+import { getAllCategoryList } from '@/services/preset';
 
 interface HouseWorkSheetProps {
   /** 바텀시트 오픈 여부 */

@@ -1,5 +1,5 @@
 import { axiosInstance } from '@/services/axiosInstance';
-import { CreatePresetItemReq, CreatePresetItemRes } from './../../../types/apis/presetApi';
+import { CreatePresetItemReq, CreatePresetItemRes } from './../../types/apis/presetApi';
 
 export const postCreatePresetItem = async ({
   channelId,
