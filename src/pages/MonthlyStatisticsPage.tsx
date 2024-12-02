@@ -12,6 +12,19 @@ const MonthlyStatisticsPage = () => {
     setCurrentMonth(monthKey);
   };
 
+  // 통계 완료율, 완료일 계산
+  const calculateMonthStats = (month: string) => {
+    const [year, monthStr] = month.split('-');
+    const totalDaysInMonth = new Date(parseInt(year), parseInt(monthStr), 0).getDate();
+    const monthData = monthlyGrassData.dates.filter(task => task.date.startsWith(month));
+    const completedDays = monthData.filter(task => task.status === 'ALL_DONE').length;
+    const completionRate = Math.round((completedDays / totalDaysInMonth) * 100);
+
+    return { completionRate, completedDays };
+  };
+
+  const currentMonthStats = calculateMonthStats(currentMonth);
+
   return (
     <div className='flex flex-col gap-4'>
       <MonthlyGrass completionData={monthlyGrassData.dates} onMonthChange={handleMonthChange} />
@@ -19,17 +32,10 @@ const MonthlyStatisticsPage = () => {
         이번달에는
         <p className='flex items-center gap-3'>
           <span className='text-main flex items-center'>
-            <CompletionDate
-              count={monthlyGrassData.monthlyStats[currentMonth]?.completionRate}
-              color='text-main'
-            />
-            %
+            <CompletionDate count={currentMonthStats.completionRate} color='text-main' />%
           </span>
           <span className='text-main flex items-center'>
-            <CompletionDate
-              count={monthlyGrassData.monthlyStats[currentMonth]?.completedDays}
-              color='text-main'
-            />
+            <CompletionDate count={currentMonthStats.completedDays} color='text-main' />
             개의
           </span>
         </p>
