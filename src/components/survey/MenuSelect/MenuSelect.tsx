@@ -11,7 +11,7 @@ interface MenuSelectProps {
 const MenuSelect: React.FC<MenuSelectProps> = ({ type, status, content, handleSelect }) => {
   return (
     <Button
-      className={`max-w rounded-full ${type === 'large' && 'justify-start'} ${status === 'active' && 'bg-black01 text-white03'} whitespace-pre-line rounded-2xl px-5 py-3 text-left`}
+      className={`max-w ${type === 'large' && 'justify-start'} ${status === 'active' && 'bg-main text-white03'} whitespace-pre-line rounded-2xl text-left`}
       size={type}
       variant={'select'}
       onClick={() => handleSelect(content)}

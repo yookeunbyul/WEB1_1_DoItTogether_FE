@@ -99,7 +99,7 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
   }, [step]);
 
   return (
-    <div className='flex h-screen flex-col gap-3 overflow-hidden'>
+    <div className='flex h-screen flex-col overflow-hidden'>
       {step <= 4 && (
         <motion.div variants={item} initial='hidden' animate='show'>
           <div className='p-5'>
@@ -109,63 +109,61 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
         </motion.div>
       )}
 
-      <motion.div className='flex h-screen flex-col gap-8 px-5'>
-        {loading ? (
-          <div className='h-full pt-28'>
-            <LoadingScreen username={username} isCompleted={isCompleted} />
-          </div>
-        ) : (
-          <>
-            {/* TODO STEP 동일구조라서 hook 으로 사용 고려 */}
-            {step === 1 && (
-              <Step1
-                title={`평소 정리정돈에 대해\n어떻게 생각하시나요?`}
-                questions={DUMMY_QUESTION_STEP1}
-                handleAnswer={handleAnswer}
-              />
-            )}
-            {step === 2 && (
-              <Step2
-                title={`어떤 방식으로 일하는 것을\n선호하시나요?`}
-                questions={DUMMY_QUESTION_STEP2}
-                handleAnswer={handleAnswer}
-              />
-            )}
-            {step === 3 && (
-              <Step3
-                title={`주변 환경이\n작업에 얼마나 영향을 주나요?`}
-                questions={DUMMY_QUESTION_STEP3}
-                handleAnswer={handleAnswer}
-              />
-            )}
-            {step === 4 && (
-              <Step4
-                title={`집안일을 할 때\n어떤 감정을 느끼시나요?`}
-                questions={DUMMY_QUESTION_STEP4}
-                handleAnswer={handleAnswer}
-              />
-            )}
-            {step === 5 && (
-              <div className='h-full pt-28'>
-                <Step5 title={`${username}님의 청소성향은`} results={result} />
-              </div>
-            )}
-          </>
-        )}
+      {loading ? (
+        <div className='h-full px-0 pt-28'>
+          <LoadingScreen username={username} isCompleted={isCompleted} />
+        </div>
+      ) : (
+        <motion.div className='flex h-screen flex-col gap-8 px-5'>
+          {/* TODO STEP 동일구조라서 hook 으로 사용 고려 */}
+          {step === 1 && (
+            <Step1
+              title={`평소 정리정돈에 대해\n어떻게 생각하시나요?`}
+              questions={DUMMY_QUESTION_STEP1}
+              handleAnswer={handleAnswer}
+            />
+          )}
+          {step === 2 && (
+            <Step2
+              title={`어떤 방식으로 일하는 것을\n선호하시나요?`}
+              questions={DUMMY_QUESTION_STEP2}
+              handleAnswer={handleAnswer}
+            />
+          )}
+          {step === 3 && (
+            <Step3
+              title={`주변 환경이\n작업에 얼마나 영향을 주나요?`}
+              questions={DUMMY_QUESTION_STEP3}
+              handleAnswer={handleAnswer}
+            />
+          )}
+          {step === 4 && (
+            <Step4
+              title={`집안일을 할 때\n어떤 감정을 느끼시나요?`}
+              questions={DUMMY_QUESTION_STEP4}
+              handleAnswer={handleAnswer}
+            />
+          )}
+          {step === 5 && (
+            <div className='h-full pt-28'>
+              <Step5 title={`${username}님의 청소성향은`} results={result} />
+            </div>
+          )}
+        </motion.div>
+      )}
 
-        {!loading && (
-          <motion.div className='bg-white sticky bottom-0 pb-6'>
-            <Button
-              size={'large'}
-              variant={!isStepVaild() ? 'disabled' : 'full'}
-              onClick={setNextStep}
-              disabled={!isStepVaild()}
-            >
-              {step === 5 ? '완료' : '다음'}
-            </Button>
-          </motion.div>
-        )}
-      </motion.div>
+      {!loading && (
+        <motion.div className='bg-white sticky bottom-0 px-5 pb-6'>
+          <Button
+            size={'large'}
+            variant={!isStepVaild() ? 'disabled' : 'full'}
+            onClick={setNextStep}
+            disabled={!isStepVaild()}
+          >
+            {step === 5 ? '완료' : '다음'}
+          </Button>
+        </motion.div>
+      )}
     </div>
   );
 };

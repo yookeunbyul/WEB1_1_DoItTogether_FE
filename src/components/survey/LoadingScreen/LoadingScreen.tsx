@@ -42,11 +42,11 @@ const LoadingScreen = ({ username, isCompleted }: LoadingScreenProps) => {
       <motion.div variants={item}>
         <SurveyTitle
           title={
-            <>
-              <span className='font-bold text-gray02'>{username}</span> 님의
-              <br />
-              청소성향 {isCompleted ? '분석이 완료되었어요' : '분석하고 있어요'}
-            </>
+            <div className='text-center'>
+              {isCompleted
+                ? `${username}님의\n청소성향 분석이 완료되었어요`
+                : 'gpi 4.o가\n당신의 청소성향을 분석하고 있어요'}
+            </div>
           }
         />
       </motion.div>
