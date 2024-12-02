@@ -4,7 +4,7 @@ interface ClockIconProps {
   fillClass?: string;
 }
 
-const ClockIcon: React.FC<ClockIconProps> = ({ fillClass }) => {
+const ClockIcon: React.FC<ClockIconProps> = ({ fillClass = 'text-main' }) => {
   return (
     <svg
       width='16'
