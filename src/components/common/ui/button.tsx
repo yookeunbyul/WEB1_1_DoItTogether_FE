@@ -16,10 +16,11 @@ const buttonVariants = cva(
         outline:
           'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground text-black01',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
+        kakao: 'bg-kakao font-body',
       },
       size: {
-        small: 'h-16 w-full rounded-2xl ',
-        large: 'h-12 w-full rounded-2xl',
+        small: 'h-12 w-full rounded-2xl ',
+        large: 'h-14 w-full rounded-2xl',
       },
     },
     defaultVariants: {
