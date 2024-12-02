@@ -29,7 +29,7 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
       className={`flex list-none items-center rounded-2xl border border-solid ${status === HOUSEWORK_STATUS.COMPLETE ? `bg-gray03` : `bg-black02`} p-5 text-white01`}
     >
       <ListActionBtn
-        actionStatus={status}
+        status={status}
         handleAction={() => handleAction(houseworkId)}
         id={houseworkId}
       />

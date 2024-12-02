@@ -1,29 +1,31 @@
 import React from 'react';
+import { CheckEmptyIcon, CheckFillIcon } from '@/components/common/icon';
+import { HOUSEWORK_STATUS } from '@/constants/homePage';
 
 /**
  * todo: 추후 기능 추가
  * - 아이콘
- * 1. 집안일 미완료 상태
- * 2. 집안일 완료 상태
  * 3. 찌르기 상태
  * 4. 칭찬 상태
  */
 
 export interface ListActionBtnProps {
   /** 상태 */
-  actionStatus: string;
+  status: string;
   /** 액션 */
   handleAction: (id: number) => void;
   /** 아이디 */
   id: number;
 }
 
-const ListActionBtn: React.FC<ListActionBtnProps> = ({ handleAction, id }) => {
+const ListActionBtn: React.FC<ListActionBtnProps> = ({ status, handleAction, id }) => {
   return (
     <div
-      className='h-5 w-5 cursor-pointer border border-solid'
+      className='flex cursor-pointer items-center justify-center rounded-[4px] bg-sub2'
       onClick={() => handleAction(id)}
-    ></div>
+    >
+      {status === HOUSEWORK_STATUS.COMPLETE ? <CheckFillIcon /> : <CheckEmptyIcon />}
+    </div>
   );
 };
 
