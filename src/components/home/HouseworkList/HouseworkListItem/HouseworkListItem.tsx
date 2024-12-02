@@ -5,6 +5,7 @@ import ControlDropdown from '@/components/home/ControlDropdown/ControlDropdown';
 import { Housework } from '@/types/apis/houseworkApi';
 import { HOUSEWORK_STATUS } from '@/constants/homePage';
 import convertTimeTo12HourFormat from '@/utils/convertTime';
+import { ClockIcon } from '@/components/common/icon';
 
 export interface HouseworkListItemProps extends Housework {
   handleAction: (houseworkId: number) => void;
@@ -26,7 +27,7 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
 }) => {
   return (
     <li
-      className={`flex list-none items-center rounded-2xl border border-solid ${status === HOUSEWORK_STATUS.COMPLETE ? `bg-gray03` : `bg-main`} p-5 text-white01`}
+      className={`flex list-none items-center rounded-2xl border border-solid ${status === HOUSEWORK_STATUS.COMPLETE ? `bg-sub` : `bg-sub1`} p-4 text-white01`}
     >
       <ListActionBtn
         status={status}
@@ -56,8 +57,8 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
             handleDelete={() => handleDelete(houseworkId)}
           />
           <div className='flex items-center gap-1'>
-            <div className='h-5 w-5 border border-solid'></div>
-            <p className='text-12'>
+            <ClockIcon />
+            <p className='text-white font-caption'>
               {isAllDay ? '하루 종일' : convertTimeTo12HourFormat(startTime!)}
             </p>
           </div>

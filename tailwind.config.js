@@ -89,6 +89,7 @@ export default {
       transparent: 'transparent',
       main: '#1FCFBA',
       sub: '#8DE8D7',
+      sub1: '#63DDCE',
       sub2: '#D9FAF5',
       black: '#1F2425',
       white: '#FDFDFD',
