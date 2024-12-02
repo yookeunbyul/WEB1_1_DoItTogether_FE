@@ -12,7 +12,8 @@ const buttonVariants = cva(
         full: 'bg-main text-white font-subhead border-2 border-main/50 hover:bg-primary/90',
         secondary: 'bg-sub2 text-main font-subhead border-2 border-sub2/50 hover:bg-secondary/80 ',
         disabled: 'bg-gray3 text-white font-subhead',
-        select: 'border border-input bg-background shadow-sm text-black01 px-3 py-4 rounded-2xl',
+        select:
+          'border border-input bg-background shadow-sm font-body text-gray2 px-3 py-4 rounded-2xl',
         outline:
           'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground text-black01',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
