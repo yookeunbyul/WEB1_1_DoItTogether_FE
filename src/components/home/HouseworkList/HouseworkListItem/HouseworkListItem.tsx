@@ -6,9 +6,9 @@ import { Housework } from '@/types/apis/houseworkApi';
 import { HOUSEWORK_STATUS } from '@/constants/homePage';
 
 export interface HouseworkListItemProps extends Housework {
-  handleAction: (id: number) => void;
-  handleEdit: () => void;
-  handleDelete: (id: number) => void;
+  handleAction: (houseworkId: number) => void;
+  handleEdit: (houseworkId: number) => void;
+  handleDelete: (houseworkId: number) => void;
 }
 
 const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
@@ -45,7 +45,7 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
         <div className='flex flex-col items-end justify-center gap-2'>
           <ControlDropdown
             id={houseworkId}
-            handleEdit={handleEdit}
+            handleEdit={() => handleEdit(houseworkId)}
             handleDelete={() => handleDelete(houseworkId)}
           />
           <div className='flex items-center gap-1'>

@@ -10,27 +10,23 @@ import { getMyGroup } from '@/services/groupSelect/getMyGroup';
 import { getGroupUser } from '@/services/setting/getGroupUser';
 import { PAGE_SIZE } from '@/constants/common';
 import { getHouseworks } from '@/services/housework/getHouseworks';
-
-/**
- * todo
- * 무한 스크롤 구현
- * housework는 전역 상태가 아니라 리액트 쿼리로 관리?
- */
+import { deleteHousework } from '@/services/housework/deleteHouswork';
+import { useQuery } from '@tanstack/react-query';
+import { useToast } from '@/hooks/use-toast';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('전체');
-
-  const {
-    setWeekText,
-    setCurrentGroup,
-    setGroups,
-    houseworks,
-    setHouseworks,
-    activeDate,
-    homePageNumber,
-  } = useHomePageStore();
+  const { setWeekText, setCurrentGroup, setGroups, activeDate, homePageNumber } =
+    useHomePageStore();
   const { channelId } = useParams();
   const [chargers, setChargers] = useState<{ name: string }[]>([{ name: '전체' }]);
+  const { data: houseworks, refetch } = useQuery({
+    queryKey: ['houseworks', channelId, activeDate],
+    queryFn: async () => await fetchHouseworks(activeDate),
+  });
+  const { toast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMyGroups = async () => {
@@ -61,40 +57,34 @@ const HomePage: React.FC = () => {
       setChargers(newChargers);
     };
 
-    const fetchHouseworks = async (date: string) => {
-      const newChannelId = Number(channelId);
-      const getHouseworksResult = await getHouseworks({
-        channelId: newChannelId,
-        targetDate: date,
-        pageNumber: homePageNumber,
-        pageSize: PAGE_SIZE,
-      });
-      setHouseworks(getHouseworksResult.result.responses);
-    };
-
     fetchGroupUsers();
-    fetchHouseworks(activeDate);
-  }, [channelId, activeDate]);
+  }, [channelId]);
 
-  const handleAction = (id: number) => {
-    /**
-     * todo
-     * 해당 id에 해당하는 집안일 완료 처리
-     */
+  const fetchHouseworks = async (date: string) => {
+    const newChannelId = Number(channelId);
+    const getHouseworksResult = await getHouseworks({
+      channelId: newChannelId,
+      targetDate: date,
+      pageNumber: homePageNumber,
+      pageSize: PAGE_SIZE,
+    });
+    return getHouseworksResult.result.responses;
   };
-  const handleEdit = () => {
-    /**
-     * todo
-     * 해당 id에 해당하는 집안일을 집안일 추가페이지에 보내줌
-     * navigate로 라우팅하는데 파라미터를 집안일 id를 넘겨주면 됨
-     */
-    console.log('edit');
+
+  const handleAction = (houseworkId: number) => {
+    // 해당 id에 해당하는 집안일 완료 처리
+    console.log(houseworkId);
   };
-  const handleDelete = (id: number) => {
-    /**
-     * todo
-     * 해당 id에 해당하는 집안일 삭제 처리
-     */
+
+  const handleEdit = (houseworkId: number) => {
+    navigate(`/add-housework/edit/${channelId}/${houseworkId}/step1`);
+  };
+
+  const handleDelete = async (houseworkId: number) => {
+    const newChannelId = Number(channelId);
+    await deleteHousework({ channelId: newChannelId, houseworkId });
+    toast({ title: '집안일이 삭제되었습니다!' });
+    refetch();
   };
 
   return (
@@ -105,12 +95,15 @@ const HomePage: React.FC = () => {
         handleSetActiveTab={setActiveTab}
         chargers={chargers}
       />
-      <HouseworkList
-        items={houseworks.filter(item => item.assignee === activeTab || activeTab === '전체')}
-        handleAction={handleAction}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-      />
+      {houseworks && (
+        <HouseworkList
+          items={houseworks.filter(item => item.assignee === activeTab || activeTab === '전체')}
+          handleAction={handleAction}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+        />
+      )}
+
       <GroupSelectSheet />
     </div>
   );

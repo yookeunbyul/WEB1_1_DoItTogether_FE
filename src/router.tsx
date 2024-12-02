@@ -141,6 +141,10 @@ export const router = createBrowserRouter([
         element: <HouseWorkStepOnePage />,
       },
       {
+        path: '/add-housework/edit/:channelId/:houseworkId/step1/',
+        element: <HouseWorkStepOnePage />,
+      },
+      {
         path: '/add-housework/step2',
         element: <HouseWorkStepTwoPage />,
       },
