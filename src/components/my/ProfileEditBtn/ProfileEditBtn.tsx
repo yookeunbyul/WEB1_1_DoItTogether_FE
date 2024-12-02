@@ -1,8 +1,11 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+
 const ProfileEditBtn = () => {
   const navigate = useNavigate();
+  const { channelId } = useParams();
+
   const handleClick = () => {
-    navigate('/main/my-page/edit');
+    navigate(`/main/${channelId}/my-page/edit`);
   };
   return (
     <button
