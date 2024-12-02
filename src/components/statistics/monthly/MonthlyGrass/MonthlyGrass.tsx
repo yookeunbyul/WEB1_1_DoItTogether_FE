@@ -33,11 +33,11 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ completionData, onMonthChan
     const status = getStatus(date);
     switch (status) {
       case CompletionStatus.DONE:
-        return 'bg-[#989393] text-[#D9D9D9] rounded-full';
+        return 'bg-[#1FCFBA] text-[#FDFDFD] rounded-lg font-body';
       case CompletionStatus.SOSO:
-        return 'bg-[#D8D8D8] text-[#ACACAC] rounded-full';
+        return 'bg-[#8DE8D7] text-[#FDFDFD] rounded-full font-body';
       default:
-        return 'bg-white03 text-[#ACACAC] rounded-full';
+        return 'bg-white03 text-[#B4B4B5] font-body';
     }
   };
 
