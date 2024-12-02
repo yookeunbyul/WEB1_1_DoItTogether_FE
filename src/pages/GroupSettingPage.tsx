@@ -18,7 +18,7 @@ import { useParams } from 'react-router-dom';
 const GroupSettingPage = () => {
   const navigate = useNavigate();
   const { currentGroup } = useHomePageStore();
-  const { channelId } = useParams();
+  const { channelId: strChannelId } = useParams();
 
   // TODO: group name api에서 받아오기
   const [groupName, setGroupName] = useState(currentGroup.name);
@@ -34,10 +34,12 @@ const GroupSettingPage = () => {
   const [selectedMember, setSelectedMember] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const channelId = Number(strChannelId);
+
   useEffect(() => {
     const fetchGroupMembers = async () => {
       try {
-        const response = await getGroupUser({ channelId: newChannelId });
+        const response = await getGroupUser({ channelId });
 
         // TODO: 나중에는 토큰값으로 확인
         setMembers(response.result.userList);
@@ -53,10 +55,8 @@ const GroupSettingPage = () => {
     fetchGroupMembers();
   }, []);
 
-  const newChannelId = Number(channelId);
-
   const handleMovePreset = () => {
-    navigate('/group-setting/preset-setting');
+    navigate(`/group-setting/${channelId}/preset-setting`);
   };
 
   const handleGroupNameChange = (value: string) => {
@@ -108,11 +108,11 @@ const GroupSettingPage = () => {
       console.log(member);
       if (isAdmin && !isCurrentUser) {
         // 관리자가 다른 멤버를 방출하는 경우
-        await postBanUser({ channelId: newChannelId, email: member.email });
+        await postBanUser({ channelId, email: member.email });
         setMembers(prev => prev.filter(m => m.email !== member.email));
       } else {
         // 자신이 나가는 경우 (관리자든 일반 멤버든)
-        await deleteGroupUser({ channelId: newChannelId });
+        await deleteGroupUser({ channelId });
         navigate('/group-select');
       }
 
