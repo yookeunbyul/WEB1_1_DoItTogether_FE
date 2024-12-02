@@ -9,6 +9,7 @@ import DueDateSheet from '@/components/housework/DueDateSheet/DueDateSheet';
 import TimeControl from '@/components/housework/TimeControl/TimeControl';
 import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 import { useParams } from 'react-router-dom';
+import { getHouseworkById } from '@/services/housework/getHouseworkById';
 
 export interface SelectedTime {
   hour: string;
@@ -18,21 +19,35 @@ export interface SelectedTime {
 
 const HouseWorkStepOnePage = () => {
   const navigate = useNavigate();
-  const { task, category, startDate, startTime, setStartTime } = useAddHouseWorkStore();
+  const { task, startDate, startTime, setStartTime, reset } = useAddHouseWorkStore();
   const [isHouseWorkSheetOpen, setHouseWorkSheetOpen] = useState(false);
   const [isDueDateSheetOpen, setDueDateSheetOpen] = useState(false);
   const [time, setTime] = useState<SelectedTime | null>(startTime);
-  const { channelId, houseworkId } = useParams();
+  const { channelId: strChannelId, houseworkId: strHouseworkId } = useParams();
+
+  const channelId = Number(strChannelId);
+  const houseworkId = Number(strHouseworkId);
 
   useEffect(() => {
     if (channelId && houseworkId) {
       // todo
       // task, category, startDate, startTime을 미리 채워넣으면 됨
+      const fetchHouseworkById = async () => {
+        try {
+          const response = await getHouseworkById({ channelId, houseworkId });
+          console.log(response);
+        } catch (error) {
+          console.error('집안일 상세 정보 조회 실패:', error);
+        }
+      };
+
+      fetchHouseworkById();
     }
   }, []);
 
   const handleBackClick = () => {
     navigate(`/main/${channelId}`);
+    reset();
   };
   const handleHouseWorkClick = () => {
     setHouseWorkSheetOpen(true);
@@ -44,7 +59,7 @@ const HouseWorkStepOnePage = () => {
   const handleNextClick = () => {
     setStartTime(time);
 
-    if (houseworkId) navigate(`/add-housework/${channelId}/${houseworkId}/step2`);
+    if (houseworkId) navigate(`/add-housework/edit/${channelId}/${houseworkId}/step2`);
     else navigate(`/add-housework/${channelId}/step2`);
   };
 
