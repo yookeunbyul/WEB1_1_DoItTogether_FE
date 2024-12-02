@@ -35,6 +35,15 @@ export interface AddHouseworkRes extends BaseRes {
   result: {};
 }
 
+//집안일 id별 상세 정보 조회
+export interface GetHouseworkByIdReq
+  extends Pick<Common, 'channelId'>,
+    Pick<Housework, 'houseworkId'> {}
+
+export interface GetHouseworkByIdRes extends BaseRes {
+  result: Housework;
+}
+
 // 집안일 수정
 export interface PutHouseworkReq extends HouseworkCommonReq, Pick<Housework, 'houseworkId'> {}
 
