@@ -4,6 +4,7 @@ import HouseworkCategoryTag from '@/components/common/tag/HouseworkCatetoryTag/H
 import ControlDropdown from '@/components/home/ControlDropdown/ControlDropdown';
 import { Housework } from '@/types/apis/houseworkApi';
 import { HOUSEWORK_STATUS } from '@/constants/homePage';
+import convertTimeTo12HourFormat from '@/utils/convertTime';
 
 export interface HouseworkListItemProps extends Housework {
   handleAction: (houseworkId: number) => void;
@@ -16,6 +17,7 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
   category,
   task,
   startTime,
+  isAllDay,
   assignee,
   status,
   handleAction,
@@ -50,7 +52,9 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
           />
           <div className='flex items-center gap-1'>
             <div className='h-5 w-5 border border-solid'></div>
-            <p className='text-12'>{startTime}</p>
+            <p className='text-12'>
+              {isAllDay ? '하루 종일' : convertTimeTo12HourFormat(startTime!)}
+            </p>
           </div>
         </div>
       </div>
