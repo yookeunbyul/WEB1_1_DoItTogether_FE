@@ -7,27 +7,28 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HouseWorkAddLoading from '@/components/housework/HouseworkAddLoading/HouseWorkAddLoading';
 import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
-import useHomePageStore from '@/store/useHomePageStore';
+import { useParams } from 'react-router-dom';
 
 const HouseWorkStepTwoPage = () => {
   const navigate = useNavigate();
+  const { channelId, houseworkId } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { task, category, startDate, startTime, assigneeId, setAssigneeId, reset } =
     useAddHouseWorkStore();
-  const { currentGroup } = useHomePageStore();
   const [selectedValue, setSelectedValue] = useState(assigneeId || null);
 
   console.log('전역:', task, category, startDate, startTime, assigneeId);
 
   const handleBackClick = () => {
-    navigate('/add-housework/step1');
+    if (houseworkId) navigate(`/add-housework/${channelId}/${houseworkId}/step1`);
+    else navigate(`/add-housework/${channelId}/step1`);
   };
 
   const handleNextClick = () => {
     setIsLoading(true);
     setTimeout(() => {
-      navigate(`/main/${currentGroup.channelId}`); // 먼저 화면 전환
+      navigate(`/main/${channelId}`); // 먼저 화면 전환
       setTimeout(() => {
         // 약간의 지연 후 reset 실행
         reset();

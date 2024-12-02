@@ -47,7 +47,8 @@ const HouseWorkStepOnePage = () => {
     if (time) {
       setStartTime(time);
     }
-    navigate('/add-housework/step2');
+    if (houseworkId) navigate(`/add-housework/${channelId}/${houseworkId}/step2`);
+    else navigate(`/add-housework/${channelId}/step2`);
   };
 
   const handleTimeChange = (newTime: SelectedTime | null) => {

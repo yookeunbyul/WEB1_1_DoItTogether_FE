@@ -1,11 +1,13 @@
 import Header from '@/components/common/header/Header';
 import AccountMenuItem from '@/components/my/AccountMenuItem/AccountMenuItem';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const AccountManagePage = () => {
   const navigate = useNavigate();
+  const { channelId } = useParams();
   const handleBack = () => {
-    navigate('/main/my-page');
+    navigate(`/main/${channelId}/my-page`);
   };
 
   const handleLogout = () => {
@@ -14,7 +16,7 @@ const AccountManagePage = () => {
 
   const handleLeave = () => {
     console.log('탈퇴');
-    navigate('/my-page/leave');
+    navigate(`/my-page/leave/${channelId}`);
   };
 
   return (
