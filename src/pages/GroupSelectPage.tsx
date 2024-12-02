@@ -56,16 +56,16 @@ const GroupSelectPage = () => {
         <Button
           label='방만들기'
           variant='full'
-          size='large'
+          size='small'
           handleClick={handleMakeGroupBtnClick}
-          className={'flex-1 rounded-2xl bg-white01 py-12 text-black01 hover:bg-white01'}
+          className={'flex-1'}
         />
         <Button
           label='초대받기'
           variant='full'
-          size='large'
+          size='small'
           handleClick={handleInvitedBtnClick}
-          className={'flex-1 rounded-2xl bg-white01 py-12 text-black01 hover:bg-white01'}
+          className={'flex-1'}
         />
       </div>
     </div>
