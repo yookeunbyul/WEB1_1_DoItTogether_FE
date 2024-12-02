@@ -41,19 +41,21 @@ const PresetAddInput: React.FC<PresetAddInputProps> = ({ categoryList, handleAdd
   };
 
   return (
-    <div className='rounded-t-2xl pb-2 pt-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]'>
+    <div className='rounded-t-2xl bg-gray2 bg-gradient-to-b pb-2 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]'>
       <PresetCategory
         categoryList={categoryList}
         activeCate={activeInputCate}
         handleCateClick={handleInputCateClick}
       />
-      <input
-        className='w-full p-5 focus:outline-none'
-        placeholder='집안일을 입력해주세요'
-        value={inputVal}
-        onChange={e => setInputVal(e.target.value)}
-        onKeyDown={handleKeyDown}
-      />
+      <div className='p-5'>
+        <input
+          className='w-full p-5 focus:outline-none'
+          placeholder='집안일을 입력해주세요'
+          value={inputVal}
+          onChange={e => setInputVal(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
     </div>
   );
 };
