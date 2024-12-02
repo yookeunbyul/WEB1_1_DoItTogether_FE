@@ -28,7 +28,7 @@ const LandingPage = () => {
       <section aria-label='카카오 로그인 버튼' className='sticky bottom-6'>
         <Button
           label='카카오로 3초만에 시작하기'
-          variant='full'
+          variant='kakao'
           size='large'
           handleClick={handleLoginButton}
         />
