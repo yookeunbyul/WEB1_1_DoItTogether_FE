@@ -1,6 +1,7 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Tab from '@/components/common/tab/Tab/Tab';
+import Header from '@/components/common/header/Header';
 
 const STAT_DATA = [{ name: '주간' }, { name: '월간' }];
 
@@ -19,7 +20,8 @@ const StatisticsLayout = () => {
 
   return (
     <div className='flex flex-col'>
-      <div className='bg-white sticky top-0 z-10 w-full'>
+      <Header title='통계' isNeededDoneBtn={false} />
+      <div className='sticky top-0 z-10 w-full bg-white'>
         <Tab activeTab={statTab} handleSetActiveTab={setStatTab} chargers={STAT_DATA} />
       </div>
       <div className='p-5'>

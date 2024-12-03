@@ -8,8 +8,8 @@ interface AccountInfoProps {
 const AccountInfo: React.FC<AccountInfoProps> = ({ nickname, account }) => {
   return (
     <div>
-      <div>{nickname}</div>
-      <div className='text-14 text-gray03'>{account}</div>
+      <div className='font-body'>{nickname}</div>
+      <div className='text-gray3 font-label'>{account}</div>
     </div>
   );
 };

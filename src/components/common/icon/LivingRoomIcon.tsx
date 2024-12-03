@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface LivingRoomProps {
   fillOneClass?: string;
   fillTwoClass?: string;
@@ -7,7 +5,7 @@ interface LivingRoomProps {
   height?: string | number;
 }
 
-const LivingRoom: React.FC<LivingRoomProps> = ({
+const LivingRoomIcon: React.FC<LivingRoomProps> = ({
   fillOneClass = 'fill-main',
   fillTwoClass = 'fill-sub',
   width = 24,
@@ -46,4 +44,4 @@ const LivingRoom: React.FC<LivingRoomProps> = ({
   );
 };
 
-export default LivingRoom;
+export default LivingRoomIcon;

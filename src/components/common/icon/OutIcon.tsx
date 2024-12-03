@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface OutIconProps {
   className?: string;
   width?: string | number;
