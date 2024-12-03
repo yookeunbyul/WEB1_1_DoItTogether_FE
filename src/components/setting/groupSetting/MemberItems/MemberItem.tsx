@@ -1,3 +1,5 @@
+import { OutIcon } from '@/components/common/icon';
+
 interface MemberItemProps {
   leader: boolean;
   nickName: string;
@@ -19,7 +21,9 @@ const MemberItem: React.FC<MemberItemProps> = ({
     >
       {nickName}
       {showButton && (
-        <i className='h-4 w-4 border border-solid border-black02' onClick={handleClick}></i>
+        <div onClick={handleClick} className='cursor-pointer'>
+          <OutIcon />
+        </div>
       )}
     </div>
   );
