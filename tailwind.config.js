@@ -101,6 +101,7 @@ export default {
       gray4: '#F2F8F6',
       gray5: '#D9D9DF',
       gray6: '#464656',
+      gray7: '#A5ACB8',
       kakao: '#FEE500',
     },
     fontSize: {
