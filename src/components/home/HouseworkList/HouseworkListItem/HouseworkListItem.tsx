@@ -71,7 +71,13 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
             handleDelete={() => handleDelete(houseworkId)}
           />
           <div className='z-10 flex items-center gap-1'>
-            <ClockIcon />
+            <ClockIcon
+              fillClass='fill-white'
+              circleStrokeClass='stroke-white'
+              handStrokeClass='stroke-main'
+              width={16}
+              height={16}
+            />
             <p className='text-white font-caption'>
               {isAllDay ? '하루 종일' : convertTimeTo12HourFormat(startTime!)}
             </p>

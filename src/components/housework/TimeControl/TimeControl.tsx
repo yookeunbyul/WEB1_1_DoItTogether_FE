@@ -42,18 +42,22 @@ const TimeControl: React.FC<TimeControlProps> = ({ onTimeChange }) => {
   return (
     <div
       className={cn(
-        'border-gray5 flex flex-col justify-center gap-2 rounded-2xl border-b-2 border-solid border-opacity-30 bg-white03 px-2',
+        'flex flex-col justify-center gap-2 rounded-2xl border-b-2 border-solid border-gray5 border-opacity-30 bg-white px-2',
         isAllday ? 'h-14' : 'h-auto py-4'
       )}
     >
-      <div className='text-gray font-body flex items-center justify-between'>
+      <div className='flex items-center justify-between text-gray font-body'>
         {isAllday ? (
           <Label htmlFor='time-mode' className='flex items-center gap-4'>
-            <ClockIcon />
+            <ClockIcon
+              fillClass='fill-main'
+              circleStrokeClass='stroke-main'
+              handStrokeClass='stroke-white'
+            />
             <p>하루종일 하기</p>
           </Label>
         ) : (
-          <Label htmlFor='time-mode' className='text-main flex items-center gap-4'>
+          <Label htmlFor='time-mode' className='flex items-center gap-4 text-main'>
             <ClockIcon />
             <p>시작시간이 언제인가요?</p>
           </Label>
@@ -62,7 +66,7 @@ const TimeControl: React.FC<TimeControlProps> = ({ onTimeChange }) => {
           id='time-mode'
           checked={isAllday}
           onCheckedChange={handleSwitchChange}
-          className='data-[state=checked]:border-sub2 data-[state=checked]:bg-main border'
+          className='border data-[state=checked]:border-sub2 data-[state=checked]:bg-main'
         />
       </div>
       {!isAllday && <TimePicker onTimeChange={handleTimeChange} initialTime={startTime} />}
