@@ -15,7 +15,10 @@ const MyPage = () => {
         <AccountInfo nickname='스페이스천사' account='example@example' />
         <ProfileEditBtn />
       </div>
-      <div className='mb-6 mt-2 h-[1px] w-full bg-white01 px-5' />
+      <div className='px-5'>
+        <div className='mb-6 mt-2 h-[1px] w-full bg-gray4' />
+      </div>
+
       <SurveyAgainBtn />
     </div>
   );
