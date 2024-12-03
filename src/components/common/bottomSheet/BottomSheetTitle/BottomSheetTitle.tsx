@@ -11,7 +11,7 @@ const BottomSheetTitle: React.FC<BottomSheetTitleProps> = ({
   title,
 }: BottomSheetTitleProps) => {
   return (
-    <div className='flex items-center justify-center gap-2 border-0 border-b border-solid border-gray03 py-5 text-center'>
+    <div className='flex items-center justify-center gap-2 border-gray03 py-5 text-center text-gray1 font-subhead'>
       {tag && <Badge className=''>{tag}</Badge>}
       {title}
     </div>
