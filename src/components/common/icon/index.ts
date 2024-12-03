@@ -30,3 +30,5 @@ export { default as GroupIcon } from './GroupIcon';
 export { default as HeartIcon } from './HeartIcon';
 export { default as NoHouseWorkIcon } from './NoHouseWorkIcon';
 export { default as NoGroupIcon } from './NoGroupIcon';
+export { default as MonthFingerIcon } from './MonthFingerIcon';
+export { default as MonthlyHeartIcon } from './MonthlyHeartIcon';
