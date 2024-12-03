@@ -1,22 +1,33 @@
-const DateIcon = () => {
+interface DateIconProps {
+  className?: string;
+}
+
+const DateIcon: React.FC<DateIconProps> = ({ className }) => {
   return (
-    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      className={className}
+    >
       <path
         d='M6.54102 2.6C6.54102 2.26863 6.80964 2 7.14102 2H7.87295C8.20433 2 8.47295 2.26863 8.47295 2.6V3.64658H6.54102V2.6Z'
-        fill='#1FCFBA'
+        fill='currentColor'
       />
       <path
         d='M15.5293 2.6C15.5293 2.26863 15.7979 2 16.1293 2H16.8612C17.1926 2 17.4612 2.26863 17.4612 2.6V3.64658H15.5293V2.6Z'
-        fill='#1FCFBA'
+        fill='currentColor'
       />
-      <rect x='3.72422' y='4.54648' width='16.5534' height='16.5534' rx='2.1' fill='#1FCFBA' />
+      <rect x='3.72422' y='4.54648' width='16.5534' height='16.5534' rx='2.1' fill='currentColor' />
       <rect
         x='3.72422'
         y='4.54648'
         width='16.5534'
         height='16.5534'
         rx='2.1'
-        stroke='#1FCFBA'
+        stroke='currentColor'
         stroke-width='1.8'
       />
       <path

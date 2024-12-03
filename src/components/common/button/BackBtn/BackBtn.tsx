@@ -4,12 +4,13 @@ import React from 'react';
 export interface BackBtnProps {
   /** 뒤로가기 */
   handleClick?: () => void;
+  fill?: string;
 }
 
-const BackBtn: React.FC<BackBtnProps> = ({ handleClick }) => {
+const BackBtn: React.FC<BackBtnProps> = ({ handleClick, fill = 'text-gray6' }) => {
   return (
     <div onClick={handleClick}>
-      <ArrowLeftIcon className='text-gray6 cursor-pointer' />
+      <ArrowLeftIcon className={`${fill} cursor-pointer`} />
     </div>
   );
 };

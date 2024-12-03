@@ -10,6 +10,8 @@ import TimeControl from '@/components/housework/TimeControl/TimeControl';
 import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 import { useParams } from 'react-router-dom';
 import { getHouseworkById } from '@/services/housework/getHouseworkById';
+import { DateIcon, EtcIcon } from '@/components/common/icon';
+import NonEtcIcon from '@/components/common/icon/NonEtcIcon';
 
 export interface SelectedTime {
   hour: string;
@@ -68,33 +70,35 @@ const HouseWorkStepOnePage = () => {
   };
 
   return (
-    <div className='flex h-screen flex-col gap-6 px-5 pb-6'>
+    <div className='flex h-screen flex-col gap-4 px-5 pb-6'>
       <HeaderWithTitle title={`새로운 집안일을\n추가해보세요`} handleClick={handleBackClick} />
-      <section className='flex flex-1 flex-col gap-6' aria-label='집안일 추가 컨텐츠'>
+      <section className='flex flex-1 flex-col gap-4' aria-label='집안일 추가 컨텐츠'>
         {task ? (
           <OpenSheetBtnWithLabel
-            title='집안일'
             selected={task}
             handleClick={handleHouseWorkClick}
+            icon={<EtcIcon />}
           />
         ) : (
           <OpenSheetBtn
             text='어떤 집안일인가요?'
             handleClick={handleHouseWorkClick}
             type='housework'
+            icon={<NonEtcIcon />}
           />
         )}
         {startDate ? (
           <OpenSheetBtnWithLabel
-            title='날짜'
             selected={startDate}
             handleClick={handleDueDateClick}
+            icon={<DateIcon className='text-main' />}
           />
         ) : (
           <OpenSheetBtn
             text='언제 해야 하나요?'
             handleClick={handleDueDateClick}
             type='housework'
+            icon={<DateIcon className='text-gray2' />}
           />
         )}
         <TimeControl onTimeChange={handleTimeChange} />

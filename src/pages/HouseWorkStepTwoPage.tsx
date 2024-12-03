@@ -12,6 +12,7 @@ import { getGroupUser } from '@/services/group/getGroupUser';
 import { User } from '@/types/apis/groupApi';
 import { postHousework } from '@/services/housework/postHousework';
 import { SelectedTime } from '@/pages/HouseWorkStepOnePage';
+import { ProfileIcon } from '@/components/common/icon';
 
 const HouseWorkStepTwoPage = () => {
   const navigate = useNavigate();
@@ -120,16 +121,17 @@ const HouseWorkStepTwoPage = () => {
             <section aria-label='집안일 추가 컨텐츠' className='flex flex-1 flex-col gap-6'>
               {userId ? (
                 <OpenSheetBtnWithLabel
-                  title='담당자'
                   selected={userId}
                   handleClick={handleManagerClick}
                   members={members}
+                  icon={<ProfileIcon className='text-main' />}
                 />
               ) : (
                 <OpenSheetBtn
                   text='책임자는 누구인가요?'
                   handleClick={handleManagerClick}
                   type='housework'
+                  icon={<ProfileIcon className='text-gray2' />}
                 />
               )}
             </section>
