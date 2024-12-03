@@ -1,13 +1,25 @@
 import Button from '@/components/common/button/Button/Button';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
   const navigate = useNavigate();
 
   const handleLoginButton = () => {
-    console.log('kakao login API call!');
-    navigate('/register');
+    if (localStorage.getItem('access_token')) {
+      navigate('/group-select');
+      return;
+    }
+    window.location.href = `${import.meta.env.VITE_SERVER_URL}/oauth2/authorization/kakao`;
   };
+
+  useEffect(() => {
+    const accessToken = new URLSearchParams(location.search).get('access_token');
+    if (accessToken) {
+      localStorage.setItem('access_token', accessToken);
+      navigate('/survey');
+    }
+  }, []);
 
   return (
     <div className='mx-auto flex h-screen flex-col gap-10 px-5 text-center'>

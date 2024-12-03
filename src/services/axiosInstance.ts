@@ -1,16 +1,25 @@
 import axios from 'axios';
 
-// 임시 토큰 설정
-const TOKEN = 'jongwon@gmail.com';
-
 export const axiosInstance = axios.create({
   baseURL: `${import.meta.env.VITE_SERVER_URL}`,
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${TOKEN}`,
   },
 });
+
+axiosInstance.interceptors.request.use(
+  config => {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
 
 axiosInstance.interceptors.response.use(
   response => {
