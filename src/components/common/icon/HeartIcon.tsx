@@ -1,7 +1,26 @@
-const HeartIcon = () => {
+import React from 'react';
+
+interface HeartIconProps {
+  className?: string;
+  width?: string | number;
+  height?: string | number;
+}
+
+const HeartIcon: React.FC<HeartIconProps> = ({
+  className = 'text-main',
+  width = 24,
+  height = 24,
+}) => {
   return (
-    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-      <rect x='1' y='1' width='22' height='22' rx='11' fill='#1FCFBA' />
+    <svg
+      width={width}
+      height={height}
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      className={className}
+    >
+      <rect x='1' y='1' width='22' height='22' rx='11' fill='currentColor' />
       <path
         fill-rule='evenodd'
         clip-rule='evenodd'

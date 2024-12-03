@@ -22,7 +22,7 @@ const AccountMenuItem: React.FC<AccountMenuItemProps> = ({
         {state && <p className='text-gray1 font-label'>{state}</p>}
         {iconType === '로그아웃' && (
           <div className='' onClick={handleClick}>
-            <OutIcon fillClass={'text-gray2'} />
+            <OutIcon className={'text-gray2'} />
           </div>
         )}
         {iconType === '탈퇴' && (
