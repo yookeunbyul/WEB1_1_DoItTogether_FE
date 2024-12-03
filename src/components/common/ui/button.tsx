@@ -19,6 +19,7 @@ const buttonVariants = cva(
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         kakao: 'bg-kakao font-body',
         group: 'border-b-[1px] border-gray5 !rounded-none',
+        onboarding: 'rounded-2xl border-solid border-[1px] px-3 border-gray3 font-body text-gray2',
       },
       size: {
         small: 'h-12 w-full rounded-2xl ',

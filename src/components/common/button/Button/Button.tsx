@@ -4,7 +4,7 @@ interface ButtonProps {
   /** 라벨 */
   label: React.ReactNode;
   /** 타입 */
-  variant: 'full' | 'select' | 'secondary' | 'disabled' | 'kakao' | 'group';
+  variant: 'full' | 'select' | 'secondary' | 'disabled' | 'kakao' | 'group' | 'onboarding';
   /** 사이즈 */
   size: 'small' | 'large';
   /** 클릭 이벤트 */
