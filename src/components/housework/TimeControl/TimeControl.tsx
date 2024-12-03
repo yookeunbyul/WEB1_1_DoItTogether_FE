@@ -49,7 +49,11 @@ const TimeControl: React.FC<TimeControlProps> = ({ onTimeChange }) => {
       <div className='flex items-center justify-between text-gray font-body'>
         {isAllday ? (
           <Label htmlFor='time-mode' className='flex items-center gap-4'>
-            <ClockIcon />
+            <ClockIcon
+              fillClass='fill-main'
+              circleStrokeClass='stroke-main'
+              handStrokeClass='stroke-white'
+            />
             <p>하루종일 하기</p>
           </Label>
         ) : (
