@@ -9,8 +9,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        full: 'bg-main text-white font-subhead border-2 border-main/50 hover:bg-primary/90',
-        secondary: 'bg-sub2 text-main font-subhead border-2 border-sub2/50 hover:bg-secondary/80 ',
+        full: 'bg-main text-white font-subhead border-2 border-main/50',
+        secondary: 'bg-sub2 text-main font-subhead border-2 border-sub2/50 ',
         disabled: 'bg-gray3 text-white font-subhead',
         select:
           'border border-input bg-background shadow-sm font-body text-gray2 px-3 py-4 rounded-2xl',
@@ -18,6 +18,7 @@ const buttonVariants = cva(
           'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground text-black01',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         kakao: 'bg-kakao font-body',
+        group: 'border-b-[1px] border-gray5 !rounded-none',
       },
       size: {
         small: 'h-12 w-full rounded-2xl ',
