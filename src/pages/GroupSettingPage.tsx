@@ -1,7 +1,6 @@
 import SettingHeaderContainer from '@/components/common/header/Header';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '@/components/common/button/Button/Button';
 import InputWithLabel from '@/components/common/input/InputWithLabel';
 import MemberItems from '@/components/setting/groupSetting/MemberItems/MemberItems';
 import InviteLinkWithLabel from '@/components/setting/groupSetting/InviteLink/InviteLinkWithLabel';
@@ -13,6 +12,8 @@ import { deleteGroupUser } from '@/services/group/deleteGroupUser';
 import { putChangeGroupName } from '@/services/group/putChangeGroupName';
 import { toast } from '@/hooks/use-toast';
 import { useParams } from 'react-router-dom';
+import { ArrowRightIcon } from '@/components/common/icon';
+import { Button } from '@/components/common/ui/button';
 
 const GroupSettingPage = () => {
   const navigate = useNavigate();
@@ -156,11 +157,14 @@ const GroupSettingPage = () => {
         <div className='flex flex-col gap-2 pb-6'>
           <p className='text-14'>프리셋 관리</p>
           <Button
-            variant='full'
+            variant='group'
             size='large'
-            label='프리셋 수정하기'
-            handleClick={handleMovePreset}
-          />
+            onClick={handleMovePreset}
+            className='!justify-between px-2'
+          >
+            <p className='text-gray1 font-body'>프리셋 수정하기</p>
+            <ArrowRightIcon className='text-main' />
+          </Button>
         </div>
       </div>
       <ExitSheet
