@@ -1,6 +1,5 @@
 import { BaseRes } from '@/types/apis/baseResponse';
 import { Common } from '@/types/apis/commonApi';
-import { Group } from 'lucide-react';
 
 /**
  * --------------------------------------------------

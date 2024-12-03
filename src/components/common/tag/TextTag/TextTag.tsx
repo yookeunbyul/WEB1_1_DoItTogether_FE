@@ -5,7 +5,7 @@ interface TextTagProps {
   type: 'darkfill' | 'grayfill' | 'secondary';
   /** 라벨 */
   label: string;
-  className: string;
+  className?: string;
 }
 
 const TextTag = ({ type, label, className }: TextTagProps) => {

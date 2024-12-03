@@ -1,6 +1,5 @@
 import Button from '@/components/common/button/Button/Button';
 import GroupSelectTitle from '@/components/groupSelect/GroupSelectTitle/GroupSelectTitle';
-import Logo from '@/components/groupSelect/Logo/Logo';
 import OpenSheetBtn from '@/components/common/button/OpenSheetBtn/OpenSheetBtn';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -34,9 +33,8 @@ const GroupSelectPage = () => {
 
   return (
     <div className='flex min-h-screen flex-col'>
-      <Logo />
       <GroupSelectTitle />
-      <div className='flex flex-1 flex-col gap-y-4 px-5 py-4'>
+      <div className='flex flex-1 flex-col px-5 py-4'>
         {groups.length > 0 ? (
           groups.map(group => (
             <OpenSheetBtn
@@ -47,7 +45,7 @@ const GroupSelectPage = () => {
             />
           ))
         ) : (
-          <div className='flex flex-1 items-center justify-center whitespace-pre-line text-center text-gray03'>
+          <div className='font-label flex flex-1 items-center justify-center whitespace-pre-line text-center text-gray03'>
             {'현재 방이 없어요\n새로운 방을 만들어보세요'}
           </div>
         )}
