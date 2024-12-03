@@ -10,6 +10,12 @@ interface TotalCountData {
   /** 찌르기 개수 */
   pokeCount: number;
 }
+export interface MemberScoreCount {
+  /** 닉네임 */
+  nickname: string;
+  /** 완료 개수 */
+  completeCount: number;
+}
 
 interface WeeklyState {
   /** 선택 날짜 */
@@ -18,6 +24,9 @@ interface WeeklyState {
   /** 완료, 미완료, 칭찬, 찌르기 카운트 데이터 */
   totalCountData: TotalCountData;
   setTotalCountData: (data: TotalCountData) => void;
+  /** 랭킹 카운트 데이터 */
+  scoreCountData: Array<MemberScoreCount>;
+  setScoreCountData: (data: Array<MemberScoreCount>) => void;
 }
 
 const useWeeklyStateStore = create<WeeklyState>(set => ({
@@ -30,6 +39,8 @@ const useWeeklyStateStore = create<WeeklyState>(set => ({
     pokeCount: 0,
   },
   setTotalCountData: data => set(() => ({ totalCountData: data })),
+  scoreCountData: [],
+  setScoreCountData: data => set(() => ({ scoreCountData: data })),
 }));
 
 export default useWeeklyStateStore;

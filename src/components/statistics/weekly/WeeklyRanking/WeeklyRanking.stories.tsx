@@ -13,40 +13,20 @@ type Story = StoryObj<typeof meta>;
 
 export const DUMMY_RANKING = [
   {
-    place: 1,
-    profile: 'https://example.com/profile1.jpg',
-    name: '홍길동',
-    num: 5,
+    nickname: '엄마',
+    completeCount: 8,
   },
   {
-    place: 2,
-    profile: 'https://example.com/profile2.jpg',
-    name: '김철수',
-    num: 4,
+    nickname: '아빠',
+    completeCount: 6,
   },
   {
-    place: 3,
-    profile: 'https://example.com/profile3.jpg',
-    name: '이영희',
-    num: 3,
+    nickname: '첫째',
+    completeCount: 4,
   },
   {
-    place: 4,
-    profile: 'https://example.com/profile4.jpg',
-    name: '박지민',
-    num: 2,
-  },
-  {
-    place: 5,
-    profile: 'https://example.com/profile5.jpg',
-    name: '최민수',
-    num: 1,
-  },
-  {
-    place: 6,
-    profile: 'https://example.com/profile6.jpg',
-    name: '정유진',
-    num: 0,
+    nickname: '둘째',
+    completeCount: 2,
   },
 ];
 

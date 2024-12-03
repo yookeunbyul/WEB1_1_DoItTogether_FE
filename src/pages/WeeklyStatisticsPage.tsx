@@ -3,13 +3,12 @@ import WeeklyStatDate from '@/components/statistics/weekly/WeeklyStatDate/Weekly
 import WeeklyCompletion from '@/components/statistics/weekly/WeeklyCompletion/WeeklyCompletion';
 import WeeklyStatActions from '@/components/statistics/weekly/WeeklyStatAction/WeeklyStatActions';
 import WeeklyRanking from '@/components/statistics/weekly/WeeklyRanking/WeeklyRanking';
-import { DUMMY_RANKING } from '@/components/statistics/weekly/WeeklyRanking/WeeklyRanking.stories';
 import useWeeklyStateStore from '@/store/useWeeklyStatisticsStore';
 import useWeeklyStatistics from '@/hooks/useWeeklyStatistics';
 import useHomePageStore from '@/store/useHomePageStore';
 
 const WeeklyStatisticsPage: React.FC = () => {
-  const { currentDate, totalCountData } = useWeeklyStateStore();
+  const { currentDate, totalCountData, scoreCountData } = useWeeklyStateStore();
   const { handlePrevWeek, handleNextWeek } = useWeeklyStatistics();
   const { currentGroup } = useHomePageStore();
 
@@ -29,7 +28,7 @@ const WeeklyStatisticsPage: React.FC = () => {
         numOfCompliment={totalCountData.complimentCount}
         numOfTease={totalCountData.pokeCount}
       />
-      <WeeklyRanking rankings={DUMMY_RANKING} />
+      <WeeklyRanking rankings={scoreCountData} />
     </>
   );
 };
