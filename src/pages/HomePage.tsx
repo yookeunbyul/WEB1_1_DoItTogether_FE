@@ -106,8 +106,6 @@ const HomePage: React.FC = () => {
     refetch();
   };
 
-  console.log(activeTab);
-
   return (
     <div>
       <HomeHeader />
