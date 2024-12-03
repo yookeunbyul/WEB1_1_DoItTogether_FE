@@ -27,7 +27,7 @@ const OpenSheetBtnWithLabel: React.FC<OpenSheetBtnWithLabelProps> = ({
       <Button
         variant='select'
         size='large'
-        className='bg-white justify-between text-gray02'
+        className='bg-white text-gray justify-between'
         onClick={handleClick}
       >
         <div className='flex items-center gap-x-4'>
