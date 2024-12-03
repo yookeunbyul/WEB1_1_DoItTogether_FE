@@ -14,7 +14,7 @@ import {
   BathRoomIcon,
   BedRoomIcon,
   EtcIcon,
-  LivingRoom,
+  LivingRoomIcon,
   KitchenIcon,
   OutIcon,
   MetalIcon,
@@ -97,8 +97,8 @@ const IconView = () => {
         <EtcIcon />
       </div>
       <div className='flex flex-col items-center gap-2'>
-        <p className='text-sm text-gray-600'>LivingRoom</p>
-        <LivingRoom />
+        <p className='text-sm text-gray-600'>LivingRoomIcon</p>
+        <LivingRoomIcon />
       </div>
       <div className='flex flex-col items-center gap-2'>
         <p className='text-sm text-gray-600'>KitchenIcon</p>
