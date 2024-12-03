@@ -4,7 +4,11 @@ interface DateIconProps {
   height?: string | number;
 }
 
-const DateIcon: React.FC<DateIconProps> = ({ className, width = 24, height = 24 }) => {
+const DateIcon: React.FC<DateIconProps> = ({
+  className = 'text-main',
+  width = 24,
+  height = 24,
+}) => {
   return (
     <svg
       width={width}

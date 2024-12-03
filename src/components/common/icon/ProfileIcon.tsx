@@ -4,7 +4,11 @@ interface ProfileIconProps {
   height?: string | number;
 }
 
-const ProfileIcon: React.FC<ProfileIconProps> = ({ className, width = 24, height = 24 }) => {
+const ProfileIcon: React.FC<ProfileIconProps> = ({
+  className = 'text-main',
+  width = 24,
+  height = 24,
+}) => {
   return (
     <svg
       width={width}

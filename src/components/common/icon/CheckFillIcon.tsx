@@ -1,14 +1,33 @@
-const CheckFillIcon = () => {
+import React from 'react';
+
+interface CheckFillIconProps {
+  className?: string;
+  width?: string | number;
+  height?: string | number;
+}
+
+const CheckFillIcon: React.FC<CheckFillIconProps> = ({
+  className = 'text-main',
+  width = 24,
+  height = 24,
+}) => {
   return (
-    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-      <rect x='2.9' y='2.9' width='18.2' height='18.2' rx='2.1' fill='#1FCFBA' />
+    <svg
+      width={width}
+      height={height}
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      className={className}
+    >
+      <rect x='2.9' y='2.9' width='18.2' height='18.2' rx='2.1' fill='currentColor' />
       <rect
         x='2.9'
         y='2.9'
         width='18.2'
         height='18.2'
         rx='2.1'
-        stroke='#1FCFBA'
+        stroke='currentColor'
         strokeWidth='1.8'
       />
       <path

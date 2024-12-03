@@ -6,7 +6,11 @@ interface CheckIconProps {
   height?: string | number;
 }
 
-const CheckIcon: React.FC<CheckIconProps> = ({ className, width = 24, height = 24 }) => {
+const CheckIcon: React.FC<CheckIconProps> = ({
+  className = 'text-main',
+  width = 24,
+  height = 24,
+}) => {
   return (
     <svg
       width={width}
