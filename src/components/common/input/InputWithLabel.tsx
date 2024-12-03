@@ -18,7 +18,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
 }) => {
   return (
     <div className='flex flex-col gap-2'>
-      <p className='text-14'>{label}</p>
+      <p className='text-black font-label'>{label}</p>
       <InputBox
         value={value}
         placeholder={placeholder}
