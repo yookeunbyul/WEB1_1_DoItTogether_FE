@@ -73,10 +73,10 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ completionData, onMonthChan
       }}
       navigationLabel={({ date }) => `${date.getFullYear()}년 ${date.getMonth() + 1}월`}
       formatDay={(_locale, date) => date.getDate().toString()}
-      prevLabel={<ArrowLeftIcon />}
+      prevLabel={<ArrowLeftIcon className='text-gray1' />}
       nextLabel={
         <ArrowRightIcon
-          className={`text-main transition-colors ${
+          className={`text-gray1 transition-colors ${
             currentDate.getFullYear() === maxDate.getFullYear() &&
             currentDate.getMonth() >= maxDate.getMonth()
               ? 'opacity-30'
