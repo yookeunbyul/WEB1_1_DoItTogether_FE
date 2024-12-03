@@ -13,7 +13,7 @@ const MenuSelect: React.FC<MenuSelectProps> = ({ type, status, content, handleSe
     <Button
       className={`max-w ${type === 'large' && 'justify-start'} ${status === 'active' && 'bg-main text-white03'} whitespace-pre-line rounded-2xl text-left`}
       size={type}
-      variant={'select'}
+      variant={'onboarding'}
       onClick={() => handleSelect(content)}
     >
       {content}
