@@ -3,6 +3,7 @@ import React from 'react';
 import { useToast } from '@/hooks/use-toast';
 import useHomePageStore from '@/store/useHomePageStore';
 import { postCreateInviteLink } from '@/services/group/postCreateInviteLink';
+import { LinkIcon } from '@/components/common/icon';
 
 interface InviteLinkProps {
   initialLink?: string;
@@ -16,7 +17,6 @@ const InviteLink: React.FC<InviteLinkProps> = ({ initialLink }) => {
   const handleGenerateLink = async () => {
     const channelId = currentGroup.channelId;
     const response = await postCreateInviteLink({ channelId: channelId });
-    // setInviteLink(`http://121.88.130.215/${response.result.inviteLink}`);
     setInviteLink(`${response.result.inviteLink}`);
   };
 
@@ -30,20 +30,27 @@ const InviteLink: React.FC<InviteLinkProps> = ({ initialLink }) => {
   };
 
   return (
-    <div className='flex h-12 items-center justify-between rounded-full border border-solid border-white01 px-4 py-1 text-16 shadow-sm'>
+    <div className='flex h-14 items-center justify-between gap-4 border-b-2 border-solid border-gray5 border-opacity-30 bg-white px-2 text-gray2 font-label'>
       {inviteLink ? (
         <>
+          <LinkIcon fillClass='fill-gray2' />
           <div className='min-w-0 flex-1 overflow-hidden'>
-            <p className='truncate'>{inviteLink}</p>
+            <p className='truncate text-gray2'>{inviteLink}</p>
           </div>
-          <button className='shrink-0 pl-4 text-14 text-gray01' onClick={handleCopyLink}>
+          <button
+            className='shrink-0 underline underline-offset-2 font-caption'
+            onClick={handleCopyLink}
+          >
             링크복사
           </button>
         </>
       ) : (
         <>
-          <p className='flex-1 text-gray01'>유효한 코드가 없습니다</p>
-          <button className='text-14 text-gray01' onClick={handleGenerateLink}>
+          <p className='flex-1'>유효한 코드가 없습니다</p>
+          <button
+            onClick={handleGenerateLink}
+            className='underline underline-offset-2 font-caption'
+          >
             발급받기
           </button>
         </>
