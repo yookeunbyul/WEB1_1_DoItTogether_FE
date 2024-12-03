@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import HouseworkList, { HouseworkListProps } from '@/components/home/HouseworkList/HouseworkList';
+import { HOUSEWORK_STATUS } from '@/constants/homePage';
+import { Category } from '@/constants';
+import { fn } from '@storybook/test';
 
 const meta = {
   title: 'components/home/HouseworkList',
@@ -11,63 +14,56 @@ export default meta;
 
 type Story = StoryObj<HouseworkListProps>;
 
-const data = [
+const mockData = [
   {
-    id: 1,
-    actionStatus: 'incomplete',
-    handleAction: () => {
-      console.log('Action btn clicked for 거실 바닥 걸레질');
-    },
-    listTitle: '바닥 걸레질',
-    charger: '종원',
-    time: '오후 8:00',
-    category: '거실',
-    handleEdit: () => console.log('edit clicked!'),
-    handleDelete: () => console.log('delete clicked!'),
+    houseworkId: 1,
+    category: Category.LIVING_ROOM,
+    task: '바닥 걸레질',
+    startTime: '20:00',
+    isAllDay: false,
+    assignee: '종원',
+    status: HOUSEWORK_STATUS.UN_COMPLETE,
   },
   {
-    id: 2,
-    actionStatus: 'incomplete',
-    handleAction: () => {
-      console.log('Action btn clicked for 주방 청소');
-    },
-    listTitle: '청소',
-    charger: '민수',
-    time: '오후 9:00',
-    category: '주방',
-    handleEdit: () => console.log('edit clicked!'),
-    handleDelete: () => console.log('delete clicked!'),
+    houseworkId: 2,
+    category: Category.KITCHEN,
+    task: '청소',
+    startTime: '21:00',
+    isAllDay: false,
+    assignee: '민수',
+    status: HOUSEWORK_STATUS.UN_COMPLETE,
   },
   {
-    id: 3,
-    actionStatus: 'complete',
-    handleAction: () => {
-      console.log('Action btn clicked for 세탁기 돌리기');
-    },
-    listTitle: '세탁기 돌리기',
-    charger: '지수',
-    time: '오후 10:00',
-    category: '기타',
-    handleEdit: () => console.log('edit clicked!'),
-    handleDelete: () => console.log('delete clicked!'),
+    houseworkId: 3,
+    category: Category.BATH_ROOM,
+    task: '세탁기 돌리기',
+    startTime: '22:00',
+    isAllDay: false,
+    assignee: '지수',
+    status: HOUSEWORK_STATUS.COMPLETE,
   },
   {
-    id: 4,
-    actionStatus: 'complete',
-    handleAction: () => {
-      console.log('Action btn clicked for 정리 정돈');
-    },
-    listTitle: '정리 정돈',
-    charger: '영희',
-    time: '오후 7:00',
-    category: '침실',
-    handleEdit: () => console.log('edit clicked!'),
-    handleDelete: () => console.log('delete clicked!'),
+    houseworkId: 4,
+    category: Category.BED_ROOM,
+    task: '정리 정돈',
+    startTime: '19:00',
+    isAllDay: false,
+    assignee: '영희',
+    status: HOUSEWORK_STATUS.COMPLETE,
   },
 ];
 
 export const Default: Story = {
   args: {
-    items: data,
+    items: mockData,
+    handleAction: fn(houseworkId => {
+      console.log('Action triggered for housework:', houseworkId);
+    }),
+    handleEdit: fn(houseworkId => {
+      console.log('Edit triggered for housework:', houseworkId);
+    }),
+    handleDelete: fn(houseworkId => {
+      console.log('Delete triggered for housework:', houseworkId);
+    }),
   },
 };
