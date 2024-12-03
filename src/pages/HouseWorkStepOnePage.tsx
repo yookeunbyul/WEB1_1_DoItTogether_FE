@@ -84,7 +84,7 @@ const HouseWorkStepOnePage = () => {
             text='어떤 집안일인가요?'
             handleClick={handleHouseWorkClick}
             type='housework'
-            icon={<NonEtcIcon />}
+            icon={<EtcIcon fillOneClass='fill-gray1' fillTwoClass='fill-gray2' />}
           />
         )}
         {startDate ? (
