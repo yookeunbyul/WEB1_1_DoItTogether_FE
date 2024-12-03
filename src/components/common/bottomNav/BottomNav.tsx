@@ -9,7 +9,7 @@ const BottomNav = () => {
   const { channelId } = useParams();
 
   const navItems = [
-    { name: '홈', icon: <HomeIcon /> },
+    { name: '홈', icon: <HomeIcon width={24} height={24} /> },
     { name: '통계', icon: <ChartIcon /> },
     { name: '그룹', icon: <GroupIcon /> },
     { name: '마이', icon: <ProfileIcon /> },
