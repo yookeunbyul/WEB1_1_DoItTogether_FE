@@ -11,11 +11,9 @@ const AccountSetBtn: React.FC = () => {
     navigate(`/my-page/account-manage/${channelId}`);
   };
   return (
-    <div className='flex justify-end px-5 py-4'>
-      <button onClick={handleClick}>
-        <SettingIcon />
-      </button>
-    </div>
+    <button onClick={handleClick} className='flex items-center'>
+      <SettingIcon />
+    </button>
   );
 };
 
