@@ -20,7 +20,7 @@ const OpenSheetBtn: React.FC<OpenSheetBtnProps> = ({
     <Button
       variant={type === 'housework' ? 'select' : 'group'}
       size='large'
-      className='bg-white items-center !justify-between'
+      className='items-center !justify-between bg-white px-3'
       onClick={handleClick}
     >
       <div className='flex items-center gap-x-4'>
@@ -29,7 +29,7 @@ const OpenSheetBtn: React.FC<OpenSheetBtnProps> = ({
         <div className='font-body'>{text}</div>
       </div>
 
-      <div>{type === 'housework' ? '' : <ArrowRightIcon />}</div>
+      <div>{type === 'housework' ? '' : <ArrowRightIcon className='text-main' />}</div>
     </Button>
   );
 };
