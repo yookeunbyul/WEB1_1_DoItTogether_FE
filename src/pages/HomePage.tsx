@@ -18,9 +18,16 @@ import { changeHouseworkStatus } from '@/services/housework/changeHouseworkStatu
 import { NoHouseWorkIcon } from '@/components/common/icon';
 
 const HomePage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<string>('전체');
-  const { setWeekText, setCurrentGroup, setGroups, activeDate, homePageNumber } =
-    useHomePageStore();
+  // const [activeTab, setActiveTab] = useState<string>('전체');
+  const {
+    setWeekText,
+    setCurrentGroup,
+    setGroups,
+    activeDate,
+    homePageNumber,
+    activeTab,
+    setActiveTab,
+  } = useHomePageStore();
   const { channelId } = useParams();
   const [chargers, setChargers] = useState<{ name: string }[]>([{ name: '전체' }]);
   const { data: houseworks, refetch } = useQuery({
@@ -98,6 +105,8 @@ const HomePage: React.FC = () => {
     toast({ title: '집안일이 삭제되었습니다!' });
     refetch();
   };
+
+  console.log(activeTab);
 
   return (
     <div>
