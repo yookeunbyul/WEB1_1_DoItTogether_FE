@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import useHomePageStore from '@/store/useHomePageStore';
 import { getMyGroup } from '@/services/group/getMyGroup';
 import { Group } from '@/types/apis/groupApi';
+import { NoGroupIcon } from '@/components/common/icon';
 
 const GroupSelectPage = () => {
   const navigate = useNavigate();
@@ -45,8 +46,9 @@ const GroupSelectPage = () => {
             />
           ))
         ) : (
-          <div className='font-label flex flex-1 items-center justify-center whitespace-pre-line text-center text-gray03'>
-            {'현재 방이 없어요\n새로운 방을 만들어보세요'}
+          <div className='flex flex-1 flex-col items-center justify-center gap-4 whitespace-pre-line text-center text-gray2'>
+            <NoGroupIcon />
+            <p className='font-subhead'>{'현재 방이 없어요\n새로운 방을 만들어보세요'}</p>
           </div>
         )}
       </div>
