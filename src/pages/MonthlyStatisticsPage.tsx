@@ -29,7 +29,7 @@ const MonthlyStatisticsPage = () => {
   return (
     <div className='flex flex-col gap-4'>
       <MonthlyGrass completionData={monthlyGrassData.dates} onMonthChange={handleMonthChange} />
-      <p className='flex items-center gap-3 text-gray1 font-label'>
+      <p className='flex items-center gap-3 text-gray font-label'>
         이번달에는
         <p className='flex items-center gap-3'>
           <span className='flex items-center text-main'>
@@ -43,8 +43,8 @@ const MonthlyStatisticsPage = () => {
         작업을 완료했어요!
       </p>
       <div className='flex gap-3 py-2'>
-        <MonthlyGoodBad type='칭찬' name={monthlyGoodBad.good.member} />
-        <MonthlyGoodBad type='찌르기' name={monthlyGoodBad.bad.member} />
+        <MonthlyGoodBad type='good' name={monthlyGoodBad.good.member} />
+        <MonthlyGoodBad type='bad' name={monthlyGoodBad.bad.member} />
       </div>
     </div>
   );

@@ -31,6 +31,8 @@ import {
   HeartIcon,
   NoHouseWorkIcon,
   NoGroupIcon,
+  MonthlyHeartIcon,
+  MonthFingerIcon,
 } from '@/components/common/icon';
 
 const IconView = () => {
@@ -163,6 +165,14 @@ const IconView = () => {
       <div className='flex flex-col items-center gap-2'>
         <p className='text-sm text-gray-600'>NoGroupIcon</p>
         <NoGroupIcon />
+      </div>
+      <div className='flex flex-col items-center gap-2'>
+        <p className='text-sm text-gray-600'>MonthFingerIcon</p>
+        <MonthFingerIcon />
+      </div>
+      <div className='flex flex-col items-center gap-2'>
+        <p className='text-sm text-gray-600'>MonthlyHeartIcon</p>
+        <MonthlyHeartIcon />
       </div>
     </div>
   );
