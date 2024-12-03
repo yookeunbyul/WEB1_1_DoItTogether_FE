@@ -13,6 +13,12 @@ type Story = StoryObj<typeof InviteLink>;
 
 export const NoValidCode: Story = {};
 
+export const WithInitialLink: Story = {
+  args: {
+    initialLink: 'https://example.com/invite/abc123',
+  },
+};
+
 export const WithGeneratedLink: Story = {
   parameters: {
     docs: {
