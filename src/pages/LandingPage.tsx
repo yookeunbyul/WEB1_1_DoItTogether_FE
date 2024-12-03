@@ -17,7 +17,7 @@ const LandingPage = () => {
     const accessToken = new URLSearchParams(location.search).get('access_token');
     if (accessToken) {
       localStorage.setItem('access_token', accessToken);
-      navigate('/survey');
+      navigate('/register');
     }
   }, []);
 
