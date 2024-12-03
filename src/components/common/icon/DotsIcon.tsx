@@ -4,7 +4,7 @@ interface DotsIconProps {
   fillClass?: string; // Tailwind 색상 클래스
 }
 
-const DotsIcon: React.FC<DotsIconProps> = ({ fillClass = '#1FCFBA' }) => {
+const DotsIcon: React.FC<DotsIconProps> = ({ fillClass = 'text-main' }) => {
   return (
     <svg
       width='24'
