@@ -100,7 +100,7 @@ export default function Wheel(props: {
       />
       <div
         className={cn(
-          `bg-main flex h-[16%] w-full items-center justify-center transform-style-preserve-3d ${
+          `bg-main/15 flex h-[16%] w-full items-center justify-center transform-style-preserve-3d ${
             perspective === 'right'
               ? 'perspective-origin-[calc(50%+100px)_50%] text-main translate-x-2.5'
               : perspective === 'left'
@@ -116,7 +116,7 @@ export default function Wheel(props: {
             <div
               className={cn(
                 'text-xl absolute flex h-full w-full items-center justify-center backface-hidden',
-                Math.abs(sliderState?.slides[idx].distance || 0) < 0.1 ? 'text-white' : 'text-main'
+                Math.abs(sliderState?.slides[idx].distance || 0) < 0.1 ? 'text-main' : 'text-main'
               )}
               style={style}
               key={idx}
