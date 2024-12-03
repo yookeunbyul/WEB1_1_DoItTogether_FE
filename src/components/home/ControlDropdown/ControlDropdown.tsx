@@ -4,6 +4,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/common/ui/dropdown-menu';
+import { DotsIcon } from '@/components/common/icon';
 
 export interface ControlDropdownProps {
   id: number;
@@ -16,8 +17,9 @@ export interface ControlDropdownProps {
 const ControlDropdown = ({ id, handleEdit, handleDelete }: ControlDropdownProps) => {
   return (
     <DropdownMenu>
-      {/* TODO Trigger 수정 필요 */}
-      <DropdownMenuTrigger>선택</DropdownMenuTrigger>
+      <DropdownMenuTrigger>
+        <DotsIcon fillClass='text-white' />
+      </DropdownMenuTrigger>
       <DropdownMenuContent className='flex -translate-x-10 flex-col rounded-2xl'>
         <DropdownMenuItem
           className='flex items-center justify-between px-5 py-2 text-14'
