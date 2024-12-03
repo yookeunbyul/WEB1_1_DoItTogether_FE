@@ -77,11 +77,15 @@ const HomePage: React.FC = () => {
     // 해당 id에 해당하는 집안일 완료 처리
     console.log(houseworkId);
     const newChannelId = Number(channelId);
-    const houseworkStatusChangeResult = await changeHouseworkStatus({
-      channelId: newChannelId,
-      houseworkId,
-    });
-    console.log(houseworkStatusChangeResult);
+    try {
+      await changeHouseworkStatus({
+        channelId: newChannelId,
+        houseworkId,
+      });
+      refetch();
+    } catch (error) {
+      toast({ title: '본인만 변경할 수 있어요!' });
+    }
   };
 
   const handleEdit = (houseworkId: number) => {
