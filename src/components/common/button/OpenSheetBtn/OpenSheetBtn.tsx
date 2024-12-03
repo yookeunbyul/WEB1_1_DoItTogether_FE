@@ -7,26 +7,29 @@ interface OpenSheetBtnProps {
   /** 클릭하는 이벤트 */
   handleClick: () => void;
   type: string;
+  icon?: React.ReactNode;
 }
 
 const OpenSheetBtn: React.FC<OpenSheetBtnProps> = ({
   text,
   handleClick,
   type,
+  icon,
 }: OpenSheetBtnProps) => {
   return (
     <Button
       variant={type === 'housework' ? 'select' : 'group'}
       size='large'
-      className='items-center !justify-between'
+      className='bg-white items-center !justify-between'
       onClick={handleClick}
     >
       <div className='flex items-center gap-x-4'>
         {type === 'housework' ? '' : <HomeIcon width={24} height={24} />}
+        {type === 'housework' && icon}
         <div className='font-body'>{text}</div>
       </div>
 
-      <div>{type === 'housework' ? '+' : <ArrowRightIcon />}</div>
+      <div>{type === 'housework' ? '' : <ArrowRightIcon />}</div>
     </Button>
   );
 };

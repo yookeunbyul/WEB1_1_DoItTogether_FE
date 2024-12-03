@@ -9,7 +9,7 @@ export interface HeaderWithTitleProps extends BackBtnProps {
 const HeaderWithTitle: React.FC<HeaderWithTitleProps> = ({ title, handleClick }) => {
   return (
     <div className='mt-5 flex flex-col gap-5'>
-      <BackBtn handleClick={handleClick} />
+      <BackBtn handleClick={handleClick} fill={'text-main'} />
       <p className='whitespace-pre-line pt-2 text-24 text-gray01'>{title}</p>
     </div>
   );
