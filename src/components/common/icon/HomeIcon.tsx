@@ -2,13 +2,19 @@ import React from 'react';
 
 interface HomeIconProps {
   fillClass?: string;
+  width?: string | number;
+  height?: string | number;
 }
 
-const HomeIcon: React.FC<HomeIconProps> = ({ fillClass = 'text-main' }) => {
+const HomeIcon: React.FC<HomeIconProps> = ({
+  fillClass = 'text-main',
+  width = '18',
+  height = '18',
+}) => {
   return (
     <svg
-      width='18'
-      height='18'
+      width={width}
+      height={height}
       viewBox='0 0 24 24'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
