@@ -13,7 +13,7 @@ export { default as PlusIcon } from './PlusIcon';
 export { default as BathRoomIcon } from './BathRoomIcon';
 export { default as BedRoomIcon } from './BedRoomIcon';
 export { default as EtcIcon } from './EtcIcon';
-export { default as LivingRoom } from './LivingRoom';
+export { default as LivingRoomIcon } from './LivingRoomIcon';
 export { default as KitchenIcon } from './KitchenIcon';
 export { default as OutIcon } from './OutIcon';
 export { default as MetalIcon } from './MetalIcon';
