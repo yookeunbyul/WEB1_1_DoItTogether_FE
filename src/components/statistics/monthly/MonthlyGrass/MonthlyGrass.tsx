@@ -1,37 +1,52 @@
 import Calendar from 'react-calendar';
 import { ArrowLeftIcon, ArrowRightIcon } from '@/components/common/icon';
-import { useState } from 'react';
-
-enum CompletionStatus {
-  ALL_DONE = 'ALL_DONE',
-  INCOMPLETE_REMAINING = 'INCOMPLETE_REMAINING',
-  NO_HOUSEWORK = 'NO_HOUSEWORK',
-}
-
-interface DailyTask {
-  date: string;
-  totalTasks: number;
-  completedTasks: number;
-  status: CompletionStatus;
-}
+import { useEffect, useState } from 'react';
+import { getMonthlyScore } from '@/services/statistics/GetMonthlyScore';
+import { CompletionStatus, MonthlyDateScore } from '@/types/apis/statisticsApi';
+import { useParams } from 'react-router-dom';
 
 interface MonthlyGrassProps {
-  completionData: DailyTask[];
   onMonthChange: (monthKey: string) => void;
 }
 
-const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ completionData, onMonthChange }) => {
+const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ onMonthChange }) => {
   const today = new Date();
   const firstDayCurrentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
   const lastDayPreviousMonth = new Date(firstDayCurrentMonth.getTime() - 1);
 
   const [currentDate, setCurrentDate] = useState(lastDayPreviousMonth);
   const maxDate = lastDayPreviousMonth;
+  const [monthlyData, setMonthlyData] = useState<MonthlyDateScore[]>([]);
+
+  const { channelId: strChannelId } = useParams();
+  const channelId = Number(strChannelId);
+
+  useEffect(() => {
+    const fetchInitialData = async () => {
+      try {
+        const year = lastDayPreviousMonth.getFullYear();
+        const month = String(lastDayPreviousMonth.getMonth() + 1).padStart(2, '0');
+        const monthKey = `${year}-${month}`;
+
+        const response = await getMonthlyScore({
+          channelId,
+          targetMonth: monthKey,
+        });
+
+        setMonthlyData(response.result.monthlyStatistics);
+      } catch (error) {
+        console.error('초기 데이터 로드 실패:', error);
+      }
+    };
+
+    fetchInitialData();
+  }, []);
 
   const getStatus = (date: Date): CompletionStatus => {
     const dateString = date.toLocaleDateString('en-CA');
-    const dayData = completionData.find(data => data.date === dateString);
-    return dayData?.status || CompletionStatus.NO_HOUSEWORK;
+    const dayData = monthlyData.find(data => data.date === dateString);
+    if (!dayData?.status) return CompletionStatus.NO_HOUSEWORK;
+    return dayData.status as CompletionStatus;
   };
 
   const getTileClassName = ({ date }: { date: Date }): string => {
@@ -46,13 +61,23 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ completionData, onMonthChan
     }
   };
 
-  // TODO: 여기서 api 처리
-  const handleMonthChange = ({ activeStartDate }: { activeStartDate: Date | null }) => {
+  const handleMonthChange = async ({ activeStartDate }: { activeStartDate: Date | null }) => {
     if (activeStartDate) {
       const year = activeStartDate.getFullYear();
       const month = String(activeStartDate.getMonth() + 1).padStart(2, '0');
       const monthKey = `${year}-${month}`;
-      onMonthChange(monthKey);
+
+      try {
+        const response = await getMonthlyScore({
+          channelId,
+          targetMonth: monthKey,
+        });
+
+        setMonthlyData(response.result.monthlyStatistics);
+        onMonthChange(monthKey);
+      } catch (error) {
+        console.error('월간 데이터 로드 실패:', error);
+      }
     }
   };
 
