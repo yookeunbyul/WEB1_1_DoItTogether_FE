@@ -16,7 +16,6 @@ export const Default: Story = {
     category: '거실',
     housework: '쓰레기통 비우기',
     handleSelectClick: () => console.log('preset item clicked!'),
-    isInPresetSetting: false,
     handleSettingClick: () => console.log('preset item clicked!'),
     isShowDeleteBtn: false,
     handleDeleteClick: () => console.log('preset item clicked!'),

@@ -1,4 +1,4 @@
-import { CheckIcon, EtcIcon } from '@/components/common/icon';
+import { CheckIcon } from '@/components/common/icon';
 import { Button } from '@/components/common/ui/button';
 import { User } from '@/types/apis/groupApi';
 
