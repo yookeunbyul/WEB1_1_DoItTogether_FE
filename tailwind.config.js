@@ -84,6 +84,7 @@ export default {
       black: '#1F2425',
       blackAlter: '#263736',
       white: '#FDFDFD',
+      whiteReal: '#FFFFFF',
       gray: '#4D4F4F',
       gray1: '#747677',
       gray2: '#959595',
