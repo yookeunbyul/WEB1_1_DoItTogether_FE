@@ -26,16 +26,16 @@ const ClockIcon: React.FC<ClockIconProps> = ({
       <path
         d='M20.9 12C20.9 16.9153 16.9153 20.9 12 20.9C7.08467 20.9 3.1 16.9153 3.1 12C3.1 7.08467 7.08467 3.1 12 3.1C16.9153 3.1 20.9 7.08467 20.9 12Z'
         className={`${fillClass} ${circleStrokeClass}`}
-        stroke-width='2.2'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='2.2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
       <path
         d='M12 7V12L15.3333 13.6667'
         className={handStrokeClass}
-        stroke-width='2'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
     </svg>
   );
