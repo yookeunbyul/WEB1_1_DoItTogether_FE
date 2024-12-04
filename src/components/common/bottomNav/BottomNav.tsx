@@ -3,16 +3,46 @@ import AddHouseWorkBtn from './AddHouseWorkBtn/AddHouseWorkBtn';
 import BottomNavBtn from './BottomNavBtn/BottomNavBtn';
 import { useParams } from 'react-router-dom';
 import { ChartIcon, GroupIcon, HomeIcon, ProfileIcon } from '@/components/common/icon';
+import { useLocation } from 'react-router-dom';
 
 const BottomNav = () => {
   const navigate = useNavigate();
   const { channelId } = useParams();
 
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  console.log(currentPath);
+
   const navItems = [
-    { name: '홈', icon: <HomeIcon width={24} height={24} /> },
-    { name: '통계', icon: <ChartIcon /> },
-    { name: '그룹', icon: <GroupIcon /> },
-    { name: '마이', icon: <ProfileIcon className='text-main' /> },
+    {
+      name: '홈',
+      icon: (
+        <HomeIcon
+          width={24}
+          height={24}
+          fillClass={currentPath === `/main/${channelId}` ? 'text-main' : 'text-gray3'}
+        />
+      ),
+    },
+    {
+      name: '통계',
+      icon: (
+        <ChartIcon className={currentPath.includes('statistics') ? 'text-main' : 'text-gray3'} />
+      ),
+    },
+    {
+      name: '그룹',
+      icon: (
+        <GroupIcon className={currentPath.includes('group-setting') ? 'text-main' : 'text-gray3'} />
+      ),
+    },
+    {
+      name: '마이',
+      icon: (
+        <ProfileIcon className={currentPath.includes('my-page') ? 'text-main' : 'text-gray3'} />
+      ),
+    },
   ];
 
   const handleClick = (path: string) => {
@@ -20,7 +50,7 @@ const BottomNav = () => {
   };
 
   return (
-    <div className='rounded-tl-4xl rounded-tr-4xl bg-white flex w-full max-w justify-between px-5 py-2 shadow-[0px_0px_7.2px_0px_rgba(217,250,245,1.0)]'>
+    <div className='flex w-full max-w justify-between rounded-tl-4xl rounded-tr-4xl bg-white px-5 py-2 shadow-[0px_0px_7.2px_0px_rgba(217,250,245,1.0)]'>
       <div className='flex flex-1 justify-center'>
         <BottomNavBtn
           icon={navItems[0].icon}
