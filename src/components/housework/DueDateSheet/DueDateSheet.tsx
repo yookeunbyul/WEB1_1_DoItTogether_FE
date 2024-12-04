@@ -37,7 +37,7 @@ const DueDateSheet = ({ isOpen, setOpen }: DueDateSheetProps) => {
 
   return (
     <BottomSheet isOpen={isOpen} setOpen={setOpen} title='날짜 선택'>
-      <div className='mt-4 flex min-h-96 flex-col gap-y-6 pb-6'>
+      <div className='flex min-h-96 flex-col gap-y-6 pb-6'>
         <section aria-label='집안일 할당 바텀 시트' className='flex flex-1 flex-col gap-6'>
           <Calendar mode='single' selected={selectedDate} onSelect={handleDateSelect} />
         </section>
