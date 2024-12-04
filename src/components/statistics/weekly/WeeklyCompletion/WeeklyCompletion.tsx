@@ -3,7 +3,7 @@ import TextTag from '@/components/common/tag/TextTag/TextTag';
 import CompletionText from '@/components/statistics/weekly/WeeklyCompletion/CompletionText/CompletionText';
 import CompletionBarGraph from '@/components/statistics/weekly/WeeklyCompletion/CompletionBarGraph/CompletionBarGraph';
 import { Card } from '@/components/common/ui/card';
-import TrashCanIcon from '@/components/common/icon/TrashCanIcon';
+import { TrashCanIcon, BroomDustIcon, BubbleIcon, ShinyIcon } from '@/components/common/icon';
 
 interface WeeklyCompletionProps {
   /** 그룹명 */
@@ -21,9 +21,9 @@ const WeeklyCompletion: React.FC<WeeklyCompletionProps> = ({
   notCompleted,
 }) => {
   return (
-    <Card className='mb-4 border-none px-5 shadow-none'>
-      <div className='flex w-full items-center justify-between gap-10 p-7'>
-        <div className='flex flex-col gap-2'>
+    <Card className='mb-4 border-none px-5 pb-4 shadow-none'>
+      <div className='flex w-full items-center justify-between py-5 pl-5'>
+        <div className='flex flex-col gap-3'>
           <div className='flex items-center gap-2'>
             <TextTag
               type='grayfill'
@@ -39,6 +39,9 @@ const WeeklyCompletion: React.FC<WeeklyCompletionProps> = ({
           </div>
         </div>
         <TrashCanIcon />
+        {/* <BroomDustIcon /> */}
+        {/* <BubbleIcon /> */}
+        {/* <ShinyIcon /> */}
       </div>
       <div>
         <CompletionBarGraph completed={completed} notCompleted={notCompleted} />
