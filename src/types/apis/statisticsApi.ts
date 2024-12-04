@@ -34,6 +34,12 @@ export interface GetWeeklyTotalCountRes extends BaseRes {
   };
 }
 
+export enum CompletionStatus {
+  ALL_DONE = 'ALL_DONE',
+  INCOMPLETE_REMAINING = 'INCOMPLETE_REMAINING',
+  NO_HOUSEWORK = 'NO_HOUSEWORK',
+}
+
 export interface MonthlyDateScore {
   /** 날짜 (YYYY-MM-DD) */
   date: string;
@@ -42,7 +48,7 @@ export interface MonthlyDateScore {
   /** 완료한 일의 개수 */
   completedTasks: number;
   /** 상태 */
-  status: string;
+  status: CompletionStatus;
 }
 
 export interface GetMonthlyScoreReq extends Pick<Common, 'channelId'> {
