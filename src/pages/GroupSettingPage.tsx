@@ -42,8 +42,7 @@ const GroupSettingPage = () => {
 
         setGroupName(response.result.name);
         setMembers(response.result.userList);
-        // TODO: 나중에는 토큰값으로 확인
-        const current = response.result.userList.find(user => user.email === 'gaeun@gmail.com');
+        const current = response.result.userList.find(user => user.currentUser);
         setCurrentUser(current || null);
         setIsLoading(false);
       } catch (error) {
@@ -76,23 +75,19 @@ const GroupSettingPage = () => {
     });
   };
 
+  const isAdmin = currentUser?.role === 'ADMIN';
+
   // 바텀시트 문구 체크
-  const isAdmin = members.some(
-    member => member.role === 'ADMIN' && member.email === 'gaeun@gmail.com'
-  );
   const handleSheet = (member: User) => {
     setSelectedMember(member); // 선택된 멤버 저장
-    const isCurrentUser = member.email === 'gaeun@gmail.com';
-    if (isAdmin && isCurrentUser) {
-      // 내가 그룹장일 때
+    const isCurrentUserSelected = member.currentUser;
+    if (isAdmin && isCurrentUserSelected) {
       setBtnText('나갈래요');
       setSheetTitle(`${groupName}에서 정말 나가시나요?`);
     } else if (isAdmin) {
-      // 다른 멤버를 선택했을 때
       setBtnText('내보낼래요');
       setSheetTitle(`${member.nickName}님을 정말 내보내시나요?`);
     } else {
-      // 내가 일반 멤버일 때
       setBtnText('나갈래요');
       setSheetTitle(`${groupName}에서 정말 나가시나요?`);
     }
@@ -102,16 +97,12 @@ const GroupSettingPage = () => {
   // 멤버 방출 or 나가기 처리
   const handleExit = async (member: User) => {
     try {
-      // TODO: 나중에는 토큰값으로 확인
-      const isCurrentUser = member.email === 'gaeun@gmail.com';
+      const isCurrentUserSelected = member.currentUser;
 
-      console.log(member);
-      if (isAdmin && !isCurrentUser) {
-        // 관리자가 다른 멤버를 방출하는 경우
+      if (isAdmin && !isCurrentUserSelected) {
         await postBanUser({ channelId, email: member.email });
         setMembers(prev => prev.filter(m => m.email !== member.email));
       } else {
-        // 자신이 나가는 경우 (관리자든 일반 멤버든)
         await deleteGroupUser({ channelId });
         navigate('/group-select');
       }
