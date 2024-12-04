@@ -95,6 +95,10 @@ export default {
       rank1: '#FFDD00',
       rank2: '#E7E6E6',
       rank3: '#FF9D00',
+      pink1: '#FF6898',
+      pink2: '#FF9FCA',
+      blue1: '#19B4DF',
+      blue2: '#00C9D8',
     },
     fontSize: {
       10: '0.625rem', // 삭제
