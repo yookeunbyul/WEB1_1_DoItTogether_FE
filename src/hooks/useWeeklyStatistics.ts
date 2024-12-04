@@ -1,5 +1,5 @@
-import { getWeeklyScore } from '@/services/statistics/GetWeeklyScore';
-import { getWeeklyTotalCount } from '@/services/statistics/GetWeeklyTotalCount';
+import { getWeeklyScore } from '@/services/statistics/getWeeklyScore';
+import { getWeeklyTotalCount } from '@/services/statistics/getWeeklyTotalCount';
 import useWeeklyStateStore from '@/store/useWeeklyStatisticsStore';
 import getFormattedDate from '@/utils/getFormattedDate';
 import { useEffect } from 'react';
@@ -14,31 +14,13 @@ const useWeeklyStatistics = () => {
   useEffect(() => {
     // TODO API 개발 후, 주석풀고 임시값 제거
     // getTotalCountData();
-    // getScoreCountData();
+    getScoreCountData();
     setTotalCountData({
       completeCount: 10,
       notCompleteCount: 3,
       complimentCount: 10,
       pokeCount: 3,
     });
-    setScoreCountData([
-      {
-        nickname: '엄마',
-        completeCount: 8,
-      },
-      {
-        nickname: '아빠',
-        completeCount: 6,
-      },
-      {
-        nickname: '첫째',
-        completeCount: 4,
-      },
-      {
-        nickname: '둘째',
-        completeCount: 2,
-      },
-    ]);
   }, []);
 
   const getTotalCountData = async () => {
@@ -61,6 +43,7 @@ const useWeeklyStatistics = () => {
     }
   };
 
+  // TODO Remove
   console.log(getTotalCountData, getScoreCountData);
 
   const handlePrevWeek = () => {

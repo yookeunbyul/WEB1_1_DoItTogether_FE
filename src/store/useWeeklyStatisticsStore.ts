@@ -10,9 +10,11 @@ interface TotalCountData {
   /** 찌르기 개수 */
   pokeCount: number;
 }
-export interface MemberScoreCount {
+export interface WeeklyMemberScore {
   /** 닉네임 */
-  nickname: string;
+  nickName: string;
+  /** 프로필 이미지 URL */
+  profileImageUrl: string;
   /** 완료 개수 */
   completeCount: number;
 }
@@ -25,8 +27,8 @@ interface WeeklyState {
   totalCountData: TotalCountData;
   setTotalCountData: (data: TotalCountData) => void;
   /** 랭킹 카운트 데이터 */
-  scoreCountData: Array<MemberScoreCount>;
-  setScoreCountData: (data: Array<MemberScoreCount>) => void;
+  scoreCountData: Array<WeeklyMemberScore>;
+  setScoreCountData: (data: Array<WeeklyMemberScore>) => void;
 }
 
 const useWeeklyStateStore = create<WeeklyState>(set => ({

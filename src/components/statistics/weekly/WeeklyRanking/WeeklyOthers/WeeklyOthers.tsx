@@ -1,21 +1,28 @@
 import React from 'react';
-import { MemberScoreCount } from '@/components/statistics/weekly/WeeklyRanking/WeeklyRanking';
+import { WeeklyMemberScore } from '@/store/useWeeklyStatisticsStore';
 
-interface WeeklyOthersProps extends MemberScoreCount {
+interface WeeklyOthersProps extends WeeklyMemberScore {
   rank: number;
 }
 
-const WeeklyOthers: React.FC<WeeklyOthersProps> = ({ rank, nickname, completeCount }) => {
-  // TODO 프로필 이미지 저장 후 변경
-  const profile = `https://fakeimg.pl/200x200/1FCFBA,128/000,255?text=Doto`;
+const WeeklyOthers: React.FC<WeeklyOthersProps> = ({
+  rank,
+  nickName,
+  profileImageUrl,
+  completeCount,
+}) => {
   return (
     <div className='flex items-center justify-between text-gray3 font-body'>
       <div className='flex items-center gap-2'>
         <p>{rank}</p>
-        <div className='flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-solid'>
-          <img src={profile} alt='' />
+        <div className='flex h-8 w-8 items-center justify-center overflow-hidden rounded-full'>
+          <img
+            className='h-full w-full rounded-full object-cover'
+            src={profileImageUrl}
+            alt='프로필 이미지'
+          />
         </div>
-        <p>{nickname}</p>
+        <p className='text-gray3 font-body'>{nickName}</p>
       </div>
       <p>{completeCount}개</p>
     </div>
