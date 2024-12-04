@@ -57,6 +57,7 @@ const HomePage: React.FC = () => {
       if (!channelId) return;
       const newChannelId = Number(channelId);
       const getGroupUsersResult = await getGroupUser({ channelId: newChannelId });
+      console.log(getGroupUsersResult);
       const newChargers = [
         { name: '전체' },
         ...Array.from(new Set(getGroupUsersResult.result.userList.map(user => user.nickName))).map(
@@ -105,6 +106,8 @@ const HomePage: React.FC = () => {
     toast({ title: '집안일이 삭제되었습니다!' });
     refetch();
   };
+
+  console.log(houseworks);
 
   return (
     <div>
