@@ -11,6 +11,7 @@ import KitchenIconGroup from '@/components/common/icon/KitchenIconGroup';
 import BathRoomIconGroup from '@/components/common/icon/BathRoomIconGroup';
 import BedRoomIconGroup from '@/components/common/icon/BedRoomIconGroup';
 import { Category } from '@/constants';
+import useHomePageStore from '@/store/useHomePageStore';
 
 /**
  * todo
@@ -30,17 +31,26 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
   startTime,
   isAllDay,
   assignee,
+  userId,
   status,
   handleAction,
   handleEdit,
   handleDelete,
 }) => {
+  const { myInfo } = useHomePageStore();
+  const newStatus =
+    userId !== myInfo?.userId
+      ? status === HOUSEWORK_STATUS.COMPLETE
+        ? HOUSEWORK_STATUS.HEART
+        : HOUSEWORK_STATUS.FINGER
+      : status;
+
   return (
     <li
       className={`relative flex list-none items-center overflow-hidden rounded-2xl ${status === HOUSEWORK_STATUS.COMPLETE ? `bg-sub2` : `bg-sub1`} p-4 text-white`}
     >
       <ListActionBtn
-        status={status}
+        status={newStatus}
         handleAction={() => handleAction(houseworkId)}
         id={houseworkId}
       />
