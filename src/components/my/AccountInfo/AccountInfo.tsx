@@ -7,7 +7,7 @@ interface AccountInfoProps {
 
 const AccountInfo: React.FC<AccountInfoProps> = ({ nickname, account }) => {
   return (
-    <div>
+    <div className='flex flex-col justify-between'>
       <div className='font-body'>{nickname}</div>
       <div className='text-gray4 font-label'>{account}</div>
     </div>
