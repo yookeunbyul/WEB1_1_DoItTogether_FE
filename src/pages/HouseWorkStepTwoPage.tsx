@@ -85,8 +85,10 @@ const HouseWorkStepTwoPage = () => {
 
         setTimeout(() => {
           navigate(`/main/${channelId}`);
-          reset();
-          setIsLoading(false);
+          setTimeout(() => {
+            reset();
+            setIsLoading(false);
+          }, 1500);
         }, 1500);
       }
     } catch (error) {
@@ -113,6 +115,7 @@ const HouseWorkStepTwoPage = () => {
               housework={task}
               date={startDate}
               members={members}
+              category={category}
             />
           </>
         ) : (
@@ -136,7 +139,7 @@ const HouseWorkStepTwoPage = () => {
               )}
             </section>
             <Button
-              label='완료'
+              label='다음'
               variant='full'
               size='large'
               handleClick={handleNextClick}

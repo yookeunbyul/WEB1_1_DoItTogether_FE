@@ -97,7 +97,7 @@ const HouseWorkSheet: React.FC<HouseWorkSheetProps> = ({ isOpen, setOpen }) => {
           />
         </section>
         <div className='px-5'>
-          <Button label='완료' variant='full' size='large' handleClick={handleDoneClick} />
+          <Button label='확인' variant='full' size='large' handleClick={handleDoneClick} />
         </div>
       </div>
     </BottomSheet>

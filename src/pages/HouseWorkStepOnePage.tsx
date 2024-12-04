@@ -11,7 +11,6 @@ import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 import { useParams } from 'react-router-dom';
 import { getHouseworkById } from '@/services/housework/getHouseworkById';
 import { DateIcon, EtcIcon } from '@/components/common/icon';
-import NonEtcIcon from '@/components/common/icon/NonEtcIcon';
 
 export interface SelectedTime {
   hour: string;
