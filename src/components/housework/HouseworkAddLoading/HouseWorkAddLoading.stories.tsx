@@ -27,7 +27,7 @@ export const Default: Story = {
   args: {
     date: '24년 11월 28일',
     housework: '청소하기',
-    member: '김철수',
+    member: 1,
   },
 };
 
@@ -35,7 +35,7 @@ export const LongText: Story = {
   args: {
     date: '24년 11월 28일',
     housework: '장시간 대청소하기',
-    member: '울트라 마젠가 프린스 로미오',
+    member: 2,
   },
 };
 
@@ -43,6 +43,6 @@ export const ShortText: Story = {
   args: {
     date: '24년 11월 28일',
     housework: '청소',
-    member: '보람',
+    member: 3,
   },
 };

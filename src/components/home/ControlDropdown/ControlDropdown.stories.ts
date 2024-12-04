@@ -14,6 +14,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    id: 0,
     handleEdit: action('Edit button clicked'),
     handleDelete: action('Delete button clicked'),
   },

@@ -17,16 +17,8 @@ export const Default: Story = {
   args: {},
 };
 
-interface SelectedTime {
-  hour: string;
-  minute: string;
-  dayPart: 'AM' | 'PM';
-}
-
 export const CustomInitialTime: Story = {
-  args: {
-    onTimeChange: (time: SelectedTime) => console.log('Selected Time:', time),
-  },
+  args: {},
   render: args => <TimePicker {...args} />,
 };
 

@@ -5,6 +5,11 @@ const meta = {
   title: 'components/statistics/weekly/WeeklyRanking/WeeklyOthers',
   component: WeeklyOthers,
   tags: ['autodocs'],
+  argTypes: {
+    rank: { control: 'number', description: '순위' },
+    nickname: { control: 'text', description: '닉네임' },
+    completeCount: { control: 'number', description: '완료된 작업 수' },
+  },
 } satisfies Meta<typeof WeeklyOthers>;
 
 export default meta;
@@ -13,41 +18,23 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    place: 4,
-    profile: 'none',
-    name: '준희',
-    num: 1,
+    rank: 4,
+    nickname: '준희',
+    completeCount: 1,
   },
-  render: args => <WeeklyOthers {...args} />,
-};
-
-const args2 = {
-  place: 5,
-  profile: 'none',
-  name: '준희',
-  num: 0,
-};
-
-const args3 = {
-  place: 6,
-  profile: 'none',
-  name: '지원',
-  num: 0,
 };
 
 export const Flex: Story = {
   args: {
-    place: 4,
-    profile: 'none',
-    name: '민지',
-    num: 1,
+    rank: 4,
+    nickname: '민지',
+    completeCount: 1,
   },
-
   render: args => (
     <div className='flex flex-col gap-2'>
       <WeeklyOthers {...args} />
-      <WeeklyOthers {...args2} />
-      <WeeklyOthers {...args3} />
+      <WeeklyOthers rank={5} nickname='준희' completeCount={0} />
+      <WeeklyOthers rank={6} nickname='지원' completeCount={0} />
     </div>
   ),
 };

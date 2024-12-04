@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    type: 'full',
+    type: 'large',
     status: 'active',
     content: '주에 2, 3회',
     handleSelect: () => console.log('selected'),
@@ -23,7 +23,7 @@ export const Default: Story = {
 
 export const Tight: Story = {
   args: {
-    type: 'tight',
+    type: 'large',
     status: 'inActive',
     content: '정리정돈의 욕구',
     handleSelect: () => console.log('selected'),

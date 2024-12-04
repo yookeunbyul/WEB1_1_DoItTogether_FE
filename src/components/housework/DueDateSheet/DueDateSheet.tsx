@@ -2,7 +2,6 @@ import BottomSheet from '@/components/common/bottomSheet/BottomSheet';
 import Button from '@/components/common/button/Button/Button';
 import { Calendar } from '@/components/housework/DueDateSheet/Calendar/Calendar';
 import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
-import { useState } from 'react';
 
 interface DueDateSheetProps {
   /** 바텀시트 오픈 여부 */

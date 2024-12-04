@@ -5,6 +5,11 @@ const meta = {
   title: 'components/statistics/weekly/WeeklyRanking/WeeklyPodium',
   component: WeeklyPodium,
   tags: ['autodocs'],
+  argTypes: {
+    rank: { control: 'number', description: '순위' },
+    nickname: { control: 'text', description: '닉네임' },
+    completeCount: { control: 'number', description: '완료된 작업 수' },
+  },
 } satisfies Meta<typeof WeeklyPodium>;
 
 export default meta;
@@ -13,20 +18,32 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    place: 1,
-    profile: 'none',
-    name: '민재',
-    num: 10,
+    rank: 1,
+    nickname: '민재',
+    completeCount: 10,
   },
-  render: args => <WeeklyPodium {...args} />,
 };
 
 export const NotWinner: Story = {
   args: {
-    place: 2,
-    profile: 'none',
-    name: '서준',
-    num: 8,
+    rank: 2,
+    nickname: '서준',
+    completeCount: 8,
   },
-  render: args => <WeeklyPodium {...args} />,
+};
+
+export const ThirdPlace: Story = {
+  args: {
+    rank: 3,
+    nickname: '지우',
+    completeCount: 6,
+  },
+};
+
+export const NoCompletions: Story = {
+  args: {
+    rank: 1,
+    nickname: '현우',
+    completeCount: 0,
+  },
 };

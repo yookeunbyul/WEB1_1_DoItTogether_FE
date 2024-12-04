@@ -61,6 +61,8 @@ const useWeeklyStatistics = () => {
     }
   };
 
+  console.log(getTotalCountData, getScoreCountData);
+
   const handlePrevWeek = () => {
     setCurrentDate((prevDate: Date) => {
       const newDate = new Date(prevDate);
