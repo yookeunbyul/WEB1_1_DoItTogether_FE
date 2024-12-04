@@ -42,7 +42,7 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ completionData, onMonthChan
       case CompletionStatus.INCOMPLETE_REMAINING:
         return 'bg-[#8DE8D7] text-[#FDFDFD] rounded-full font-body';
       default:
-        return 'bg-white text-[#B4B4B5] font-body';
+        return 'text-[#B4B4B5] font-body';
     }
   };
 

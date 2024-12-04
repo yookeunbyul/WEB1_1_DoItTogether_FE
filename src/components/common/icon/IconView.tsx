@@ -33,6 +33,7 @@ import {
   NoGroupIcon,
   MonthlyHeartIcon,
   MonthFingerIcon,
+  TrashCanIcon,
 } from '@/components/common/icon';
 import EnterIcon from '@/components/common/icon/EnterIcon';
 
@@ -178,6 +179,10 @@ const IconView = () => {
           <p className='text-sm text-gray-600'>EnterIcon</p>
           <EnterIcon />
         </div>
+      </div>
+      <div className='flex flex-col items-center gap-2'>
+        <p className='text-sm text-gray-600'>TrashCanIcon</p>
+        <TrashCanIcon />
       </div>
     </div>
   );

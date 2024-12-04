@@ -23,13 +23,13 @@ const WeeklyRanking: React.FC<WeeklyRankingProps> = ({ rankings }) => {
 
   return (
     <Card className='flex flex-col justify-center gap-8 border-none p-8 shadow-none'>
-      <p className='text-center text-white'>이번주 완료 개수 랭킹</p>
-      <div className='flex items-center justify-between text-white'>
+      <p className='text-center text-gray font-subhead'>이번주 완료 개수 랭킹</p>
+      <div className='flex items-center justify-between font-body'>
         {podiumData.map((ranker, index) => (
           <WeeklyPodium key={index} rank={index + 1} {...ranker} />
         ))}
       </div>
-      <div className='flex flex-col justify-center gap-2 text-white'>
+      <div className='flex flex-col justify-center gap-2'>
         {rankings.slice(3).map((ranker, index) => (
           <WeeklyOthers key={index + 3} rank={index + 4} {...ranker} />
         ))}
