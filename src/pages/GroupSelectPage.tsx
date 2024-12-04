@@ -10,7 +10,7 @@ import { NoGroupIcon } from '@/components/common/icon';
 
 const GroupSelectPage = () => {
   const navigate = useNavigate();
-  const { setCurrentGroup, groups, setGroups } = useHomePageStore();
+  const { setCurrentGroup, groups, setGroups, setActiveTab } = useHomePageStore();
 
   useEffect(() => {
     const fetchMyGroup = async () => {
@@ -29,6 +29,7 @@ const GroupSelectPage = () => {
   };
   const handleClick = (group: Group) => {
     setCurrentGroup(group);
+    setActiveTab('전체');
     navigate(`/main/${group.channelId}`);
   };
 
