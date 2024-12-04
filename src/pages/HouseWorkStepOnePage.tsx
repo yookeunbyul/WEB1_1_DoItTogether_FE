@@ -84,7 +84,7 @@ const HouseWorkStepOnePage = () => {
             text='어떤 집안일인가요?'
             handleClick={handleHouseWorkClick}
             type='housework'
-            icon={<EtcIcon fillOneClass='fill-gray1' fillTwoClass='fill-gray2' />}
+            icon={<EtcIcon fillOneClass='fill-gray1' fillTwoClass='fill-gray3' />}
           />
         )}
         {startDate ? (
@@ -98,7 +98,7 @@ const HouseWorkStepOnePage = () => {
             text='언제 해야 하나요?'
             handleClick={handleDueDateClick}
             type='housework'
-            icon={<DateIcon className='text-gray2' />}
+            icon={<DateIcon className='text-gray3' />}
           />
         )}
         <TimeControl onTimeChange={handleTimeChange} />

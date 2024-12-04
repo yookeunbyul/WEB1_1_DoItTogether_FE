@@ -131,7 +131,7 @@ const HouseWorkStepTwoPage = () => {
                   text='책임자는 누구인가요?'
                   handleClick={handleManagerClick}
                   type='housework'
-                  icon={<ProfileIcon className='text-gray2' />}
+                  icon={<ProfileIcon className='text-gray3' />}
                 />
               )}
             </section>

@@ -11,11 +11,11 @@ const WeeklyPodium: React.FC<WeeklyPodiumProps> = ({ rank, nickname, completeCou
   return (
     <div className={`flex flex-col items-center justify-center ${rank === 2 && 'order-first'}`}>
       <div
-        className={`relative ${rank === 1 ? 'h-24 w-24' : 'h-16 w-16'} flex items-center justify-center rounded-full border border-solid bg-white03`}
+        className={`relative ${rank === 1 ? 'h-24 w-24' : 'h-16 w-16'} flex items-center justify-center rounded-full border border-solid bg-white`}
       >
         <img src={profile} alt='profile' className='w-full rounded-full' />
         <div
-          className={`absolute ${rank === 1 ? '-left-0' : '-left-2'} top-0 flex h-6 w-6 items-center justify-center rounded-full bg-gray02 text-14`}
+          className={`absolute ${rank === 1 ? '-left-0' : '-left-2'} top-0 flex h-6 w-6 items-center justify-center rounded-full bg-gray3 text-14`}
         >
           {rank}
         </div>
@@ -23,7 +23,7 @@ const WeeklyPodium: React.FC<WeeklyPodiumProps> = ({ rank, nickname, completeCou
       <p>
         <strong>{nickname}</strong>
       </p>
-      <p className='rounded-full bg-gray01 px-2 text-14 text-white03'>
+      <p className='rounded-full bg-gray px-2 text-14 text-white'>
         {completeCount === 0 ? '-' : `${completeCount}개`}
       </p>
     </div>

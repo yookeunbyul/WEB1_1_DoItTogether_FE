@@ -16,18 +16,18 @@ const AccountMenuItem: React.FC<AccountMenuItemProps> = ({
   handleClick,
 }) => {
   return (
-    <div className='w-full border-b border-solid border-gray3/30'>
+    <div className='w-full border-b border-solid border-gray4/30'>
       <div className='flex h-12 items-center justify-between px-5'>
         <p className='text-gray1 font-body'>{label}</p>
         {state && <p className='text-gray1 font-label'>{state}</p>}
         {iconType === '로그아웃' && (
           <div className='' onClick={handleClick}>
-            <OutIcon className={'text-gray2'} />
+            <OutIcon className={'text-gray3'} />
           </div>
         )}
         {iconType === '탈퇴' && (
           <div className='' onClick={handleClick}>
-            <ArrowRightIcon className='text-gray2' />
+            <ArrowRightIcon className='text-gray3' />
           </div>
         )}
       </div>

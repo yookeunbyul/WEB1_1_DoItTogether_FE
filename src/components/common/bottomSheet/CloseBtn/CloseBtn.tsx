@@ -9,7 +9,7 @@ interface CloseBtnProps {
 const CloseBtn: React.FC<CloseBtnProps> = ({ handleClick }) => {
   return (
     <button
-      className='absolute right-1/2 top-[-70px] z-50 flex h-12 w-12 translate-x-1/2 rotate-45 items-center justify-center rounded-full bg-gray2 text-white'
+      className='absolute right-1/2 top-[-70px] z-50 flex h-12 w-12 translate-x-1/2 rotate-45 items-center justify-center rounded-full bg-gray3 text-white'
       onClick={handleClick}
     >
       <PlusIcon className='text-white' />

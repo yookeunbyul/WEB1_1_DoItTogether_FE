@@ -3,7 +3,7 @@ interface SurveyTitleProps {
 }
 
 const SurveyTitle = ({ title }: SurveyTitleProps) => {
-  return <p className='font-title text-gray6 whitespace-pre-line'>{title}</p>;
+  return <p className='whitespace-pre-line text-gray font-title'>{title}</p>;
 };
 
 export default SurveyTitle;

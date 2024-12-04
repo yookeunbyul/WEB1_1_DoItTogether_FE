@@ -10,7 +10,7 @@ interface WeeklyStatActionProps {
 
 const WeeklyStatAction: React.FC<WeeklyStatActionProps> = ({ type, num }) => {
   return (
-    <Card className='flex w-full flex-col border-none bg-white02 px-10 py-7 shadow-none'>
+    <Card className='flex w-full flex-col border-none bg-white px-10 py-7 shadow-none'>
       <div className='flex items-center justify-center gap-2'>
         <div className='h-6 w-6 border border-solid'></div>
         <p className='text-18'>

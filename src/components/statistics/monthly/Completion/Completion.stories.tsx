@@ -15,7 +15,7 @@ const meta = {
     },
     color: {
       control: 'select',
-      options: ['text-black01', 'text-black02', 'text-gray01', 'text-gray02', 'text-gray03'],
+      options: ['text-black', 'text-black', 'text-gray1', 'text-gray3', 'text-gray4'],
       description: '텍스트 색상',
     },
   },
@@ -27,20 +27,20 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     count: 18,
-    color: 'text-black02',
+    color: 'text-black',
   },
 };
 
 export const Sub01: Story = {
   args: {
     count: 13,
-    color: 'text-gray01',
+    color: 'text-gray',
   },
 };
 
 export const Sub02: Story = {
   args: {
     count: 20,
-    color: 'text-gray02',
+    color: 'text-gray',
   },
 };

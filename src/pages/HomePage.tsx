@@ -117,9 +117,9 @@ const HomePage: React.FC = () => {
       {!houseworks ||
       houseworks.filter(item => item.assignee === activeTab || activeTab === '전체').length ===
         0 ? (
-        <div className='flex h-[calc(100vh-280px)] flex-1 flex-col items-center justify-center gap-4 whitespace-pre-line text-center text-gray2'>
+        <div className='flex h-[calc(100vh-280px)] flex-1 flex-col items-center justify-center gap-4 whitespace-pre-line text-center text-gray3'>
           <NoHouseWorkIcon />
-          <p className='text-gray2 font-subhead'>
+          <p className='text-gray3 font-subhead'>
             {'현재 집안일 목록이 없어요\n새로운 목록을 만들어보세요'}
           </p>
         </div>

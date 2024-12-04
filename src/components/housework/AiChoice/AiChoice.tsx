@@ -13,9 +13,9 @@ const AiChoice: React.FC<AiChoiceProps> = ({ isLoading, tags }) => {
     <Card className='mt-4 flex flex-col gap-4 rounded-bl-none p-4'>
       {isLoading ? (
         <div className='flex justify-evenly'>
-          <div className='h-2.5 w-2.5 animate-bounce rounded-full bg-black01 delay-0'></div>
-          <div className='h-2.5 w-2.5 animate-bounce rounded-full bg-black01 delay-200'></div>
-          <div className='h-2.5 w-2.5 animate-bounce rounded-full bg-black01 delay-300'></div>
+          <div className='h-2.5 w-2.5 animate-bounce rounded-full bg-black delay-0'></div>
+          <div className='h-2.5 w-2.5 animate-bounce rounded-full bg-black delay-200'></div>
+          <div className='h-2.5 w-2.5 animate-bounce rounded-full bg-black delay-300'></div>
         </div>
       ) : (
         <>

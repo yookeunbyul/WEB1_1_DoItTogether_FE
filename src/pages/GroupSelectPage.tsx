@@ -46,7 +46,7 @@ const GroupSelectPage = () => {
             />
           ))
         ) : (
-          <div className='flex flex-1 flex-col items-center justify-center gap-4 whitespace-pre-line text-center text-gray2'>
+          <div className='flex flex-1 flex-col items-center justify-center gap-4 whitespace-pre-line text-center text-gray3'>
             <NoGroupIcon />
             <p className='font-subhead'>{'현재 방이 없어요\n새로운 방을 만들어보세요'}</p>
           </div>

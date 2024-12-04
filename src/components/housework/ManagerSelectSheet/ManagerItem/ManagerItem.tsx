@@ -18,21 +18,21 @@ const ManagerItem: React.FC<ManagerItemProps> = ({
     switch (selectState) {
       case 'person':
         return {
-          container: 'bg-gray03',
-          icon: 'bg-gray02',
-          text: 'text-white03',
+          container: 'bg-gray4',
+          icon: 'bg-gray3',
+          text: 'text-white',
         };
       case 'ai':
         return {
-          container: 'bg-white03 shadow-md',
-          icon: 'bg-white01',
-          text: 'text-gray03',
+          container: 'bg-white shadow-md',
+          icon: 'bg-white',
+          text: 'text-gray4',
         };
       default:
         return {
-          container: 'bg-white03',
-          icon: 'bg-white01',
-          text: 'text-gray03',
+          container: 'bg-white',
+          icon: 'bg-white',
+          text: 'text-gray4',
         };
     }
   };
