@@ -34,7 +34,7 @@ const PresetItem: React.FC<PresetItemProps> = ({
     >
       <div className='flex items-center'>
         <HouseworkCategoryTag category={category} variant={isSelected ? 'secondary' : 'disabled'} />
-        <p className='pl-4 text-14'>{housework}</p>
+        <p className='pl-4 text-gray1 font-body'>{housework}</p>
       </div>
       {isPresetSettingCustom && (
         <div className='flex items-center'>
