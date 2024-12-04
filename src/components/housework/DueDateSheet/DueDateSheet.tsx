@@ -42,7 +42,7 @@ const DueDateSheet = ({ isOpen, setOpen }: DueDateSheetProps) => {
           <Calendar mode='single' selected={selectedDate} onSelect={handleDateSelect} />
         </section>
         <div className='px-5'>
-          <Button label='완료' variant='full' size='large' handleClick={handleDoneClick} />
+          <Button label='확인' variant='full' size='large' handleClick={handleDoneClick} />
         </div>
       </div>
     </BottomSheet>
