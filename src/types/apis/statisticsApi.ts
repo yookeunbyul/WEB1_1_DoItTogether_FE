@@ -3,7 +3,9 @@ import { Common } from '@/types/apis/commonApi';
 
 export interface WeeklyMemberScore {
   /** 닉네임 */
-  nickname: string;
+  nickName: string;
+  /** 프로필 이미지 URL */
+  profileImageUrl: string;
   /** 완료 개수 */
   completeCount: number;
 }

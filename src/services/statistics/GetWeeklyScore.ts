@@ -1,10 +1,11 @@
 import { axiosInstance } from '@/services/axiosInstance';
 import { GetWeeklyScoreReq, GetWeeklyScoreRes } from '@/types/apis/statisticsApi';
 
-export const getWeeklyScore = async (data: GetWeeklyScoreReq) => {
+export const getWeeklyScore = async ({ channelId, targetDate }: GetWeeklyScoreReq) => {
   try {
     const response = await axiosInstance.get<GetWeeklyScoreRes>(
-      `/api/v1/channels/${data.channelId}/statistics/weekly/${data.targetDate}/score`
+      `/api/v1/channels/${channelId}/statistics/weekly/${targetDate}/score`,
+      { params: { targetDate } }
     );
     return response.data;
   } catch (error) {
