@@ -18,7 +18,7 @@ const MonthFingerIcon: React.FC<MonthFingerIconProps> = ({
       xmlns='http://www.w3.org/2000/svg'
       className={className}
     >
-      <g clip-path='url(#clip0_2477_7681)' filter='url(#filter0_f_2477_7681)'>
+      <g clipPath='url(#clip0_2477_7681)' filter='url(#filter0_f_2477_7681)'>
         <path
           d='M42.3811 15.5305L42.4161 15.5183C43.8852 15.005 45.4947 15.7866 46.0109 17.2641L50.2927 29.5187C50.809 30.9962 50.0365 32.61 48.5674 33.1234L48.5324 33.1356C47.0633 33.6489 45.4538 32.8673 44.9376 31.3898L40.6558 19.1352C40.1395 17.6577 40.912 16.0439 42.3811 15.5305Z'
           fill='currentColor'
@@ -44,9 +44,9 @@ const MonthFingerIcon: React.FC<MonthFingerIconProps> = ({
           width='56.6465'
           height='53.3242'
           filterUnits='userSpaceOnUse'
-          color-interpolation-filters='sRGB'
+          colorInterpolationFilters='sRGB'
         >
-          <feFlood flood-opacity='0' result='BackgroundImageFix' />
+          <feFlood floodOpacity='0' result='BackgroundImageFix' />
           <feBlend mode='normal' in='SourceGraphic' in2='BackgroundImageFix' result='shape' />
           <feGaussianBlur stdDeviation='0.1' result='effect1_foregroundBlur_2477_7681' />
         </filter>
