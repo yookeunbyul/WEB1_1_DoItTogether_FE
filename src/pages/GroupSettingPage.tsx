@@ -19,7 +19,6 @@ const GroupSettingPage = () => {
   const navigate = useNavigate();
   const { channelId: strChannelId } = useParams();
 
-  // TODO: group name api에서 받아오기
   const [groupName, setGroupName] = useState('');
   const [isEdited, setIsEdited] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
