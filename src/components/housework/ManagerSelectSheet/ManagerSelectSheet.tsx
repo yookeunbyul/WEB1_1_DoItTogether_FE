@@ -5,6 +5,7 @@ import ManagerItems from '@/components/housework/ManagerSelectSheet/ManagerItem/
 import Button from '@/components/common/button/Button/Button';
 import AiChoice from '@/components/housework/AiChoice/AiChoice';
 import { User } from '@/types/apis/groupApi';
+import { RefreshIcon } from '@/components/common/icon';
 
 interface ManagerSelectSheetProps {
   /**바텀시트 오픈 여부 */
@@ -45,7 +46,7 @@ const ManagerSelectSheet: React.FC<ManagerSelectSheetProps> = ({
 
   return (
     <BottomSheet isOpen={isOpen} setOpen={setIsOpen} title='담당자 고르기'>
-      <div className='flex flex-col px-5'>
+      <div className='flex flex-col'>
         {isAiCardOpen && <AiChoice isLoading={isLoading} tags={tags} />}
         <ManagerItems
           isAiCardOpen={isAiCardOpen}
@@ -53,9 +54,14 @@ const ManagerSelectSheet: React.FC<ManagerSelectSheetProps> = ({
           selectedValue={selectedValue}
           members={members}
         />
-        <div className='flex gap-3 pb-6'>
-          <Button label='ai 선택' variant='secondary' size='small' handleClick={handleClick} />
-          <Button label='완료' variant='full' size='small' handleClick={handleDoneClick} />
+        <div className='flex gap-3 px-5 pb-6'>
+          <Button
+            label={isAiCardOpen ? <RefreshIcon /> : 'AI 픽'}
+            variant='secondary'
+            size='small'
+            handleClick={handleClick}
+          />
+          <Button label='확인' variant='full' size='small' handleClick={handleDoneClick} />
         </div>
       </div>
     </BottomSheet>
