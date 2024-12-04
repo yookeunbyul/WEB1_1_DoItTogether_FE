@@ -8,7 +8,7 @@ export const getWeeklyTotalCount = async (data: GetWeeklyTotalCountReq) => {
     );
     return response.data;
   } catch (error) {
-    console.error('주간 통계 개수 조회 실패:', error);
+    console.error('주간 통계 개수 조회 실패: ', error);
     throw error;
   }
 };

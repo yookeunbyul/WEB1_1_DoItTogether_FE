@@ -8,7 +8,7 @@ export const getMonthlyMVP = async (data: GetMonthlyMVPReq) => {
     );
     return response.data;
   } catch (error) {
-    console.error('월간 통계 MVP 조회 실패:', error);
+    console.error('월간 통계 MVP 조회 실패: ', error);
     throw error;
   }
 };

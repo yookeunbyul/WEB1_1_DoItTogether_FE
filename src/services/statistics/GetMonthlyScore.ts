@@ -8,7 +8,7 @@ export const getMonthlyScore = async (data: GetMonthlyScoreReq) => {
     );
     return response.data;
   } catch (error) {
-    console.error('월간 통계 캘린더 조회 실패:', error);
+    console.error('월간 통계 캘린더 조회 실패: ', error);
     throw error;
   }
 };
