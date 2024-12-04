@@ -15,10 +15,7 @@ interface UserBase {
 }
 
 /** 특정 회원 조회 req */
-export interface GetSpecificUserReq {
-  /** userId */
-  userId: number;
-}
+export interface GetSpecificUserReq extends Pick<UserBase, 'userId'> {}
 
 /** 특정 회원 조회 res */
 export interface GetSpecificUserRes extends BaseRes {
@@ -31,10 +28,7 @@ export interface GetMyInfoRes extends BaseRes {
 }
 
 /** 내 프로필 수정 req */
-export interface PatchMyProfileReq {
-  /** 수정할 닉네임 */
-  nickName: string;
-}
+export interface PatchMyProfileReq extends Pick<UserBase, 'nickName'> {}
 
 /** 내 프로필 수정 res */
 export interface PatchMyProfileRes extends BaseRes {
