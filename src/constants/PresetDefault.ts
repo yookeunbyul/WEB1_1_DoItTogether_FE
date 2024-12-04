@@ -1,4 +1,4 @@
-import { Category } from '@/constants/category';
+import { Category } from '@/constants/Category';
 
 interface PresetItem {
   // 프리셋 아이템 아이디
