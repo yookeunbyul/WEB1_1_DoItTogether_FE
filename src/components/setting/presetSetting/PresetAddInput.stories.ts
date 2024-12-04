@@ -8,8 +8,22 @@ const meta: Meta<typeof PresetAddInput> = {
 };
 
 export default meta;
+
 type Story = StoryObj<typeof PresetAddInput>;
 
+const mockCategoryList = [
+  { presetCategoryId: 1, category: '거실' },
+  { presetCategoryId: 2, category: '주방' },
+  { presetCategoryId: 3, category: '욕실' },
+  { presetCategoryId: 4, category: '침실' },
+  { presetCategoryId: 5, category: '기타' },
+];
+
 export const Default: Story = {
-  args: {},
+  args: {
+    categoryList: mockCategoryList,
+    handleAddInput: (inputVal: string, categoryId: number) => {
+      console.log(`Added "${inputVal}" to category ID: ${categoryId}`);
+    },
+  },
 };

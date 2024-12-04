@@ -16,7 +16,7 @@ const PresetCategory: React.FC<PresetCategoryProps> = ({
   categoryList,
 }) => {
   return (
-    <div className='flex gap-2 px-5 py-4'>
+    <div className='flex gap-2'>
       {categoryList.map(item => (
         <button
           key={item.presetCategoryId}
