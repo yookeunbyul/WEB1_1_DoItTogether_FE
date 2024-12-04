@@ -3,16 +3,42 @@ import ProfileImg from '@/components/common/profile/ProfileImg';
 import AccountInfo from '@/components/my/AccountInfo/AccountInfo';
 import ProfileEditBtn from '@/components/my/ProfileEditBtn/ProfileEditBtn';
 import SurveyAgainBtn from '@/components/my/SurveyAgainBtn/SurveyAgainBtn';
+import { getMyInfo } from '@/services/user/getMyInfo';
+import { useEffect, useState } from 'react';
+import { UserBase } from '@/types/apis/userApi';
 
 const MyPage = () => {
+  const [myInfo, setMyInfo] = useState<UserBase>({
+    userId: 0,
+    nickName: '',
+    email: '',
+    socialId: '',
+    profileImageUrl: '',
+  });
+
+  useEffect(() => {
+    const fetchMyInfo = async () => {
+      try {
+        const response = await getMyInfo();
+        setMyInfo(response.result);
+      } catch (error) {
+        console.error('내 정보 조회 실패:', error);
+      }
+    };
+
+    fetchMyInfo();
+  }, []);
+
+  console.log(myInfo);
+
   return (
     <div>
       <Header title='마이페이지' isNeededDoneBtn={false} isNeededSettingBtn={true} />
       <div className='px-5 pb-2 pt-8'>
-        <ProfileImg classname='w-20 h-20' />
+        <ProfileImg classname='w-20 h-20' imageUrl={myInfo.profileImageUrl} />
       </div>
-      <div className='flex items-center justify-between px-5 pb-3 pt-2'>
-        <AccountInfo nickname='스페이스천사' account='example@example' />
+      <div className='flex justify-between px-5 pb-3 pt-2'>
+        <AccountInfo nickname={myInfo.nickName} account={myInfo.email} />
         <ProfileEditBtn />
       </div>
       <div className='px-5'>

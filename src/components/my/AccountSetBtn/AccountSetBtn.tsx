@@ -12,7 +12,7 @@ const AccountSetBtn: React.FC = () => {
   };
   return (
     <button onClick={handleClick} className='flex items-center'>
-      <SettingIcon />
+      <SettingIcon width={20} height={20} className='text-gray1' />
     </button>
   );
 };
