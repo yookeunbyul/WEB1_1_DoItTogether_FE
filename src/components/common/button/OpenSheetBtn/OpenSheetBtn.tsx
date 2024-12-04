@@ -26,12 +26,12 @@ const OpenSheetBtn: React.FC<OpenSheetBtnProps> = ({
       <div className='flex items-center gap-x-4'>
         {type === 'housework' ? '' : <HomeIcon width={24} height={24} />}
         {type === 'housework' && icon}
-        <div className='font-body'>{text}</div>
+        <div className='text-gray3 font-body'>{text}</div>
       </div>
 
       <div>
         {type === 'housework' ? (
-          <PlusIcon width={20} height={20} className='text-gray1' />
+          <PlusIcon width={20} height={20} className='text-gray3' />
         ) : (
           <ArrowRightIcon className='text-main' />
         )}
