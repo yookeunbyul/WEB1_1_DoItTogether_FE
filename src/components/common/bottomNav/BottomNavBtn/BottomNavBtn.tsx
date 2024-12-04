@@ -17,7 +17,7 @@ const BottomNavBtn: React.FC<BottomNavBtnProps> = ({
   return (
     <button className='flex flex-col items-center gap-1 px-3' onClick={handleClick}>
       {icon}
-      <p className='text-gray1 font-caption'>{name}</p>
+      <p className='text-gray3 font-caption'>{name}</p>
     </button>
   );
 };
