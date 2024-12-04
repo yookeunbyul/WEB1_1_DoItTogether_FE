@@ -1,7 +1,7 @@
 import { BaseRes } from '@/types/apis/baseResponse';
 
 // 공통 유저 타입 정의
-interface UserBase {
+export interface UserBase {
   /** userId */
   userId: number;
   /** user 닉네임 */
