@@ -91,6 +91,9 @@ export default {
       gray4: '#DFDDDD',
       gray5: '#F2F8F6',
       kakao: '#FEE500',
+      rank1: '#FFDD00',
+      rank2: '#E7E6E6',
+      rank3: '#FF9D00',
     },
     fontSize: {
       10: '0.625rem', // 삭제
