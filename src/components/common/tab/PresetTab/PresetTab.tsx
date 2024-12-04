@@ -22,7 +22,6 @@ interface PresetTabProps {
   presetData: PresetList[];
   isPresetSettingCustom?: boolean;
   deleteButtonStates?: Record<number, boolean>;
-  handleSettingClick?: (itemId: number) => void;
   handleDeleteClick?: (itemId: number) => void;
   isBottomSheet?: boolean;
   handleClick?: (id: number, description: string, category: string) => void;
@@ -33,7 +32,6 @@ const PresetTab: React.FC<PresetTabProps> = ({
   presetData,
   isPresetSettingCustom = false,
   deleteButtonStates = {},
-  handleSettingClick,
   handleDeleteClick,
   isBottomSheet = false,
   handleClick,
@@ -74,9 +72,6 @@ const PresetTab: React.FC<PresetTabProps> = ({
               isBottomSheet={isBottomSheet}
               isPresetSettingCustom={isPresetSettingCustom}
               isShowDeleteBtn={deleteButtonStates[item.presetItemId]} //각 아이템의 boolean값이 들어간다.
-              handleSettingClick={
-                handleSettingClick && (() => handleSettingClick(item.presetItemId))
-              }
               handleDeleteClick={handleDeleteClick && (() => handleDeleteClick(item.presetItemId))}
               isSelected={selectedItem === item.presetItemId}
             />
@@ -101,9 +96,6 @@ const PresetTab: React.FC<PresetTabProps> = ({
                 isBottomSheet={isBottomSheet}
                 isPresetSettingCustom={isPresetSettingCustom}
                 isShowDeleteBtn={deleteButtonStates[item.presetItemId]} //각 아이템의 boolean값이 들어간다.
-                handleSettingClick={
-                  handleSettingClick && (() => handleSettingClick(item.presetItemId))
-                }
                 handleDeleteClick={
                   handleDeleteClick && (() => handleDeleteClick(item.presetItemId))
                 }

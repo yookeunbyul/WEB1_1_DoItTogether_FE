@@ -11,8 +11,14 @@ import { PresetDefault, PresetTabName } from '@/constants';
 
 const usePresetSetting = () => {
   const navigate = useNavigate();
-  const { setCategoryList, setDeleteButtonStates, activeTab, setPresetData } =
-    usePresetSettingStore();
+  const {
+    setCategoryList,
+    setDeleteButtonStates,
+    activeTab,
+    setPresetData,
+    selectedItem,
+    setSelectedItem,
+  } = usePresetSettingStore();
   const { channelId: strChannelId } = useParams();
   const channelId = Number(strChannelId);
 
@@ -62,18 +68,14 @@ const usePresetSetting = () => {
     }
   };
 
-  const handleSettingClick = (itemId: number) => {
-    setDeleteButtonStates(prev => ({
-      ...prev,
-      [itemId]: true,
-    }));
+  const handleSelectClick = (presetItemId: number) => {
+    const isDeselecting = selectedItem === presetItemId;
+    setSelectedItem(isDeselecting ? null : presetItemId);
+    setDeleteButtonStates(isDeselecting ? null : presetItemId);
   };
 
   const handleDeleteClick = async (presetItemId: number) => {
-    setDeleteButtonStates(prev => ({
-      ...prev,
-      [presetItemId]: false,
-    }));
+    setDeleteButtonStates(null);
 
     try {
       await deletePresetItem({ channelId, presetItemId });
@@ -90,7 +92,7 @@ const usePresetSetting = () => {
 
   return {
     handleAddInput,
-    handleSettingClick,
+    handleSelectClick,
     handleDeleteClick,
     handleBack,
   };

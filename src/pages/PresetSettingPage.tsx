@@ -10,7 +10,7 @@ import usePresetSettingStore from '@/store/usePresetSettingStore';
 const PresetSettingPage = () => {
   const { categoryList, activeTab, setActiveTab, deleteButtonStates, presetData } =
     usePresetSettingStore();
-  const { handleAddInput, handleSettingClick, handleDeleteClick, handleBack } = usePresetSetting();
+  const { handleAddInput, handleSelectClick, handleDeleteClick, handleBack } = usePresetSetting();
 
   return (
     <div className='flex min-h-screen flex-col'>
@@ -29,8 +29,8 @@ const PresetSettingPage = () => {
               presetData={presetData}
               isPresetSettingCustom={true}
               deleteButtonStates={deleteButtonStates}
-              handleSettingClick={handleSettingClick}
               handleDeleteClick={handleDeleteClick}
+              handleClick={handleSelectClick}
             />
           </div>
           <div className='sticky bottom-0 bg-[#fff]'>
