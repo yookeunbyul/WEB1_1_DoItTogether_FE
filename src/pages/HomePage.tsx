@@ -16,9 +16,10 @@ import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
 import { changeHouseworkStatus } from '@/services/housework/changeHouseworkStatus';
 import { NoHouseWorkIcon } from '@/components/common/icon';
+import { getMyInfo } from '@/services/user/getMyInfo';
+import { HOUSEWORK_STATUS } from '@/constants/homePage';
 
 const HomePage: React.FC = () => {
-  // const [activeTab, setActiveTab] = useState<string>('전체');
   const {
     setWeekText,
     setCurrentGroup,
@@ -27,6 +28,8 @@ const HomePage: React.FC = () => {
     homePageNumber,
     activeTab,
     setActiveTab,
+    myInfo,
+    setMyInfo,
   } = useHomePageStore();
   const { channelId } = useParams();
   const [chargers, setChargers] = useState<{ name: string }[]>([{ name: '전체' }]);
@@ -48,8 +51,14 @@ const HomePage: React.FC = () => {
       }
     };
 
+    const fetchMyInfo = async () => {
+      const myInfoResult = await getMyInfo();
+      setMyInfo(myInfoResult.result);
+    };
+
     setWeekText(getWeekText(new Date()));
     fetchMyGroups();
+    fetchMyInfo();
   }, []);
 
   useEffect(() => {
@@ -57,7 +66,6 @@ const HomePage: React.FC = () => {
       if (!channelId) return;
       const newChannelId = Number(channelId);
       const getGroupUsersResult = await getGroupUser({ channelId: newChannelId });
-      console.log(getGroupUsersResult);
       const newChargers = [
         { name: '전체' },
         ...Array.from(new Set(getGroupUsersResult.result.userList.map(user => user.nickName))).map(
@@ -82,17 +90,30 @@ const HomePage: React.FC = () => {
   };
 
   const handleAction = async (houseworkId: number) => {
+    /**
+     * 처리 경우의 수
+     * 1. 자신의 집안일이라면 완료/미완료
+     * 2. 자신의 집안일이 아닌경우
+     * 2.1 완료된 상태인 경우 => 칭찬
+     * 2.2 미완료된 상태인 경우 => 찌르기
+     */
     // 해당 id에 해당하는 집안일 완료 처리
-    console.log(houseworkId);
-    const newChannelId = Number(channelId);
-    try {
+
+    const targetHousework = houseworks?.find(housework => housework.houseworkId === houseworkId);
+
+    if (targetHousework?.userId === myInfo?.userId) {
+      const newChannelId = Number(channelId);
       await changeHouseworkStatus({
         channelId: newChannelId,
         houseworkId,
       });
       refetch();
-    } catch (error) {
-      toast({ title: '본인만 변경할 수 있어요!' });
+    } else {
+      if (targetHousework?.status === HOUSEWORK_STATUS.COMPLETE) {
+        toast({ title: `${targetHousework.assignee}님을 칭찬했어요!` });
+      } else {
+        toast({ title: `${targetHousework?.assignee}님을 찔렀어요!` });
+      }
     }
   };
 
@@ -106,8 +127,6 @@ const HomePage: React.FC = () => {
     toast({ title: '집안일이 삭제되었습니다!' });
     refetch();
   };
-
-  console.log(houseworks);
 
   return (
     <div>
