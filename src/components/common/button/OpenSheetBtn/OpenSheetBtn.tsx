@@ -1,4 +1,4 @@
-import { ArrowRightIcon, HomeIcon } from '@/components/common/icon';
+import { ArrowRightIcon, HomeIcon, PlusIcon } from '@/components/common/icon';
 import { Button } from '@/components/common/ui/button';
 
 interface OpenSheetBtnProps {
@@ -18,7 +18,7 @@ const OpenSheetBtn: React.FC<OpenSheetBtnProps> = ({
 }: OpenSheetBtnProps) => {
   return (
     <Button
-      variant={type === 'housework' ? 'select' : 'group'}
+      variant={type === 'housework' ? 'group' : 'group'}
       size='large'
       className='items-center !justify-between bg-white px-3'
       onClick={handleClick}
@@ -29,7 +29,13 @@ const OpenSheetBtn: React.FC<OpenSheetBtnProps> = ({
         <div className='font-body'>{text}</div>
       </div>
 
-      <div>{type === 'housework' ? '' : <ArrowRightIcon className='text-main' />}</div>
+      <div>
+        {type === 'housework' ? (
+          <PlusIcon width={20} height={20} className='text-gray1' />
+        ) : (
+          <ArrowRightIcon className='text-main' />
+        )}
+      </div>
     </Button>
   );
 };

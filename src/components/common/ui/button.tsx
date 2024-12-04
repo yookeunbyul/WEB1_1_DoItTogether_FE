@@ -18,7 +18,7 @@ const buttonVariants = cva(
           'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground text-black01',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         kakao: 'bg-kakao font-body',
-        group: 'border-b-2 border-solid border-gray5 border-opacity-30 bg-white !rounded-none',
+        group: 'border-b-[1px] border-solid border-gray5 border-opacity-30 bg-white !rounded-none',
         onboarding: 'rounded-2xl border-solid border-[1px] px-3 border-gray3 font-body text-gray2',
       },
       size: {

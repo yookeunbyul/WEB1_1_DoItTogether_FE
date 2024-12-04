@@ -25,7 +25,7 @@ const OpenSheetBtnWithLabel: React.FC<OpenSheetBtnWithLabelProps> = ({
   return (
     <div>
       <Button
-        variant='select'
+        variant='group'
         size='large'
         className='justify-between bg-white px-3 text-gray'
         onClick={handleClick}

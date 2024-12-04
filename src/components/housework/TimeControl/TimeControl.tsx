@@ -42,7 +42,7 @@ const TimeControl: React.FC<TimeControlProps> = ({ onTimeChange }) => {
   return (
     <div
       className={cn(
-        'flex flex-col justify-center gap-2 rounded-2xl border-b-2 border-solid border-gray5 border-opacity-30 bg-white px-3',
+        'flex flex-col justify-center gap-2 !rounded-none border-b-[1px] border-solid border-gray5 border-opacity-30 bg-white px-3',
         isAllday ? 'h-14' : 'h-auto py-4'
       )}
     >
