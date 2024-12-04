@@ -76,32 +76,20 @@ export default {
       bounce: 'bounce 1s infinite', // 애니메이션 등록
     },
     colors: {
-      // TODO: remove
-      black01: '#212121',
-      black02: '#464656',
-      gray01: '#626273',
-      gray02: '#9090A0',
-      gray03: '#C6C6D0',
-      white01: '#E9E9EE',
-      white02: '#F5F5F9',
-      white03: '#FFFFFF',
-      // end
-
       transparent: 'transparent',
       main: '#1FCFBA',
       sub: '#8DE8D7',
       sub1: '#63DDCE',
       sub2: '#D9FAF5',
       black: '#1F2425',
+      blackAlter: '#263736',
       white: '#FDFDFD',
       gray: '#4D4F4F',
       gray1: '#747677',
-      gray2: '#B4B4B5',
-      gray3: '#DFDDDD',
-      gray4: '#F2F8F6',
-      gray5: '#D9D9DF',
-      gray6: '#464656',
-      gray7: '#A5ACB8',
+      gray2: '#959595',
+      gray3: '#B4B4B5',
+      gray4: '#DFDDDD',
+      gray5: '#F2F8F6',
       kakao: '#FEE500',
     },
     fontSize: {

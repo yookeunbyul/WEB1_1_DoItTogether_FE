@@ -37,7 +37,7 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
 }) => {
   return (
     <li
-      className={`relative flex list-none items-center overflow-hidden rounded-2xl ${status === HOUSEWORK_STATUS.COMPLETE ? `bg-sub2` : `bg-sub1`} p-4 text-white01`}
+      className={`relative flex list-none items-center overflow-hidden rounded-2xl ${status === HOUSEWORK_STATUS.COMPLETE ? `bg-sub2` : `bg-sub1`} p-4 text-white`}
     >
       <ListActionBtn
         status={status}

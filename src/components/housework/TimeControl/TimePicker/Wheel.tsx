@@ -88,7 +88,7 @@ export default function Wheel(props: {
 
   return (
     <div
-      className={`block h-full w-full overflow-visible bg-white03 ${perspective} font-body`}
+      className={`block h-full w-full overflow-visible bg-white ${perspective} font-body`}
       ref={sliderRef}
     >
       <div
@@ -100,11 +100,11 @@ export default function Wheel(props: {
       />
       <div
         className={cn(
-          `bg-main/15 flex h-[16%] w-full items-center justify-center transform-style-preserve-3d ${
+          `flex h-[16%] w-full items-center justify-center bg-main/15 transform-style-preserve-3d ${
             perspective === 'right'
-              ? 'perspective-origin-[calc(50%+100px)_50%] text-main translate-x-2.5'
+              ? 'perspective-origin-[calc(50%+100px)_50%] translate-x-2.5 text-main'
               : perspective === 'left'
-                ? 'perspective-origin-[calc(50%-100px)_50%] text-main -translate-x-2.5'
+                ? 'perspective-origin-[calc(50%-100px)_50%] -translate-x-2.5 text-main'
                 : ''
           }`,
           props.className

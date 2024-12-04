@@ -25,7 +25,7 @@ const GroupOption: React.FC<GroupOptionProps> = ({ group, isSelected }) => {
   return (
     <li className='flex cursor-pointer items-center gap-x-2' onClick={() => handleClick(group)}>
       <HomeIcon width={24} height={24} fillClass={isSelected ? 'text-main' : 'text-gray1'} />
-      <div className={`font-label ${isSelected ? 'text-gray1' : 'text-gray2'}`}>{group.name}</div>
+      <div className={`font-label ${isSelected ? 'text-gray1' : 'text-gray3'}`}>{group.name}</div>
     </li>
   );
 };

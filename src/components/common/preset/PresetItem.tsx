@@ -27,7 +27,7 @@ const PresetItem: React.FC<PresetItemProps> = ({
 }) => {
   return (
     <li
-      className={`flex flex-1 cursor-pointer list-none items-center justify-between border-b-[1px] border-solid border-white02 pl-5 ${
+      className={`flex flex-1 cursor-pointer list-none items-center justify-between border-b-[1px] border-solid border-white pl-5 ${
         isBottomSheet ? 'p-5' : 'p-4'
       }`}
       onClick={handleSelectClick}
@@ -39,7 +39,7 @@ const PresetItem: React.FC<PresetItemProps> = ({
       {isPresetSettingCustom && (
         <div className='flex items-center'>
           {isShowDeleteBtn ? (
-            <button className='bg-gray03 text-14' onClick={handleDeleteClick}>
+            <button className='bg-gray4 text-14' onClick={handleDeleteClick}>
               삭제
             </button>
           ) : (

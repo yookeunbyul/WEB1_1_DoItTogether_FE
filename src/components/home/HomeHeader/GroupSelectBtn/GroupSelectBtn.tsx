@@ -8,7 +8,7 @@ const GroupSelectBtn: React.FC = ({}) => {
   return (
     <>
       <button
-        className='flex items-center rounded-full bg-main px-3 py-2 text-12 text-white03'
+        className='flex items-center rounded-full bg-main px-3 py-2 text-12 text-white'
         onClick={() => setIsGroupSelectSheetOpen(true)}
       >
         <HomeIcon fillClass='text-white' />

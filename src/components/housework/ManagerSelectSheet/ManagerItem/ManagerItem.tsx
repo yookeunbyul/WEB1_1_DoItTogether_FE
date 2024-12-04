@@ -24,8 +24,8 @@ const ManagerItem: React.FC<ManagerItemProps> = ({
         };
       default:
         return {
-          icon: 'bg-gray2',
-          text: 'text-gray3',
+          icon: 'bg-gray3',
+          text: 'text-gray4',
         };
     }
   };

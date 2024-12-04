@@ -48,7 +48,7 @@ const PresetTab: React.FC<PresetTabProps> = ({
 
   return (
     <Tabs defaultValue={PresetCategory.ALL}>
-      <TabsList className='flex h-full w-full justify-start gap-4 overflow-x-auto bg-white03 p-0 px-5 no-scrollbar'>
+      <TabsList className='flex h-full w-full justify-start gap-4 overflow-x-auto bg-white p-0 px-5 no-scrollbar'>
         <PresetTabItem name={allPresetData.category} value={allPresetData.category} />
         {presetData.map(categoryList => (
           <PresetTabItem

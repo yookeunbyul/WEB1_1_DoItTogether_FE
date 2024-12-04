@@ -10,7 +10,7 @@ const ProfileImg: React.FC<ProfileImgProps> = ({ classname, imageUrl = '' }) => 
 
   return (
     <div className={cn(`relative aspect-square h-36 w-36 overflow-hidden`, classname)}>
-      <div className='flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-gray03'>
+      <div className='flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-gray4'>
         {imageUrl ? (
           <img
             src={imageUrl}

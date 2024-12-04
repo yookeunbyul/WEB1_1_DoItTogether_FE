@@ -30,12 +30,12 @@ const InviteLink: React.FC<InviteLinkProps> = ({ initialLink }) => {
   };
 
   return (
-    <div className='flex h-14 items-center justify-between gap-4 border-b-2 border-solid border-gray5 border-opacity-30 bg-white px-2 text-gray2 font-label'>
+    <div className='flex h-14 items-center justify-between gap-4 border-b-2 border-solid border-gray4 border-opacity-30 bg-white px-2 text-gray3 font-label'>
       {inviteLink ? (
         <>
-          <LinkIcon className='fill-gray2' />
+          <LinkIcon className='fill-gray3' />
           <div className='min-w-0 flex-1 overflow-hidden'>
-            <p className='truncate text-gray2'>{inviteLink}</p>
+            <p className='truncate text-gray3'>{inviteLink}</p>
           </div>
           <button
             className='shrink-0 underline underline-offset-2 font-caption'
