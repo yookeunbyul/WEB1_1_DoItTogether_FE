@@ -10,12 +10,12 @@ interface AiChoiceProps {
 
 const AiChoice: React.FC<AiChoiceProps> = ({ isLoading, tags }) => {
   return (
-    <Card className='mt-4 flex flex-col gap-4 rounded-bl-none p-4'>
+    <Card className='mx-5 mt-4 flex flex-col gap-4 rounded-3xl rounded-bl-none p-4'>
       {isLoading ? (
-        <div className='flex justify-evenly'>
-          <div className='h-2.5 w-2.5 animate-bounce rounded-full bg-black delay-0'></div>
-          <div className='h-2.5 w-2.5 animate-bounce rounded-full bg-black delay-200'></div>
-          <div className='h-2.5 w-2.5 animate-bounce rounded-full bg-black delay-300'></div>
+        <div className='flex items-center justify-center gap-x-1 py-4'>
+          <div className='h-1 w-1 animate-bounce rounded-full bg-sub delay-0'></div>
+          <div className='h-1 w-1 animate-bounce rounded-full bg-sub delay-200'></div>
+          <div className='h-1 w-1 animate-bounce rounded-full bg-sub delay-300'></div>
         </div>
       ) : (
         <>
@@ -23,13 +23,14 @@ const AiChoice: React.FC<AiChoiceProps> = ({ isLoading, tags }) => {
             {tags &&
               tags.map(tag => (
                 <div key={tag} className='block'>
-                  <TextTag type='grayfill' label={`#${tag}`} />
+                  <TextTag
+                    type='secondary'
+                    label={`#${tag}`}
+                    className='rounded-2xl border-2 border-main/50 px-4 py-3 font-body'
+                  />
                 </div>
               ))}
           </div>
-          <p>
-            <strong>에 적합한 담당자를 추천드려요</strong>
-          </p>
         </>
       )}
     </Card>

@@ -7,7 +7,7 @@ export interface BackBtnProps {
   fill?: string;
 }
 
-const BackBtn: React.FC<BackBtnProps> = ({ handleClick, fill = 'text-gray' }) => {
+const BackBtn: React.FC<BackBtnProps> = ({ handleClick, fill = 'text-gray1' }) => {
   return (
     <div onClick={handleClick}>
       <ArrowLeftIcon className={`${fill} cursor-pointer`} />
