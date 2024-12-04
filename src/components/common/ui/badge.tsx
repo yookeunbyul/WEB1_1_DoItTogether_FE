@@ -4,22 +4,22 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const badgeVariants = cva(
-  'inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+  'font-caption inline-flex items-center rounded-lg px-2 py-1 transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
   {
     variants: {
       variant: {
-        default: 'border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80',
-        secondary:
-          'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80',
+        primary: 'bg-black text-main',
+        secondary: 'bg-main text-white',
+        disabled: 'bg-sub bg-opacity-50 text-main',
         destructive:
           'border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80',
         outline: 'text-foreground',
-        darkfill: 'border-transparent bg-black01 text-white01 px-4 py-2 rounded-lg font-medium',
-        grayfill: 'border-transparent bg-black02 text-white01 px-4 py-2 rounded-lg font-medium',
+        darkfill: 'border-transparent bg-black text-white px-4 py-2 rounded-lg font-medium',
+        grayfill: 'border-transparent bg-gray text-white px-4 py-2 rounded-lg font-medium',
       },
     },
     defaultVariants: {
-      variant: 'default',
+      variant: 'primary',
     },
   }
 );

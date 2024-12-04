@@ -1,16 +1,17 @@
+import { ArrowLeftIcon } from '@/components/common/icon';
 import React from 'react';
 
 export interface BackBtnProps {
   /** 뒤로가기 */
   handleClick?: () => void;
+  fill?: string;
 }
 
-const BackBtn: React.FC<BackBtnProps> = ({ handleClick }) => {
+const BackBtn: React.FC<BackBtnProps> = ({ handleClick, fill = 'text-gray1' }) => {
   return (
-    <div
-      className='h-5 w-5 cursor-pointer border border-solid border-black02'
-      onClick={handleClick}
-    ></div>
+    <div onClick={handleClick}>
+      <ArrowLeftIcon className={`${fill} cursor-pointer`} />
+    </div>
   );
 };
 

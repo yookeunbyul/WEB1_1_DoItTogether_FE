@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { KeenSliderOptions, TrackDetails, useKeenSlider } from 'keen-slider/react';
+import { cn } from '@/lib/utils';
 
 export default function Wheel(props: {
   initIdx?: number;
@@ -10,6 +11,7 @@ export default function Wheel(props: {
   setValue?: (relative: number, absolute: number) => string;
   width: number;
   onDragEnd?: (value: string) => void;
+  className?: string;
 }) {
   const perspective = props.perspective || 'center';
   const wheelSize = 20;
@@ -86,30 +88,36 @@ export default function Wheel(props: {
 
   return (
     <div
-      className={`block h-full w-full overflow-visible bg-white03 ${perspective}`}
+      className={`block h-full w-full overflow-visible bg-white ${perspective} font-body`}
       ref={sliderRef}
     >
       <div
-        className='from-black/90 to-black/50 border-white/30 z-5 relative -mt-0.5 h-[calc(42%+2px)] w-full border-b bg-gradient-to-b'
+        className='z-5 relative -mt-0.5 h-[calc(42%+2px)] w-full border-b bg-gradient-to-b'
         style={{
           transform: `translateZ(${radius}px)`,
           WebkitTransform: `translateZ(${radius}px)`,
         }}
       />
       <div
-        className={`transform-style-preserve-3d flex h-[16%] w-full items-center justify-center ${
-          perspective === 'right'
-            ? 'perspective-origin-[calc(50%+100px)_50%] translate-x-2.5'
-            : perspective === 'left'
-              ? 'perspective-origin-[calc(50%-100px)_50%] -translate-x-2.5'
-              : ''
-        }`}
+        className={cn(
+          `flex h-[16%] w-full items-center justify-center bg-main/15 transform-style-preserve-3d ${
+            perspective === 'right'
+              ? 'perspective-origin-[calc(50%+100px)_50%] translate-x-2.5 text-main'
+              : perspective === 'left'
+                ? 'perspective-origin-[calc(50%-100px)_50%] -translate-x-2.5 text-main'
+                : ''
+          }`,
+          props.className
+        )}
         style={{ perspective: '1000px' }}
       >
         <div className='relative h-full w-full' style={{ width: props.width + 'px' }}>
           {slideValues().map(({ style, value }, idx) => (
             <div
-              className='text-xl backface-hidden absolute flex h-full w-full items-center justify-center'
+              className={cn(
+                'text-xl absolute flex h-full w-full items-center justify-center backface-hidden',
+                Math.abs(sliderState?.slides[idx].distance || 0) < 0.1 ? 'text-main' : 'text-main'
+              )}
               style={style}
               key={idx}
             >
@@ -130,7 +138,7 @@ export default function Wheel(props: {
         )}
       </div>
       <div
-        className='from-black/50 to-black/90 border-white/30 z-5 relative mt-0.5 h-[calc(42%+2px)] w-full border-t bg-gradient-to-b'
+        className='z-5 relative mt-0.5 h-[calc(42%+2px)] w-full border-t bg-gradient-to-b'
         style={{
           transform: `translateZ(${radius}px)`,
           WebkitTransform: `translateZ(${radius}px)`,

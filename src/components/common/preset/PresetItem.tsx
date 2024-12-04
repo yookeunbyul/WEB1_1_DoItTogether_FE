@@ -1,3 +1,4 @@
+import { BinIcon } from '@/components/common/icon';
 import HouseworkCategoryTag, {
   HouseworkCategoryTagProps,
 } from '@/components/common/tag/HouseworkCatetoryTag/HouseworkCategoryTag';
@@ -6,42 +7,41 @@ import React from 'react';
 export interface PresetItemProps extends HouseworkCategoryTagProps {
   housework: string;
   handleSelectClick?: () => void;
-  isInPresetSetting?: boolean;
+  isPresetSettingCustom?: boolean;
   isShowDeleteBtn?: boolean;
   handleSettingClick?: () => void;
   handleDeleteClick?: () => void;
+  isSelected?: boolean;
+  isBottomSheet?: boolean;
 }
 
 const PresetItem: React.FC<PresetItemProps> = ({
   category,
   housework,
   handleSelectClick,
-  isInPresetSetting,
+  isPresetSettingCustom,
   isShowDeleteBtn,
-  handleSettingClick,
   handleDeleteClick,
+  isSelected,
+  isBottomSheet,
 }) => {
   return (
     <li
-      className={`flex flex-1 cursor-pointer list-none items-center justify-between border-b pl-5 ${
-        isInPresetSetting ? '' : 'p-5'
-      }`}
+      className={`flex flex-1 cursor-pointer list-none items-center justify-between border-b-[1px] border-solid border-white pl-5 ${
+        isBottomSheet ? 'p-5' : 'p-4'
+      } ${!isBottomSheet && isShowDeleteBtn ? 'box-border bg-sub2' : ''}`}
       onClick={handleSelectClick}
     >
       <div className='flex items-center'>
-        <HouseworkCategoryTag category={category} />
-        <p className='pl-4 text-14'>{housework}</p>
+        <HouseworkCategoryTag category={category} variant={isSelected ? 'secondary' : 'disabled'} />
+        <p className='pl-4 text-gray1 font-body'>{housework}</p>
       </div>
-      {isInPresetSetting && (
+      {isPresetSettingCustom && (
         <div className='flex items-center'>
-          {isShowDeleteBtn ? (
-            <button className='bg-gray03 p-5' onClick={handleDeleteClick}>
-              삭제
+          {isShowDeleteBtn && (
+            <button onClick={handleDeleteClick}>
+              <BinIcon />
             </button>
-          ) : (
-            <div className='p-5'>
-              <button onClick={handleSettingClick}>선택</button>
-            </div>
           )}
         </div>
       )}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card } from '@/components/common/ui/card';
+import { FingerIcon, HeartIcon } from '@/components/common/icon';
 
 interface WeeklyStatActionProps {
   /** 칭찬, 찌르기 */
@@ -10,14 +11,16 @@ interface WeeklyStatActionProps {
 
 const WeeklyStatAction: React.FC<WeeklyStatActionProps> = ({ type, num }) => {
   return (
-    <Card className='flex w-full flex-col border-none bg-white02 px-10 py-7 shadow-none'>
+    <Card className='flex w-full flex-col gap-2 border-none bg-sub2/20 px-10 py-7 shadow-none'>
       <div className='flex items-center justify-center gap-2'>
-        <div className='h-6 w-6 border border-solid'></div>
-        <p className='text-18'>
+        {type === 'compliment' ? <HeartIcon /> : <FingerIcon />}
+        <p className='text-black font-head'>
           <strong>{num}번</strong>
         </p>
       </div>
-      <p className='text-center text-14'>{type === 'compliment' ? '칭찬했어요!' : '찔렀어요!'}</p>
+      <p className='text-center text-gray font-label'>
+        {type === 'compliment' ? '칭찬했어요!' : '찔렀어요!'}
+      </p>
     </Card>
   );
 };

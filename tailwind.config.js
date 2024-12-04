@@ -9,12 +9,13 @@ export default {
         Pretendard: ['Pretendard'],
       },
       backgroundImage: {
-        'custom-gradient': 'linear-gradient(to right, rgba(72, 77, 84, 0.5), rgba(72, 77, 84, 1))',
+        'custom-gradient': 'linear-gradient(to bottom, #1FCFBA 50%, #FFFFFF 100%)',
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+        '4xl': '1.875rem',
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -75,24 +76,35 @@ export default {
       bounce: 'bounce 1s infinite', // 애니메이션 등록
     },
     colors: {
-      black01: '#212121',
-      black02: '#464656',
-      gray01: '#626273',
-      gray02: '#9090A0',
-      gray03: '#C6C6D0',
-      white01: '#E9E9EE',
-      white02: '#F5F5F9',
-      white03: '#FFFFFF',
+      transparent: 'transparent',
+      main: '#1FCFBA',
+      sub: '#8DE8D7',
+      sub1: '#63DDCE',
+      sub2: '#D9FAF5',
+      black: '#1F2425',
+      blackAlter: '#263736',
+      white: '#FDFDFD',
+      whiteReal: '#FFFFFF',
+      gray: '#4D4F4F',
+      gray1: '#747677',
+      gray2: '#959595',
+      gray3: '#B4B4B5',
+      gray4: '#DFDDDD',
+      gray5: '#F2F8F6',
+      kakao: '#FEE500',
+      rank1: '#FFDD00',
+      rank2: '#E7E6E6',
+      rank3: '#FF9D00',
     },
     fontSize: {
-      10: '0.625rem',
+      10: '0.625rem', // 삭제
       12: '0.75rem',
       14: '0.875rem',
       16: '1rem',
-      18: '1.125rem',
+      18: '1.125rem', // 삭제
       20: '1.25rem',
       24: '1.5rem',
-      28: '1.75rem',
+      28: '1.75rem', // 삭제
     },
     maxWidth: {
       DEFAULT: '430px',
@@ -114,6 +126,48 @@ export default {
         },
         '.transform-style-preserve-3d': {
           'transform-style': 'preserve-3d',
+        },
+        '.font-title': {
+          'font-size': '1.5rem',
+          'line-height': '2.25rem',
+          'letter-spacing': '0.57%',
+          'font-weight': 600,
+          'font-family': 'Pretendard JP',
+        },
+        '.font-head': {
+          'font-size': '1.25rem',
+          'line-height': '1.5rem',
+          'letter-spacing': '0%',
+          'font-weight': 600,
+          'font-family': 'Pretendard JP',
+        },
+        '.font-subhead': {
+          'font-size': '1rem',
+          'line-height': '1.5rem',
+          'letter-spacing': '-1%',
+          'font-weight': 600,
+          'font-family': 'Pretendard JP',
+        },
+        '.font-body': {
+          'font-size': '1rem',
+          'line-height': '1.25rem',
+          'letter-spacing': '-1%',
+          'font-weight': 500,
+          'font-family': 'Pretendard JP',
+        },
+        '.font-label': {
+          'font-size': '0.875rem',
+          'line-height': '1.125rem',
+          'letter-spacing': '-1.5%',
+          'font-weight': 500,
+          'font-family': 'Pretendard JP',
+        },
+        '.font-caption': {
+          'font-size': '0.75rem',
+          'line-height': '1rem',
+          'letter-spacing': '1%',
+          'font-weight': 500,
+          'font-family': 'Pretendard JP',
         },
       };
       addUtilities(newUtilities);

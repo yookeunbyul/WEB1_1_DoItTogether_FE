@@ -9,34 +9,48 @@ import Step3 from '@/components/survey/steps/Step3';
 import Step4 from '@/components/survey/steps/Step4';
 import Step5 from '@/components/survey/steps/Step5';
 import LoadingScreen from '@/components/survey/LoadingScreen/LoadingScreen';
-
-// TODO 질문지 TITLE, QUESTION 하드코딩 하지말고, 상수파일로 관리하고 여기서는 가져와서 사용
-const DUMMY_QUESTION_STEP1 = [
-  '하지 않는다',
-  '한 달에 1, 2회',
-  '주에 1회',
-  '가족이나 동거인의 요구',
-  '매일',
-];
-const DUMMY_QUESTION_STEP2 = [
-  '손님방문',
-  '개인 위생 및 청결',
-  '정리정돈의 욕구',
-  '가족이나 동거인의 요구',
-];
-const DUMMY_QUESTION_STEP3 = ['시간부족', '적합한 도구나 제품 부족', '체력부족', '동기부족'];
-const DUMMY_QUESTION_STEP4 = ['거실', '주방', '화장실', '침실'];
+import {
+  DUMMY_QUESTION_STEP1,
+  DUMMY_QUESTION_STEP2,
+  DUMMY_QUESTION_STEP3,
+  DUMMY_QUESTION_STEP4,
+  DUMMY_RESULT,
+} from '@/constants/onBoarding';
+import { motion } from 'framer-motion';
 
 interface OnBoardingProps {}
 
+interface Answers {
+  step1: string;
+  step2: string;
+  step3: string;
+  step4: string;
+}
+
 const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
   const [step, setStep] = useState(1);
-  const [answer, setAnswer] = useState<string>(''); // 사용자 답변
+  const [answer, setAnswer] = useState<Answers>({
+    step1: '',
+    step2: '',
+    step3: '',
+    step4: '',
+  }); // 사용자 답변
   const [isCompleted, setIsCompleted] = useState<boolean>(false); // 분석완료 여부
   const [result, setResult] = useState<string[]>([]); // 분석 결과
   const [username] = useState<string>('사용자'); // 사용자명
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+
+  const item = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        duration: 0.5, // 0.3초 동안 애니메이션 실행
+        ease: 'easeIn', // 가속도 곡선 설정
+      },
+    },
+  };
 
   const setNextStep = () => {
     if (step === 4) {
@@ -45,12 +59,6 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
 
       // API CALL
       setTimeout(() => {
-        const DUMMY_RESULT = [
-          '규칙적으로 청소',
-          '나 자신을 위해',
-          '청소 각오는 만땅!',
-          '화장실 청소 좋아!',
-        ];
         // API 데이터 저장
         setResult(DUMMY_RESULT);
         setIsCompleted(true);
@@ -58,7 +66,7 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
         setTimeout(() => {
           setLoading(false);
         }, 1000);
-      }, 1000); // 1초 동안 메세지 표시
+      }, 2000); // 1초 동안 메세지 표시
     }
     if (step === 5) {
       navigate('/group-select');
@@ -70,62 +78,92 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
     setStep(prev => prev - 1);
   };
 
+  const handleAnswer = (select: string) => {
+    setAnswer(prev => ({
+      ...prev,
+      [`step${step}`]: select,
+    }));
+  };
+
+  type StepKey = keyof Answers;
+
+  const isStepVaild = () => {
+    if (step === 5) return true; //결과는 항상 활성화
+    const currentStep = `step${step}` as StepKey;
+    return answer[currentStep] !== ''; //빈값이 아니면 true
+  };
+
   useEffect(() => {
     if (step === 0) navigate('/survey-intro');
     console.log(answer);
   }, [step]);
 
   return (
-    <div className='flex h-screen flex-col gap-3'>
-      <div className='p-5'>
-        <BackBtn handleClick={setPrevStep} />
-      </div>
+    <div className='flex h-screen flex-col overflow-hidden'>
+      {step <= 4 && (
+        <motion.div variants={item} initial='hidden' animate='show'>
+          <div className='p-5'>
+            <BackBtn handleClick={setPrevStep} />
+          </div>
+          <Progress value={(step / 5) * 100} className='mb-8' />
+        </motion.div>
+      )}
 
-      <Progress value={(step / 5) * 100} className='mb-8' />
-      <div className='flex h-screen flex-col gap-8 px-5'>
-        {loading ? (
+      {loading ? (
+        <div className='h-full px-0 pt-28'>
           <LoadingScreen username={username} isCompleted={isCompleted} />
-        ) : (
-          <>
-            {/* TODO STEP 동일구조라서 hook 으로 사용 고려 */}
-            {step === 1 && (
-              <Step1
-                title={`집안일 청소는\n얼마나 자주 하세요?`}
-                questions={DUMMY_QUESTION_STEP1}
-                handleAnswer={setAnswer}
-              />
-            )}
-            {step === 2 && (
-              <Step2
-                title={`주로 어떤 이유로\n청소를 하시나요?`}
-                questions={DUMMY_QUESTION_STEP2}
-                handleAnswer={setAnswer}
-              />
-            )}
-            {step === 3 && (
-              <Step3
-                title={`청소할 때 가장 어려운 점은\n무엇인가요?`}
-                questions={DUMMY_QUESTION_STEP3}
-                handleAnswer={setAnswer}
-              />
-            )}
-            {step === 4 && (
-              <Step4
-                title={`청소할 때 최우선으로\n신경 쓰는 공간을 알려주세요!`}
-                questions={DUMMY_QUESTION_STEP4}
-                handleAnswer={setAnswer}
-              />
-            )}
-            {step === 5 && <Step5 title={`${username}님의 청소성향은`} results={result} />}
-          </>
-        )}
+        </div>
+      ) : (
+        <motion.div className='flex h-screen flex-col gap-8 px-5'>
+          {/* TODO STEP 동일구조라서 hook 으로 사용 고려 */}
+          {step === 1 && (
+            <Step1
+              title={`평소 정리정돈에 대해\n어떻게 생각하시나요?`}
+              questions={DUMMY_QUESTION_STEP1}
+              handleAnswer={handleAnswer}
+            />
+          )}
+          {step === 2 && (
+            <Step2
+              title={`어떤 방식으로 일하는 것을\n선호하시나요?`}
+              questions={DUMMY_QUESTION_STEP2}
+              handleAnswer={handleAnswer}
+            />
+          )}
+          {step === 3 && (
+            <Step3
+              title={`주변 환경이\n작업에 얼마나 영향을 주나요?`}
+              questions={DUMMY_QUESTION_STEP3}
+              handleAnswer={handleAnswer}
+            />
+          )}
+          {step === 4 && (
+            <Step4
+              title={`집안일을 할 때\n어떤 감정을 느끼시나요?`}
+              questions={DUMMY_QUESTION_STEP4}
+              handleAnswer={handleAnswer}
+            />
+          )}
+          {step === 5 && (
+            <div className='h-full pt-28'>
+              <Step5 title={`${username}님의 청소성향은`} results={result} />
+            </div>
+          )}
+        </motion.div>
+      )}
 
-        {!loading && (
-          <Button size={'large'} onClick={setNextStep}>
-            {step === 5 ? '확인' : '다음'}
+      {!loading && (
+        <motion.div className='bg-white sticky bottom-0 px-5 pb-6'>
+          <Button
+            size={'large'}
+            variant={!isStepVaild() ? 'disabled' : 'full'}
+            onClick={setNextStep}
+            disabled={!isStepVaild()}
+          >
+            {step === 5 ? '완료' : '다음'}
           </Button>
-        )}
-      </div>
+        </motion.div>
+      )}
     </div>
   );
 };

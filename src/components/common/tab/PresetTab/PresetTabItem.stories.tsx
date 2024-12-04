@@ -15,7 +15,7 @@ export const Default: Story = {
   render: () => (
     <Tabs defaultValue='living'>
       <TabsList>
-        <PresetTabItem name='거실' value='living' icon='' />
+        <PresetTabItem name='거실' value='living' />
       </TabsList>
       <TabsContent value='living'>선택</TabsContent>
     </Tabs>
@@ -26,7 +26,7 @@ export const CustomTab: Story = {
   render: () => (
     <Tabs defaultValue=''>
       <TabsList>
-        <PresetTabItem name='주방' value='kitchen' icon='' />
+        <PresetTabItem name='주방' value='kitchen' />
       </TabsList>
       <TabsContent value='kitchen'>선택X</TabsContent>
     </Tabs>

@@ -12,14 +12,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    groupName: '우리집',
+    group: { name: '우리집', channelId: 0 },
     isSelected: false,
   },
 };
 
 export const Selected: Story = {
   args: {
-    groupName: '우리집',
+    group: { name: '우리집', channelId: 0 },
     isSelected: true,
   },
 };

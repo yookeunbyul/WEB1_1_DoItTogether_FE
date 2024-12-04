@@ -14,13 +14,10 @@ const BottomNavBtn: React.FC<BottomNavBtnProps> = ({
   /** click */
   handleClick,
 }) => {
-  console.log(icon);
-
   return (
     <button className='flex flex-col items-center gap-1 px-3' onClick={handleClick}>
-      {/* <div>{icon}</div> */}
-      <div className='h-6 w-6 rounded-full border-2 bg-gray01'></div>
-      <p className='text-12'>{name}</p>
+      {icon}
+      <p className='text-gray3 font-caption'>{name}</p>
     </button>
   );
 };

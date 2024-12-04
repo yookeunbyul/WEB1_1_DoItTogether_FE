@@ -1,16 +1,19 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { SettingIcon } from '@/components/common/icon';
 
 const AccountSetBtn: React.FC = () => {
   const navigate = useNavigate();
+  const { channelId } = useParams();
 
   const handleClick = () => {
-    navigate('/my-page/account-manage');
+    navigate(`/my-page/account-manage/${channelId}`);
   };
   return (
-    <div className='flex justify-end px-5 py-4'>
-      <button className='h-5 w-5 bg-gray01' onClick={handleClick}></button>
-    </div>
+    <button onClick={handleClick} className='flex items-center'>
+      <SettingIcon />
+    </button>
   );
 };
 

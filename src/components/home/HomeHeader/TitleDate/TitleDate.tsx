@@ -1,12 +1,10 @@
 import React from 'react';
+import useHomePageStore from '@/store/useHomePageStore';
 
-interface TitleDateProps {
-  /** 타이틀 날짜의 내용 */
-  dateText: string;
-}
+const TitleDate: React.FC = ({}) => {
+  const { weekText } = useHomePageStore();
 
-const TitleDate: React.FC<TitleDateProps> = ({ dateText }: TitleDateProps) => {
-  return <div className='text-gray02'>{dateText}</div>;
+  return <div className='text-main font-body'>{weekText}</div>;
 };
 
 export default TitleDate;

@@ -1,6 +1,9 @@
 import { useState } from 'react';
-
 import React from 'react';
+import { useToast } from '@/hooks/use-toast';
+import useHomePageStore from '@/store/useHomePageStore';
+import { postCreateInviteLink } from '@/services/group/postCreateInviteLink';
+import { LinkIcon } from '@/components/common/icon';
 
 interface InviteLinkProps {
   initialLink?: string;
@@ -8,34 +11,46 @@ interface InviteLinkProps {
 
 const InviteLink: React.FC<InviteLinkProps> = ({ initialLink }) => {
   const [inviteLink, setInviteLink] = useState<string>(initialLink || '');
+  const { currentGroup } = useHomePageStore();
+  const { toast } = useToast();
 
-  const handleGenerateLink = () => {
-    // TODO: 나중에 API 호출로 바꾸기
-    setInviteLink('https://contents.ohou.contents.ohoucontents.ohou...');
+  const handleGenerateLink = async () => {
+    const channelId = currentGroup.channelId;
+    const response = await postCreateInviteLink({ channelId: channelId });
+    setInviteLink(`${response.result.inviteLink}`);
   };
 
   const handleCopyLink = () => {
+    toast({
+      title: '링크가 복사되었어요!',
+    });
     if (inviteLink) {
       navigator.clipboard.writeText(inviteLink);
-      alert('복사완료'); //TODO: 토스트로 처리?
     }
   };
 
   return (
-    <div className='flex h-12 items-center justify-between rounded-full border border-solid border-white01 px-4 py-1 text-16 shadow-sm'>
+    <div className='flex h-14 items-center justify-between gap-4 border-b-[1px] border-solid border-gray4 border-opacity-30 bg-white px-2 text-gray3 font-label'>
       {inviteLink ? (
         <>
+          <LinkIcon className='fill-gray3' />
           <div className='min-w-0 flex-1 overflow-hidden'>
-            <p className='truncate'>{inviteLink}</p>
+            <p className='truncate text-gray3'>{inviteLink}</p>
           </div>
-          <button className='shrink-0 pl-4 text-14 text-gray01' onClick={handleCopyLink}>
+          <button
+            className='shrink-0 underline underline-offset-2 font-caption'
+            onClick={handleCopyLink}
+          >
             링크복사
           </button>
         </>
       ) : (
         <>
-          <p className='flex-1 text-gray01'>유효한 코드가 없습니다</p>
-          <button className='text-14 text-gray01' onClick={handleGenerateLink}>
+          <p className='flex-1'>유효한 코드가 없습니다</p>
+          <button
+            onClick={handleGenerateLink}
+            className='underline underline-offset-2 font-caption'
+          >
             발급받기
           </button>
         </>

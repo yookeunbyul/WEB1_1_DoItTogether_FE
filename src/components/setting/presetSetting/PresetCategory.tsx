@@ -1,21 +1,29 @@
 import React from 'react';
 
+interface Category {
+  presetCategoryId: number;
+  category: string;
+}
 interface PresetCategoryProps {
   activeCate: string;
-  handleCateClick: (cate: string) => void;
+  handleCateClick: (cate: string, categoryId: number) => void;
+  categoryList: Category[];
 }
 
-const PresetCategory: React.FC<PresetCategoryProps> = ({ activeCate, handleCateClick }) => {
-  const category = ['거실', '주방', '욕실', '침실', '기타'];
+const PresetCategory: React.FC<PresetCategoryProps> = ({
+  activeCate,
+  handleCateClick,
+  categoryList,
+}) => {
   return (
-    <div className='flex px-5'>
-      {category.map(cate => (
+    <div className='flex gap-2'>
+      {categoryList.map(item => (
         <button
-          key={cate}
-          className={`pr-4 text-14 ${activeCate === cate ? 'text-black01' : 'text-gray03'}`}
-          onClick={() => handleCateClick(cate)}
+          key={item.presetCategoryId}
+          className={`rounded-xl px-2 py-[6px] font-label ${activeCate === item.category ? 'bg-white text-main' : 'text-white'}`}
+          onClick={() => handleCateClick(item.category, item.presetCategoryId)}
         >
-          {cate}
+          {item.category}
         </button>
       ))}
     </div>

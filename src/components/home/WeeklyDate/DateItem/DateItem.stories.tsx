@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    date: 1,
+    date: '1',
     day: '월',
     pendingCnt: 1,
     isActive: true,

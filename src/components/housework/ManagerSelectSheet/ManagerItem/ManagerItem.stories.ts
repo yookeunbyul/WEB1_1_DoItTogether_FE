@@ -38,7 +38,7 @@ export const Default: Story = {
 export const SelectedByPerson: Story = {
   args: {
     name: '김민수',
-    selectState: 'person',
+    selectState: 'default',
     handleClick: action('i cliked'),
   },
 };
@@ -46,7 +46,7 @@ export const SelectedByPerson: Story = {
 export const SelectedByAI: Story = {
   args: {
     name: '김민수',
-    selectState: 'ai',
+    selectState: 'selected',
     handleClick: action('i cliked'),
   },
 };

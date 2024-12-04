@@ -1,0 +1,10 @@
+export { Category } from './Category';
+export { PresetTabName } from './TabName';
+export { PresetDefault } from './PresetDefault';
+export {
+  DUMMY_QUESTION_STEP1,
+  DUMMY_QUESTION_STEP2,
+  DUMMY_QUESTION_STEP3,
+  DUMMY_QUESTION_STEP4,
+  DUMMY_RESULT,
+} from '@/constants/onBoarding';

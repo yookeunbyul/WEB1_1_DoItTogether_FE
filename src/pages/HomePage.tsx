@@ -1,205 +1,137 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import HomeHeader from '@/components/home/HomeHeader/HomeHeader';
 import WeeklyDateAndTab from '@/components/home/WeeklyDateAndTab';
 import HouseworkList from '@/components/home/HouseworkList/HouseworkList';
 import GroupSelectSheet from '@/components/home/GroupSelectSheet/GroupSelectSheet';
+import useHomePageStore from '@/store/useHomePageStore';
+import getWeekText from '@/utils/getWeekText';
+import { useParams } from 'react-router-dom';
+import { getMyGroup } from '@/services/group/getMyGroup';
+import { getGroupUser } from '@/services/group/getGroupUser';
+import { PAGE_SIZE } from '@/constants/common';
+import { getHouseworks } from '@/services/housework/getHouseworks';
+import { deleteHousework } from '@/services/housework/deleteHouswork';
+import { useQuery } from '@tanstack/react-query';
+import { useToast } from '@/hooks/use-toast';
+import { useNavigate } from 'react-router-dom';
+import { changeHouseworkStatus } from '@/services/housework/changeHouseworkStatus';
+import { NoHouseWorkIcon } from '@/components/common/icon';
 
-export const data = [
-  {
-    id: 1,
-    actionStatus: 'incomplete',
-    handleAction: () => {
-      console.log('Action btn clicked for 바닥 걸레질');
-    },
-    listTitle: '바닥 걸레질',
-    charger: '홍길동',
-    time: '오후 8:00',
-    handleEdit: () => {
-      console.log('Edit triggered for 바닥 걸레질');
-    },
-    handleDelete: () => {
-      console.log('Delete triggered for 바닥 걸레질');
-    },
-    category: '거실',
-  },
-  {
-    id: 2,
-    actionStatus: 'incomplete',
-    handleAction: () => {
-      console.log('Action btn clicked for 주방 청소');
-    },
-    listTitle: '청소',
-    charger: '김철수',
-    time: '오후 9:00',
-    handleEdit: () => {
-      console.log('Edit triggered for 주방 청소');
-    },
-    handleDelete: () => {
-      console.log('Delete triggered for 주방 청소');
-    },
-    category: '주방',
-  },
-  {
-    id: 3,
-    actionStatus: 'complete',
-    handleAction: () => {
-      console.log('Action btn clicked for 세탁기 돌리기');
-    },
-    listTitle: '세탁기 돌리기',
-    charger: '이영희',
-    time: '오후 10:00',
-    handleEdit: () => {
-      console.log('Edit triggered for 세탁기 돌리기');
-    },
-    handleDelete: () => {
-      console.log('Delete triggered for 세탁기 돌리기');
-    },
-    category: '기타',
-  },
-  {
-    id: 4,
-    actionStatus: 'complete',
-    handleAction: () => {
-      console.log('Action btn clicked for 정리 정돈');
-    },
-    listTitle: '정리 정돈',
-    charger: '박지성',
-    time: '오후 7:00',
-    handleEdit: () => {
-      console.log('Edit triggered for 정리 정돈');
-    },
-    handleDelete: () => {
-      console.log('Delete triggered for 정리 정돈');
-    },
-    category: '침실',
-  },
-  {
-    id: 5,
-    actionStatus: 'incomplete',
-    handleAction: () => {
-      console.log('Action btn clicked for 화장실 청소');
-    },
-    listTitle: '화장실 청소',
-    charger: '최민수',
-    time: '오후 6:00',
-    handleEdit: () => {
-      console.log('Edit triggered for 화장실 청소');
-    },
-    handleDelete: () => {
-      console.log('Delete triggered for 화장실 청소');
-    },
-    category: '화장실',
-  },
-  {
-    id: 6,
-    actionStatus: 'complete',
-    handleAction: () => {
-      console.log('Action btn clicked for 정원 가꾸기');
-    },
-    listTitle: '정원 가꾸기',
-    charger: '홍길동',
-    time: '오후 5:00',
-    handleEdit: () => {
-      console.log('Edit triggered for 정원 가꾸기');
-    },
-    handleDelete: () => {
-      console.log('Delete triggered for 정원 가꾸기');
-    },
-    category: '정원',
-  },
-  {
-    id: 7,
-    actionStatus: 'incomplete',
-    handleAction: () => {
-      console.log('Action btn clicked for 쓰레기 버리기');
-    },
-    listTitle: '쓰레기 버리기',
-    charger: '김철수',
-    time: '오후 4:00',
-    handleEdit: () => {
-      console.log('Edit triggered for 쓰레기 버리기');
-    },
-    handleDelete: () => {
-      console.log('Delete triggered for 쓰레기 버리기');
-    },
-    category: '기타',
-  },
-  {
-    id: 8,
-    actionStatus: 'complete',
-    handleAction: () => {
-      console.log('Action btn clicked for 빨래 널기');
-    },
-    listTitle: '빨래 널기',
-    charger: '이영희',
-    time: '오후 3:00',
-    handleEdit: () => {
-      console.log('Edit triggered for 빨래 널기');
-    },
-    handleDelete: () => {
-      console.log('Delete triggered for 빨래 널기');
-    },
-    category: '세탁실',
-  },
-  {
-    id: 9,
-    actionStatus: 'incomplete',
-    handleAction: () => {
-      console.log('Action btn clicked for 청소기 돌리기');
-    },
-    listTitle: '청소기 돌리기',
-    charger: '박지성',
-    time: '오후 2:00',
-    handleEdit: () => {
-      console.log('Edit triggered for 청소기 돌리기');
-    },
-    handleDelete: () => {
-      console.log('Delete triggered for 청소기 돌리기');
-    },
-    category: '거실',
-  },
-  {
-    id: 10,
-    actionStatus: 'complete',
-    handleAction: () => {
-      console.log('Action btn clicked for 정리 정돈');
-    },
-    listTitle: '정리 정돈',
-    charger: '최민수',
-    time: '오후 1:00',
-    handleEdit: () => {
-      console.log('Edit triggered for 정리 정돈');
-    },
-    handleDelete: () => {
-      console.log('Delete triggered for 정리 정돈');
-    },
-    category: '침실',
-  },
-];
+const HomePage: React.FC = () => {
+  // const [activeTab, setActiveTab] = useState<string>('전체');
+  const {
+    setWeekText,
+    setCurrentGroup,
+    setGroups,
+    activeDate,
+    homePageNumber,
+    activeTab,
+    setActiveTab,
+  } = useHomePageStore();
+  const { channelId } = useParams();
+  const [chargers, setChargers] = useState<{ name: string }[]>([{ name: '전체' }]);
+  const { data: houseworks, refetch } = useQuery({
+    queryKey: ['houseworks', channelId, activeDate],
+    queryFn: async () => await fetchHouseworks(activeDate),
+  });
+  const { toast } = useToast();
+  const navigate = useNavigate();
 
-interface HomePageProps {}
+  useEffect(() => {
+    const fetchMyGroups = async () => {
+      const getMyGroupResult = await getMyGroup();
+      const myGroups = getMyGroupResult.result.channelList;
+      setGroups(myGroups);
+      if (channelId) {
+        const currentGroup = myGroups.find(group => group.channelId === Number(channelId));
+        setCurrentGroup(currentGroup!);
+      }
+    };
 
-const HomePage: React.FC<HomePageProps> = () => {
-  const [activeTab, setActiveTab] = useState<string>('전체');
-  const [isOpen, setIsOpen] = useState(false);
+    setWeekText(getWeekText(new Date()));
+    fetchMyGroups();
+  }, []);
 
-  const chargers = [
-    { name: '전체' },
-    ...Array.from(new Set(data.map(item => item.charger))).map(charger => ({ name: charger })),
-  ];
+  useEffect(() => {
+    const fetchGroupUsers = async () => {
+      if (!channelId) return;
+      const newChannelId = Number(channelId);
+      const getGroupUsersResult = await getGroupUser({ channelId: newChannelId });
+      const newChargers = [
+        { name: '전체' },
+        ...Array.from(new Set(getGroupUsersResult.result.userList.map(user => user.nickName))).map(
+          charger => ({ name: charger })
+        ),
+      ];
+      setChargers(newChargers);
+    };
+
+    fetchGroupUsers();
+  }, [channelId]);
+
+  const fetchHouseworks = async (date: string) => {
+    const newChannelId = Number(channelId);
+    const getHouseworksResult = await getHouseworks({
+      channelId: newChannelId,
+      targetDate: date,
+      pageNumber: homePageNumber,
+      pageSize: PAGE_SIZE,
+    });
+    return getHouseworksResult.result.responses;
+  };
+
+  const handleAction = async (houseworkId: number) => {
+    // 해당 id에 해당하는 집안일 완료 처리
+    console.log(houseworkId);
+    const newChannelId = Number(channelId);
+    try {
+      await changeHouseworkStatus({
+        channelId: newChannelId,
+        houseworkId,
+      });
+      refetch();
+    } catch (error) {
+      toast({ title: '본인만 변경할 수 있어요!' });
+    }
+  };
+
+  const handleEdit = (houseworkId: number) => {
+    navigate(`/add-housework/edit/${channelId}/${houseworkId}/step1`);
+  };
+
+  const handleDelete = async (houseworkId: number) => {
+    const newChannelId = Number(channelId);
+    await deleteHousework({ channelId: newChannelId, houseworkId });
+    toast({ title: '집안일이 삭제되었습니다!' });
+    refetch();
+  };
 
   return (
     <div>
-      <HomeHeader handleSetOpen={setIsOpen} />
+      <HomeHeader />
       <WeeklyDateAndTab
         activeTab={activeTab}
         handleSetActiveTab={setActiveTab}
         chargers={chargers}
       />
-      <HouseworkList
-        items={data.filter(item => item.charger === activeTab || activeTab === '전체')}
-      />
-      <GroupSelectSheet isOpen={isOpen} handleSetOpen={setIsOpen} />
+      {!houseworks ||
+      houseworks.filter(item => item.assignee === activeTab || activeTab === '전체').length ===
+        0 ? (
+        <div className='flex h-[calc(100vh-280px)] flex-1 flex-col items-center justify-center gap-4 whitespace-pre-line text-center text-gray3'>
+          <NoHouseWorkIcon />
+          <p className='text-gray3 font-subhead'>
+            {'현재 집안일 목록이 없어요\n새로운 목록을 만들어보세요'}
+          </p>
+        </div>
+      ) : (
+        <HouseworkList
+          items={houseworks.filter(item => item.assignee === activeTab || activeTab === '전체')}
+          handleAction={handleAction}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+        />
+      )}
+      <GroupSelectSheet />
     </div>
   );
 };

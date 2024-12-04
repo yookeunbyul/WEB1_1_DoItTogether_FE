@@ -2,58 +2,63 @@ import type { Meta, StoryObj } from '@storybook/react';
 import MonthlyGrass from './MonthlyGrass';
 
 enum CompletionStatus {
-  DONE = 'done',
-  SOSO = 'soso',
-  NO = 'no',
+  ALL_DONE = 'ALL_DONE',
+  INCOMPLETE_REMAINING = 'INCOMPLETE_REMAINING',
+  NO_HOUSEWORK = 'NO_HOUSEWORK',
+}
+
+interface DailyTask {
+  date: string;
+  totalTasks: number;
+  completedTasks: number;
+  status: CompletionStatus;
 }
 
 const meta = {
   title: 'components/statistics/monthly/MonthlyGrass',
   component: MonthlyGrass,
-
   tags: ['autodocs'],
+  argTypes: {
+    completionData: { control: 'object' },
+    onMonthChange: { action: 'monthChanged' },
+  },
 } satisfies Meta<typeof MonthlyGrass>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const sampleCompletionData = [
-  { date: '2024-11-01', status: CompletionStatus.DONE },
-  { date: '2024-11-02', status: CompletionStatus.DONE },
-  { date: '2024-11-03', status: CompletionStatus.DONE },
-  { date: '2024-11-04', status: CompletionStatus.DONE },
-  { date: '2024-11-05', status: CompletionStatus.DONE },
-  { date: '2024-11-06', status: CompletionStatus.DONE },
-  { date: '2024-11-07', status: CompletionStatus.SOSO },
-  { date: '2024-11-07', status: CompletionStatus.NO },
-  { date: '2024-11-09', status: CompletionStatus.SOSO },
-  { date: '2024-11-10', status: CompletionStatus.SOSO },
-  { date: '2024-11-11', status: CompletionStatus.DONE },
-  { date: '2024-11-12', status: CompletionStatus.DONE },
-  { date: '2024-11-13', status: CompletionStatus.DONE },
-  { date: '2024-11-14', status: CompletionStatus.DONE },
-  { date: '2024-11-16', status: CompletionStatus.SOSO },
-  { date: '2024-11-17', status: CompletionStatus.SOSO },
-  { date: '2024-11-18', status: CompletionStatus.DONE },
-  { date: '2024-11-19', status: CompletionStatus.SOSO },
-  { date: '2024-11-20', status: CompletionStatus.DONE },
-  { date: '2024-11-21', status: CompletionStatus.DONE },
-  { date: '2024-11-23', status: CompletionStatus.SOSO },
-  { date: '2024-11-24', status: CompletionStatus.DONE },
-  { date: '2024-11-26', status: CompletionStatus.DONE },
-  { date: '2024-11-27', status: CompletionStatus.DONE },
-  { date: '2024-11-28', status: CompletionStatus.DONE },
+const sampleCompletionData: DailyTask[] = [
+  { date: '2024-11-01', totalTasks: 3, completedTasks: 3, status: CompletionStatus.ALL_DONE },
+  { date: '2024-11-02', totalTasks: 3, completedTasks: 3, status: CompletionStatus.ALL_DONE },
+  { date: '2024-11-03', totalTasks: 3, completedTasks: 3, status: CompletionStatus.ALL_DONE },
+  {
+    date: '2024-11-04',
+    totalTasks: 3,
+    completedTasks: 2,
+    status: CompletionStatus.INCOMPLETE_REMAINING,
+  },
+  { date: '2024-11-05', totalTasks: 3, completedTasks: 3, status: CompletionStatus.ALL_DONE },
+  {
+    date: '2024-11-06',
+    totalTasks: 3,
+    completedTasks: 1,
+    status: CompletionStatus.INCOMPLETE_REMAINING,
+  },
+  { date: '2024-11-07', totalTasks: 0, completedTasks: 0, status: CompletionStatus.NO_HOUSEWORK },
+  // ... 더 많은 날짜 데이터를 추가할 수 있습니다.
 ];
 
 export const Default: Story = {
   args: {
     completionData: sampleCompletionData,
+    onMonthChange: (monthKey: string) => console.log('Month changed:', monthKey),
   },
 };
 
 export const EmptyCalendar: Story = {
   args: {
     completionData: [],
+    onMonthChange: (monthKey: string) => console.log('Month changed:', monthKey),
   },
 };
 
@@ -61,25 +66,32 @@ export const AllDone: Story = {
   args: {
     completionData: sampleCompletionData.map(data => ({
       ...data,
-      status: CompletionStatus.DONE,
+      status: CompletionStatus.ALL_DONE,
+      completedTasks: data.totalTasks,
     })),
+    onMonthChange: (monthKey: string) => console.log('Month changed:', monthKey),
   },
 };
 
-export const AllSoso: Story = {
+export const AllIncomplete: Story = {
   args: {
     completionData: sampleCompletionData.map(data => ({
       ...data,
-      status: CompletionStatus.SOSO,
+      status: CompletionStatus.INCOMPLETE_REMAINING,
+      completedTasks: Math.max(0, data.totalTasks - 1),
     })),
+    onMonthChange: (monthKey: string) => console.log('Month changed:', monthKey),
   },
 };
 
-export const AllNo: Story = {
+export const AllNoHousework: Story = {
   args: {
     completionData: sampleCompletionData.map(data => ({
       ...data,
-      status: CompletionStatus.NO,
+      status: CompletionStatus.NO_HOUSEWORK,
+      totalTasks: 0,
+      completedTasks: 0,
     })),
+    onMonthChange: (monthKey: string) => console.log('Month changed:', monthKey),
   },
 };

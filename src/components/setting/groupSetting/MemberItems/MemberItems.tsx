@@ -1,24 +1,25 @@
 import MemberItem from '@/components/setting/groupSetting/MemberItems/MemberItem';
+import { User } from '@/types/apis/groupApi';
 import React from 'react';
 
 interface MemberItemsProps {
   leader: boolean;
-  members: string[];
-  currentUser: string;
-  handleClick?: (member: string) => void;
+  members: User[];
+  currentUser: User | null;
+  handleClick?: (member: User) => void;
 }
 
 const MemberItems: React.FC<MemberItemsProps> = ({ leader, members, currentUser, handleClick }) => {
   return (
     <div className='flex flex-col gap-2'>
-      <p className='text-14'>그룹원 관리</p>
-      <div className='flex flex-col gap-2'>
-        {members.map((member, index) => (
+      <p className='text-black font-label'>그룹원 관리</p>
+      <div className='flex flex-col'>
+        {members.map(member => (
           <MemberItem
-            key={index}
+            key={member.userId}
             leader={leader}
-            member={member}
-            isCurrentUser={member === currentUser}
+            nickName={member.nickName}
+            isCurrentUser={currentUser ? member.userId === currentUser.userId : false}
             handleClick={() => handleClick?.(member)}
           />
         ))}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { PlusIcon } from '@/components/common/icon';
 
 interface CloseBtnProps {
   /** 모달 닫는 액션 */
@@ -8,10 +9,10 @@ interface CloseBtnProps {
 const CloseBtn: React.FC<CloseBtnProps> = ({ handleClick }) => {
   return (
     <button
-      className='absolute right-1/2 top-[-70px] z-50 flex h-12 w-12 translate-x-1/2 items-center justify-center rounded-full bg-black01 bg-opacity-25 text-white03'
+      className='absolute right-1/2 top-[-70px] z-50 flex h-12 w-12 translate-x-1/2 rotate-45 items-center justify-center rounded-full bg-gray3 text-white'
       onClick={handleClick}
     >
-      <div className='h-5 w-5 rounded-full bg-white02'></div>
+      <PlusIcon className='text-white' />
     </button>
   );
 };

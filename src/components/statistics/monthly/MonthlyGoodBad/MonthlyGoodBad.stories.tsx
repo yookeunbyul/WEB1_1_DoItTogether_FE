@@ -12,14 +12,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Good: Story = {
   args: {
-    type: '칭찬',
+    type: 'good',
     name: '김철수',
   },
 };
 
 export const Bad: Story = {
   args: {
-    type: '찌르기',
+    type: 'bad',
     name: '박영희',
   },
 };

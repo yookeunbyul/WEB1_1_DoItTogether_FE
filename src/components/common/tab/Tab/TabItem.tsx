@@ -10,7 +10,7 @@ const TabItem: React.FC<TabItemProps> = ({ name, value }) => {
   return (
     <TabsTrigger
       value={value}
-      className='rounded-none px-6 py-4 data-[state=active]:border-b-2 data-[state=active]:border-black01 data-[state=active]:shadow-none'
+      className='data-[state=active]:border-main font-label rounded-none border-b-[3px] border-transparent px-5 py-3 data-[state=active]:border-b-[3px] data-[state=active]:shadow-none'
     >
       {name}
     </TabsTrigger>

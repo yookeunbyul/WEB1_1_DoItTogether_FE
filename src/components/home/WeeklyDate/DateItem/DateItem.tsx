@@ -1,6 +1,6 @@
 interface DateItemProps {
   /** 날짜 */
-  date: number;
+  date: string;
   /** 요일 */
   day: string;
   /** 미완료 집안일 개수 */
@@ -16,13 +16,14 @@ const DateItem = ({ date, day, pendingCnt, isActive, handleClick }: DateItemProp
     // TODO rounded, font-weight 공통변수로 수정할 예정
     <div
       onClick={handleClick}
-      className={`flex h-20 w-10 flex-col items-center justify-center gap-1 rounded-[30px] px-2 py-1 ${isActive ? 'bg-black02' : 'bg-white03'} `}
+      className={`relative flex h-[72px] w-10 flex-col items-center justify-center overflow-hidden rounded-full px-3 py-1 ${isActive ? 'bg-main' : 'bg-white'} `}
     >
-      <span className={`text-14 ${isActive ? 'text-gray03' : 'text-gray02'}`}>{date}</span>
-      <span className={`text-16 font-bold ${isActive ? 'text-white02' : 'text-black02'}`}>
-        {day}
+      <span className={`font-caption text-sub`}>{date}</span>
+      <span className={`font-subhead ${isActive ? 'text-white' : 'text-main'}`}>{day}</span>
+      <span className={`font-caption ${isActive ? 'text-white' : 'text-main'} z-10`}>
+        +{pendingCnt}
       </span>
-      <span className={`text-14 ${isActive ? 'text-gray03' : 'text-gray02'}`}>+{pendingCnt}</span>
+      {isActive && <span className={`bg-sub absolute -bottom-[10px] h-9 w-9 rounded-full`}></span>}
     </div>
   );
 };

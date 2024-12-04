@@ -3,12 +3,14 @@ import InputWithLabel from '@/components/common/input/InputWithLabel';
 import ProfileImg from '@/components/common/profile/ProfileImg';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const MyPageEditPage = () => {
   const navigate = useNavigate();
   const [username, setUserName] = useState<string>(''); // 수정
+  const { channelId } = useParams();
   const handleBack = () => {
-    navigate('/main/my-page');
+    navigate(`/main/${channelId}/my-page`);
   };
   return (
     <>

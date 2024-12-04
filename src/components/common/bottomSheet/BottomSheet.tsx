@@ -4,12 +4,10 @@ import BottomSheetTitle from '@/components/common/bottomSheet/BottomSheetTitle/B
 import CloseBtn from '@/components/common/bottomSheet/CloseBtn/CloseBtn';
 
 interface BottomSheetProps {
-  /**바텀시트 오픈 여부 */
+  /** 바텀시트 오픈 여부 */
   isOpen: boolean;
-  /**isOpen 바꾸는 set함수 */
-  setOpen: (value: boolean) => void;
-  /**바텀시트 태그 */
-  tag?: string;
+  /** isOpen 바꾸는 set함수 */
+  setOpen: (isOpen: boolean) => void;
   /**바텀시트 타이틀 */
   title: string;
   /**바텀시트 close 버튼 */
@@ -21,7 +19,6 @@ interface BottomSheetProps {
 const BottomSheet: React.FC<BottomSheetProps> = ({
   isOpen,
   setOpen,
-  tag,
   title,
   closeBtn = true,
   children,
@@ -38,7 +35,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
           <Sheet.Container>
             {closeBtn && <CloseBtn handleClick={() => setOpen(false)} />}
             <Sheet.Header>
-              <BottomSheetTitle tag={tag} title={title} />
+              <BottomSheetTitle title={title} />
             </Sheet.Header>
             <Sheet.Content>{children}</Sheet.Content>
           </Sheet.Container>

@@ -8,10 +8,6 @@ const meta = {
   component: OpenSheetBtnWithLabel,
   tags: ['autodocs'],
   argTypes: {
-    title: {
-      description: '타이틀',
-      control: 'text',
-    },
     selected: {
       description: '셀렉된 값',
       control: 'text',
@@ -26,11 +22,7 @@ const SelectBtnWithBottomSheet = () => {
 
   return (
     <>
-      <OpenSheetBtnWithLabel
-        title='타이틀'
-        selected='셀렉된 값'
-        handleClick={() => setOpen(true)}
-      />
+      <OpenSheetBtnWithLabel selected='셀렉된 값' handleClick={() => setOpen(true)} />
       <BottomSheet isOpen={isOpen} setOpen={setOpen} title='바텀시트 제목'>
         <div className='p-4'>
           <p>바텀시트 컨텐츠입니다</p>

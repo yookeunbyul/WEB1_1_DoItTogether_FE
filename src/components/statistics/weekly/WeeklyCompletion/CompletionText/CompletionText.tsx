@@ -9,9 +9,9 @@ interface CompletionTextProps {
 
 const CompletionText: React.FC<CompletionTextProps> = ({ completedText, num }) => {
   return (
-    <div className='flex items-center justify-between'>
-      <p className='text-gray01'>{completedText}</p>
-      <p className='text-18 text-black02'>
+    <div className='flex items-center justify-between gap-1'>
+      <p className='text-gray3 font-body'>{completedText}</p>
+      <p className='text-main font-subhead'>
         <strong>{num}</strong>개
       </p>
     </div>

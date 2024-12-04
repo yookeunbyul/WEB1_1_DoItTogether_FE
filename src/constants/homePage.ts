@@ -1,0 +1,4 @@
+export const HOUSEWORK_STATUS = {
+  COMPLETE: 'COMPLETE',
+  UN_COMPLETE: 'UN_COMPLETE',
+};

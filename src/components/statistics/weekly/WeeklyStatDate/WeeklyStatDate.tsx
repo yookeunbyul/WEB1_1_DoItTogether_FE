@@ -1,3 +1,4 @@
+import { ArrowLeftIcon, ArrowRightIcon } from '@/components/common/icon';
 import React from 'react';
 
 export interface WeeklyStatDateProps {
@@ -24,15 +25,28 @@ const WeeklyStatDate: React.FC<WeeklyStatDateProps> = ({
 
     // 한 주의 시작이 월요일부터 시작되도록 함
     const weekNumber = Math.ceil((date.getDate() + firstDayOfWeek - 1) / 7);
+    const weekLabels: { [key: number]: string } = {
+      1: '첫째주',
+      2: '둘째주',
+      3: '셋째주',
+      4: '넷째주',
+      5: '다섯째주',
+    };
 
-    return `${year}년 ${new Intl.DateTimeFormat('ko-KR', { month: 'long' }).format(date)} ${weekNumber}주차`;
+    return `${year}년 ${new Intl.DateTimeFormat('ko-KR', { month: 'long' }).format(date)} ${weekLabels[weekNumber]}`;
   };
 
+  const isCurrentDateFuture = currentDate > new Date();
+
   return (
-    <div className='mb-4 flex items-center justify-center gap-4'>
-      <button onClick={handlePrevWeek}>이전 주</button>
-      <span>{getWeekText(currentDate)}</span>
-      <button onClick={handleNextWeek}>다음 주</button>
+    <div className='mb-4 flex items-center justify-center gap-8'>
+      <button onClick={handlePrevWeek}>
+        <ArrowLeftIcon className='text-gray1' />
+      </button>
+      <span className='w-44 text-center text-gray font-subhead'>{getWeekText(currentDate)}</span>
+      <button onClick={handleNextWeek} disabled={isCurrentDateFuture}>
+        <ArrowRightIcon className={`text-gray1 ${isCurrentDateFuture ? 'opacity-30' : ''}`} />
+      </button>
     </div>
   );
 };

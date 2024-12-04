@@ -8,10 +8,6 @@ const meta: Meta<typeof ExitSheet> = {
     layout: 'centered',
   },
   argTypes: {
-    tag: {
-      control: 'text',
-      description: 'sheet Title tag',
-    },
     sheetTitle: {
       control: 'text',
       description: 'sheet Title',
@@ -41,7 +37,6 @@ type Story = StoryObj<typeof ExitSheet>;
 
 export const Default: Story = {
   args: {
-    tag: '태그',
     sheetTitle: '시트 제목',
     btnText: '확인',
     isOpen: true,
@@ -64,7 +59,6 @@ export const WithoutTag: Story = {
 
 export const Closed: Story = {
   args: {
-    tag: '태그',
     sheetTitle: '시트 제목',
     btnText: '확인',
     isOpen: false,

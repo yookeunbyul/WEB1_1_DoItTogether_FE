@@ -7,7 +7,7 @@ const meta: Meta<typeof MemberItem> = {
   tags: ['autodocs'],
   argTypes: {
     leader: { control: 'boolean' },
-    member: { control: 'text' },
+    nickName: { control: 'text' }, // member -> nickName
     isCurrentUser: { control: 'boolean' },
     handleClick: { action: 'clicked' },
   },
@@ -20,7 +20,7 @@ type Story = StoryObj<typeof MemberItem>;
 export const Leader: Story = {
   args: {
     leader: true,
-    member: '민재',
+    nickName: '민재', // member -> nickName
     isCurrentUser: false,
   },
 };
@@ -28,7 +28,7 @@ export const Leader: Story = {
 export const CurrentUser: Story = {
   args: {
     leader: false,
-    member: '민재',
+    nickName: '민재', // member -> nickName
     isCurrentUser: true,
   },
 };
@@ -36,7 +36,7 @@ export const CurrentUser: Story = {
 export const OtherMember: Story = {
   args: {
     leader: false,
-    member: '서준',
+    nickName: '서준', // member -> nickName
     isCurrentUser: false,
   },
 };
@@ -44,7 +44,7 @@ export const OtherMember: Story = {
 export const LeaderAndCurrentUser: Story = {
   args: {
     leader: true,
-    member: '민재',
+    nickName: '민재', // member -> nickName
     isCurrentUser: true,
   },
 };

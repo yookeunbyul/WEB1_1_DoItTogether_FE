@@ -2,44 +2,74 @@ import { useState } from 'react';
 import { Label } from '@/components/common/ui/label';
 import { Switch } from '@/components/common/ui/switch';
 import TimePicker from '@/components/housework/TimeControl/TimePicker/TimePicker';
+import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
+import { cn } from '@/lib/utils';
+import { ClockIcon } from '@/components/common/icon';
 
 interface SelectedTime {
   hour: string;
   minute: string;
-  dayPart: 'AM' | 'PM';
+  ampm: 'AM' | 'PM';
 }
 
 interface TimeControlProps {
-  onTimeChange: (time: SelectedTime) => void;
+  onTimeChange: (time: SelectedTime | null) => void;
 }
 
 const TimeControl: React.FC<TimeControlProps> = ({ onTimeChange }) => {
-  const [isAllDay, setIsAllDay] = useState(true);
+  const { isAllday, setIsAllday, startTime } = useAddHouseWorkStore();
   const [selectedTime, setSelectedTime] = useState<SelectedTime | null>(null);
 
   const handleSwitchChange = () => {
-    setIsAllDay(!isAllDay);
-    setSelectedTime(null);
+    if (!isAllday) {
+      //false때 누르면 하루종일하기가 활성화
+      setIsAllday(true);
+      setSelectedTime(null);
+      onTimeChange(null);
+    } else {
+      //true일때 누르면 하루종일하기가 비활성화
+      setIsAllday(false);
+    }
   };
+
+  console.log(selectedTime);
 
   const handleTimeChange = (time: SelectedTime) => {
     setSelectedTime(time);
     onTimeChange(time);
   };
 
-  console.log(selectedTime);
-
   return (
-    <div className='flex flex-col gap-2 rounded-lg bg-white03 p-4 shadow'>
-      <div className='flex items-center justify-between'>
-        {isAllDay ? (
-          <Label htmlFor='time-mode'>하루종일 하기</Label>
+    <div
+      className={cn(
+        'flex flex-col justify-center gap-2 !rounded-none border-b-[1px] border-solid border-gray4 border-opacity-30 bg-white px-3',
+        isAllday ? 'h-14' : 'h-auto py-4'
+      )}
+    >
+      <div className='flex items-center justify-between text-gray font-body'>
+        {isAllday ? (
+          <Label htmlFor='time-mode' className='flex items-center gap-4'>
+            <ClockIcon
+              fillClass='fill-main'
+              circleStrokeClass='stroke-main'
+              handStrokeClass='stroke-white'
+            />
+            <p>하루종일 하기</p>
+          </Label>
         ) : (
-          <Label htmlFor='time-mode'>시작시간이 언제인가요?</Label>
+          <Label htmlFor='time-mode' className='flex items-center gap-4 text-gray'>
+            <ClockIcon />
+            <p>시작시간이 언제인가요?</p>
+          </Label>
         )}
-        <Switch id='time-mode' checked={isAllDay} onCheckedChange={handleSwitchChange} />
+        <Switch
+          id='time-mode'
+          checked={isAllday}
+          onCheckedChange={handleSwitchChange}
+          className='border data-[state=checked]:border-sub2 data-[state=checked]:bg-main'
+        />
       </div>
-      {!isAllDay && <TimePicker onTimeChange={handleTimeChange} />}
+      {!isAllday && <TimePicker onTimeChange={handleTimeChange} initialTime={startTime} />}
     </div>
   );
 };

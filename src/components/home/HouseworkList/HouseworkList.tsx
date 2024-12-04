@@ -1,17 +1,30 @@
 import React from 'react';
-import HouseworkListItem, {
-  HouseworkListItemProps,
-} from '@/components/home/HouseworkList/HouseworkListItem/HouseworkListItem';
+import HouseworkListItem from '@/components/home/HouseworkList/HouseworkListItem/HouseworkListItem';
+import { Housework } from '@/types/apis/houseworkApi';
 
 export interface HouseworkListProps {
-  items: HouseworkListItemProps[];
+  items: Housework[];
+  handleAction: (houseworkId: number) => void;
+  handleEdit: (houseworkId: number) => void;
+  handleDelete: (houseworkId: number) => void;
 }
 
-const HouseworkList: React.FC<HouseworkListProps> = ({ items }) => {
+const HouseworkList: React.FC<HouseworkListProps> = ({
+  items,
+  handleAction,
+  handleEdit,
+  handleDelete,
+}) => {
   return (
     <div className='flex max-w flex-col gap-2 p-5'>
       {items.map(item => (
-        <HouseworkListItem key={item.id} {...item} />
+        <HouseworkListItem
+          key={item.houseworkId}
+          {...item}
+          handleAction={handleAction}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+        />
       ))}
     </div>
   );

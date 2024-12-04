@@ -3,19 +3,27 @@ import Header from '@/components/common/header/Header';
 import InputBox from '@/components/common/input/InputBox';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { postJoinGroup } from '@/services/group/postJoinGroup';
+import { useToast } from '@/hooks/use-toast';
 
 const GroupInviteReceivePage = () => {
   const [inviteLink, setInviteLink] = useState('');
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const handleBack = () => {
     navigate('/group-select');
   };
 
-  // TODO: 백엔드랑 연결
-  const handleGoIn = () => {
-    console.log(inviteLink);
-    navigate('/main');
+  const handleGoIn = async () => {
+    try {
+      const joinResult = await postJoinGroup({ inviteLink });
+      navigate(`/main/${joinResult.result.channelId}`);
+    } catch (error) {
+      if (error instanceof Error) {
+        toast({ title: '에러가 발생했습니다 ㅠㅠ', description: error.message });
+      }
+    }
   };
 
   return (

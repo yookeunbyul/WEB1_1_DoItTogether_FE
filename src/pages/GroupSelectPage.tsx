@@ -1,13 +1,25 @@
 import Button from '@/components/common/button/Button/Button';
 import GroupSelectTitle from '@/components/groupSelect/GroupSelectTitle/GroupSelectTitle';
-import Logo from '@/components/groupSelect/Logo/Logo';
 import OpenSheetBtn from '@/components/common/button/OpenSheetBtn/OpenSheetBtn';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useHomePageStore from '@/store/useHomePageStore';
+import { getMyGroup } from '@/services/group/getMyGroup';
+import { Group } from '@/types/apis/groupApi';
+import { NoGroupIcon } from '@/components/common/icon';
 
 const GroupSelectPage = () => {
-  const [groups] = useState(['우리집', '회사']);
   const navigate = useNavigate();
+  const { setCurrentGroup, groups, setGroups, setActiveTab } = useHomePageStore();
+
+  useEffect(() => {
+    const fetchMyGroup = async () => {
+      const groups = await getMyGroup();
+      setGroups(groups.result.channelList);
+    };
+
+    fetchMyGroup();
+  }, []);
 
   const handleMakeGroupBtnClick = () => {
     navigate('/group/create');
@@ -15,38 +27,46 @@ const GroupSelectPage = () => {
   const handleInvitedBtnClick = () => {
     navigate('/group/invite-receive');
   };
-  const handleClick = () => {
-    navigate('/main');
+  const handleClick = (group: Group) => {
+    setCurrentGroup(group);
+    setActiveTab('전체');
+    navigate(`/main/${group.channelId}`);
   };
+
   return (
     <div className='flex min-h-screen flex-col'>
-      <Logo />
       <GroupSelectTitle />
-      <div className='flex flex-1 flex-col gap-y-4 px-5 py-4'>
+      <div className='flex flex-1 flex-col px-5 py-4'>
         {groups.length > 0 ? (
           groups.map(group => (
-            <OpenSheetBtn key={group} text={group} handleClick={handleClick} type='groupSelect' />
+            <OpenSheetBtn
+              key={group.channelId}
+              text={group.name}
+              handleClick={() => handleClick(group)}
+              type='groupSelect'
+            />
           ))
         ) : (
-          <div className='flex flex-1 items-center justify-center whitespace-pre-line text-center text-gray03'>
-            {'현재 방이 없어요\n새로운 방을 만들어보세요'}
+          <div className='flex flex-1 flex-col items-center justify-center gap-4 whitespace-pre-line text-center text-gray3'>
+            <NoGroupIcon />
+            <p className='font-subhead'>{'현재 방이 없어요\n새로운 방을 만들어보세요'}</p>
           </div>
         )}
       </div>
-      <div className='flex gap-x-4 px-5 pt-6'>
+      <div className='flex gap-x-4 px-5 py-6'>
         <Button
           label='방만들기'
           variant='full'
-          size='large'
+          size='small'
           handleClick={handleMakeGroupBtnClick}
-          className={'flex-1 rounded-2xl bg-white01 py-12 text-black01 hover:bg-white01'}
+          className={'flex-1'}
         />
         <Button
           label='초대받기'
           variant='full'
-          size='large'
+          size='small'
           handleClick={handleInvitedBtnClick}
-          className={'flex-1 rounded-2xl bg-white01 py-12 text-black01 hover:bg-white01'}
+          className={'flex-1'}
         />
       </div>
     </div>

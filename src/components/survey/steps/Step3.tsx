@@ -1,22 +1,41 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 import SurveyTitle from '@/components/survey/SurveyTitle/SurveyTitle';
 import MenuSelect from '@/components/survey/MenuSelect/MenuSelect';
+import { motion } from 'framer-motion';
 
 interface Step3Props {
   title: string;
   questions: string[];
-  handleAnswer: Dispatch<SetStateAction<string>>;
+  handleAnswer: (text: string) => void;
 }
 
-const Step3: React.FC<Step3Props> = ({ title, questions }) => {
+const Step3: React.FC<Step3Props> = ({ title, questions, handleAnswer }) => {
   const [activeItem, setActiveItem] = useState('');
 
   const handleSelect = (content: string) => {
     setActiveItem(content);
+    handleAnswer(content);
+  };
+
+  const container = {
+    hidden: { opacity: 0, y: 0 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5, // 0.3초 동안 애니메이션 실행
+        ease: 'easeIn', // 가속도 곡선 설정
+      },
+    },
   };
 
   return (
-    <div className='flex flex-1 flex-col gap-3'>
+    <motion.div
+      className='flex flex-1 flex-col gap-3'
+      variants={container}
+      initial='hidden'
+      animate='show'
+    >
       <div className='mb-5'>
         <SurveyTitle title={title} />
       </div>
@@ -25,14 +44,14 @@ const Step3: React.FC<Step3Props> = ({ title, questions }) => {
         {questions.map(question => (
           <MenuSelect
             key={question}
-            type='tight'
+            type='large'
             status={activeItem === question ? 'active' : 'inActive'}
             content={question}
             handleSelect={() => handleSelect(question)}
           />
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

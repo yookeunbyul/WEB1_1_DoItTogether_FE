@@ -1,6 +1,49 @@
 // PresetTab.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
 import PresetTab from '@/components/common/tab/PresetTab/PresetTab';
+import { Category } from '@/constants/Category';
+
+interface PresetItem {
+  presetItemId: number;
+  name: string;
+}
+interface PresetList {
+  presetCategoryId: number;
+  category: string;
+  presetItemList: Array<PresetItem>;
+}
+
+const mockData: PresetList[] = [
+  {
+    presetCategoryId: 1,
+    category: Category.LIVING_ROOM,
+    presetItemList: [
+      { presetItemId: 101, name: '정리정돈' },
+      { presetItemId: 102, name: '쓰레기통 비우기' },
+      { presetItemId: 103, name: '먼지 닦기' },
+      { presetItemId: 104, name: '진공청소기 돌리기' },
+    ],
+  },
+  {
+    presetCategoryId: 2,
+    category: Category.KITCHEN,
+    presetItemList: [
+      { presetItemId: 201, name: '설거지' },
+      { presetItemId: 202, name: '조리대 및 싱크대 닦기' },
+      { presetItemId: 203, name: '쓰레기통 비우기' },
+      { presetItemId: 204, name: '냉장고 정리' },
+    ],
+  },
+  {
+    presetCategoryId: 3,
+    category: Category.BED_ROOM,
+    presetItemList: [
+      { presetItemId: 301, name: '침구 정리' },
+      { presetItemId: 302, name: '침구 교체' },
+      { presetItemId: 303, name: '옷장 정리' },
+    ],
+  },
+];
 
 const meta = {
   title: 'components/common/tab/PresetTab/PresetTab',
@@ -14,70 +57,21 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const mockData = {
-  userData: [
-    {
-      category: '거실',
-      items: [{ id: 1, description: '매일 아침 화장실 청소하기' }],
-    },
-    {
-      category: '부엌',
-      items: [{ id: 2, description: '아침 식사 후 설거지하기' }],
-    },
-    {
-      category: '1번 방',
-      items: [{ id: 3, description: '1번 방 바닥 청소' }],
-    },
-    {
-      category: '2번 방',
-      items: [{ id: 4, description: '2번 방 옷장 정리' }],
-    },
-    {
-      category: '3번 방',
-      items: [{ id: 5, description: '3번 방 나가기' }],
-    },
-  ],
-  presetData: [
-    {
-      category: '거실',
-      items: [
-        { id: 1, description: '매일 아침 화장실 청소하기' },
-        { id: 2, description: '거실 바닥 청소하기' },
-        { id: 3, description: '거실 청소기 돌리기' },
-      ],
-    },
-    {
-      category: '부엌',
-      items: [
-        { id: 4, description: '아침 식사 후 설거지하기' },
-        { id: 5, description: '저녁 식사 후 설거지하기' },
-        { id: 6, description: '오븐 청소' },
-      ],
-    },
-    {
-      category: '1번 방',
-      items: [{ id: 7, description: '1번 방 청소' }],
-    },
-    {
-      category: '2번 방',
-      items: [{ id: 8, description: '2번 방 청소' }],
-    },
-    {
-      category: '3번 방',
-      items: [{ id: 9, description: '3번 방 청소' }],
-    },
-  ],
-};
-
-export const UserData: Story = {
+export const LivingRoom: Story = {
   args: {
-    data: mockData.userData,
+    presetData: mockData.filter(data => data.presetCategoryId === 1),
   },
 };
 
-export const PresetData: Story = {
+export const Kitchen: Story = {
   args: {
-    data: mockData.presetData,
+    presetData: mockData.filter(data => data.presetCategoryId === 2),
+  },
+};
+
+export const BedRoom: Story = {
+  args: {
+    presetData: mockData.filter(data => data.presetCategoryId === 3),
   },
 };
 
@@ -90,6 +84,6 @@ export const WithContainer: Story = {
     ),
   ],
   args: {
-    data: mockData.presetData,
+    presetData: [mockData[0]],
   },
 };

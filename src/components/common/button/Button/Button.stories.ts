@@ -19,11 +19,11 @@ export const Default: Story = {
     size: 'small',
   },
 };
-export const Outline: Story = {
+export const Disabled: Story = {
   args: {
     label: 'Outline 버튼',
-    variant: 'outline',
-    size: 'medium',
+    variant: 'disabled',
+    size: 'large',
   },
 };
 export const Secondary: Story = {
@@ -33,17 +33,17 @@ export const Secondary: Story = {
     size: 'large',
   },
 };
-export const Ghost: Story = {
+export const Onboarding: Story = {
   args: {
     label: 'Ghost 버튼',
-    variant: 'ghost',
-    size: 'medium',
+    variant: 'onboarding',
+    size: 'small',
   },
 };
-export const Link: Story = {
+export const Kakao: Story = {
   args: {
-    label: 'Link 버튼',
-    variant: 'link',
+    label: 'kakao 버튼',
+    variant: 'kakao',
     size: 'small',
   },
 };

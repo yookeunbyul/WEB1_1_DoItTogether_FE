@@ -4,9 +4,9 @@ interface ButtonProps {
   /** 라벨 */
   label: React.ReactNode;
   /** 타입 */
-  variant: 'full' | 'outline' | 'secondary' | 'ghost' | 'link';
+  variant: 'full' | 'select' | 'secondary' | 'disabled' | 'kakao' | 'group' | 'onboarding';
   /** 사이즈 */
-  size: 'small' | 'medium' | 'large';
+  size: 'small' | 'large';
   /** 클릭 이벤트 */
   handleClick?: () => void;
   /** 커스텀 스타일 */

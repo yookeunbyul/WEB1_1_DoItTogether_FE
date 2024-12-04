@@ -4,26 +4,28 @@ import BottomSheet from '@/components/common/bottomSheet/BottomSheet';
 import ManagerItems from '@/components/housework/ManagerSelectSheet/ManagerItem/ManagerItems';
 import Button from '@/components/common/button/Button/Button';
 import AiChoice from '@/components/housework/AiChoice/AiChoice';
+import { User } from '@/types/apis/groupApi';
+import { RefreshIcon } from '@/components/common/icon';
 
 interface ManagerSelectSheetProps {
   /**바텀시트 오픈 여부 */
   isOpen: boolean;
   /**isOpen 바꾸는 set함수 */
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  /**선택된 담당자 */
-  selectedMember: string;
-  /**담당자 바꾸는 set함수 */
-  handleSetSelectMember: Dispatch<SetStateAction<string>>;
   /**선택 완료 후 처리하는 함수 */
   handleDoneClick: () => void;
+  setSelectedValue: Dispatch<SetStateAction<number | null>>;
+  selectedValue: number | null;
+  members: User[];
 }
 
 const ManagerSelectSheet: React.FC<ManagerSelectSheetProps> = ({
   isOpen,
   setIsOpen,
-  selectedMember,
-  handleSetSelectMember,
+  selectedValue,
   handleDoneClick,
+  setSelectedValue,
+  members,
 }) => {
   const [isAiCardOpen, setIsAiCardOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -44,12 +46,22 @@ const ManagerSelectSheet: React.FC<ManagerSelectSheetProps> = ({
 
   return (
     <BottomSheet isOpen={isOpen} setOpen={setIsOpen} title='담당자 고르기'>
-      <div className='flex flex-col px-5 pb-6'>
+      <div className='flex flex-col'>
         {isAiCardOpen && <AiChoice isLoading={isLoading} tags={tags} />}
-        <ManagerItems selectedMember={selectedMember} handleSelectMember={handleSetSelectMember} />
-        <div className='flex gap-3'>
-          <Button label='ai 선택' variant='outline' size='large' handleClick={handleClick} />
-          <Button label='완료' variant='full' size='large' handleClick={handleDoneClick} />
+        <ManagerItems
+          isAiCardOpen={isAiCardOpen}
+          setSelectedValue={setSelectedValue}
+          selectedValue={selectedValue}
+          members={members}
+        />
+        <div className='flex gap-3 px-5 pb-6'>
+          <Button
+            label={isAiCardOpen ? <RefreshIcon /> : 'AI 픽'}
+            variant='secondary'
+            size='small'
+            handleClick={handleClick}
+          />
+          <Button label='확인' variant='full' size='small' handleClick={handleDoneClick} />
         </div>
       </div>
     </BottomSheet>
