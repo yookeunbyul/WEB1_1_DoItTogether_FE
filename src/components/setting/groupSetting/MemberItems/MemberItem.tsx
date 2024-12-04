@@ -17,7 +17,7 @@ const MemberItem: React.FC<MemberItemProps> = ({
 
   return (
     <div
-      className={`flex h-14 items-center justify-between border-b-2 border-solid border-gray4 border-opacity-30 bg-white px-2 text-gray1 font-body ${!showButton ? 'text-gray3' : ''}`}
+      className={`flex h-14 items-center justify-between border-b-[1px] border-solid border-gray4 border-opacity-30 bg-white px-2 text-gray1 font-body ${!showButton ? 'text-gray3' : ''}`}
     >
       {nickName}
       {showButton && (

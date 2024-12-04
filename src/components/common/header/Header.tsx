@@ -20,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <div className='bg-whiteReal flex items-center justify-between border-b-[1px] border-solid border-gray4/40 px-5 py-4'>
       <div className='flex-1'>{handleBack && <BackBtn handleClick={handleBack} />}</div>
-      <div className='flex-1 text-center font-subhead'>{title}</div>
+      <div className='flex-1 text-center text-black font-subhead'>{title}</div>
       <div className='flex flex-1 justify-end'>
         {isNeededDoneBtn ? (
           <button className='text-gray' onClick={handleDone}>

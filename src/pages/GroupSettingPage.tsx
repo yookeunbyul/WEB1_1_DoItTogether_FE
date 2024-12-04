@@ -155,7 +155,7 @@ const GroupSettingPage = () => {
         />
         <InviteLinkWithLabel />
         <div className='flex flex-col gap-2 pb-6'>
-          <p className='text-14'>프리셋 관리</p>
+          <p className='text-black font-label'>프리셋 관리</p>
           <Button
             variant='group'
             size='large'
