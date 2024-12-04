@@ -8,7 +8,7 @@ export const getWeeklyScore = async (data: GetWeeklyScoreReq) => {
     );
     return response.data;
   } catch (error) {
-    console.error('주간 통계 랭킹 조회 실패:', error);
+    console.error('주간 통계 랭킹 조회 실패: ', error);
     throw error;
   }
 };
