@@ -12,7 +12,7 @@ const WeeklyOthers: React.FC<WeeklyOthersProps> = ({ rank, nickname, completeCou
     <div className='flex items-center justify-between'>
       <div className='flex items-center gap-2'>
         <p>{rank}</p>
-        <div className='flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-solid bg-white03'>
+        <div className='flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-solid bg-white'>
           <img src={profile} alt='' />
         </div>
         <p>{nickname}</p>

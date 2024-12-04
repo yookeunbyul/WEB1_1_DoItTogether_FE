@@ -18,7 +18,7 @@ const PresetTabItem: React.FC<PresetTabItemProps> = ({ name, value }) => {
   return (
     <TabsTrigger
       value={value}
-      className='font-label data-[state=active]:bg-black data-[state=inactive]:bg-gray4 data-[state=active]:text-white data-[state=inactive]:text-black flex gap-2 rounded-xl px-2 py-2'
+      className='flex gap-2 rounded-xl px-2 py-2 font-label data-[state=active]:bg-black data-[state=inactive]:bg-gray5 data-[state=active]:text-white data-[state=inactive]:text-black'
     >
       <div className='flex h-5 items-center justify-center'>
         {name === Category.ALL && <HomeIcon />}

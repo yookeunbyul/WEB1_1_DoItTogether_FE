@@ -11,15 +11,15 @@ const buttonVariants = cva(
       variant: {
         full: 'bg-main text-white font-subhead border-2 border-main/50',
         secondary: 'bg-sub2 text-main font-subhead border-2 border-sub2/50 ',
-        disabled: 'bg-gray3 text-white font-subhead',
+        disabled: 'bg-gray4 text-white font-subhead',
         select:
-          'border-b-2 border-solid border-gray5 border-opacity-30 font-body text-gray2 px-2 py-4 rounded-2xl',
+          'border-b-2 border-solid border-gray4 border-opacity-30 font-body text-gray3 px-2 py-4 rounded-2xl',
         outline:
-          'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground text-black01',
+          'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground text-black',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         kakao: 'bg-kakao font-body',
-        group: 'border-b-2 border-solid border-gray5 border-opacity-30 bg-white !rounded-none',
-        onboarding: 'rounded-2xl border-solid border-[1px] px-3 border-gray3 font-body text-gray2',
+        group: 'border-b-2 border-solid border-gray4 border-opacity-30 bg-white !rounded-none',
+        onboarding: 'rounded-2xl border-solid border-[1px] px-3 border-gray4 font-body text-gray3',
       },
       size: {
         small: 'h-12 w-full rounded-2xl ',

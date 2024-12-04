@@ -41,7 +41,7 @@ const PresetAddInput: React.FC<PresetAddInputProps> = ({ categoryList, handleAdd
   };
 
   return (
-    <div className='rounded-t-2xl bg-gray2 bg-gradient-to-b pb-2 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]'>
+    <div className='rounded-t-2xl bg-gray3 bg-gradient-to-b pb-2 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]'>
       <PresetCategory
         categoryList={categoryList}
         activeCate={activeInputCate}

@@ -9,7 +9,7 @@ const AccountInfo: React.FC<AccountInfoProps> = ({ nickname, account }) => {
   return (
     <div>
       <div className='font-body'>{nickname}</div>
-      <div className='text-gray3 font-label'>{account}</div>
+      <div className='text-gray4 font-label'>{account}</div>
     </div>
   );
 };

@@ -4,7 +4,7 @@ const SurveyIntroIcon = () => {
   }
   return (
     <div className='flex items-center justify-center'>
-      <div className='h-56 w-56 rounded-full border bg-gray03' />
+      <div className='h-56 w-56 rounded-full border bg-gray4' />
     </div>
   );
 };

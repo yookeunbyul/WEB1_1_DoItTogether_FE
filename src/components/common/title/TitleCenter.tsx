@@ -3,9 +3,7 @@ interface TitleCenterProps {
   title: string;
 }
 const TitleCenter = ({ title }: TitleCenterProps) => {
-  return (
-    <p className='text-20 whitespace-pre-line text-center font-semibold text-black02'>{title}</p>
-  );
+  return <p className='whitespace-pre-line text-center text-20 font-semibold text-gray'>{title}</p>;
 };
 
 export default TitleCenter;
