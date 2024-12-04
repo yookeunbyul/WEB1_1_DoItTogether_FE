@@ -36,12 +36,13 @@ interface PresetState {
   setActiveInputCateId: (activeInputTabId: number) => void;
   // 삭제버튼
   deleteButtonStates: Record<number, boolean>;
-  setDeleteButtonStates: (
-    updateFn: (prevState: Record<number, boolean>) => Record<number, boolean>
-  ) => void;
+  setDeleteButtonStates: (activeItemId: number | null) => void;
   // 프리셋 리스트 데이터
   presetData: PresetList[];
   setPresetData: (presetData: PresetList[]) => void;
+  // 선택한 아이템
+  selectedItem: number | null;
+  setSelectedItem: (itemId: number | null) => void;
 }
 
 const usePresetSettingStore = create<PresetState>(set => ({
@@ -60,10 +61,14 @@ const usePresetSettingStore = create<PresetState>(set => ({
   activeInputCateId: 0,
   setActiveInputCateId: activeInputCateId => set({ activeInputCateId }),
   deleteButtonStates: {},
-  setDeleteButtonStates: updateFn =>
-    set(state => ({ deleteButtonStates: updateFn(state.deleteButtonStates) })),
+  setDeleteButtonStates: activeItemId =>
+    set(() => ({
+      deleteButtonStates: activeItemId ? { [activeItemId]: true } : {},
+    })),
   presetData: [],
   setPresetData: (presetData: PresetList[]) => set({ presetData }),
+  selectedItem: null,
+  setSelectedItem: selectedItem => set({ selectedItem }),
 }));
 
 export default usePresetSettingStore;

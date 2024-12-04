@@ -1,3 +1,4 @@
+import { BinIcon } from '@/components/common/icon';
 import HouseworkCategoryTag, {
   HouseworkCategoryTagProps,
 } from '@/components/common/tag/HouseworkCatetoryTag/HouseworkCategoryTag';
@@ -20,7 +21,6 @@ const PresetItem: React.FC<PresetItemProps> = ({
   handleSelectClick,
   isPresetSettingCustom,
   isShowDeleteBtn,
-  handleSettingClick,
   handleDeleteClick,
   isSelected,
   isBottomSheet,
@@ -29,7 +29,7 @@ const PresetItem: React.FC<PresetItemProps> = ({
     <li
       className={`flex flex-1 cursor-pointer list-none items-center justify-between border-b-[1px] border-solid border-white pl-5 ${
         isBottomSheet ? 'p-5' : 'p-4'
-      }`}
+      } ${!isBottomSheet && isShowDeleteBtn ? 'box-border bg-sub2' : ''}`}
       onClick={handleSelectClick}
     >
       <div className='flex items-center'>
@@ -38,14 +38,10 @@ const PresetItem: React.FC<PresetItemProps> = ({
       </div>
       {isPresetSettingCustom && (
         <div className='flex items-center'>
-          {isShowDeleteBtn ? (
-            <button className='bg-gray4 text-14' onClick={handleDeleteClick}>
-              삭제
+          {isShowDeleteBtn && (
+            <button onClick={handleDeleteClick}>
+              <BinIcon />
             </button>
-          ) : (
-            <div className='text-14'>
-              <button onClick={handleSettingClick}>선택</button>
-            </div>
           )}
         </div>
       )}
