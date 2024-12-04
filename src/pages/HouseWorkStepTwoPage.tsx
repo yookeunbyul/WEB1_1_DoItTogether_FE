@@ -13,6 +13,7 @@ import { User } from '@/types/apis/groupApi';
 import { postHousework } from '@/services/housework/postHousework';
 import { SelectedTime } from '@/pages/HouseWorkStepOnePage';
 import { ProfileIcon } from '@/components/common/icon';
+import { putHousework } from '@/services/housework/putHousework';
 
 const HouseWorkStepTwoPage = () => {
   const navigate = useNavigate();
@@ -72,10 +73,11 @@ const HouseWorkStepTwoPage = () => {
 
     const newTime = convertStartTime(startTime);
 
-    try {
+    if (houseworkId) {
       if (userId) {
-        await postHousework({
+        await putHousework({
           channelId,
+          houseworkId: Number(houseworkId),
           category,
           startDate: formattedDate,
           task,
@@ -91,8 +93,29 @@ const HouseWorkStepTwoPage = () => {
           }, 1500);
         }, 1500);
       }
-    } catch (error) {
-      console.error('집안일 추가 실패:', error);
+    } else {
+      try {
+        if (userId) {
+          await postHousework({
+            channelId,
+            category,
+            startDate: formattedDate,
+            task,
+            startTime: newTime,
+            userId,
+          });
+
+          setTimeout(() => {
+            navigate(`/main/${channelId}`);
+            setTimeout(() => {
+              reset();
+              setIsLoading(false);
+            }, 1500);
+          }, 1500);
+        }
+      } catch (error) {
+        console.error('집안일 추가 실패:', error);
+      }
     }
   };
 
@@ -139,7 +162,7 @@ const HouseWorkStepTwoPage = () => {
               )}
             </section>
             <Button
-              label='다음'
+              label='완료'
               variant='full'
               size='large'
               handleClick={handleNextClick}

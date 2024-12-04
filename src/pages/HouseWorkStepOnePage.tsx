@@ -11,6 +11,7 @@ import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 import { useParams } from 'react-router-dom';
 import { getHouseworkById } from '@/services/housework/getHouseworkById';
 import { DateIcon, EtcIcon } from '@/components/common/icon';
+import convertTimeToObject from '@/utils/convertTimeToObject';
 
 export interface SelectedTime {
   hour: string;
@@ -20,7 +21,17 @@ export interface SelectedTime {
 
 const HouseWorkStepOnePage = () => {
   const navigate = useNavigate();
-  const { task, startDate, startTime, setStartTime, reset } = useAddHouseWorkStore();
+  const {
+    task,
+    startDate,
+    startTime,
+    setStartTime,
+    reset,
+    setTask,
+    setStartDate,
+    setIsAllday,
+    setUserId,
+  } = useAddHouseWorkStore();
   const [isHouseWorkSheetOpen, setHouseWorkSheetOpen] = useState(false);
   const [isDueDateSheetOpen, setDueDateSheetOpen] = useState(false);
   const [time, setTime] = useState<SelectedTime | null>(startTime);
@@ -31,12 +42,18 @@ const HouseWorkStepOnePage = () => {
 
   useEffect(() => {
     if (channelId && houseworkId) {
-      // todo
-      // task, category, startDate, startTime을 미리 채워넣으면 됨
       const fetchHouseworkById = async () => {
         try {
-          const response = await getHouseworkById({ channelId, houseworkId });
-          console.log(response);
+          const getHouseResult = await getHouseworkById({ channelId, houseworkId });
+          const housework = getHouseResult.result;
+          setTask(housework.task);
+          setStartDate(housework.startDate);
+          setUserId(housework.userId);
+          setIsAllday(housework.isAllDay);
+          if (!housework.isAllDay) {
+            const result = convertTimeToObject(housework.startTime!);
+            setStartTime(result);
+          }
         } catch (error) {
           console.error('집안일 상세 정보 조회 실패:', error);
         }
