@@ -43,7 +43,7 @@ const WeeklyStatDate: React.FC<WeeklyStatDateProps> = ({
       <button onClick={handlePrevWeek}>
         <ArrowLeftIcon className='text-gray1' />
       </button>
-      <span className='text-gray font-subhead'>{getWeekText(currentDate)}</span>
+      <span className='w-44 text-center text-gray font-subhead'>{getWeekText(currentDate)}</span>
       <button onClick={handleNextWeek} disabled={isCurrentDateFuture}>
         <ArrowRightIcon className={`text-gray1 ${isCurrentDateFuture ? 'opacity-30' : ''}`} />
       </button>
