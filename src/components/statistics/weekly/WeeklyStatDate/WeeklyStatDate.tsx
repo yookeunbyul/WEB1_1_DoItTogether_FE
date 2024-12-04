@@ -36,14 +36,16 @@ const WeeklyStatDate: React.FC<WeeklyStatDateProps> = ({
     return `${year}년 ${new Intl.DateTimeFormat('ko-KR', { month: 'long' }).format(date)} ${weekLabels[weekNumber]}`;
   };
 
+  const isCurrentDateFuture = currentDate > new Date();
+
   return (
     <div className='mb-4 flex items-center justify-center gap-8'>
       <button onClick={handlePrevWeek}>
         <ArrowLeftIcon className='text-gray1' />
       </button>
       <span className='text-gray font-subhead'>{getWeekText(currentDate)}</span>
-      <button onClick={handleNextWeek}>
-        <ArrowRightIcon className='text-gray1' />
+      <button onClick={handleNextWeek} disabled={isCurrentDateFuture}>
+        <ArrowRightIcon className={`text-gray1 ${isCurrentDateFuture ? 'opacity-30' : ''}`} />
       </button>
     </div>
   );
