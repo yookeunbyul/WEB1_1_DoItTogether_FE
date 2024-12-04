@@ -9,7 +9,7 @@ const ProfileEditBtn = () => {
   };
   return (
     <button
-      className='rounded-full border-[1px] border-solid border-gray5 px-5 py-2 text-gray5 font-caption'
+      className='rounded-full border-[1px] border-solid border-gray3 px-5 py-2 text-gray3 font-caption'
       onClick={handleClick}
     >
       프로필 편집
