@@ -46,7 +46,7 @@ const WeeklyDate = () => {
       }
       setCurrent(newCurrent);
     });
-  }, [api, current]);
+  }, [api, current, activeWeek]);
 
   const fetchCurrWeek = async (newDate: string) => {
     const newChannelId = Number(channelId);
