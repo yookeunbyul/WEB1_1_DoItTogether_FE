@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { toast } from '@/hooks/use-toast';
+import { INPUT_VALIDATION } from '@/constants/validation';
 
 const MyPageEditPage = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const MyPageEditPage = () => {
 
   const { channelId } = useParams();
   const [isEdited, setIsEdited] = useState(false);
+  const [error, setError] = useState<boolean>(false);
 
   const handleBack = () => {
     navigate(`/main/${channelId}/my-page`);
@@ -25,6 +27,14 @@ const MyPageEditPage = () => {
   const handleChange = (value: string) => {
     setUserName(value);
     setIsEdited(true);
+    if (
+      value.length <= INPUT_VALIDATION.nickname.maxLength &&
+      INPUT_VALIDATION.nickname.regexp.test(value)
+    ) {
+      setError(false);
+    } else {
+      setError(true);
+    }
   };
 
   const handleDone = async () => {
@@ -43,7 +53,7 @@ const MyPageEditPage = () => {
     <>
       <Header
         title='프로필 편집'
-        isNeededDoneBtn={isEdited}
+        isNeededDoneBtn={isEdited && !error}
         handleBack={handleBack}
         handleDone={handleDone}
       />
@@ -51,12 +61,17 @@ const MyPageEditPage = () => {
         <div className='m-auto'>
           <ProfileImg imageUrl={imageUrl} />
         </div>
-        <InputWithLabel
-          label='이름'
-          value={username}
-          disabled={false}
-          handleChange={handleChange}
-        />
+        <div className='flex flex-col gap-1'>
+          <InputWithLabel
+            label='이름'
+            value={username}
+            disabled={false}
+            handleChange={handleChange}
+          />
+          {error && (
+            <p className='text-main font-caption'>{INPUT_VALIDATION.nickname.errorMessage}</p>
+          )}
+        </div>
       </div>
     </>
   );
