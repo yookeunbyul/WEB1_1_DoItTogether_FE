@@ -11,9 +11,10 @@ import { useParams } from 'react-router-dom';
 import { getGroupUser } from '@/services/group/getGroupUser';
 import { User } from '@/types/apis/groupApi';
 import { postHousework } from '@/services/housework/postHousework';
-import { SelectedTime } from '@/pages/HouseWorkStepOnePage';
 import { ProfileIcon } from '@/components/common/icon';
 import { putHousework } from '@/services/housework/putHousework';
+import { formatDateToISO } from '@/utils/convertDate';
+import { convertStartTime } from '@/utils/convertStartTime';
 
 const HouseWorkStepTwoPage = () => {
   const navigate = useNavigate();
@@ -49,28 +50,7 @@ const HouseWorkStepTwoPage = () => {
   const handleNextClick = async () => {
     setIsLoading(true);
 
-    const formattedDate = startDate.replace(
-      /(\d{4})년(\d{1,2})월 (\d{1,2})일/,
-      (_, year, month, day) => {
-        const formattedMonth = month.padStart(2, '0');
-        const formattedDay = day.padStart(2, '0');
-        return `${year}-${formattedMonth}-${formattedDay}`;
-      }
-    );
-
-    const convertStartTime = (time: SelectedTime | null) => {
-      if (!time) return null;
-
-      let hour = parseInt(time.hour);
-      if (time.ampm === 'PM' && hour !== 12) {
-        hour += 12;
-      } else if (time.ampm === 'AM' && hour === 12) {
-        hour = 0;
-      }
-
-      return `${hour.toString().padStart(2, '0')}:${time.minute}`;
-    };
-
+    const formattedDate = formatDateToISO(startDate);
     const newTime = convertStartTime(startTime);
 
     if (houseworkId) {
