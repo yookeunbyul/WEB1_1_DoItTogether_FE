@@ -3,32 +3,40 @@ import Completion from '@/components/statistics/monthly/Completion/Completion';
 import MonthlyGoodBad from '@/components/statistics/monthly/MonthlyGoodBad/MonthlyGoodBad';
 import MonthlyGrass from '@/components/statistics/monthly/MonthlyGrass/MonthlyGrass';
 import { monthlyGoodBad } from '@/mock/monthlyGoodBad';
-import { monthlyGrassData } from '@/mock/monthlyGrassData';
+import { CompletionStatus, MonthlyDateScore } from '@/types/apis/statisticsApi';
 import { useState } from 'react';
 
 const MonthlyStatisticsPage = () => {
   const [currentMonth, setCurrentMonth] = useState<string>('2024-10');
+  const [monthlyData, setMonthlyData] = useState<MonthlyDateScore[]>([]);
 
   const handleMonthChange = (monthKey: string) => {
     setCurrentMonth(monthKey);
   };
 
+  const handleDataChange = (data: MonthlyDateScore[]) => {
+    setMonthlyData(data);
+  };
+
   // 통계 완료율, 완료일 계산
-  const calculateMonthStats = (month: string) => {
-    const [year, monthStr] = month.split('-');
+  const calculateMonthStats = () => {
+    if (!monthlyData.length) return { completionRate: 0, completedDays: 0 };
+
+    const [year, monthStr] = currentMonth.split('-');
     const totalDaysInMonth = new Date(parseInt(year), parseInt(monthStr), 0).getDate();
-    const monthData = monthlyGrassData.dates.filter(task => task.date.startsWith(month));
-    const completedDays = monthData.filter(task => task.status === 'ALL_DONE').length;
+    const completedDays = monthlyData.filter(
+      task => task.status === CompletionStatus.ALL_DONE
+    ).length;
     const completionRate = Math.round((completedDays / totalDaysInMonth) * 100);
 
     return { completionRate, completedDays };
   };
 
-  const currentMonthStats = calculateMonthStats(currentMonth);
+  const currentMonthStats = calculateMonthStats();
 
   return (
     <div className='flex flex-col gap-4'>
-      <MonthlyGrass completionData={monthlyGrassData.dates} onMonthChange={handleMonthChange} />
+      <MonthlyGrass onMonthChange={handleMonthChange} onDataChange={handleDataChange} />
       <div className='flex items-center gap-3 text-gray font-label'>
         이번달에는
         <div className='flex items-center gap-3'>
