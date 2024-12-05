@@ -5,7 +5,7 @@ export const postPoke = async ({ channelId, targetUserId }: PokeReq) => {
   try {
     const response = await axiosInstance.post<PokeRes>(
       `/api/v1/channels/${channelId}/reactions/poke`,
-      { channelId, targetUserId }
+      { targetUserId }
     );
     return response.data;
   } catch (error) {
