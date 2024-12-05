@@ -16,6 +16,7 @@ const badgeVariants = cva(
         outline: 'text-foreground',
         darkfill: 'border-transparent bg-black text-white px-4 py-2 rounded-lg font-medium',
         grayfill: 'border-transparent bg-black text-white px-4 py-2 rounded-lg font-medium',
+        noselected: 'bg-sub2 text-sub1',
       },
     },
     defaultVariants: {
