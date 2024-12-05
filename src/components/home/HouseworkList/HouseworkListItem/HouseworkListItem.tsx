@@ -6,11 +6,6 @@ import { Housework } from '@/types/apis/houseworkApi';
 import { HOUSEWORK_STATUS } from '@/constants/homePage';
 import convertTimeTo12HourFormat from '@/utils/convertTime';
 import { ClockIcon } from '@/components/common/icon';
-import LivingRoomIcon from '../../../common/icon/LivingRoomIconGroup';
-import KitchenIconGroup from '@/components/common/icon/KitchenIconGroup';
-import BathRoomIconGroup from '@/components/common/icon/BathRoomIconGroup';
-import BedRoomIconGroup from '@/components/common/icon/BedRoomIconGroup';
-import { Category } from '@/constants';
 import useHomePageStore from '@/store/useHomePageStore';
 
 /**
@@ -47,7 +42,7 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
 
   return (
     <li
-      className={`relative flex list-none items-center overflow-hidden rounded-2xl ${status === HOUSEWORK_STATUS.COMPLETE ? `bg-sub2` : `bg-sub1`} p-4 text-white`}
+      className={`relative flex list-none items-center overflow-hidden rounded-2xl ${status === HOUSEWORK_STATUS.COMPLETE ? `bg-gray4` : `bg-white`} p-4`}
     >
       <ListActionBtn
         status={newStatus}
@@ -58,7 +53,7 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
         <div className='flex flex-col items-start justify-center gap-1'>
           <div className='flex items-center gap-2'>
             <p
-              className={`text-white font-head ${status === HOUSEWORK_STATUS.COMPLETE && 'text-sub1 line-through'} ${task.length > 12 && 'font-subhead'}`}
+              className={`text-black font-head ${status === HOUSEWORK_STATUS.COMPLETE && 'text-gray2/60 line-through'} ${task.length > 12 && 'font-subhead'}`}
             >
               {task}
             </p>
@@ -69,36 +64,30 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
           </div>
 
           <p
-            className={`${status === HOUSEWORK_STATUS.COMPLETE ? 'text-sub1' : 'text-white'} font-caption`}
+            className={`${status === HOUSEWORK_STATUS.COMPLETE ? 'text-gray2/50' : 'text-gray1'} font-caption`}
           >
             {assignee}
           </p>
         </div>
-        <div className='z-10 flex flex-col items-end justify-center gap-1'>
+        <div className='z-100 flex flex-col items-end justify-center gap-1'>
           <ControlDropdown
             id={houseworkId}
             handleEdit={() => handleEdit(houseworkId)}
             handleDelete={() => handleDelete(houseworkId)}
           />
-          <div className='z-10 flex items-center gap-1'>
+          <div className='z-100 flex items-center gap-1'>
             <ClockIcon
-              fillClass='fill-white'
-              circleStrokeClass='stroke-white'
-              handStrokeClass='stroke-main'
+              fillClass='fill-black'
+              circleStrokeClass='stroke-black'
+              handStrokeClass='stroke-white'
               width={16}
               height={16}
             />
-            <p className='text-white font-caption'>
+            <p className='text-black font-caption'>
               {isAllDay ? '하루 종일' : convertTimeTo12HourFormat(startTime!)}
             </p>
           </div>
         </div>
-      </div>
-      <div className='absolute right-0'>
-        {category === Category.BED_ROOM && <BedRoomIconGroup />}
-        {category === Category.BATH_ROOM && <BathRoomIconGroup />}
-        {category === Category.KITCHEN && <KitchenIconGroup />}
-        {category === Category.LIVING_ROOM && <LivingRoomIcon />}
       </div>
     </li>
   );

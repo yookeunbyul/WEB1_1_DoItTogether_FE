@@ -18,7 +18,7 @@ const ControlDropdown = ({ id, handleEdit, handleDelete }: ControlDropdownProps)
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <DotsIcon className='text-white' />
+        <DotsIcon className='text-black' />
       </DropdownMenuTrigger>
       <DropdownMenuContent className='flex -translate-x-10 flex-col rounded-2xl'>
         <DropdownMenuItem
