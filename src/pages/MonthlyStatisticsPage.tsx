@@ -37,7 +37,7 @@ const MonthlyStatisticsPage = () => {
   return (
     <div className='flex flex-col gap-4'>
       <MonthlyGrass onMonthChange={handleMonthChange} onDataChange={handleDataChange} />
-      <div className='flex items-center gap-3 text-gray font-label'>
+      <div className='flex items-center gap-3 text-black font-label'>
         이번달에는
         <div className='flex items-center gap-3'>
           <span className='flex items-center text-main'>
