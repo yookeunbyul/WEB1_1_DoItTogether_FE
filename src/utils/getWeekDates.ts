@@ -7,12 +7,12 @@ export default function getWeekDates(date: Date): WeekDates[] {
   const weekDates: WeekDates[] = [];
   const startOfWeek = new Date(date);
 
-  // 현재 주의 월요일로 설정
+  // 현재 주의 일요일로 설정
   const dayOfWeek = startOfWeek.getDay(); // 0 (일요일) ~ 6 (토요일)
-  const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek; // 일요일일 경우 -6, 그 외는 1 - 요일
-  startOfWeek.setDate(startOfWeek.getDate() + mondayOffset); // 월요일로 설정
+  const sundayOffset = dayOfWeek === 0 ? 0 : -dayOfWeek; // 일요일일 경우 0, 그 외는 -요일
+  startOfWeek.setDate(startOfWeek.getDate() + sundayOffset); // 일요일로 설정
 
-  const daysShort = ['월', '화', '수', '목', '금', '토', '일'];
+  const daysShort = ['일', '월', '화', '수', '목', '금', '토'];
 
   for (let i = 0; i < 7; i++) {
     const currentDate = new Date(startOfWeek);
