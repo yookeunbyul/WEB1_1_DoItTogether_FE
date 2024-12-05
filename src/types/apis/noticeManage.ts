@@ -3,6 +3,7 @@ import { Common } from '@/types/apis/commonApi';
 
 export interface ComplimentReq extends Pick<Common, 'channelId'> {
   targetUserId: number;
+  reactDate: string;
 }
 
 export interface ComplimentRes extends BaseRes {
@@ -11,6 +12,7 @@ export interface ComplimentRes extends BaseRes {
 
 export interface PokeReq extends Pick<Common, 'channelId'> {
   targetUserId: number;
+  reactDate: string;
 }
 
 export interface PokeRes extends BaseRes {
