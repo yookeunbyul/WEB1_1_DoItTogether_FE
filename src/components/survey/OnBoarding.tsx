@@ -18,6 +18,7 @@ import {
 } from '@/constants/onBoarding';
 import { motion } from 'framer-motion';
 import { postPersonalKeyword } from '@/services/onboarding/postPersonalKeyword';
+import { patchMyInitState } from '@/services/user/patchMyInitState';
 
 interface OnBoardingProps {}
 
@@ -76,7 +77,13 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
     }
 
     if (step === 5) {
-      navigate('/group-select');
+      try {
+        await patchMyInitState();
+        navigate('/group-select');
+      } catch (error) {
+        console.error('초기 상태 변경 실패:', error);
+      }
+      return;
     }
 
     setStep(prev => prev + 1); // step 4가 아닐 때만 실행
