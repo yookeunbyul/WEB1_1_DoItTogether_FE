@@ -101,6 +101,7 @@ const GroupSettingPage = () => {
       if (isAdmin && !isCurrentUserSelected) {
         await postBanUser({ channelId, email: member.email });
         setMembers(prev => prev.filter(m => m.email !== member.email));
+        toast({ title: '탈퇴되었습니다' });
       } else {
         await deleteGroupUser({ channelId });
         navigate('/group-select');

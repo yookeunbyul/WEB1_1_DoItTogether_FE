@@ -3,6 +3,7 @@ import useHomePageStore from '@/store/useHomePageStore';
 import { Group } from '@/types/apis/groupApi';
 import { useNavigate } from 'react-router-dom';
 import { HomeIcon } from '@/components/common/icon';
+import { useToast } from '@/hooks/use-toast';
 
 interface GroupOptionProps {
   /** 그룹(방)  */
@@ -14,12 +15,14 @@ interface GroupOptionProps {
 const GroupOption: React.FC<GroupOptionProps> = ({ group, isSelected }) => {
   const { setCurrentGroup, setIsGroupSelectSheetOpen, setActiveTab } = useHomePageStore();
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const handleClick = (group: Group) => {
     setCurrentGroup(group);
     setActiveTab('전체');
     setIsGroupSelectSheetOpen(false);
     navigate(`/main/${group.channelId}`);
+    toast({ title: '공간이 변경되었어요' });
   };
 
   return (

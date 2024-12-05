@@ -7,6 +7,7 @@ import {
   ToastTitle,
   ToastViewport,
 } from '@/components/common/ui/toast';
+import { CheckIcon } from '@/components/common/icon';
 
 export function Toaster() {
   const { toasts } = useToast();
@@ -17,7 +18,12 @@ export function Toaster() {
         return (
           <Toast key={id} {...props}>
             <div className='grid gap-1'>
-              {title && <ToastTitle>{title}</ToastTitle>}
+              {title && (
+                <div className='flex items-center gap-x-1'>
+                  <CheckIcon />
+                  <ToastTitle>{title}</ToastTitle>
+                </div>
+              )}
               {description && <ToastDescription>{description}</ToastDescription>}
             </div>
             {action}
