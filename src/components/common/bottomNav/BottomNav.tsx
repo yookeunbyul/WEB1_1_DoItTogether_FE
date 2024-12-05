@@ -12,8 +12,6 @@ const BottomNav = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  console.log(currentPath);
-
   const navItems = [
     {
       name: '홈',
@@ -56,6 +54,7 @@ const BottomNav = () => {
           icon={navItems[0].icon}
           name={navItems[0].name}
           handleClick={() => handleClick(`/main/${channelId}`)}
+          isActive={currentPath === `/main/${channelId}`}
         />
       </div>
       <div className='flex flex-1 justify-center'>
@@ -63,6 +62,7 @@ const BottomNav = () => {
           icon={navItems[1].icon}
           name={navItems[1].name}
           handleClick={() => handleClick(`/main/${channelId}/statistics/weekly`)}
+          isActive={currentPath.includes('statistics')}
         />
       </div>
       <div className='flex flex-1 justify-center'>
@@ -73,6 +73,7 @@ const BottomNav = () => {
           icon={navItems[2].icon}
           name={navItems[2].name}
           handleClick={() => handleClick(`/main/${channelId}/group-setting`)}
+          isActive={currentPath.includes('group-setting')}
         />
       </div>
       <div className='flex flex-1 justify-center'>
@@ -80,6 +81,7 @@ const BottomNav = () => {
           icon={navItems[3].icon}
           name={navItems[3].name}
           handleClick={() => handleClick(`/main/${channelId}/my-page`)}
+          isActive={currentPath.includes('my-page')}
         />
       </div>
     </div>
