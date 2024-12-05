@@ -55,12 +55,12 @@ const ManagerSelectSheet: React.FC<ManagerSelectSheetProps> = ({
           members={members}
         />
         <div className='flex gap-3 px-5 pb-6'>
-          <Button
+          {/* <Button
             label={isAiCardOpen ? <RefreshIcon /> : 'AI 픽'}
             variant='secondary'
             size='small'
             handleClick={handleClick}
-          />
+          /> */}
           <Button label='확인' variant='full' size='small' handleClick={handleDoneClick} />
         </div>
       </div>
