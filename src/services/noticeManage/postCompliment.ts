@@ -5,7 +5,7 @@ export const postCompliment = async ({ channelId, targetUserId }: ComplimentReq)
   try {
     const response = await axiosInstance.post<ComplimentRes>(
       `/api/v1/channels/${channelId}/reactions/compliment`,
-      { channelId, targetUserId }
+      { targetUserId }
     );
     return response.data;
   } catch (error) {
