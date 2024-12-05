@@ -29,7 +29,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
         head_cell: 'text-gray1 rounded-full w-8 font-normal text-[0.8rem] w-full font-caption',
         row: 'flex w-full mt-2',
         cell: cn(
-          'relative p-0 text-center text-gray1 font-body focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-white [&:has([aria-selected].day-outside)]:bg-whiteReal [&:has([aria-selected].day-range-end)]:rounded-r-full w-full',
+          'relative p-0 text-center text-gray1 font-body focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-white [&:has([aria-selected].day-outside)]:bg-white [&:has([aria-selected].day-range-end)]:rounded-r-full w-full',
           props.mode === 'range'
             ? '[&:has(>.day-range-end)]:rounded-r-full [&:has(>.day-range-start)]:rounded-l-full first:[&:has([aria-selected])]:rounded-l-full last:[&:has([aria-selected])]:rounded-r-full'
             : '[&:has([aria-selected])]:rounded-full'
@@ -43,7 +43,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
         day_selected:
           'bg-main text-primary-foreground hover:bg-main hover:text-primary-foreground focus:bg-main focus:text-primary-foreground rounded-full',
         day_today: '',
-        day_outside: 'day-outside text-gray3 aria-selected:bg-main aria-selected:text-whiteReal',
+        day_outside: 'day-outside text-gray3 aria-selected:bg-main aria-selected:text-white',
         day_disabled: 'text-muted-foreground opacity-50',
         day_range_middle: 'aria-selected:bg-accent aria-selected:text-accent-foreground',
         day_hidden: 'invisible',
