@@ -82,13 +82,13 @@ const GroupSettingPage = () => {
     const isCurrentUserSelected = member.currentUser;
     if (isAdmin && isCurrentUserSelected) {
       setBtnText('나갈래요');
-      setSheetTitle(`${groupName}에서 정말 나가시나요?`);
+      setSheetTitle(`${groupName}에서 정말 나가시겠습니까?`);
     } else if (isAdmin) {
       setBtnText('내보낼래요');
-      setSheetTitle(`${member.nickName}님을 정말 내보내시나요?`);
+      setSheetTitle(`${member.nickName}님을 내보내시겠습니까?`);
     } else {
       setBtnText('나갈래요');
-      setSheetTitle(`${groupName}에서 정말 나가시나요?`);
+      setSheetTitle(`${groupName}에서 정말 나가시겠습니까?`);
     }
     setIsOpen(true);
   };
@@ -118,7 +118,7 @@ const GroupSettingPage = () => {
   };
 
   if (isLoading) {
-    return <div>로딩 컴포넌트 나중에 넣자</div>;
+    return <div></div>;
   }
 
   return (
@@ -130,7 +130,7 @@ const GroupSettingPage = () => {
           handleDone={handleDone}
         />
       </div>
-      <div className='flex flex-col gap-6 px-5 pt-20'>
+      <div className='flex flex-col gap-8 px-5 pt-20'>
         <InputWithLabel
           label='공간 이름'
           value={groupName}
