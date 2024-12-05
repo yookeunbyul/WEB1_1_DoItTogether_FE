@@ -18,6 +18,8 @@ import { changeHouseworkStatus } from '@/services/housework/changeHouseworkStatu
 import { getMyInfo } from '@/services/user/getMyInfo';
 import { HOUSEWORK_STATUS } from '@/constants/homePage';
 import NoListIcon from '@/components/common/icon/NoListIcon';
+import { postCompliment } from '@/services/noticeManage/postCompliment';
+import { postPoke } from '@/services/noticeManage/postPoke';
 
 const HomePage: React.FC = () => {
   const {
@@ -66,6 +68,7 @@ const HomePage: React.FC = () => {
       if (!channelId) return;
       const newChannelId = Number(channelId);
       const getGroupUsersResult = await getGroupUser({ channelId: newChannelId });
+      console.log(getGroupUsersResult);
       const newChargers = [
         { name: '전체' },
         ...Array.from(new Set(getGroupUsersResult.result.userList.map(user => user.nickName))).map(
@@ -100,9 +103,9 @@ const HomePage: React.FC = () => {
     // 해당 id에 해당하는 집안일 완료 처리
 
     const targetHousework = houseworks?.find(housework => housework.houseworkId === houseworkId);
+    const newChannelId = Number(channelId);
 
     if (targetHousework?.userId === myInfo?.userId) {
-      const newChannelId = Number(channelId);
       await changeHouseworkStatus({
         channelId: newChannelId,
         houseworkId,
@@ -110,9 +113,12 @@ const HomePage: React.FC = () => {
       refetch();
     } else {
       if (targetHousework?.status === HOUSEWORK_STATUS.COMPLETE) {
+        await postCompliment({ channelId: newChannelId, targetUserId: targetHousework.userId });
         toast({ title: `${targetHousework.assignee}님을 칭찬했어요` });
       } else {
-        toast({ title: `${targetHousework?.assignee}님을 찔렀어요` });
+        await postPoke({ channelId: newChannelId, targetUserId: targetHousework?.userId! });
+      } else {
+        toast({ title: `${targetHousework?.assignee}님을 찔렀어요` })
       }
     }
   };
@@ -127,6 +133,8 @@ const HomePage: React.FC = () => {
     toast({ title: '집안일이 삭제되었습니다' });
     refetch();
   };
+
+  console.log(houseworks);
 
   return (
     <div>
