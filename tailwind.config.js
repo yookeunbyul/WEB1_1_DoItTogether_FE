@@ -113,6 +113,9 @@ export default {
     maxWidth: {
       DEFAULT: '430px',
     },
+    screens: {
+      xs: '370px',
+    },
   },
   plugins: [
     function ({ addUtilities }) {
