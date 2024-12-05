@@ -22,9 +22,14 @@ const WeeklyDate = () => {
   const { channelId } = useParams();
 
   useEffect(() => {
-    fetchCurrWeek(activeDate);
     setActiveDate(getFormattedDate(new Date()));
+    setActiveWeek(new Date());
+    fetchCurrWeek(activeDate);
   }, [channelId]);
+
+  useEffect(() => {
+    fetchCurrWeek(getFormattedDate(activeWeek));
+  }, [activeWeek]);
 
   useEffect(() => {
     if (!api) return;
@@ -77,9 +82,9 @@ const WeeklyDate = () => {
     } else {
       newDate.setDate(activeWeek.getDate() - 7);
     }
+
     setActiveWeek(newDate);
     setWeekText(getWeekText(newDate));
-    fetchCurrWeek(getFormattedDate(newDate));
   };
 
   return (
@@ -94,6 +99,7 @@ const WeeklyDate = () => {
                   date={week.date.split('-')[2]}
                   day={week.day}
                   pendingCnt={week.houseworkIncompleteCount}
+                  solvedMatters={week.solvedMatters}
                   isActive={activeDate === week.date && current === i}
                   handleClick={() => handleActiveDate(week.date)}
                 />
