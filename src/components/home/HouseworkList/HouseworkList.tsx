@@ -16,7 +16,7 @@ const HouseworkList: React.FC<HouseworkListProps> = ({
   handleDelete,
 }) => {
   return (
-    <div className='flex max-w flex-col gap-2 bg-gray5 p-5'>
+    <div className='flex max-w flex-col gap-2 p-5'>
       {items.map(item => (
         <HouseworkListItem
           key={item.houseworkId}
