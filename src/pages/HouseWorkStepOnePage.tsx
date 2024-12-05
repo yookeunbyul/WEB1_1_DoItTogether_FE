@@ -47,9 +47,13 @@ const HouseWorkStepOnePage = () => {
         try {
           const getHouseResult = await getHouseworkById({ channelId, houseworkId });
           const housework = getHouseResult.result;
+
+          const date = new Date(housework.startDate);
+          const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
+
           setTask(housework.task);
           setCategory(housework.category);
-          setStartDate(housework.startDate);
+          setStartDate(formattedDate);
           setUserId(housework.userId);
           setIsAllday(housework.isAllDay);
           if (!housework.isAllDay) {
