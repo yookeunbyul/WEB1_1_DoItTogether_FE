@@ -23,6 +23,7 @@ const HouseWorkStepOnePage = () => {
   const navigate = useNavigate();
   const {
     task,
+    setCategory,
     startDate,
     startTime,
     setStartTime,
@@ -47,6 +48,7 @@ const HouseWorkStepOnePage = () => {
           const getHouseResult = await getHouseworkById({ channelId, houseworkId });
           const housework = getHouseResult.result;
           setTask(housework.task);
+          setCategory(housework.category);
           setStartDate(housework.startDate);
           setUserId(housework.userId);
           setIsAllday(housework.isAllDay);
