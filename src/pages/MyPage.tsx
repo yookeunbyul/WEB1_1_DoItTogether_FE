@@ -39,7 +39,7 @@ const MyPage = () => {
       </div>
       <div className='flex justify-between px-5 pb-3 pt-2'>
         <AccountInfo nickname={myInfo.nickName} account={myInfo.email} />
-        <ProfileEditBtn />
+        <ProfileEditBtn nickname={myInfo.nickName} imageUrl={myInfo.profileImageUrl} />
       </div>
       <div className='px-5'>
         <div className='mb-6 mt-2 h-[1px] w-full bg-gray5' />
