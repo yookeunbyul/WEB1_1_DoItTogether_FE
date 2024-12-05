@@ -46,15 +46,15 @@ const NoListIcon: React.FC<NoListIconProps> = ({}) => {
           d='M160.4 83.1714C160.4 89.8034 155.024 95.1798 148.392 95.1798C141.76 95.1798 136.383 89.8034 136.383 83.1714C136.383 76.5394 141.76 71.1631 148.392 71.1631C155.024 71.1631 160.4 76.5394 160.4 83.1714Z'
           fill='#CECECE'
           stroke='#CECECE'
-          stroke-width='2.2'
-          stroke-linecap='round'
+          strokeWidth='2.2'
+          strokeLinecap='round'
           stroke-linejoin='round'
         />
         <path
           d='M148.391 76.6182V83.1723L152.76 85.3571'
           stroke='#F2F3F6'
-          stroke-width='2'
-          stroke-linecap='round'
+          strokeWidth='2'
+          strokeLinecap='round'
           stroke-linejoin='round'
         />
         <path

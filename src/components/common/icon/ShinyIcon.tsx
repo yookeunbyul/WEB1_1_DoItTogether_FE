@@ -52,24 +52,24 @@ const ShinyIcon: React.FC<ShinyIconProps> = ({ width = 98, height = 96, classNam
           d='M24.2935 39.781V47.0225V54.2639C24.2929 54.2722 24.2929 54.2791 24.2935 54.2846V54.2639C24.3298 53.7997 26.3774 48.8968 28.5685 47.0225C26.3774 45.1483 24.3298 40.2452 24.2935 39.781ZM24.2926 39.7603C24.2932 39.7658 24.2941 39.7726 24.2935 39.781L24.2926 39.7603ZM24.2935 47.0225V39.781C24.2572 40.2451 22.2086 45.1481 20.0176 47.0225C22.2086 48.8968 24.2572 53.7997 24.2935 54.2639V54.2846C24.2929 54.2791 24.2929 54.2722 24.2935 54.2639V47.0225Z'
           fill='#1FCFBA'
         />
-        <path d='M64.7031 32.2588L70.6551 41.8241' stroke='#8DE8D7' stroke-linecap='round' />
+        <path d='M64.7031 32.2588L70.6551 41.8241' stroke='#8DE8D7' strokeLinecap='round' />
         <path
           d='M39.168 16.6714L43.7538 24.4741'
           stroke='#8DE8D7'
-          stroke-width='0.7'
-          stroke-linecap='round'
+          strokeWidth='0.7'
+          strokeLinecap='round'
         />
         <path
           d='M24.625 43.4927L25.7042 45.4916'
           stroke='#8DE8D7'
-          stroke-width='0.5'
-          stroke-linecap='round'
+          strokeWidth='0.5'
+          strokeLinecap='round'
         />
         <path
           d='M41.6504 58.9673L45.8627 66.3545'
           stroke='#8DE8D7'
-          stroke-width='0.7'
-          stroke-linecap='round'
+          strokeWidth='0.7'
+          strokeLinecap='round'
         />
       </g>
     </svg>
