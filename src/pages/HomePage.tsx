@@ -20,6 +20,7 @@ import { HOUSEWORK_STATUS } from '@/constants/homePage';
 import NoListIcon from '@/components/common/icon/NoListIcon';
 import { postCompliment } from '@/services/noticeManage/postCompliment';
 import { postPoke } from '@/services/noticeManage/postPoke';
+import getFormattedDate from './../utils/getFormattedDate';
 
 const HomePage: React.FC = () => {
   const {
@@ -113,10 +114,18 @@ const HomePage: React.FC = () => {
       refetch();
     } else {
       if (targetHousework?.status === HOUSEWORK_STATUS.COMPLETE) {
-        await postCompliment({ channelId: newChannelId, targetUserId: targetHousework.userId });
+        await postCompliment({
+          channelId: newChannelId,
+          targetUserId: targetHousework.userId,
+          reactDate: getFormattedDate(new Date()),
+        });
         toast({ title: `${targetHousework.assignee}님을 칭찬했어요` });
       } else {
-        await postPoke({ channelId: newChannelId, targetUserId: targetHousework?.userId! });
+        await postPoke({
+          channelId: newChannelId,
+          targetUserId: targetHousework?.userId!,
+          reactDate: getFormattedDate(new Date()),
+        });
         toast({ title: `${targetHousework?.assignee}님을 찔렀어요` });
       }
     }
