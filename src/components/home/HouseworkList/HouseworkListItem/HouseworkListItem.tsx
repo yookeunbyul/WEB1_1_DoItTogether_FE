@@ -53,7 +53,7 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
         <div className='flex flex-col items-start justify-center gap-1'>
           <div className='flex items-center gap-2'>
             <p
-              className={`text-black font-head ${status === HOUSEWORK_STATUS.COMPLETE && 'text-gray2/60 line-through'} ${task.length > 12 && 'font-subhead'}`}
+              className={`text-black font-head ${status === HOUSEWORK_STATUS.COMPLETE && 'text-gray2/60 line-through'}`}
             >
               {task}
             </p>
