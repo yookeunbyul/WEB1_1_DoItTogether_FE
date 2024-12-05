@@ -1,22 +1,30 @@
 import { useState, useEffect } from 'react';
 import DateItem from './DateItem/DateItem';
-import getWeekDates, { WeekDates } from '@/utils/getWeekDates';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/common/ui/carousel';
 import getWeekText from '@/utils/getWeekText';
 import useHomePageStore from '@/store/useHomePageStore';
 import { type CarouselApi } from '@/components/common/ui/carousel';
+import { IncompleteScoreResponse } from '@/types/apis/houseworkApi';
+import { getWeeklyIncomplete } from '@/services/housework/getWeeklyIncomplete';
+import { useParams } from 'react-router-dom';
+import getFormattedDate from '@/utils/getFormattedDate';
+
+interface WeeklyDates extends IncompleteScoreResponse {
+  day: string;
+}
 
 const WeeklyDate = () => {
   const [activeWeek, setActiveWeek] = useState(new Date());
-  const [currWeek, setCurrWeek] = useState<WeekDates[]>([]);
+  const [currWeek, setCurrWeek] = useState<WeeklyDates[]>([]);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const { setWeekText, activeDate, setActiveDate } = useHomePageStore();
+  const { channelId } = useParams();
 
   useEffect(() => {
-    const weekDates = getWeekDates(activeWeek);
-    setCurrWeek(weekDates);
-  }, []);
+    fetchCurrWeek(activeDate);
+    setActiveDate(getFormattedDate(new Date()));
+  }, [channelId]);
 
   useEffect(() => {
     if (!api) return;
@@ -34,12 +42,36 @@ const WeeklyDate = () => {
     });
   }, [api, current]);
 
+  const fetchCurrWeek = async (newDate: string) => {
+    const newChannelId = Number(channelId);
+    const currWeekResult = await getWeeklyIncomplete({
+      channelId: newChannelId,
+      targetDate: newDate,
+    });
+    const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+    const newWeekDates = (weekData: IncompleteScoreResponse[]) => {
+      return weekData.map(data => {
+        const date = new Date(data.date);
+        const weekdayIndex = date.getDay();
+        const day = weekdays[weekdayIndex];
+
+        return {
+          ...data,
+          day,
+        };
+      });
+    };
+
+    setCurrWeek(newWeekDates(currWeekResult.result.incompleteScoreResponses));
+  };
+
   const handleActiveDate = async (date: string) => {
     setActiveDate(date);
   };
 
   const changeWeek = (direction: 'next' | 'previous') => {
     const newDate = new Date(activeWeek);
+
     if (direction === 'next') {
       newDate.setDate(activeWeek.getDate() + 7);
     } else {
@@ -47,9 +79,7 @@ const WeeklyDate = () => {
     }
     setActiveWeek(newDate);
     setWeekText(getWeekText(newDate));
-
-    const newWeekDates = getWeekDates(newDate);
-    setCurrWeek(newWeekDates);
+    fetchCurrWeek(getFormattedDate(newDate));
   };
 
   return (
@@ -57,13 +87,13 @@ const WeeklyDate = () => {
       <CarouselContent>
         {[...Array(3)].map((_, i) => (
           <CarouselItem key={i}>
-            <div className='bg-white flex touch-none items-center justify-center gap-3 px-5 py-2'>
+            <div className='flex touch-none items-center justify-center gap-3 bg-white px-5 py-2'>
               {currWeek.map((week, idx) => (
                 <DateItem
                   key={idx}
                   date={week.date.split('-')[2]}
                   day={week.day}
-                  pendingCnt={0}
+                  pendingCnt={week.houseworkIncompleteCount}
                   isActive={activeDate === week.date && current === i}
                   handleClick={() => handleActiveDate(week.date)}
                 />
