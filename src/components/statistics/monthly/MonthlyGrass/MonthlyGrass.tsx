@@ -7,9 +7,10 @@ import { useParams } from 'react-router-dom';
 
 interface MonthlyGrassProps {
   onMonthChange: (monthKey: string) => void;
+  onDataChange: (data: MonthlyDateScore[]) => void;
 }
 
-const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ onMonthChange }) => {
+const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ onMonthChange, onDataChange }) => {
   const today = new Date();
   const firstDayCurrentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
   const lastDayPreviousMonth = new Date(firstDayCurrentMonth.getTime() - 1);
@@ -34,6 +35,7 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ onMonthChange }) => {
         });
 
         setMonthlyData(response.result.monthlyStatistics);
+        onDataChange(response.result.monthlyStatistics);
       } catch (error) {
         console.error('초기 데이터 로드 실패:', error);
       }
