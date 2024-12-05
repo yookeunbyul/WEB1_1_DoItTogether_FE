@@ -117,8 +117,7 @@ const HomePage: React.FC = () => {
         toast({ title: `${targetHousework.assignee}님을 칭찬했어요` });
       } else {
         await postPoke({ channelId: newChannelId, targetUserId: targetHousework?.userId! });
-      } else {
-        toast({ title: `${targetHousework?.assignee}님을 찔렀어요` })
+        toast({ title: `${targetHousework?.assignee}님을 찔렀어요` });
       }
     }
   };
