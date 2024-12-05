@@ -106,7 +106,7 @@ body:has(.react-modal-sheet-container) {
   @apply w-full;
 }
 .react-calendar__navigation {
-  @apply mb-4 flex items-center justify-center gap-8 text-center text-gray font-subhead;
+  @apply mb-4 flex items-center justify-center gap-8 text-center text-black font-subhead;
 }
 .react-calendar__navigation__label {
   @apply grow-0 !important;
