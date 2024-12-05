@@ -21,7 +21,7 @@ const StatisticsLayout = () => {
   return (
     <div className='flex flex-col'>
       <Header title='통계' isNeededDoneBtn={false} />
-      <div className='bg-whiteReal sticky top-0 z-10 w-full'>
+      <div className='sticky top-0 z-10 w-full bg-white'>
         <Tab activeTab={statTab} handleSetActiveTab={setStatTab} chargers={STAT_DATA} />
       </div>
       <div className='p-5'>
