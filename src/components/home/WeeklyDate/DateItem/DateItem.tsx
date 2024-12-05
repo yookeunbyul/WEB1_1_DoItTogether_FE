@@ -18,12 +18,12 @@ const DateItem = ({ date, day, pendingCnt, isActive, handleClick }: DateItemProp
       onClick={handleClick}
       className={`relative flex h-[72px] w-10 flex-col items-center justify-center overflow-hidden rounded-full px-3 py-1 ${isActive ? 'bg-main' : 'bg-white'} `}
     >
-      <span className={`font-caption text-sub`}>{date}</span>
-      <span className={`font-subhead ${isActive ? 'text-white' : 'text-main'}`}>{day}</span>
+      <span className={`${isActive ? 'text-sub' : 'text-gray2'} font-caption`}>{date}</span>
+      <span className={`font-subhead ${isActive ? 'text-white' : 'text-black'}`}>{day}</span>
       <span className={`font-caption ${isActive ? 'text-white' : 'text-main'} z-10`}>
         +{pendingCnt}
       </span>
-      {isActive && <span className={`bg-sub absolute -bottom-[10px] h-9 w-9 rounded-full`}></span>}
+      {isActive && <span className={`absolute -bottom-[10px] h-9 w-9 rounded-full bg-sub`}></span>}
     </div>
   );
 };
