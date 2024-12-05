@@ -114,10 +114,11 @@ const HomePage: React.FC = () => {
     } else {
       if (targetHousework?.status === HOUSEWORK_STATUS.COMPLETE) {
         await postCompliment({ channelId: newChannelId, targetUserId: targetHousework.userId });
-        toast({ title: `${targetHousework.assignee}님을 칭찬했어요!` });
+        toast({ title: `${targetHousework.assignee}님을 칭찬했어요` });
       } else {
         await postPoke({ channelId: newChannelId, targetUserId: targetHousework?.userId! });
-        toast({ title: `${targetHousework?.assignee}님을 찔렀어요!` });
+      } else {
+        toast({ title: `${targetHousework?.assignee}님을 찔렀어요` })
       }
     }
   };
@@ -129,7 +130,7 @@ const HomePage: React.FC = () => {
   const handleDelete = async (houseworkId: number) => {
     const newChannelId = Number(channelId);
     await deleteHousework({ channelId: newChannelId, houseworkId });
-    toast({ title: '집안일이 삭제되었습니다!' });
+    toast({ title: '집안일이 삭제되었습니다' });
     refetch();
   };
 

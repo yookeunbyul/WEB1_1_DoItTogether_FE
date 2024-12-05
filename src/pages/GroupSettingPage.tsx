@@ -14,6 +14,7 @@ import { toast } from '@/hooks/use-toast';
 import { useParams } from 'react-router-dom';
 import { ArrowRightIcon } from '@/components/common/icon';
 import { Button } from '@/components/common/ui/button';
+import { INPUT_VALIDATION } from '@/constants/validation';
 
 const GroupSettingPage = () => {
   const navigate = useNavigate();
@@ -31,6 +32,8 @@ const GroupSettingPage = () => {
 
   const [selectedMember, setSelectedMember] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [error, setError] = useState<boolean>(false);
 
   const channelId = Number(strChannelId);
 
@@ -60,6 +63,14 @@ const GroupSettingPage = () => {
   const handleGroupNameChange = (value: string) => {
     setGroupName(value);
     setIsEdited(value !== groupName);
+    if (
+      value.length <= INPUT_VALIDATION.roomName.maxLength &&
+      INPUT_VALIDATION.roomName.regexp.test(value)
+    ) {
+      setError(false);
+    } else {
+      setError(true);
+    }
   };
 
   const handleDone = async () => {
@@ -101,6 +112,7 @@ const GroupSettingPage = () => {
       if (isAdmin && !isCurrentUserSelected) {
         await postBanUser({ channelId, email: member.email });
         setMembers(prev => prev.filter(m => m.email !== member.email));
+        toast({ title: '탈퇴되었습니다' });
       } else {
         await deleteGroupUser({ channelId });
         navigate('/group-select');
@@ -126,17 +138,22 @@ const GroupSettingPage = () => {
       <div className='fixed left-0 right-0 top-0 z-10 m-auto max-w bg-white'>
         <SettingHeaderContainer
           title='그룹 설정'
-          isNeededDoneBtn={isEdited}
+          isNeededDoneBtn={isEdited && !error}
           handleDone={handleDone}
         />
       </div>
       <div className='flex flex-col gap-8 px-5 pt-20'>
-        <InputWithLabel
-          label='공간 이름'
-          value={groupName}
-          disabled={!isAdmin}
-          handleChange={handleGroupNameChange}
-        />
+        <div className='flex flex-col gap-1'>
+          <InputWithLabel
+            label='공간 이름'
+            value={groupName}
+            disabled={!isAdmin}
+            handleChange={handleGroupNameChange}
+          />
+          {error && (
+            <p className='text-main font-caption'>{INPUT_VALIDATION.roomName.errorMessage}</p>
+          )}
+        </div>
         <MemberItems
           leader={isAdmin}
           members={members}

@@ -3,6 +3,7 @@ import InputWithLabel from '@/components/common/input/InputWithLabel';
 import ProfileImg from '@/components/common/profile/ProfileImg';
 import TitleCenter from '@/components/common/title/TitleCenter';
 import RegisterNotice from '@/components/register/RegisterNotice';
+import { INPUT_VALIDATION } from '@/constants/validation';
 import { getMyInfo } from '@/services/user/getMyInfo';
 import { getMyInitState } from '@/services/user/getMyInitState';
 import { patchMyInfo } from '@/services/user/patchMyInfo';
@@ -13,6 +14,7 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [profileUrl, setProfileUrl] = useState('');
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -38,24 +40,47 @@ const RegisterPage = () => {
     }
   };
 
+  const handleNameChange = (value: string) => {
+    setName(value);
+    if (
+      value.length <= INPUT_VALIDATION.nickname.maxLength &&
+      INPUT_VALIDATION.nickname.regexp.test(value)
+    ) {
+      setError(false);
+    } else {
+      setError(true);
+    }
+  };
+
   return (
     <div className='flex h-screen w-full flex-col items-center justify-between px-5 pt-10'>
       <div className='flex w-full flex-col items-center justify-between gap-4'>
         <TitleCenter title={`사용하실 닉네임과\n프로필을 설정해주세요`} />
         <ProfileImg imageUrl={profileUrl} />
         <div className='flex w-full flex-1 flex-col gap-4'>
-          <InputWithLabel
-            label='이름'
-            value={name}
-            handleChange={setName}
-            placeholder='이름을 입력해주세요'
-            disabled={false}
-          />
+          <div className='flex flex-col gap-1'>
+            <InputWithLabel
+              label='이름'
+              value={name}
+              handleChange={handleNameChange}
+              placeholder='이름을 입력해주세요'
+              disabled={false}
+            />
+            {error && (
+              <p className='text-main font-caption'>{INPUT_VALIDATION.nickname.errorMessage}</p>
+            )}
+          </div>
           <RegisterNotice />
         </div>
       </div>
       <div className='sticky bottom-6 w-full'>
-        <Button label='확인' variant='full' size='large' handleClick={handleSubmitButton} />
+        <Button
+          label='확인'
+          variant='full'
+          size='large'
+          disabled={error}
+          handleClick={handleSubmitButton}
+        />
       </div>
     </div>
   );
