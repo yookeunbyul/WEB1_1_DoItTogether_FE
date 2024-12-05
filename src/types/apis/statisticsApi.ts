@@ -28,7 +28,7 @@ export interface GetWeeklyTotalCountRes extends BaseRes {
     /** 완료 개수 */
     completeCount: number;
     /** 미완료 개수 */
-    notCompleteCount: number;
+    unCompletedCount: number;
     /** 칭찬 개수 */
     complimentCount: number;
     /** 찌르기 개수 */
