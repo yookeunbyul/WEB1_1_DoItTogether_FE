@@ -46,7 +46,7 @@ const InviteLink: React.FC<InviteLinkProps> = ({ initialLink }) => {
         </>
       ) : (
         <>
-          <p className='flex-1'>유효한 코드가 없습니다</p>
+          <p className='flex-1'>유효한 초대 코드가 없습니다</p>
           <button
             onClick={handleGenerateLink}
             className='underline underline-offset-2 font-caption'
