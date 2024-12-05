@@ -89,6 +89,7 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ onMonthChange, onDataChange
       defaultActiveStartDate={lastDayPreviousMonth}
       maxDate={lastDayPreviousMonth}
       tileClassName={getTileClassName}
+      calendarType='gregory'
       view='month'
       locale='ko'
       minDetail='month'
