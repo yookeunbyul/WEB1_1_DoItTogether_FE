@@ -42,7 +42,7 @@ const PresetAddInput: React.FC<PresetAddInputProps> = ({ categoryList, handleAdd
   };
 
   return (
-    <div className='flex flex-col gap-4 rounded-t-2xl bg-sub1 bg-gradient-to-b px-5 pb-3 pt-3 text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] font-body'>
+    <div className='flex flex-col gap-4 rounded-t-2xl bg-gray5 px-5 pb-8 pt-3 text-white shadow-[0_0px_6px_-1px_rgba(0,0,0,0.1)] font-body'>
       <PresetCategory
         categoryList={categoryList}
         activeCate={activeInputCate}
@@ -50,13 +50,15 @@ const PresetAddInput: React.FC<PresetAddInputProps> = ({ categoryList, handleAdd
       />
       <div className='relative text-gray1'>
         <input
-          className='h-12 w-full rounded-lg px-2 py-4 pr-10 font-label focus:outline-none'
+          className='h-12 w-full rounded-lg border-[1px] border-main px-2 py-4 pr-10 font-label focus:outline-none'
           placeholder='집안일을 입력해주세요'
           value={inputVal}
           onChange={e => setInputVal(e.target.value)}
           onKeyDown={handleKeyDown}
         />
-        <EnterIcon className='absolute right-2 top-1/2 -translate-y-1/2' />
+        <EnterIcon
+          className={`${inputVal ? 'text-sub' : 'text-gray4'} absolute right-2 top-1/2 -translate-y-1/2`}
+        />
       </div>
     </div>
   );
