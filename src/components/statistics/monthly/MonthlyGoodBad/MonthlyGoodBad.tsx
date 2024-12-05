@@ -2,7 +2,7 @@ import { MonthFingerIcon, MonthlyHeartIcon } from '@/components/common/icon';
 
 interface MonthlyGoodBadProps {
   type: 'good' | 'bad';
-  name: string;
+  name: string | null;
 }
 
 const MonthlyGoodBad: React.FC<MonthlyGoodBadProps> = ({ type, name }) => {
@@ -14,7 +14,7 @@ const MonthlyGoodBad: React.FC<MonthlyGoodBadProps> = ({ type, name }) => {
     >
       <div className='relative z-10 text-white'>
         <h2 className='font-body'>{type === 'good' ? '칭찬 MVP' : '찌르기 MVP'}</h2>
-        <p className='mt-2 font-head'>{name}</p>
+        <p className='mt-2 font-head'>{name || '아직 없어요'}</p>
       </div>
 
       <div className='absolute inset-0 flex items-center justify-center'>
