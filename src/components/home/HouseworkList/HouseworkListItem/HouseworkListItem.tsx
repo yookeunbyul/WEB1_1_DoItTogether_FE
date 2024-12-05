@@ -44,11 +44,11 @@ const HouseworkListItem: React.FC<HouseworkListItemProps> = ({
         handleAction={() => handleAction(houseworkId)}
         id={houseworkId}
       />
-      <div className='flex w-full flex-col justify-between gap-3 pl-2'>
+      <div className='flex w-full flex-col justify-between gap-1 pl-2'>
         <div className='flex justify-between gap-2'>
           <div className='flex items-center gap-2'>
             <p
-              className={`xs:font-subhead text-black font-label ${status === HOUSEWORK_STATUS.COMPLETE && 'text-gray2 line-through'}`}
+              className={`!font-semibold text-black font-label xs:font-subhead ${status === HOUSEWORK_STATUS.COMPLETE && 'text-gray2 line-through'}`}
             >
               {task}
             </p>
