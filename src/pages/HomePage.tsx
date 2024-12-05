@@ -15,9 +15,9 @@ import { useQuery } from '@tanstack/react-query';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
 import { changeHouseworkStatus } from '@/services/housework/changeHouseworkStatus';
-import { NoHouseWorkIcon } from '@/components/common/icon';
 import { getMyInfo } from '@/services/user/getMyInfo';
 import { HOUSEWORK_STATUS } from '@/constants/homePage';
+import NoListIcon from '@/components/common/icon/NoListIcon';
 
 const HomePage: React.FC = () => {
   const {
@@ -140,8 +140,8 @@ const HomePage: React.FC = () => {
       houseworks.filter(item => item.assignee === activeTab || activeTab === '전체').length ===
         0 ? (
         <div className='flex h-[calc(100vh-280px)] flex-1 flex-col items-center justify-center gap-4 whitespace-pre-line text-center text-gray3'>
-          <NoHouseWorkIcon />
-          <p className='text-gray3 font-subhead'>
+          <NoListIcon />
+          <p className='text-gray2 font-subhead'>
             {'현재 집안일 목록이 없어요\n새로운 목록을 만들어보세요'}
           </p>
         </div>

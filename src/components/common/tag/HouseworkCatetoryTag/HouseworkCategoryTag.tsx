@@ -11,11 +11,7 @@ const HouseworkCategoryTag: React.FC<HouseworkCategoryTagProps> = ({
   category,
   variant = 'primary',
 }) => {
-  return (
-    <div>
-      <Badge variant={variant}>{category}</Badge>
-    </div>
-  );
+  return <Badge variant={variant}>{category}</Badge>;
 };
 
 export default HouseworkCategoryTag;
