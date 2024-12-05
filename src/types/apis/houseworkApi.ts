@@ -105,16 +105,18 @@ export interface GetHouseworkByAssigneeRes extends BaseRes {
   };
 }
 
+// 주간 미완료율 조회
 export interface GetWeeklyIncompleteReq extends Pick<Common, 'channelId'> {
   targetDate: string;
 }
 
+export interface IncompleteScoreResponse {
+  date: string;
+  houseworkIncompleteCount: number;
+  solvedMatters: boolean;
+}
 export interface GetWeeklyIncompleteRes extends BaseRes {
   result: {
-    incompleteScoreResponses: {
-      date: string;
-      houseworkIncompleteCount: number;
-      solvedMatters: boolean;
-    }[];
+    incompleteScoreResponses: Array<IncompleteScoreResponse>;
   };
 }

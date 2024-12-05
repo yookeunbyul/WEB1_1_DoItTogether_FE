@@ -1,9 +1,9 @@
 import { axiosInstance } from '@/services/axiosInstance';
-import { GetWeeklyIncompleteReq, GetHouseworkByIdRes } from '@/types/apis/houseworkApi';
+import { GetWeeklyIncompleteReq, GetWeeklyIncompleteRes } from '@/types/apis/houseworkApi';
 
 export const getWeeklyIncomplete = async ({ channelId, targetDate }: GetWeeklyIncompleteReq) => {
   try {
-    const response = await axiosInstance.get<GetHouseworkByIdRes>(
+    const response = await axiosInstance.get<GetWeeklyIncompleteRes>(
       `/api/v1/channels/${channelId}/houseworks/daily/incomplete`,
       {
         params: {
