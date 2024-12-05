@@ -104,3 +104,17 @@ export interface GetHouseworkByAssigneeRes extends BaseRes {
     hasNext: boolean;
   };
 }
+
+export interface GetWeeklyIncompleteReq extends Pick<Common, 'channelId'> {
+  targetDate: string;
+}
+
+export interface GetWeeklyIncompleteRes extends BaseRes {
+  result: {
+    incompleteScoreResponses: {
+      date: string;
+      houseworkIncompleteCount: number;
+      solvedMatters: boolean;
+    }[];
+  };
+}
