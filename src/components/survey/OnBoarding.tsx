@@ -19,6 +19,7 @@ import {
 import { motion } from 'framer-motion';
 import { postPersonalKeyword } from '@/services/onboarding/postPersonalKeyword';
 import { patchMyInitState } from '@/services/user/patchMyInitState';
+import useDeviceHeight from '@/hooks/useDevice';
 
 interface OnBoardingProps {}
 
@@ -31,6 +32,7 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
   const [username] = useState<string>('사용자'); // 사용자명
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+  const customHeightClass = useDeviceHeight();
 
   const item = {
     hidden: { opacity: 0 },
@@ -109,7 +111,7 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
   }, [step]);
 
   return (
-    <div className='flex h-screen flex-col overflow-hidden'>
+    <div className={`${customHeightClass} flex flex-col overflow-hidden`}>
       {step <= 4 && (
         <motion.div variants={item} initial='hidden' animate='show'>
           <div className='p-5'>

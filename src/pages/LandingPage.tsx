@@ -2,7 +2,7 @@ import Button from '@/components/common/button/Button/Button';
 import { getMyInitState } from '@/services/user/getMyInitState';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useDeviceHeight from '@/hooks/useDevice'; // 훅 임포트
+import useDeviceHeight from '@/hooks/useDevice';
 
 const LandingPage = () => {
   const navigate = useNavigate();

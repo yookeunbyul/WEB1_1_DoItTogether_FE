@@ -8,12 +8,14 @@ import { getMyInfo } from '@/services/user/getMyInfo';
 import { patchMyInfo } from '@/services/user/patchMyInfo';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useDeviceHeight from '@/hooks/useDevice';
 
 const RegisterPage = () => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [profileUrl, setProfileUrl] = useState('');
   const [error, setError] = useState<boolean>(false);
+  const customHeightClass = useDeviceHeight();
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -51,7 +53,9 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className='flex h-screen w-full flex-col items-center justify-between px-5 pt-10'>
+    <div
+      className={`${customHeightClass} flex w-full flex-col items-center justify-between px-5 pt-10`}
+    >
       <div className='flex w-full flex-col items-center justify-between gap-4'>
         <TitleCenter title={`사용하실 닉네임과\n프로필을 설정해주세요`} />
         <ProfileImg imageUrl={profileUrl} />

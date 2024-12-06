@@ -4,11 +4,13 @@ import { Checkbox } from '@/components/common/ui/checkbox';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import useDeviceHeight from '@/hooks/useDevice';
 
 const LeavePage = () => {
   const navigate = useNavigate();
   const { channelId } = useParams();
   const [isChecked, setIsChecked] = useState(false);
+  const customHeightClass = useDeviceHeight();
 
   const handleBack = () => {
     navigate(`/my-page/account-manage/${channelId}`);
@@ -23,7 +25,7 @@ const LeavePage = () => {
   };
 
   return (
-    <div className='flex h-screen flex-col gap-6'>
+    <div className={`${customHeightClass} flex flex-col gap-6`}>
       <Header title='탈퇴하기' handleBack={handleBack} isNeededDoneBtn={false} />
       <div className='flex flex-1 flex-col gap-4 px-5'>
         <div className='flex h-24 w-full items-center justify-center'>우리의 로고</div>
