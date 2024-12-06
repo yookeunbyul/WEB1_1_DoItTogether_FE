@@ -1,8 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/doto/:path*",
+      "source": "/api/:path*",
       "destination": "http://3.39.64.195/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
     }
   ]
 }

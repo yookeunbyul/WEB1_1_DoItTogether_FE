@@ -1,7 +1,12 @@
 import axios from 'axios';
 
+const apiUrl =
+  import.meta.env.MODE === 'development'
+    ? import.meta.env.VITE_API_BASE_URL // 로컬 환경
+    : import.meta.env.VITE_SERVER_URL; // Vercel 환경에서는 프록시된
+
 export const axiosInstance = axios.create({
-  baseURL: `/doto/${import.meta.env.VITE_SERVER_URL}`,
+  baseURL: apiUrl,
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
