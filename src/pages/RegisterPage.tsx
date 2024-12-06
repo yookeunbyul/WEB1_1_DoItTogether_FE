@@ -5,7 +5,6 @@ import TitleCenter from '@/components/common/title/TitleCenter';
 import RegisterNotice from '@/components/register/RegisterNotice';
 import { INPUT_VALIDATION } from '@/constants/validation';
 import { getMyInfo } from '@/services/user/getMyInfo';
-import { getMyInitState } from '@/services/user/getMyInitState';
 import { patchMyInfo } from '@/services/user/patchMyInfo';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -33,8 +32,7 @@ const RegisterPage = () => {
   const handleSubmitButton = async () => {
     try {
       await patchMyInfo({ nickName: name });
-      const initState = await getMyInitState();
-      initState.result ? navigate('/group-select') : navigate('/survey-intro');
+      navigate('/survey-intro');
     } catch (error) {
       console.error('프로필 수정 및 초기 정보 받기 실패:', error);
     }
