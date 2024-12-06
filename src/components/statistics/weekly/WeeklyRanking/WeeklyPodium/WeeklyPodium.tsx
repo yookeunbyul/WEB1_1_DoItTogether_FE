@@ -17,7 +17,7 @@ const WeeklyPodium: React.FC<WeeklyPodiumProps> = ({
       className={`flex flex-col items-center justify-center gap-2 ${rank === 2 && 'order-first'}`}
     >
       <div
-        className={`relative ${rank === 1 ? 'h-24 w-24' : 'h-16 w-16'} flex items-center justify-center rounded-full border`}
+        className={`relative ${rank === 1 ? 'h-24 w-24' : 'h-16 w-16'} flex items-center justify-center rounded-full`}
       >
         {profileImageUrl ? (
           <img
