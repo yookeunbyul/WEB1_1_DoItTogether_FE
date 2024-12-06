@@ -26,6 +26,7 @@ const HouseWorkStepTwoPage = () => {
   const [selectedValue, setSelectedValue] = useState(userId || null);
   const [members, setMembers] = useState<User[]>([]);
   const customHeightClass = useDeviceHeight();
+  const [isMemberLoading, setIsMemberLoading] = useState(true);
 
   const channelId = Number(strChannelId);
 
@@ -36,11 +37,17 @@ const HouseWorkStepTwoPage = () => {
         setMembers(response.result.userList);
       } catch (error) {
         console.error('멤버 조회 실패:', error);
+      } finally {
+        setIsMemberLoading(false);
       }
     };
 
     fetchGroupMembers();
   }, []);
+
+  if (isMemberLoading) {
+    return <></>;
+  }
 
   console.log('전역:', task, category, startDate, startTime, userId);
 

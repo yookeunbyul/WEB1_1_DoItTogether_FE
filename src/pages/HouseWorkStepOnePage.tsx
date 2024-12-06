@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '@/components/common/button/Button/Button';
 import OpenSheetBtn from '@/components/common/button/OpenSheetBtn/OpenSheetBtn';
 import OpenSheetBtnWithLabel from '@/components/common/button/OpenSheetBtn/OpenSheetBtnWithLabel';
@@ -9,7 +9,6 @@ import DueDateSheet from '@/components/housework/DueDateSheet/DueDateSheet';
 import TimeControl from '@/components/housework/TimeControl/TimeControl';
 import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 import { useParams } from 'react-router-dom';
-import { getHouseworkById } from '@/services/housework/getHouseworkById';
 import { DateIcon, EtcIcon } from '@/components/common/icon';
 import convertTimeToObject from '@/utils/convertTimeToObject';
 import useDeviceHeight from '@/hooks/useDevice';
@@ -43,31 +42,26 @@ const HouseWorkStepOnePage = () => {
   const channelId = Number(strChannelId);
   const houseworkId = Number(strHouseworkId);
 
+  const location = useLocation();
+  const targetHousework = location.state;
+
+  console.log('가져온거', targetHousework);
+
   useEffect(() => {
-    if (channelId && houseworkId) {
-      const fetchHouseworkById = async () => {
-        try {
-          const getHouseResult = await getHouseworkById({ channelId, houseworkId });
-          const housework = getHouseResult.result;
+    if (targetHousework) {
+      setTask(targetHousework.task);
 
-          const date = new Date(housework.startDate);
-          const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
+      const date = new Date(targetHousework.startDate);
+      const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
 
-          setTask(housework.task);
-          setCategory(housework.category);
-          setStartDate(formattedDate);
-          setUserId(housework.userId);
-          setIsAllday(housework.isAllDay);
-          if (!housework.isAllDay) {
-            const result = convertTimeToObject(housework.startTime!);
-            setStartTime(result);
-          }
-        } catch (error) {
-          console.error('집안일 상세 정보 조회 실패:', error);
-        }
-      };
-
-      fetchHouseworkById();
+      setStartDate(formattedDate);
+      setCategory(targetHousework.category);
+      setUserId(targetHousework.userId);
+      setIsAllday(targetHousework.isAllDay);
+      if (!targetHousework.isAllDay && targetHousework.startTime) {
+        const result = convertTimeToObject(targetHousework.startTime);
+        setStartTime(result);
+      }
     }
   }, []);
 
