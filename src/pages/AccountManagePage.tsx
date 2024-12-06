@@ -1,5 +1,6 @@
 import Header from '@/components/common/header/Header';
 import AccountMenuItem from '@/components/my/AccountMenuItem/AccountMenuItem';
+import { deleteUser } from '@/services/user/deleteUser';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
@@ -15,8 +16,14 @@ const AccountManagePage = () => {
     navigate('/');
   };
 
-  const handleLeave = () => {
-    navigate(`/my-page/leave/${channelId}`);
+  const handleLeave = async () => {
+    try {
+      await deleteUser();
+      localStorage.removeItem('access_token');
+      navigate('/');
+    } catch (error) {
+      console.error('회원 탈퇴 실패:', error);
+    }
   };
 
   return (
