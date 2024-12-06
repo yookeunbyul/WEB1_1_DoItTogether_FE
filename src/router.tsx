@@ -24,6 +24,7 @@ import HouseWorkStepTwoPage from '@/pages/HouseWorkStepTwoPage';
 import GroupInviteReceivePage from '@/pages/GroupInviteReceivePage';
 import ScrollToTop from '@/components/common/scroll/ScrollToTop';
 import { Toaster } from '@/components/common/ui/toaster';
+import PrivateRouter from '@/components/PrivateRouter';
 // import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const RootLayout = () => {
@@ -62,31 +63,59 @@ export const router = createBrowserRouter([
       },
       {
         path: '/register',
-        element: <RegisterPage />,
+        element: (
+          <PrivateRouter>
+            <RegisterPage />
+          </PrivateRouter>
+        ),
       },
       {
         path: '/survey-intro',
-        element: <SurveyIntroPage />,
+        element: (
+          <PrivateRouter>
+            <SurveyIntroPage />
+          </PrivateRouter>
+        ),
       },
       {
         path: '/survey',
-        element: <SurveyPage />,
+        element: (
+          <PrivateRouter>
+            <SurveyPage />
+          </PrivateRouter>
+        ),
       },
       {
         path: '/group-select',
-        element: <GroupSelectPage />,
+        element: (
+          <PrivateRouter>
+            <GroupSelectPage />
+          </PrivateRouter>
+        ),
       },
       {
         path: '/group/create',
-        element: <GroupCreatePage />,
+        element: (
+          <PrivateRouter>
+            <GroupCreatePage />
+          </PrivateRouter>
+        ),
       },
       {
         path: '/group/invite-receive',
-        element: <GroupInviteReceivePage />,
+        element: (
+          <PrivateRouter>
+            <GroupInviteReceivePage />
+          </PrivateRouter>
+        ),
       },
       {
         path: '/main/:channelId',
-        element: <MainLayout />,
+        element: (
+          <PrivateRouter>
+            <MainLayout />
+          </PrivateRouter>
+        ),
         children: [
           {
             index: true,
@@ -126,31 +155,59 @@ export const router = createBrowserRouter([
       },
       {
         path: 'my-page/account-manage/:channelId',
-        element: <AccountManagePage />,
+        element: (
+          <PrivateRouter>
+            <AccountManagePage />
+          </PrivateRouter>
+        ),
       },
       {
         path: 'my-page/leave/:channelId',
-        element: <LeavePage />,
+        element: (
+          <PrivateRouter>
+            <LeavePage />
+          </PrivateRouter>
+        ),
       },
       {
         path: '/group-setting/:channelId/preset-setting',
-        element: <PresetSettingPage />,
+        element: (
+          <PrivateRouter>
+            <PresetSettingPage />
+          </PrivateRouter>
+        ),
       },
       {
         path: '/add-housework/:channelId/step1',
-        element: <HouseWorkStepOnePage />,
+        element: (
+          <PrivateRouter>
+            <HouseWorkStepOnePage />
+          </PrivateRouter>
+        ),
       },
       {
         path: '/add-housework/edit/:channelId/:houseworkId/step1/',
-        element: <HouseWorkStepOnePage />,
+        element: (
+          <PrivateRouter>
+            <HouseWorkStepOnePage />
+          </PrivateRouter>
+        ),
       },
       {
         path: '/add-housework/:channelId/step2',
-        element: <HouseWorkStepTwoPage />,
+        element: (
+          <PrivateRouter>
+            <HouseWorkStepTwoPage />
+          </PrivateRouter>
+        ),
       },
       {
         path: '/add-housework/edit/:channelId/:houseworkId/step2/',
-        element: <HouseWorkStepTwoPage />,
+        element: (
+          <PrivateRouter>
+            <HouseWorkStepTwoPage />
+          </PrivateRouter>
+        ),
       },
     ],
   },
