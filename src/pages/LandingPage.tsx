@@ -3,6 +3,7 @@ import { getMyInitState } from '@/services/user/getMyInitState';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useDeviceHeight from '@/hooks/useDevice';
+import LottieIcon from '@/components/common/lottie/LottieIcon';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ const LandingPage = () => {
           <div className='text-24 font-bold'>두잇투게더</div>
         </section>
         <section aria-label='서비스 로고' className='flex flex-1 items-center justify-center'>
-          <div>서비스 로고 이미지</div>
+          <LottieIcon />
         </section>
       </div>
       <section aria-label='카카오 로그인 버튼' className='sticky bottom-6'>
