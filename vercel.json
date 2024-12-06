@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/doto/:path",
-      "destination": "http://121.88.130.215/*"
+      "destination": "http://3.39.64.195/*"
     }
   ]
 }
