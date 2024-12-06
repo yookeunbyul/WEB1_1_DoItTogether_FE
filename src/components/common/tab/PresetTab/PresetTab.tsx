@@ -1,7 +1,8 @@
 import PresetItem from '@/components/common/preset/PresetItem';
 import PresetTabItem from '@/components/common/tab/PresetTab/PresetTabItem';
 import { Tabs, TabsContent, TabsList } from '@/components/common/ui/tabs';
-import { Category as PresetCategory } from '@/constants/Category';
+import { Category as PresetCategory } from '@/constants';
+import { NoHouseWorkIcon } from '@/components/common/icon';
 
 interface PresetItem {
   // 프리셋 아이템 아이디
@@ -22,7 +23,7 @@ interface PresetTabProps {
   presetData: PresetList[];
   isPresetSettingCustom?: boolean;
   deleteButtonStates?: Record<number, boolean>;
-  handleDeleteClick?: (itemId: number) => void;
+  handleDeleteClick?: (presetCategoryId: number, itemId: number) => void;
   isBottomSheet?: boolean;
   handleClick?: (id: number, description: string, category: string) => void;
   selectedItem?: number | null;
@@ -40,7 +41,11 @@ const PresetTab: React.FC<PresetTabProps> = ({
   const allPresetData = {
     category: PresetCategory.ALL,
     items: presetData.flatMap(categoryList =>
-      categoryList.presetItemList.map(item => ({ ...item, category: categoryList.category }))
+      categoryList.presetItemList.map(item => ({
+        ...item,
+        category: categoryList.category,
+        presetCategoryId: categoryList.presetCategoryId,
+      }))
     ),
   };
 
@@ -61,48 +66,76 @@ const PresetTab: React.FC<PresetTabProps> = ({
         value={allPresetData.category}
         className={`${isBottomSheet ? 'h-[250px]' : 'h-auto'} overflow-y-auto no-scrollbar`}
       >
-        {allPresetData.items.map(item => (
-          <div key={item.presetItemId}>
-            <PresetItem
-              category={item.category}
-              housework={item.name}
-              handleSelectClick={() =>
-                handleClick && handleClick(item.presetItemId, item.name, item.category)
-              }
-              isBottomSheet={isBottomSheet}
-              isPresetSettingCustom={isPresetSettingCustom}
-              isShowDeleteBtn={deleteButtonStates[item.presetItemId]} //각 아이템의 boolean값이 들어간다.
-              handleDeleteClick={handleDeleteClick && (() => handleDeleteClick(item.presetItemId))}
-              isSelected={selectedItem === item.presetItemId}
-            />
+        {allPresetData.items.length ? (
+          <>
+            {allPresetData.items.map(item => (
+              <div key={item.presetItemId}>
+                <PresetItem
+                  category={item.category}
+                  housework={item.name}
+                  handleSelectClick={() =>
+                    handleClick && handleClick(item.presetItemId, item.name, item.category)
+                  }
+                  isBottomSheet={isBottomSheet}
+                  isPresetSettingCustom={isPresetSettingCustom}
+                  isShowDeleteBtn={deleteButtonStates[item.presetItemId]} //각 아이템의 boolean값이 들어간다.
+                  handleDeleteClick={
+                    handleDeleteClick &&
+                    (() => handleDeleteClick(item.presetCategoryId, item.presetItemId))
+                  }
+                  isSelected={selectedItem === item.presetItemId}
+                />
+              </div>
+            ))}
+          </>
+        ) : (
+          <div
+            className={`${isBottomSheet ? 'h-[calc(100vh-510px)]' : 'h-[calc(100vh-320px)]'} flex items-center justify-center`}
+          >
+            <div className='flex flex-col items-center whitespace-pre-line'>
+              <NoHouseWorkIcon />
+              <p className='text-center text-gray3 font-subhead'>{`현재 집안일 목록이 없어요\n 새로운 목록을 만들어보세요`}</p>
+            </div>
           </div>
-        ))}
+        )}
       </TabsContent>
 
       {presetData.map(categoryList => (
         <TabsContent
           key={categoryList.presetCategoryId}
           value={categoryList.category}
-          className={`${isBottomSheet ? 'h-[250px]' : 'h-auto'} overflow-y-auto no-scrollbar`}
+          className={`${isBottomSheet ? 'h-[250px]' : 'h-[calc(100vh-320px)]'} overflow-y-auto no-scrollbar`}
         >
-          {categoryList.presetItemList.map(item => (
-            <div key={item.presetItemId}>
-              <PresetItem
-                category={categoryList.category}
-                housework={item.name}
-                handleSelectClick={() =>
-                  handleClick && handleClick(item.presetItemId, item.name, categoryList.category)
-                }
-                isBottomSheet={isBottomSheet}
-                isPresetSettingCustom={isPresetSettingCustom}
-                isShowDeleteBtn={deleteButtonStates[item.presetItemId]} //각 아이템의 boolean값이 들어간다.
-                handleDeleteClick={
-                  handleDeleteClick && (() => handleDeleteClick(item.presetItemId))
-                }
-                isSelected={selectedItem === item.presetItemId}
-              />
+          {categoryList.presetItemList.length ? (
+            categoryList.presetItemList.map(item => (
+              <div key={item.presetItemId}>
+                <PresetItem
+                  category={categoryList.category}
+                  housework={item.name}
+                  handleSelectClick={() =>
+                    handleClick && handleClick(item.presetItemId, item.name, categoryList.category)
+                  }
+                  isBottomSheet={isBottomSheet}
+                  isPresetSettingCustom={isPresetSettingCustom}
+                  isShowDeleteBtn={deleteButtonStates[item.presetItemId]}
+                  handleDeleteClick={
+                    handleDeleteClick &&
+                    (() => handleDeleteClick(categoryList.presetCategoryId, item.presetItemId))
+                  }
+                  isSelected={selectedItem === item.presetItemId}
+                />
+              </div>
+            ))
+          ) : (
+            <div
+              className={`${isBottomSheet ? 'h-[calc(100vh-510px)]' : 'h-[calc(100vh-320px)]'} flex items-center justify-center`}
+            >
+              <div className='flex flex-col items-center whitespace-pre-line'>
+                <NoHouseWorkIcon />
+                <p className='text-center text-gray3 font-subhead'>{`현재 집안일 목록이 없어요\n 새로운 목록을 만들어보세요`}</p>
+              </div>
             </div>
-          ))}
+          )}
         </TabsContent>
       ))}
     </Tabs>

@@ -11,11 +11,11 @@ const AccountManagePage = () => {
   };
 
   const handleLogout = () => {
-    console.log('로그아웃');
+    localStorage.removeItem('access_token');
+    navigate('/');
   };
 
   const handleLeave = () => {
-    console.log('탈퇴');
     navigate(`/my-page/leave/${channelId}`);
   };
 

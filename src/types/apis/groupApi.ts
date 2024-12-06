@@ -79,6 +79,8 @@ export interface User {
   nickName: string;
   /** 역할 (ADMIN 또는 PARTICIPANT) */
   role: 'ADMIN' | 'PARTICIPANT';
+  /** 현재 유저인지 */
+  currentUser: boolean;
 }
 
 /** 그룹 사용자 조회 */

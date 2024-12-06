@@ -1,58 +1,86 @@
 import Calendar from 'react-calendar';
 import { ArrowLeftIcon, ArrowRightIcon } from '@/components/common/icon';
-import { useState } from 'react';
-
-enum CompletionStatus {
-  ALL_DONE = 'ALL_DONE',
-  INCOMPLETE_REMAINING = 'INCOMPLETE_REMAINING',
-  NO_HOUSEWORK = 'NO_HOUSEWORK',
-}
-
-interface DailyTask {
-  date: string;
-  totalTasks: number;
-  completedTasks: number;
-  status: CompletionStatus;
-}
+import { useEffect, useState } from 'react';
+import { getMonthlyScore } from '@/services/statistics/getMonthlyScore';
+import { CompletionStatus, MonthlyDateScore } from '@/types/apis/statisticsApi';
+import { useParams } from 'react-router-dom';
 
 interface MonthlyGrassProps {
-  completionData: DailyTask[];
   onMonthChange: (monthKey: string) => void;
+  onDataChange: (data: MonthlyDateScore[]) => void;
 }
 
-const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ completionData, onMonthChange }) => {
+const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ onMonthChange, onDataChange }) => {
   const today = new Date();
   const firstDayCurrentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
   const lastDayPreviousMonth = new Date(firstDayCurrentMonth.getTime() - 1);
 
   const [currentDate, setCurrentDate] = useState(lastDayPreviousMonth);
   const maxDate = lastDayPreviousMonth;
+  const [monthlyData, setMonthlyData] = useState<MonthlyDateScore[]>([]);
+
+  const { channelId: strChannelId } = useParams();
+  const channelId = Number(strChannelId);
+
+  useEffect(() => {
+    const fetchInitialData = async () => {
+      try {
+        const year = lastDayPreviousMonth.getFullYear();
+        const month = String(lastDayPreviousMonth.getMonth() + 1).padStart(2, '0');
+        const monthKey = `${year}-${month}`;
+
+        const response = await getMonthlyScore({
+          channelId,
+          targetMonth: monthKey,
+        });
+
+        setMonthlyData(response.result.monthlyStatistics);
+        onDataChange(response.result.monthlyStatistics);
+      } catch (error) {
+        console.error('초기 데이터 로드 실패:', error);
+      }
+    };
+
+    fetchInitialData();
+  }, []);
 
   const getStatus = (date: Date): CompletionStatus => {
     const dateString = date.toLocaleDateString('en-CA');
-    const dayData = completionData.find(data => data.date === dateString);
-    return dayData?.status || CompletionStatus.NO_HOUSEWORK;
+    const dayData = monthlyData.find(data => data.date === dateString);
+    if (!dayData?.status) return CompletionStatus.NO_HOUSEWORK;
+    return dayData.status as CompletionStatus;
   };
 
   const getTileClassName = ({ date }: { date: Date }): string => {
     const status = getStatus(date);
     switch (status) {
       case CompletionStatus.ALL_DONE:
-        return 'bg-[#1FCFBA] text-[#FDFDFD] rounded-lg font-body';
+        return 'bg-main text-white rounded-lg font-body';
       case CompletionStatus.INCOMPLETE_REMAINING:
-        return 'bg-[#8DE8D7] text-[#FDFDFD] rounded-full font-body';
+        return 'bg-sub text-white rounded-full font-body';
       default:
-        return 'text-[#B4B4B5] font-body';
+        return 'text-gray3 font-body';
     }
   };
 
-  // TODO: 여기서 api 처리
-  const handleMonthChange = ({ activeStartDate }: { activeStartDate: Date | null }) => {
+  const handleMonthChange = async ({ activeStartDate }: { activeStartDate: Date | null }) => {
     if (activeStartDate) {
       const year = activeStartDate.getFullYear();
       const month = String(activeStartDate.getMonth() + 1).padStart(2, '0');
       const monthKey = `${year}-${month}`;
-      onMonthChange(monthKey);
+
+      try {
+        const response = await getMonthlyScore({
+          channelId,
+          targetMonth: monthKey,
+        });
+
+        setMonthlyData(response.result.monthlyStatistics);
+        onMonthChange(monthKey);
+        onDataChange(response.result.monthlyStatistics);
+      } catch (error) {
+        console.error('월간 데이터 로드 실패:', error);
+      }
     }
   };
 
@@ -61,6 +89,7 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ completionData, onMonthChan
       defaultActiveStartDate={lastDayPreviousMonth}
       maxDate={lastDayPreviousMonth}
       tileClassName={getTileClassName}
+      calendarType='gregory'
       view='month'
       locale='ko'
       minDetail='month'
@@ -73,10 +102,10 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ completionData, onMonthChan
       }}
       navigationLabel={({ date }) => `${date.getFullYear()}년 ${date.getMonth() + 1}월`}
       formatDay={(_locale, date) => date.getDate().toString()}
-      prevLabel={<ArrowLeftIcon className='text-gray1' />}
+      prevLabel={<ArrowLeftIcon className='text-gray2' />}
       nextLabel={
         <ArrowRightIcon
-          className={`text-gray1 transition-colors ${
+          className={`text-gray2 transition-colors ${
             currentDate.getFullYear() === maxDate.getFullYear() &&
             currentDate.getMonth() >= maxDate.getMonth()
               ? 'opacity-30'

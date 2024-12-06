@@ -74,11 +74,11 @@ const usePresetSetting = () => {
     setDeleteButtonStates(isDeselecting ? null : presetItemId);
   };
 
-  const handleDeleteClick = async (presetItemId: number) => {
+  const handleDeleteClick = async (presetCategoryId: number, presetItemId: number) => {
     setDeleteButtonStates(null);
 
     try {
-      await deletePresetItem({ channelId, presetItemId });
+      await deletePresetItem({ channelId, presetCategoryId, presetItemId });
       // 업데이트된 아이템 리스트 조회
       await getPresetData();
     } catch (error) {

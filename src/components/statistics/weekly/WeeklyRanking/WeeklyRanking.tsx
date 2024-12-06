@@ -2,31 +2,30 @@ import React from 'react';
 import WeeklyPodium from '@/components/statistics/weekly/WeeklyRanking/WeeklyPodium/WeeklyPodium';
 import WeeklyOthers from '@/components/statistics/weekly/WeeklyRanking/WeeklyOthers/WeeklyOthers';
 import { Card } from '@/components/common/ui/card';
-
-export interface MemberScoreCount {
-  /** 닉네임 */
-  nickname: string;
-  /** 완료 개수 */
-  completeCount: number;
-}
-
+import { WeeklyMemberScore } from '@/store/useWeeklyStatisticsStore';
 interface WeeklyRankingProps {
-  rankings: Array<MemberScoreCount>;
+  rankings: Array<WeeklyMemberScore>;
 }
 
 const WeeklyRanking: React.FC<WeeklyRankingProps> = ({ rankings }) => {
   const podiumData = [
-    rankings[0] || { nickname: '-', completeCount: 0 },
-    rankings[1] || { nickname: '-', completeCount: 0 },
-    rankings[2] || { nickname: '-', completeCount: 0 },
+    rankings[0] || { nickName: '-', completeCount: '-' },
+    rankings[1] || { nickName: '-', completeCount: '-' },
+    rankings[2] || { nickName: '-', completeCount: '-' },
   ];
 
   return (
     <Card className='flex flex-col justify-center gap-8 border-none p-8 shadow-none'>
-      <p className='text-center text-gray font-subhead'>이번주 완료 개수 랭킹</p>
+      <p className='text-center text-gray2 font-subhead'>이번주 완료 개수 랭킹</p>
       <div className='flex items-center justify-between font-body'>
         {podiumData.map((ranker, index) => (
-          <WeeklyPodium key={index} rank={index + 1} {...ranker} />
+          <WeeklyPodium
+            key={index}
+            rank={index + 1}
+            nickName={ranker.nickName}
+            profileImageUrl={ranker.profileImageUrl}
+            completeCount={ranker.completeCount}
+          />
         ))}
       </div>
       <div className='flex flex-col justify-center gap-2'>

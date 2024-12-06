@@ -22,7 +22,7 @@ const InviteLink: React.FC<InviteLinkProps> = ({ initialLink }) => {
 
   const handleCopyLink = () => {
     toast({
-      title: '링크가 복사되었어요!',
+      title: '링크가 복사되었어요',
     });
     if (inviteLink) {
       navigator.clipboard.writeText(inviteLink);
@@ -46,7 +46,7 @@ const InviteLink: React.FC<InviteLinkProps> = ({ initialLink }) => {
         </>
       ) : (
         <>
-          <p className='flex-1'>유효한 코드가 없습니다</p>
+          <p className='flex-1'>유효한 초대 코드가 없습니다</p>
           <button
             onClick={handleGenerateLink}
             className='underline underline-offset-2 font-caption'

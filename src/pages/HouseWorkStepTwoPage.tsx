@@ -11,8 +11,11 @@ import { useParams } from 'react-router-dom';
 import { getGroupUser } from '@/services/group/getGroupUser';
 import { User } from '@/types/apis/groupApi';
 import { postHousework } from '@/services/housework/postHousework';
-import { SelectedTime } from '@/pages/HouseWorkStepOnePage';
 import { ProfileIcon } from '@/components/common/icon';
+import { putHousework } from '@/services/housework/putHousework';
+import { formatDateToISO } from '@/utils/convertDate';
+import { convertStartTime } from '@/utils/convertStartTime';
+import useDeviceHeight from '@/hooks/useDevice';
 
 const HouseWorkStepTwoPage = () => {
   const navigate = useNavigate();
@@ -22,6 +25,8 @@ const HouseWorkStepTwoPage = () => {
   const { task, category, startDate, startTime, userId, setUserId, reset } = useAddHouseWorkStore();
   const [selectedValue, setSelectedValue] = useState(userId || null);
   const [members, setMembers] = useState<User[]>([]);
+  const customHeightClass = useDeviceHeight();
+  const [isMemberLoading, setIsMemberLoading] = useState(true);
 
   const channelId = Number(strChannelId);
 
@@ -32,11 +37,17 @@ const HouseWorkStepTwoPage = () => {
         setMembers(response.result.userList);
       } catch (error) {
         console.error('멤버 조회 실패:', error);
+      } finally {
+        setIsMemberLoading(false);
       }
     };
 
     fetchGroupMembers();
   }, []);
+
+  if (isMemberLoading) {
+    return <></>;
+  }
 
   console.log('전역:', task, category, startDate, startTime, userId);
 
@@ -48,34 +59,14 @@ const HouseWorkStepTwoPage = () => {
   const handleNextClick = async () => {
     setIsLoading(true);
 
-    const formattedDate = startDate.replace(
-      /(\d{4})년(\d{1,2})월 (\d{1,2})일/,
-      (_, year, month, day) => {
-        const formattedMonth = month.padStart(2, '0');
-        const formattedDay = day.padStart(2, '0');
-        return `${year}-${formattedMonth}-${formattedDay}`;
-      }
-    );
-
-    const convertStartTime = (time: SelectedTime | null) => {
-      if (!time) return null;
-
-      let hour = parseInt(time.hour);
-      if (time.ampm === 'PM' && hour !== 12) {
-        hour += 12;
-      } else if (time.ampm === 'AM' && hour === 12) {
-        hour = 0;
-      }
-
-      return `${hour.toString().padStart(2, '0')}:${time.minute}`;
-    };
-
+    const formattedDate = formatDateToISO(startDate);
     const newTime = convertStartTime(startTime);
 
-    try {
+    if (houseworkId) {
       if (userId) {
-        await postHousework({
+        await putHousework({
           channelId,
+          houseworkId: Number(houseworkId),
           category,
           startDate: formattedDate,
           task,
@@ -89,10 +80,31 @@ const HouseWorkStepTwoPage = () => {
             reset();
             setIsLoading(false);
           }, 1500);
-        }, 1500);
+        }, 4000);
       }
-    } catch (error) {
-      console.error('집안일 추가 실패:', error);
+    } else {
+      try {
+        if (userId) {
+          await postHousework({
+            channelId,
+            category,
+            startDate: formattedDate,
+            task,
+            startTime: newTime,
+            userId,
+          });
+
+          setTimeout(() => {
+            navigate(`/main/${channelId}`);
+            setTimeout(() => {
+              reset();
+              setIsLoading(false);
+            }, 1500);
+          }, 4000);
+        }
+      } catch (error) {
+        console.error('집안일 추가 실패:', error);
+      }
     }
   };
 
@@ -107,7 +119,7 @@ const HouseWorkStepTwoPage = () => {
 
   return (
     <>
-      <div className='flex h-screen flex-col gap-6 px-5 pb-6'>
+      <div className={`${customHeightClass} flex flex-col gap-6 px-5 pb-6`}>
         {isLoading ? (
           <>
             <HouseWorkAddLoading
@@ -139,7 +151,7 @@ const HouseWorkStepTwoPage = () => {
               )}
             </section>
             <Button
-              label='다음'
+              label='완료'
               variant='full'
               size='large'
               handleClick={handleNextClick}

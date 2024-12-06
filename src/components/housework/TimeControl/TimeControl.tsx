@@ -46,7 +46,7 @@ const TimeControl: React.FC<TimeControlProps> = ({ onTimeChange }) => {
         isAllday ? 'h-14' : 'h-auto py-4'
       )}
     >
-      <div className='flex items-center justify-between text-gray font-body'>
+      <div className='flex items-center justify-between text-black font-body'>
         {isAllday ? (
           <Label htmlFor='time-mode' className='flex items-center gap-4'>
             <ClockIcon

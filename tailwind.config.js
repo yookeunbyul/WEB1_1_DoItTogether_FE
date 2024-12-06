@@ -8,9 +8,6 @@ export default {
       fontFamily: {
         Pretendard: ['Pretendard'],
       },
-      backgroundImage: {
-        'custom-gradient': 'linear-gradient(to bottom, #1FCFBA 50%, #FFFFFF 100%)',
-      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
@@ -77,24 +74,29 @@ export default {
     },
     colors: {
       transparent: 'transparent',
-      main: '#1FCFBA',
-      sub: '#8DE8D7',
-      sub1: '#63DDCE',
-      sub2: '#D9FAF5',
-      black: '#1F2425',
-      blackAlter: '#263736',
-      white: '#FDFDFD',
-      whiteReal: '#FFFFFF',
-      gray: '#4D4F4F',
-      gray1: '#747677',
-      gray2: '#959595',
-      gray3: '#B4B4B5',
-      gray4: '#DFDDDD',
-      gray5: '#F2F8F6',
+      main: 'rgba(31, 207, 186, 1)',
+      sub: 'rgba(141, 232, 215, 1)',
+      sub1: 'rgba(99, 221, 206, 1)',
+      sub2: 'rgba(217, 250, 245, 1)',
+      black: 'rgba(19, 29, 37, 1)',
+      white: 'rgba(255, 255, 255, 1)',
+      gray1: 'rgba(37, 48, 59, 1)',
+      gray2: 'rgba(99, 111, 125, 1)',
+      gray3: 'rgba(198, 200, 208, 1)',
+      gray3_50: 'rgba(198, 200, 208, 0.5)',
+      gray3_30: 'rgba(198, 200, 208, 0.3)',
+      gray4: 'rgba(232, 233, 236, 1)',
+      gray5: 'rgba(242, 243, 246, 1)',
+      gray6: '#B5B4B4',
+
       kakao: '#FEE500',
       rank1: '#FFDD00',
       rank2: '#E7E6E6',
       rank3: '#FF9D00',
+      pink1: '#FF6898',
+      pink2: '#FF9FCA',
+      blue1: '#19B4DF',
+      blue2: '#00C9D8',
     },
     fontSize: {
       10: '0.625rem', // 삭제
@@ -108,6 +110,9 @@ export default {
     },
     maxWidth: {
       DEFAULT: '430px',
+    },
+    screens: {
+      xs: '370px',
     },
   },
   plugins: [

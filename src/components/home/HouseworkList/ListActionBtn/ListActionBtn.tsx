@@ -1,13 +1,6 @@
 import React from 'react';
-import { CheckEmptyIcon, CheckFillIcon } from '@/components/common/icon';
+import { CheckEmptyIcon, CheckFillIcon, FingerIcon, HeartIcon } from '@/components/common/icon';
 import { HOUSEWORK_STATUS } from '@/constants/homePage';
-
-/**
- * todo: 추후 기능 추가
- * - 아이콘
- * 3. 찌르기 상태
- * 4. 칭찬 상태
- */
 
 export interface ListActionBtnProps {
   /** 상태 */
@@ -21,10 +14,19 @@ export interface ListActionBtnProps {
 const ListActionBtn: React.FC<ListActionBtnProps> = ({ status, handleAction, id }) => {
   return (
     <div
-      className={`flex cursor-pointer items-center justify-center rounded-[4px] ${status === HOUSEWORK_STATUS.COMPLETE ? 'bg-main' : 'bg-sub2'}`}
+      className={`flex cursor-pointer items-center justify-center rounded-[4px]`}
       onClick={() => handleAction(id)}
     >
-      {status === HOUSEWORK_STATUS.COMPLETE ? <CheckFillIcon /> : <CheckEmptyIcon />}
+      {status === HOUSEWORK_STATUS.COMPLETE && <CheckFillIcon width={32} height={32} />}
+      {status === HOUSEWORK_STATUS.UN_COMPLETE && (
+        <CheckEmptyIcon width={32} height={32} className={'text-gray5'} />
+      )}
+      {status === HOUSEWORK_STATUS.FINGER && (
+        <FingerIcon width={32} height={32} fillColor={'fill-blue1'} />
+      )}
+      {status === HOUSEWORK_STATUS.HEART && (
+        <HeartIcon width={32} height={32} fillColor={'fill-pink1'} />
+      )}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '@/components/common/button/Button/Button';
 import OpenSheetBtn from '@/components/common/button/OpenSheetBtn/OpenSheetBtn';
 import OpenSheetBtnWithLabel from '@/components/common/button/OpenSheetBtn/OpenSheetBtnWithLabel';
@@ -9,8 +9,9 @@ import DueDateSheet from '@/components/housework/DueDateSheet/DueDateSheet';
 import TimeControl from '@/components/housework/TimeControl/TimeControl';
 import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 import { useParams } from 'react-router-dom';
-import { getHouseworkById } from '@/services/housework/getHouseworkById';
 import { DateIcon, EtcIcon } from '@/components/common/icon';
+import convertTimeToObject from '@/utils/convertTimeToObject';
+import useDeviceHeight from '@/hooks/useDevice';
 
 export interface SelectedTime {
   hour: string;
@@ -20,29 +21,47 @@ export interface SelectedTime {
 
 const HouseWorkStepOnePage = () => {
   const navigate = useNavigate();
-  const { task, startDate, startTime, setStartTime, reset } = useAddHouseWorkStore();
+  const {
+    task,
+    setCategory,
+    startDate,
+    startTime,
+    setStartTime,
+    reset,
+    setTask,
+    setStartDate,
+    setIsAllday,
+    setUserId,
+  } = useAddHouseWorkStore();
   const [isHouseWorkSheetOpen, setHouseWorkSheetOpen] = useState(false);
   const [isDueDateSheetOpen, setDueDateSheetOpen] = useState(false);
   const [time, setTime] = useState<SelectedTime | null>(startTime);
   const { channelId: strChannelId, houseworkId: strHouseworkId } = useParams();
+  const customHeightClass = useDeviceHeight();
 
   const channelId = Number(strChannelId);
   const houseworkId = Number(strHouseworkId);
 
-  useEffect(() => {
-    if (channelId && houseworkId) {
-      // todo
-      // task, category, startDate, startTime을 미리 채워넣으면 됨
-      const fetchHouseworkById = async () => {
-        try {
-          const response = await getHouseworkById({ channelId, houseworkId });
-          console.log(response);
-        } catch (error) {
-          console.error('집안일 상세 정보 조회 실패:', error);
-        }
-      };
+  const location = useLocation();
+  const targetHousework = location.state;
 
-      fetchHouseworkById();
+  console.log('가져온거', targetHousework);
+
+  useEffect(() => {
+    if (targetHousework) {
+      setTask(targetHousework.task);
+
+      const date = new Date(targetHousework.startDate);
+      const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
+
+      setStartDate(formattedDate);
+      setCategory(targetHousework.category);
+      setUserId(targetHousework.userId);
+      setIsAllday(targetHousework.isAllDay);
+      if (!targetHousework.isAllDay && targetHousework.startTime) {
+        const result = convertTimeToObject(targetHousework.startTime);
+        setStartTime(result);
+      }
     }
   }, []);
 
@@ -69,7 +88,7 @@ const HouseWorkStepOnePage = () => {
   };
 
   return (
-    <div className='flex h-screen flex-col gap-4 px-5 pb-6'>
+    <div className={`${customHeightClass} flex flex-col gap-4 px-5 pb-6`}>
       <HeaderWithTitle title={`새로운 집안일을\n추가해보세요`} handleClick={handleBackClick} />
       <section className='flex flex-1 flex-col gap-4' aria-label='집안일 추가 컨텐츠'>
         {task ? (
@@ -83,7 +102,7 @@ const HouseWorkStepOnePage = () => {
             text='어떤 집안일인가요?'
             handleClick={handleHouseWorkClick}
             type='housework'
-            icon={<EtcIcon fillOneClass='fill-gray1' fillTwoClass='fill-gray3' />}
+            icon={<EtcIcon fillOneClass='fill-gray2' fillTwoClass='fill-gray3' />}
           />
         )}
         {startDate ? (
