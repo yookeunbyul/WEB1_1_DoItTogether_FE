@@ -1,8 +1,7 @@
 {
-  "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }],
   "rewrites": [
     {
-      "source": "/api/*",
+      "source": "/doto/:path",
       "destination": "http://121.88.130.215/*"
     }
   ]
