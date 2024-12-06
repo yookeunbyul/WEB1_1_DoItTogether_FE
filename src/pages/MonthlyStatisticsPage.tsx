@@ -2,7 +2,7 @@ import { ChartIcon, CheckFillIcon } from '@/components/common/icon';
 import Completion from '@/components/statistics/monthly/Completion/Completion';
 import MonthlyGoodBad from '@/components/statistics/monthly/MonthlyGoodBad/MonthlyGoodBad';
 import MonthlyGrass from '@/components/statistics/monthly/MonthlyGrass/MonthlyGrass';
-import { getMonthlyMVP } from '@/services/statistics/GetMonthlyMVP';
+import { getMonthlyMVP } from '@/services/statistics/getMonthlyMVP';
 import { CompletionStatus, MonthlyDateScore } from '@/types/apis/statisticsApi';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';

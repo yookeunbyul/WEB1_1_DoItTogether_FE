@@ -1,7 +1,7 @@
 import Calendar from 'react-calendar';
 import { ArrowLeftIcon, ArrowRightIcon } from '@/components/common/icon';
 import { useEffect, useState } from 'react';
-import { getMonthlyScore } from '@/services/statistics/GetMonthlyScore';
+import { getMonthlyScore } from '@/services/statistics/getMonthlyScore';
 import { CompletionStatus, MonthlyDateScore } from '@/types/apis/statisticsApi';
 import { useParams } from 'react-router-dom';
 
