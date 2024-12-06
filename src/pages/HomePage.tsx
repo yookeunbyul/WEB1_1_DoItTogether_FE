@@ -133,7 +133,7 @@ const HomePage: React.FC = () => {
   const handleEdit = (houseworkId: number) => {
     const targetHousework = houseworks?.find(housework => housework.houseworkId === houseworkId);
     if (targetHousework?.status === HOUSEWORK_STATUS.COMPLETE) {
-      toast({ title: '완료한 집안일은 수정할 수 없어요!' });
+      toast({ title: '완료한 집안일은 수정할 수 없어요' });
     } else {
       navigate(`/add-housework/edit/${channelId}/${houseworkId}/step1`);
     }
