@@ -21,6 +21,7 @@ const WeeklyDate = () => {
     setWeekText(getWeekText(today));
     fetchCurrWeek(getFormattedDate(today));
     setActiveWeek(today);
+    setActiveDate(getFormattedDate(today));
   }, [channelId]);
 
   useEffect(() => {
