@@ -20,6 +20,9 @@ import { HOUSEWORK_STATUS } from '@/constants/homePage';
 import NoListIcon from '@/components/common/icon/NoListIcon';
 import { postCompliment } from '@/services/noticeManage/postCompliment';
 import { postPoke } from '@/services/noticeManage/postPoke';
+import getFormattedDate from '@/utils/getFormattedDate';
+import { getWeeklyIncomplete } from '@/services/housework/getWeeklyIncomplete';
+import { IncompleteScoreResponse } from '@/types/apis/houseworkApi';
 
 const HomePage: React.FC = () => {
   const {
@@ -27,11 +30,13 @@ const HomePage: React.FC = () => {
     setCurrentGroup,
     setGroups,
     activeDate,
+    setActiveDate,
     homePageNumber,
     activeTab,
     setActiveTab,
     myInfo,
     setMyInfo,
+    setCurrWeek,
   } = useHomePageStore();
   const { channelId } = useParams();
   const [chargers, setChargers] = useState<{ name: string }[]>([{ name: '전체' }]);
@@ -59,6 +64,7 @@ const HomePage: React.FC = () => {
     };
 
     setWeekText(getWeekText(new Date()));
+    setActiveDate(getFormattedDate(new Date()));
     fetchMyGroups();
     fetchMyInfo();
   }, []);
@@ -68,7 +74,6 @@ const HomePage: React.FC = () => {
       if (!channelId) return;
       const newChannelId = Number(channelId);
       const getGroupUsersResult = await getGroupUser({ channelId: newChannelId });
-      console.log(getGroupUsersResult);
       const newChargers = [
         { name: '전체' },
         ...Array.from(new Set(getGroupUsersResult.result.userList.map(user => user.nickName))).map(
@@ -111,6 +116,25 @@ const HomePage: React.FC = () => {
         houseworkId,
       });
       refetch();
+      const currWeekResult = await getWeeklyIncomplete({
+        channelId: newChannelId,
+        targetDate: activeDate,
+      });
+      const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+      const newWeekDates = (weekData: IncompleteScoreResponse[]) => {
+        return weekData.map(data => {
+          const date = new Date(data.date);
+          const weekdayIndex = date.getDay();
+          const day = weekdays[weekdayIndex];
+
+          return {
+            ...data,
+            day,
+          };
+        });
+      };
+
+      setCurrWeek(newWeekDates(currWeekResult.result.incompleteScoreResponses));
     } else {
       if (targetHousework?.status === HOUSEWORK_STATUS.COMPLETE) {
         await postCompliment({
@@ -145,8 +169,6 @@ const HomePage: React.FC = () => {
     toast({ title: '집안일이 삭제되었습니다' });
     refetch();
   };
-
-  console.log(houseworks);
 
   return (
     <div>

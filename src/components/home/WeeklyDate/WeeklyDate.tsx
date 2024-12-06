@@ -9,16 +9,11 @@ import { getWeeklyIncomplete } from '@/services/housework/getWeeklyIncomplete';
 import { useParams } from 'react-router-dom';
 import getFormattedDate from '@/utils/getFormattedDate';
 
-interface WeeklyDates extends IncompleteScoreResponse {
-  day: string;
-}
-
 const WeeklyDate = () => {
   const [activeWeek, setActiveWeek] = useState(new Date());
-  const [currWeek, setCurrWeek] = useState<WeeklyDates[]>([]);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-  const { setWeekText, activeDate, setActiveDate } = useHomePageStore();
+  const { setWeekText, activeDate, setActiveDate, currWeek, setCurrWeek } = useHomePageStore();
   const { channelId } = useParams();
 
   useEffect(() => {
@@ -26,6 +21,7 @@ const WeeklyDate = () => {
     setWeekText(getWeekText(today));
     fetchCurrWeek(getFormattedDate(today));
     setActiveWeek(today);
+    setActiveDate(getFormattedDate(today));
   }, [channelId]);
 
   useEffect(() => {
