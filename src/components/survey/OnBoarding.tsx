@@ -100,7 +100,7 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
 
   const isStepVaild = () => {
     if (step === 5) return true; //결과는 항상 활성화
-    return answer[step] !== ''; //빈값이 아니면 true
+    return answer.length >= step;
   };
 
   useEffect(() => {
