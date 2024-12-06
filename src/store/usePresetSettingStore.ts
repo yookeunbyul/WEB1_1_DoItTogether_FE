@@ -48,7 +48,7 @@ interface PresetState {
 const usePresetSettingStore = create<PresetState>(set => ({
   categoryList: [],
   setCategoryList: categoryList => set({ categoryList }),
-  activeTab: PresetTabName.USER_DATA,
+  activeTab: PresetTabName.PRESET_DATA,
   // TODO 공통 Tab컴포넌트 Props 타입을 맞추기위함으로 불필요하다면 Tab컴포넌트 Props 변경필요
   setActiveTab: activeTab =>
     set(state => ({

@@ -61,46 +61,50 @@ const PresetTab: React.FC<PresetTabProps> = ({
           />
         ))}
       </TabsList>
-      {allPresetData.items.length ? (
-        <TabsContent
-          key={allPresetData.category}
-          value={allPresetData.category}
-          className={`${isBottomSheet ? 'h-[250px]' : 'h-auto'} overflow-y-auto no-scrollbar`}
-        >
-          {allPresetData.items.map(item => (
-            <div key={item.presetItemId}>
-              <PresetItem
-                category={item.category}
-                housework={item.name}
-                handleSelectClick={() =>
-                  handleClick && handleClick(item.presetItemId, item.name, item.category)
-                }
-                isBottomSheet={isBottomSheet}
-                isPresetSettingCustom={isPresetSettingCustom}
-                isShowDeleteBtn={deleteButtonStates[item.presetItemId]} //각 아이템의 boolean값이 들어간다.
-                handleDeleteClick={
-                  handleDeleteClick &&
-                  (() => handleDeleteClick(item.presetCategoryId, item.presetItemId))
-                }
-                isSelected={selectedItem === item.presetItemId}
-              />
+      <TabsContent
+        key={allPresetData.category}
+        value={allPresetData.category}
+        className={`${isBottomSheet ? 'h-[250px]' : 'h-auto'} overflow-y-auto no-scrollbar`}
+      >
+        {allPresetData.items.length ? (
+          <>
+            {allPresetData.items.map(item => (
+              <div key={item.presetItemId}>
+                <PresetItem
+                  category={item.category}
+                  housework={item.name}
+                  handleSelectClick={() =>
+                    handleClick && handleClick(item.presetItemId, item.name, item.category)
+                  }
+                  isBottomSheet={isBottomSheet}
+                  isPresetSettingCustom={isPresetSettingCustom}
+                  isShowDeleteBtn={deleteButtonStates[item.presetItemId]} //각 아이템의 boolean값이 들어간다.
+                  handleDeleteClick={
+                    handleDeleteClick &&
+                    (() => handleDeleteClick(item.presetCategoryId, item.presetItemId))
+                  }
+                  isSelected={selectedItem === item.presetItemId}
+                />
+              </div>
+            ))}
+          </>
+        ) : (
+          <div
+            className={`${isBottomSheet ? 'h-[calc(100vh-510px)]' : 'h-[calc(100vh-320px)]'} flex items-center justify-center`}
+          >
+            <div className='flex flex-col items-center whitespace-pre-line'>
+              <NoHouseWorkIcon />
+              <p className='text-center text-gray3 font-subhead'>{`현재 집안일 목록이 없어요\n 새로운 목록을 만들어보세요`}</p>
             </div>
-          ))}
-        </TabsContent>
-      ) : (
-        <div className='flex h-[calc(100vh-320px)] items-center justify-center'>
-          <div className='flex flex-col items-center whitespace-pre-line'>
-            <NoHouseWorkIcon />
-            <p className='text-center text-gray3 font-subhead'>{`현재 집안일 목록이 없어요\n 새로운 목록을 만들어보세요`}</p>
           </div>
-        </div>
-      )}
+        )}
+      </TabsContent>
 
       {presetData.map(categoryList => (
         <TabsContent
           key={categoryList.presetCategoryId}
           value={categoryList.category}
-          className={`${isBottomSheet ? 'h-[250px]' : 'h-auto'} overflow-y-auto no-scrollbar`}
+          className={`${isBottomSheet ? 'h-[250px]' : 'h-[calc(100vh-320px)]'} overflow-y-auto no-scrollbar`}
         >
           {categoryList.presetItemList.length ? (
             categoryList.presetItemList.map(item => (
@@ -123,7 +127,9 @@ const PresetTab: React.FC<PresetTabProps> = ({
               </div>
             ))
           ) : (
-            <div className='flex h-[calc(100vh-320px)] items-center justify-center'>
+            <div
+              className={`${isBottomSheet ? 'h-[calc(100vh-510px)]' : 'h-[calc(100vh-320px)]'} flex items-center justify-center`}
+            >
               <div className='flex flex-col items-center whitespace-pre-line'>
                 <NoHouseWorkIcon />
                 <p className='text-center text-gray3 font-subhead'>{`현재 집안일 목록이 없어요\n 새로운 목록을 만들어보세요`}</p>
