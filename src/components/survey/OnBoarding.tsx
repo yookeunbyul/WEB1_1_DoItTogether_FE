@@ -14,7 +14,6 @@ import {
   DUMMY_QUESTION_STEP2,
   DUMMY_QUESTION_STEP3,
   DUMMY_QUESTION_STEP4,
-  DUMMY_RESULT,
 } from '@/constants/onBoarding';
 import { motion } from 'framer-motion';
 import { postPersonalKeyword } from '@/services/onboarding/postPersonalKeyword';
@@ -64,8 +63,7 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
           surveyResultText: answer,
         });
 
-        console.log(response);
-        setResult(DUMMY_RESULT); //만약 result가 return되면 여기에 set
+        setResult(response.result.keywords); //만약 result가 return되면 여기에 set
 
         setIsCompleted(true); //분석이 완료되었습니다.
         await new Promise(resolve => setTimeout(resolve, 1000)); //1초동안 분석되었습니다.가 뜸..
@@ -107,7 +105,6 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
 
   useEffect(() => {
     if (step === 0) navigate('/survey-intro');
-    console.log(answer);
   }, [step]);
 
   return (
