@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/doto/:path",
-      "destination": "http://3.39.64.195/*"
+      "source": "/doto/:path*",
+      "destination": "http://3.39.64.195/:path*"
     }
   ]
 }
