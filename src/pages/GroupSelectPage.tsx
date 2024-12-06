@@ -7,10 +7,12 @@ import useHomePageStore from '@/store/useHomePageStore';
 import { getMyGroup } from '@/services/group/getMyGroup';
 import { Group } from '@/types/apis/groupApi';
 import { NoGroupIcon } from '@/components/common/icon';
+import useDeviceHeight from '@/hooks/useDevice';
 
 const GroupSelectPage = () => {
   const navigate = useNavigate();
   const { setCurrentGroup, groups, setGroups, setActiveTab } = useHomePageStore();
+  const customHeightClass = useDeviceHeight();
 
   useEffect(() => {
     const fetchMyGroup = async () => {
@@ -34,7 +36,7 @@ const GroupSelectPage = () => {
   };
 
   return (
-    <div className='flex min-h-screen flex-col'>
+    <div className={`flex flex-col ${customHeightClass}`}>
       <GroupSelectTitle />
       <div className='flex flex-1 flex-col px-5 py-4'>
         {groups.length > 0 ? (

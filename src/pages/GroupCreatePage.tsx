@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postCreateGroup } from '@/services/group/postCreateGroup';
 import { postCreateInviteLink } from '@/services/group/postCreateInviteLink';
+import useDeviceHeight from '@/hooks/useDevice';
 
 type StepType = 'roomName' | 'invite';
 
@@ -20,6 +21,7 @@ const GroupCreatePage = () => {
   const [roomName, setRoomName] = useState('');
   const [inviteLink, setInviteLink] = useState('');
   const [channelId, setChannelId] = useState(-1);
+  const customHeightClass = useDeviceHeight();
 
   const handleNext = async () => {
     if (roomName.trim()) {
@@ -40,7 +42,7 @@ const GroupCreatePage = () => {
   };
 
   return (
-    <div className='flex h-screen flex-col'>
+    <div className={`${customHeightClass} flex flex-col`}>
       <Header title='방만들기' isNeededDoneBtn={false} handleBack={handleBack} />
       <div className='flex-1'>
         {step === 'roomName' && (
