@@ -8,9 +8,6 @@ export default {
       fontFamily: {
         Pretendard: ['Pretendard'],
       },
-      backgroundImage: {
-        'custom-gradient': 'linear-gradient(to bottom, #1FCFBA 50%, #FFFFFF 100%)',
-      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
