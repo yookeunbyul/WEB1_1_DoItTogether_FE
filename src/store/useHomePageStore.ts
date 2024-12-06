@@ -2,6 +2,11 @@ import { create } from 'zustand';
 import { Group } from '@/types/apis/groupApi';
 import getFormattedDate from '@/utils/getFormattedDate';
 import { UserBase } from '@/types/apis/userApi';
+import { IncompleteScoreResponse } from '@/types/apis/houseworkApi';
+
+interface WeeklyDates extends IncompleteScoreResponse {
+  day: string;
+}
 
 interface HomePageState {
   currentGroup: Group;
@@ -27,6 +32,9 @@ interface HomePageState {
 
   myInfo: UserBase | null;
   setMyInfo: (newMyInfo: UserBase) => void;
+
+  currWeek: WeeklyDates[];
+  setCurrWeek: (newWeek: WeeklyDates[]) => void;
 }
 
 const useHomePageStore = create<HomePageState>(set => ({
@@ -53,6 +61,9 @@ const useHomePageStore = create<HomePageState>(set => ({
 
   myInfo: null,
   setMyInfo: newMyInfo => set({ myInfo: newMyInfo }),
+
+  currWeek: [],
+  setCurrWeek: newWeek => set({ currWeek: newWeek }),
 }));
 
 export default useHomePageStore;
