@@ -29,8 +29,6 @@ const MyPage = () => {
     fetchMyInfo();
   }, []);
 
-  console.log(myInfo);
-
   return (
     <div>
       <Header title='마이페이지' isNeededDoneBtn={false} isNeededSettingBtn={true} />
