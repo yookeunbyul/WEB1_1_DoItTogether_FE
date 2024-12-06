@@ -1,7 +1,7 @@
 import PresetItem from '@/components/common/preset/PresetItem';
 import PresetTabItem from '@/components/common/tab/PresetTab/PresetTabItem';
 import { Tabs, TabsContent, TabsList } from '@/components/common/ui/tabs';
-import { Category as PresetCategory } from '@/constants/category';
+import { Category as PresetCategory } from '@/constants';
 import { NoHouseWorkIcon } from '@/components/common/icon';
 
 interface PresetItem {
