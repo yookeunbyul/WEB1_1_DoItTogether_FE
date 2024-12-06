@@ -1,6 +1,7 @@
 import TextTag from '@/components/common/tag/TextTag/TextTag';
 import { User } from '@/types/apis/groupApi';
 import useDeviceHeight from '@/hooks/useDevice';
+import LottieIcon from '@/components/common/lottie/LottieIcon';
 
 interface HouseWorkAddLoadingProps {
   date: string;
@@ -40,7 +41,9 @@ const HouseWorkAddLoading: React.FC<HouseWorkAddLoadingProps> = ({
         />
         <p className='text-main font-head'>님이 담당하도록 추가했어요!</p>
       </div>
-      <div className='flex h-40 items-center justify-center'>애니메이션 영역</div>
+      <div className='flex h-40 items-center justify-center'>
+        <LottieIcon />
+      </div>
     </div>
   );
 };
