@@ -25,6 +25,8 @@ export interface GetWeeklyTotalCountReq extends Pick<Common, 'channelId'> {
 }
 export interface GetWeeklyTotalCountRes extends BaseRes {
   result: {
+    /** 그룹명*/
+    channelName: string;
     /** 완료 개수 */
     completeCount: number;
     /** 미완료 개수 */
