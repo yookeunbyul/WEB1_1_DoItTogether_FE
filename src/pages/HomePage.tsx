@@ -113,17 +113,30 @@ const HomePage: React.FC = () => {
       refetch();
     } else {
       if (targetHousework?.status === HOUSEWORK_STATUS.COMPLETE) {
-        await postCompliment({ channelId: newChannelId, targetUserId: targetHousework.userId });
+        await postCompliment({
+          channelId: newChannelId,
+          targetUserId: targetHousework.userId,
+          reactDate: targetHousework.startDate,
+        });
         toast({ title: `${targetHousework.assignee}님을 칭찬했어요` });
       } else {
-        await postPoke({ channelId: newChannelId, targetUserId: targetHousework?.userId! });
+        await postPoke({
+          channelId: newChannelId,
+          targetUserId: targetHousework?.userId!,
+          reactDate: targetHousework?.startDate!,
+        });
         toast({ title: `${targetHousework?.assignee}님을 찔렀어요` });
       }
     }
   };
 
   const handleEdit = (houseworkId: number) => {
-    navigate(`/add-housework/edit/${channelId}/${houseworkId}/step1`);
+    const targetHousework = houseworks?.find(housework => housework.houseworkId === houseworkId);
+    if (targetHousework?.status === HOUSEWORK_STATUS.COMPLETE) {
+      toast({ title: '완료한 집안일은 수정할 수 없어요' });
+    } else {
+      navigate(`/add-housework/edit/${channelId}/${houseworkId}/step1`);
+    }
   };
 
   const handleDelete = async (houseworkId: number) => {
