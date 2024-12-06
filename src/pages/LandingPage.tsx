@@ -1,4 +1,5 @@
 import Button from '@/components/common/button/Button/Button';
+import { getMyInitState } from '@/services/user/getMyInitState';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,11 +15,20 @@ const LandingPage = () => {
   };
 
   useEffect(() => {
-    const accessToken = new URLSearchParams(location.search).get('access_token');
-    if (accessToken) {
-      localStorage.setItem('access_token', accessToken);
-      navigate('/register');
-    }
+    const checkInitialState = async () => {
+      const accessToken = new URLSearchParams(location.search).get('access_token');
+      if (accessToken) {
+        localStorage.setItem('access_token', accessToken);
+        try {
+          const initState = await getMyInitState();
+          initState.result ? navigate('/group-select') : navigate('/register');
+        } catch (error) {
+          console.error('초기 상태 확인 실패:', error);
+        }
+      }
+    };
+
+    checkInitialState();
   }, []);
 
   return (
