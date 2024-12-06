@@ -1,10 +1,13 @@
 import Button from '@/components/common/button/Button/Button';
 import Broomstick from '@/components/common/icon/Broomstick';
+import { useNavigate } from 'react-router-dom';
 
 const SurveyAgainBtn = () => {
+  const navigate = useNavigate();
   const handleClick = () => {
-    //survey로 이동
+    navigate('/survey-intro');
   };
+
   return (
     <div className='relative overflow-hidden px-5'>
       <Button
