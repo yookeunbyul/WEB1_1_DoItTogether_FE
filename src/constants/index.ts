@@ -1,6 +1,6 @@
-export { Category } from './category';
-export { PresetTabName } from './tabName';
-export { PresetDefault } from './PresetDefault';
+export { Category } from './category_temp';
+export { PresetTabName } from './tabName_temp';
+export { PresetDefault } from './presetDefault_temp';
 export {
   DUMMY_QUESTION_STEP1,
   DUMMY_QUESTION_STEP2,
