@@ -65,6 +65,7 @@ const usePresetSetting = () => {
       });
       // 업데이트된 아이템 리스트 조회
       await getPresetData();
+      setCateActiveTab(Category.ALL);
     } catch (error) {
       console.error('프리셋 아이템 추가 오류: ', error);
     }
