@@ -3,7 +3,10 @@ import { ArrowLeftIcon, ArrowRightIcon } from '@/components/common/icon';
 import { useEffect, useState } from 'react';
 import { getMonthlyScore } from '@/services/statistics/getMonthlyScore';
 import { CompletionStatus, MonthlyDateScore } from '@/types/apis/statisticsApi';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import useHomePageStore from './../../../../store/useHomePageStore';
+import getFormattedDate from '@/utils/getFormattedDate';
+import getWeekText from '@/utils/getWeekText';
 
 interface MonthlyGrassProps {
   onMonthChange: (monthKey: string) => void;
@@ -12,21 +15,22 @@ interface MonthlyGrassProps {
 
 const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ onMonthChange, onDataChange }) => {
   const today = new Date();
-  const firstDayCurrentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-  const lastDayPreviousMonth = new Date(firstDayCurrentMonth.getTime() - 1);
+  const navigate = useNavigate();
+  const lastDayCurrentMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
 
-  const [currentDate, setCurrentDate] = useState(lastDayPreviousMonth);
-  const maxDate = lastDayPreviousMonth;
+  const [currentDate, setCurrentDate] = useState(lastDayCurrentMonth);
+  const maxDate = lastDayCurrentMonth;
   const [monthlyData, setMonthlyData] = useState<MonthlyDateScore[]>([]);
 
   const { channelId: strChannelId } = useParams();
+  const { setActiveDate, setActiveTab, setActiveWeek, setWeekText } = useHomePageStore();
   const channelId = Number(strChannelId);
 
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const year = lastDayPreviousMonth.getFullYear();
-        const month = String(lastDayPreviousMonth.getMonth() + 1).padStart(2, '0');
+        const year = lastDayCurrentMonth.getFullYear();
+        const month = String(lastDayCurrentMonth.getMonth() + 1).padStart(2, '0');
         const monthKey = `${year}-${month}`;
 
         const response = await getMonthlyScore({
@@ -84,16 +88,25 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ onMonthChange, onDataChange
     }
   };
 
+  const handleClickDay = (value: Date) => {
+    setActiveDate(getFormattedDate(value));
+    setActiveWeek(value);
+    setActiveTab('전체');
+    setWeekText(getWeekText(value));
+    navigate(`/main/${channelId}`);
+  };
+
   return (
     <Calendar
-      defaultActiveStartDate={lastDayPreviousMonth}
-      maxDate={lastDayPreviousMonth}
+      defaultActiveStartDate={lastDayCurrentMonth}
+      maxDate={lastDayCurrentMonth}
       tileClassName={getTileClassName}
       calendarType='gregory'
       view='month'
       locale='ko'
       minDetail='month'
       maxDetail='month'
+      onClickDay={handleClickDay}
       onActiveStartDateChange={props => {
         if (props.activeStartDate) {
           setCurrentDate(props.activeStartDate);

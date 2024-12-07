@@ -15,6 +15,7 @@ const MyPage = () => {
     socialId: '',
     profileImageUrl: '',
   });
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchMyInfo = async () => {
@@ -23,12 +24,17 @@ const MyPage = () => {
         setMyInfo(response.result);
       } catch (error) {
         console.error('내 정보 조회 실패:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchMyInfo();
   }, []);
 
+  if (isLoading) {
+    return <></>;
+  }
   return (
     <div>
       <Header title='마이페이지' isNeededDoneBtn={false} isNeededSettingBtn={true} />

@@ -4,7 +4,6 @@ import WeeklyDateAndTab from '@/components/home/WeeklyDateAndTab';
 import HouseworkList from '@/components/home/HouseworkList/HouseworkList';
 import GroupSelectSheet from '@/components/home/GroupSelectSheet/GroupSelectSheet';
 import useHomePageStore from '@/store/useHomePageStore';
-import getWeekText from '@/utils/getWeekText';
 import { useParams } from 'react-router-dom';
 import { getMyGroup } from '@/services/group/getMyGroup';
 import { getGroupUser } from '@/services/group/getGroupUser';
@@ -20,23 +19,22 @@ import { HOUSEWORK_STATUS } from '@/constants/homePage';
 import NoListIcon from '@/components/common/icon/NoListIcon';
 import { postCompliment } from '@/services/noticeManage/postCompliment';
 import { postPoke } from '@/services/noticeManage/postPoke';
-import getFormattedDate from '@/utils/getFormattedDate';
 import { getWeeklyIncomplete } from '@/services/housework/getWeeklyIncomplete';
 import { IncompleteScoreResponse } from '@/types/apis/houseworkApi';
 
 const HomePage: React.FC = () => {
   const {
-    setWeekText,
     setCurrentGroup,
     setGroups,
     activeDate,
-    setActiveDate,
     homePageNumber,
     activeTab,
     setActiveTab,
     myInfo,
     setMyInfo,
     setCurrWeek,
+    weekText,
+    setWeekText,
   } = useHomePageStore();
   const { channelId } = useParams();
   const [chargers, setChargers] = useState<{ name: string }[]>([{ name: '전체' }]);
@@ -63,8 +61,7 @@ const HomePage: React.FC = () => {
       setMyInfo(myInfoResult.result);
     };
 
-    setWeekText(getWeekText(new Date()));
-    setActiveDate(getFormattedDate(new Date()));
+    setWeekText(weekText);
     fetchMyGroups();
     fetchMyInfo();
   }, []);

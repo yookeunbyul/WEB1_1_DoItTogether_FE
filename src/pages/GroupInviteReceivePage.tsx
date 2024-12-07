@@ -4,12 +4,10 @@ import InputBox from '@/components/common/input/InputBox';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postJoinGroup } from '@/services/group/postJoinGroup';
-import useDeviceHeight from '@/hooks/useDevice';
 
 const GroupInviteReceivePage = () => {
   const [inviteLink, setInviteLink] = useState('');
   const navigate = useNavigate();
-  const customHeightClass = useDeviceHeight();
 
   const handleBack = () => {
     navigate('/group-select');
@@ -20,12 +18,12 @@ const GroupInviteReceivePage = () => {
       const joinResult = await postJoinGroup({ inviteLink });
       navigate(`/main/${joinResult.result.channelId}`);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
   return (
-    <div className={`${customHeightClass} flex flex-col`}>
+    <div className={`flex h-screen flex-col`}>
       <Header title='초대받기' isNeededDoneBtn={false} handleBack={handleBack} />
       <div className='flex-1 p-5'>
         <InputBox
