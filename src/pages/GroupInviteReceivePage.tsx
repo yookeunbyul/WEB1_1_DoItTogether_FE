@@ -18,7 +18,7 @@ const GroupInviteReceivePage = () => {
       const joinResult = await postJoinGroup({ inviteLink });
       navigate(`/main/${joinResult.result.channelId}`);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
