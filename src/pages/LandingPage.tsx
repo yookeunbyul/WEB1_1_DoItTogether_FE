@@ -44,7 +44,8 @@ const LandingPage = () => {
     <div className={`${customHeightClass} mx-auto flex flex-col gap-10 px-5 text-center`}>
       <div className='flex flex-1 flex-col gap-10'>
         <section aria-label='서비스 이름'>
-          <div className='flex items-center justify-center pt-20 text-24 font-bold'>
+          <div className='flex flex-col items-center justify-center gap-6 pt-20 text-24 font-bold'>
+            <p className='flex justify-center text-sub font-label'>함께라서 더 즐거운 집안일</p>
             <LogoIcon />
           </div>
         </section>

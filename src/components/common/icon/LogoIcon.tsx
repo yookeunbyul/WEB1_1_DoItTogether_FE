@@ -5,7 +5,7 @@ interface LogoIconProps {
   height?: string | number;
 }
 
-const LogoIcon: React.FC<LogoIconProps> = ({ width = 250, height = 80 }) => {
+const LogoIcon: React.FC<LogoIconProps> = ({ width = 200, height = 60 }) => {
   return (
     <svg
       width={width}
