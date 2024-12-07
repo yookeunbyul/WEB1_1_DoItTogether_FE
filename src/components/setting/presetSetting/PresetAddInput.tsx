@@ -35,6 +35,13 @@ const PresetAddInput: React.FC<PresetAddInputProps> = ({ categoryList, handleAdd
     setActiveInputCateId(cateId);
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (value.length <= INPUT_VALIDATION.preset.maxLength) {
+      setInputVal(value);
+    }
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && inputVal.trim()) {
       handleAddInput(inputVal, activeInputCateId);
@@ -42,10 +49,10 @@ const PresetAddInput: React.FC<PresetAddInputProps> = ({ categoryList, handleAdd
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    if (value.length <= INPUT_VALIDATION.preset.maxLength) {
-      setInputVal(value);
+  const handleIconClick = () => {
+    if (inputVal.trim()) {
+      handleAddInput(inputVal, activeInputCateId);
+      setInputVal('');
     }
   };
 
@@ -58,15 +65,17 @@ const PresetAddInput: React.FC<PresetAddInputProps> = ({ categoryList, handleAdd
       />
       <div className='relative text-gray1'>
         <input
-          className='border-gray3_30 h-12 w-full rounded-lg border-[1px] px-2 py-4 pr-10 transition-colors font-label focus:border-main focus:outline-none'
+          className='h-12 w-full rounded-lg border-[1px] border-gray3_30 px-2 py-4 pr-10 transition-colors font-label focus:border-main focus:outline-none'
           placeholder='집안일을 입력해주세요 (최대 13글자)'
           value={inputVal}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
         />
-        <EnterIcon
-          className={`${inputVal ? 'text-sub' : 'text-gray4'} absolute right-2 top-1/2 -translate-y-1/2`}
-        />
+        <div onClick={handleIconClick}>
+          <EnterIcon
+            className={`${inputVal ? 'text-sub' : 'text-gray4'} absolute right-2 top-1/2 -translate-y-1/2`}
+          />
+        </div>
       </div>
     </div>
   );
