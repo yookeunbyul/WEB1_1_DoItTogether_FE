@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { getMonthlyScore } from '@/services/statistics/getMonthlyScore';
 import { CompletionStatus, MonthlyDateScore } from '@/types/apis/statisticsApi';
 import { useNavigate, useParams } from 'react-router-dom';
+import useHomePageStore from './../../../../store/useHomePageStore';
+import getFormattedDate from '@/utils/getFormattedDate';
 
 interface MonthlyGrassProps {
   onMonthChange: (monthKey: string) => void;
@@ -20,6 +22,7 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ onMonthChange, onDataChange
   const [monthlyData, setMonthlyData] = useState<MonthlyDateScore[]>([]);
 
   const { channelId: strChannelId } = useParams();
+  const { setActiveDate, setActiveTab } = useHomePageStore();
   const channelId = Number(strChannelId);
 
   useEffect(() => {
@@ -85,15 +88,9 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ onMonthChange, onDataChange
   };
 
   const handleClickDay = (value: Date) => {
-    const year = value.getFullYear();
-    const month = String(value.getMonth() + 1).padStart(2, '0');
-    const day = String(value.getDate()).padStart(2, '0');
-    const dateString = `${year}-${month}-${day}`;
-    navigate('/main', {
-      state: {
-        selectedDate: dateString,
-      },
-    });
+    setActiveDate(getFormattedDate(value));
+    setActiveTab('전체');
+    navigate(`/main/${channelId}`);
   };
 
   return (
