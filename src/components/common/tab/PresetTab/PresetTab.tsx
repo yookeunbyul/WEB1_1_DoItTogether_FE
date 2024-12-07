@@ -94,7 +94,7 @@ const PresetTab: React.FC<PresetTabProps> = ({
           </>
         ) : (
           <div
-            className={`${isBottomSheet ? 'h-[calc(100vh-510px)]' : 'h-[calc(100vh-320px)]'} flex items-center justify-center`}
+            className={`${isBottomSheet ? 'h-[calc(100vh-400px)]' : 'h-[calc(100vh-320px)]'} flex items-center justify-center`}
           >
             <div className='flex flex-col items-center whitespace-pre-line'>
               <NoHouseWorkIcon />
@@ -132,7 +132,7 @@ const PresetTab: React.FC<PresetTabProps> = ({
             ))
           ) : (
             <div
-              className={`${isBottomSheet ? 'h-[calc(100vh-510px)]' : 'h-[calc(100vh-320px)]'} flex items-center justify-center`}
+              className={`${isBottomSheet ? 'h-[calc(100vh-400px)]' : 'h-[calc(100vh-320px)]'} flex items-center justify-center`}
             >
               <div className='flex flex-col items-center whitespace-pre-line'>
                 <NoHouseWorkIcon />
