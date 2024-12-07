@@ -9,10 +9,9 @@ const SurveyAgainBtn = () => {
   };
 
   return (
-    <div className='relative overflow-hidden px-5'>
+    <div className='relative cursor-pointer overflow-hidden px-5' onClick={handleClick}>
       <Button
         variant='full'
-        handleClick={handleClick}
         size='large'
         className={'h-28 justify-between px-4'}
         label={'내 성향 다시 분석하기'}
