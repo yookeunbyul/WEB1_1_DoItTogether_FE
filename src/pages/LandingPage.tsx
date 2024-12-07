@@ -35,15 +35,17 @@ const LandingPage = () => {
 
   return (
     <div className={`mx-auto flex h-screen flex-col gap-10 px-5 text-center`}>
-      <div className='flex flex-1 flex-col gap-10'>
+      <div className='flex flex-1 flex-col'>
         <section aria-label='서비스 이름'>
           <div className='flex flex-col items-center justify-center gap-6 pt-20 text-24 font-bold'>
             <p className='flex justify-center text-sub font-label'>함께라서 더 즐거운 집안일</p>
             <LogoIcon />
           </div>
         </section>
-        <section aria-label='서비스 로고' className='flex flex-1 items-center justify-center'>
-          <LottieIcon />
+        <section aria-label='서비스 로고' className='relative flex-1'>
+          <div className='absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2'>
+            <LottieIcon />
+          </div>
         </section>
       </div>
       <section aria-label='카카오 로그인 버튼' className='sticky bottom-6'>
