@@ -6,16 +6,14 @@ import { PresetTabName } from '@/constants';
 import { convertTabNameToChargers } from '@/utils/convertUtils';
 import usePresetSetting from '@/hooks/usePresetSetting';
 import usePresetSettingStore from '@/store/usePresetSettingStore';
-import useDeviceHeight from '@/hooks/useDevice';
 
 const PresetSettingPage = () => {
   const { categoryList, activeTab, setActiveTab, deleteButtonStates, presetData } =
     usePresetSettingStore();
   const { handleAddInput, handleSelectClick, handleDeleteClick, handleBack } = usePresetSetting();
-  const customHeightClass = useDeviceHeight();
 
   return (
-    <div className={`${customHeightClass} flex flex-col`}>
+    <div className={`flex h-screen flex-col`}>
       <div className='sticky top-0 z-10 bg-[#fff]'>
         <Header title='프리셋 관리' isNeededDoneBtn={false} handleBack={handleBack} />
         <Tab
@@ -26,7 +24,7 @@ const PresetSettingPage = () => {
       </div>
       {activeTab === PresetTabName.USER_DATA ? (
         <>
-          <div className='flex-1 mt-5'>
+          <div className='mt-5 flex-1'>
             <PresetTab
               presetData={presetData}
               isPresetSettingCustom={true}
@@ -40,7 +38,7 @@ const PresetSettingPage = () => {
           </div>
         </>
       ) : (
-        <div className='flex-1 mt-5'>
+        <div className='mt-5 flex-1'>
           <PresetTab presetData={presetData} isPresetSettingCustom={false} />
         </div>
       )}

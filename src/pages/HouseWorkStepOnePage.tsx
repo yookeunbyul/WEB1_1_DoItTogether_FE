@@ -11,7 +11,6 @@ import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 import { useParams } from 'react-router-dom';
 import { DateIcon, EtcIcon } from '@/components/common/icon';
 import convertTimeToObject from '@/utils/convertTimeToObject';
-import useDeviceHeight from '@/hooks/useDevice';
 
 export interface SelectedTime {
   hour: string;
@@ -37,7 +36,6 @@ const HouseWorkStepOnePage = () => {
   const [isDueDateSheetOpen, setDueDateSheetOpen] = useState(false);
   const [time, setTime] = useState<SelectedTime | null>(startTime);
   const { channelId: strChannelId, houseworkId: strHouseworkId } = useParams();
-  const customHeightClass = useDeviceHeight();
 
   const channelId = Number(strChannelId);
   const houseworkId = Number(strHouseworkId);
@@ -88,7 +86,7 @@ const HouseWorkStepOnePage = () => {
   };
 
   return (
-    <div className={`${customHeightClass} flex flex-col gap-4 px-5 pb-6`}>
+    <div className={`flex h-screen flex-col gap-4 px-5 pb-6`}>
       <HeaderWithTitle title={`새로운 집안일을\n추가해보세요`} handleClick={handleBackClick} />
       <section className='flex flex-1 flex-col gap-4' aria-label='집안일 추가 컨텐츠'>
         {task ? (

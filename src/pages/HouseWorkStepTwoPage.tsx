@@ -15,7 +15,6 @@ import { ProfileIcon } from '@/components/common/icon';
 import { putHousework } from '@/services/housework/putHousework';
 import { formatDateToISO } from '@/utils/convertDate';
 import { convertStartTime } from '@/utils/convertStartTime';
-import useDeviceHeight from '@/hooks/useDevice';
 
 const HouseWorkStepTwoPage = () => {
   const navigate = useNavigate();
@@ -25,7 +24,6 @@ const HouseWorkStepTwoPage = () => {
   const { task, category, startDate, startTime, userId, setUserId, reset } = useAddHouseWorkStore();
   const [selectedValue, setSelectedValue] = useState(userId || null);
   const [members, setMembers] = useState<User[]>([]);
-  const customHeightClass = useDeviceHeight();
   const [isMemberLoading, setIsMemberLoading] = useState(true);
 
   const channelId = Number(strChannelId);
@@ -119,7 +117,7 @@ const HouseWorkStepTwoPage = () => {
 
   return (
     <>
-      <div className={`${customHeightClass} flex flex-col gap-6 px-5 pb-6`}>
+      <div className={`flex h-screen flex-col gap-6 px-5 pb-6`}>
         {isLoading ? (
           <>
             <HouseWorkAddLoading
