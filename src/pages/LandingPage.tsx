@@ -6,11 +6,6 @@ import useDeviceHeight from '@/hooks/useDevice';
 import LottieIcon from '@/components/common/lottie/LottieIcon';
 import LogoIcon from '@/components/common/icon/LogoIcon';
 
-const apiUrl =
-  import.meta.env.MODE === 'development'
-    ? import.meta.env.VITE_API_BASE_URL // 로컬 환경
-    : import.meta.env.VITE_SERVER_URL;
-
 const LandingPage = () => {
   const navigate = useNavigate();
   const customHeightClass = useDeviceHeight();
@@ -20,7 +15,7 @@ const LandingPage = () => {
       navigate('/group-select');
       return;
     }
-    window.location.href = `${apiUrl}/oauth2/authorization/kakao`;
+    window.location.href = `${import.meta.env.VITE_SERVER_URL}/oauth2/authorization/kakao`;
   };
 
   useEffect(() => {
