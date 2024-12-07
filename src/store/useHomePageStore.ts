@@ -24,6 +24,9 @@ interface HomePageState {
   activeDate: string;
   setActiveDate: (newDate: string) => void;
 
+  activeWeek: Date;
+  setActiveWeek: (date: Date) => void;
+
   homePageNumber: number;
   setHomePageNumber: (newPage: number) => void;
 
@@ -46,6 +49,9 @@ const useHomePageStore = create<HomePageState>(set => ({
 
   groups: [{ channelId: 0, name: '기본 그룹명' }],
   setGroups: groups => set({ groups: groups }),
+
+  activeWeek: new Date(),
+  setActiveWeek: date => set({ activeWeek: date }),
 
   weekText: '',
   setWeekText: weekText => set({ weekText: weekText }),
