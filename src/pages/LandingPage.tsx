@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useDeviceHeight from '@/hooks/useDevice';
 import LottieIcon from '@/components/common/lottie/LottieIcon';
+import LogoIcon from '@/components/common/icon/LogoIcon';
 
 const apiUrl =
   import.meta.env.MODE === 'development'
@@ -42,11 +43,10 @@ const LandingPage = () => {
   return (
     <div className={`${customHeightClass} mx-auto flex flex-col gap-10 px-5 text-center`}>
       <div className='flex flex-1 flex-col gap-10'>
-        <section aria-label='서비스 설명' className='mt-20'>
-          <div className='text-14'>함께라서 더 즐거운 집안일</div>
-        </section>
         <section aria-label='서비스 이름'>
-          <div className='text-24 font-bold'>두잇투게더</div>
+          <div className='flex items-center justify-center pt-20 text-24 font-bold'>
+            <LogoIcon />
+          </div>
         </section>
         <section aria-label='서비스 로고' className='flex flex-1 items-center justify-center'>
           <LottieIcon />
