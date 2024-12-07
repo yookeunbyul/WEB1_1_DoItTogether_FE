@@ -108,7 +108,7 @@ const PresetTab: React.FC<PresetTabProps> = ({
         <TabsContent
           key={categoryList.presetCategoryId}
           value={categoryList.category}
-          className={`${isBottomSheet ? 'h-[250px]' : 'h-[calc(100vh-320px)]'} overflow-y-auto no-scrollbar`}
+          className={`${isBottomSheet ? 'h-[250px]' : 'h-auto'} overflow-y-auto no-scrollbar`}
         >
           {categoryList.presetItemList.length ? (
             categoryList.presetItemList.map(item => (
