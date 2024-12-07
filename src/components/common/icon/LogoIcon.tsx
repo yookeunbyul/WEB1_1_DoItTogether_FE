@@ -1,12 +1,15 @@
 import React from 'react';
 
-interface LogoIconProps {}
+interface LogoIconProps {
+  width?: string | number;
+  height?: string | number;
+}
 
-const LogoIcon: React.FC<LogoIconProps> = ({}) => {
+const LogoIcon: React.FC<LogoIconProps> = ({ width = 250, height = 80 }) => {
   return (
     <svg
-      width='250'
-      height='80'
+      width={width}
+      height={height}
       viewBox='0 0 1272 374'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
