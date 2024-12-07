@@ -13,16 +13,21 @@ interface GroupOptionProps {
 }
 
 const GroupOption: React.FC<GroupOptionProps> = ({ group, isSelected }) => {
-  const { setCurrentGroup, setIsGroupSelectSheetOpen, setActiveTab } = useHomePageStore();
+  const { currentGroup, setCurrentGroup, setIsGroupSelectSheetOpen, setActiveTab } =
+    useHomePageStore();
   const navigate = useNavigate();
   const { toast } = useToast();
 
   const handleClick = (group: Group) => {
-    setCurrentGroup(group);
-    setActiveTab('전체');
-    setIsGroupSelectSheetOpen(false);
-    navigate(`/main/${group.channelId}`);
-    toast({ title: '공간이 변경되었어요' });
+    if (currentGroup.channelId === group.channelId) {
+      toast({ title: '같은 그룹으로는 변경할 수 없어요!' });
+    } else {
+      setCurrentGroup(group);
+      setActiveTab('전체');
+      setIsGroupSelectSheetOpen(false);
+      navigate(`/main/${group.channelId}`);
+      toast({ title: '공간이 변경되었어요' });
+    }
   };
 
   return (
