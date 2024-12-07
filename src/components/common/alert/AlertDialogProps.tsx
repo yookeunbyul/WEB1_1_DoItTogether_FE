@@ -34,9 +34,9 @@ const AlertDialogProps: React.FC<AlertDialogPropsProps> = ({
       <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>{title}</AlertDialogTitle>
+          <AlertDialogTitle className='font-body'>{title}</AlertDialogTitle>
         </AlertDialogHeader>
-        <AlertDialogFooter>
+        <AlertDialogFooter className='font-body'>
           <div className='flex items-center justify-center gap-2'>
             <AlertDialogCancel className='m-0'>{cancelText}</AlertDialogCancel>
             <AlertDialogAction onClick={onConfirm}>{confirmText}</AlertDialogAction>
