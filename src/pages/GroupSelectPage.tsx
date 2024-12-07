@@ -7,12 +7,10 @@ import useHomePageStore from '@/store/useHomePageStore';
 import { getMyGroup } from '@/services/group/getMyGroup';
 import { Group } from '@/types/apis/groupApi';
 import { NoGroupIcon } from '@/components/common/icon';
-import useDeviceHeight from '@/hooks/useDevice';
 
 const GroupSelectPage = () => {
   const navigate = useNavigate();
   const { setCurrentGroup, groups, setGroups, setActiveTab } = useHomePageStore();
-  const customHeightClass = useDeviceHeight();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -48,7 +46,7 @@ const GroupSelectPage = () => {
   };
 
   return (
-    <div className={`flex flex-col ${customHeightClass}`}>
+    <div className={`flex h-screen flex-col`}>
       <GroupSelectTitle />
       <div className='flex flex-1 flex-col px-5 py-4'>
         {groups.length > 0 ? (

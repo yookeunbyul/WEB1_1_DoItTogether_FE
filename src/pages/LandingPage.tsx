@@ -2,13 +2,11 @@ import Button from '@/components/common/button/Button/Button';
 import { getMyInitState } from '@/services/user/getMyInitState';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useDeviceHeight from '@/hooks/useDevice';
 import LottieIcon from '@/components/common/lottie/LottieIcon';
 import LogoIcon from '@/components/common/icon/LogoIcon';
 
 const LandingPage = () => {
   const navigate = useNavigate();
-  const customHeightClass = useDeviceHeight();
 
   const handleLoginButton = () => {
     if (localStorage.getItem('access_token')) {
@@ -36,7 +34,7 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div className={`${customHeightClass} mx-auto flex flex-col gap-10 px-5 text-center`}>
+    <div className={`mx-auto flex h-screen flex-col gap-10 px-5 text-center`}>
       <div className='flex flex-1 flex-col gap-10'>
         <section aria-label='서비스 이름'>
           <div className='flex flex-col items-center justify-center gap-6 pt-20 text-24 font-bold'>

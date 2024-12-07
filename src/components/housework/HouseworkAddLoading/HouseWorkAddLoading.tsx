@@ -1,6 +1,5 @@
 import TextTag from '@/components/common/tag/TextTag/TextTag';
 import { User } from '@/types/apis/groupApi';
-import useDeviceHeight from '@/hooks/useDevice';
 import LottieIcon from '@/components/common/lottie/LottieIcon';
 
 interface HouseWorkAddLoadingProps {
@@ -19,9 +18,8 @@ const HouseWorkAddLoading: React.FC<HouseWorkAddLoadingProps> = ({
   category,
 }) => {
   const findNameByMember = members.find(mem => mem.userId === member)?.nickName;
-  const customHeightClass = useDeviceHeight();
   return (
-    <div className={`${customHeightClass} flex w-full max-w flex-col gap-4`}>
+    <div className={`flex h-screen w-full max-w flex-col gap-4`}>
       <p className='mt-16 text-main font-title'>{date}에</p>
       <div className='flex flex-wrap items-center gap-2'>
         <TextTag

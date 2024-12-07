@@ -5,11 +5,9 @@ import SurveyIntroDesc from '@/components/survey/surveyIntro/SurveyIntroDesc';
 import SurveyIntroIcon from '@/components/survey/surveyIntro/SurveyIntroIcon';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import useDeviceHeight from '@/hooks/useDevice';
 
 const SurveyIntroPage: React.FC = () => {
   const navigate = useNavigate();
-  const customHeightClass = useDeviceHeight();
 
   const container = {
     hidden: { opacity: 0 },
@@ -35,7 +33,7 @@ const SurveyIntroPage: React.FC = () => {
 
   return (
     <motion.div
-      className={`${customHeightClass} flex flex-col justify-between px-5 pb-6 pt-10`}
+      className={`flex h-screen flex-col justify-between px-5 pb-6 pt-10`}
       variants={container}
       initial='hidden'
       animate='show'
