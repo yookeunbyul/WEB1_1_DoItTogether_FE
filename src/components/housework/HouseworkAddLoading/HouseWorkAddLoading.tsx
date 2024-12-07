@@ -41,7 +41,7 @@ const HouseWorkAddLoading: React.FC<HouseWorkAddLoadingProps> = ({
         />
         <p className='text-main font-head'>님이 담당하도록 추가했어요!</p>
       </div>
-      <div className='flex items-center justify-center'>
+      <div className='flex flex-1 items-center justify-center'>
         <LottieIcon />
       </div>
     </div>
