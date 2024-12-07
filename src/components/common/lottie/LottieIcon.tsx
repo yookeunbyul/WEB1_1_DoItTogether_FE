@@ -1,7 +1,5 @@
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
-import React from 'react';
-
 interface LottieIconProps {
   src?: string;
   width?: number;
@@ -9,7 +7,7 @@ interface LottieIconProps {
 }
 
 const LottieIcon: React.FC<LottieIconProps> = ({
-  src = 'https://lottie.host/3a5fedb6-baba-4ee2-a638-edb3bf49df92/W2TzyAOtd6.json',
+  src = 'https://lottie.host/81d304c1-8001-421b-898c-ec9ea8e3deef/15cCQ5bfPp.json',
   width = 100,
   height = 100,
 }) => {
