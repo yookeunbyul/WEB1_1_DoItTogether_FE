@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import React from 'react';
 import { useToast } from '@/hooks/use-toast';
-import useHomePageStore from '@/store/useHomePageStore';
 import { postCreateInviteLink } from '@/services/group/postCreateInviteLink';
 import { LinkIcon } from '@/components/common/icon';
+import { useParams } from 'react-router-dom';
 
 interface InviteLinkProps {
   initialLink?: string;
@@ -11,11 +11,12 @@ interface InviteLinkProps {
 
 const InviteLink: React.FC<InviteLinkProps> = ({ initialLink }) => {
   const [inviteLink, setInviteLink] = useState<string>(initialLink || '');
-  const { currentGroup } = useHomePageStore();
+  const { channelId: strChannelId } = useParams();
   const { toast } = useToast();
 
+  const channelId = Number(strChannelId);
+
   const handleGenerateLink = async () => {
-    const channelId = currentGroup.channelId;
     const response = await postCreateInviteLink({ channelId: channelId });
     setInviteLink(`${response.result.inviteLink}`);
   };
