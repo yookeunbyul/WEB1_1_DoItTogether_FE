@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import DateItem from './DateItem/DateItem';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/common/ui/carousel';
 import getWeekText from '@/utils/getWeekText';
@@ -10,18 +10,29 @@ import { useParams } from 'react-router-dom';
 import getFormattedDate from '@/utils/getFormattedDate';
 
 const WeeklyDate = () => {
-  const [activeWeek, setActiveWeek] = useState(new Date());
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-  const { setWeekText, activeDate, setActiveDate, currWeek, setCurrWeek } = useHomePageStore();
+  const {
+    setWeekText,
+    activeDate,
+    setActiveDate,
+    currWeek,
+    setCurrWeek,
+    activeWeek,
+    setActiveWeek,
+  } = useHomePageStore();
   const { channelId } = useParams();
+  const prevChannelIdRef = useRef(channelId);
 
   useEffect(() => {
-    const today = new Date();
-    setWeekText(getWeekText(today));
-    fetchCurrWeek(getFormattedDate(today));
-    setActiveWeek(today);
-    setActiveDate(getFormattedDate(today));
+    if (prevChannelIdRef.current !== channelId) {
+      const today = new Date();
+      setWeekText(getWeekText(today));
+      fetchCurrWeek(getFormattedDate(today));
+      setActiveWeek(today);
+      setActiveDate(getFormattedDate(today));
+      prevChannelIdRef.current = channelId;
+    }
   }, [channelId]);
 
   useEffect(() => {

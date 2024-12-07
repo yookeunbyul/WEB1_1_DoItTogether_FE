@@ -15,6 +15,8 @@ import { ProfileIcon } from '@/components/common/icon';
 import { putHousework } from '@/services/housework/putHousework';
 import { formatDateToISO } from '@/utils/convertDate';
 import { convertStartTime } from '@/utils/convertStartTime';
+import useHomePageStore from '@/store/useHomePageStore';
+import getWeekText from '@/utils/getWeekText';
 
 const HouseWorkStepTwoPage = () => {
   const navigate = useNavigate();
@@ -25,6 +27,7 @@ const HouseWorkStepTwoPage = () => {
   const [selectedValue, setSelectedValue] = useState(userId || null);
   const [members, setMembers] = useState<User[]>([]);
   const [isMemberLoading, setIsMemberLoading] = useState(true);
+  const { setActiveDate, setActiveWeek, setActiveTab, setWeekText } = useHomePageStore();
 
   const channelId = Number(strChannelId);
 
@@ -71,6 +74,10 @@ const HouseWorkStepTwoPage = () => {
         });
 
         setTimeout(() => {
+          setActiveDate(formattedDate);
+          setActiveWeek(new Date(formattedDate));
+          setActiveTab('전체');
+          setWeekText(getWeekText(new Date(formattedDate)));
           navigate(`/main/${channelId}`);
           setTimeout(() => {
             reset();
@@ -91,6 +98,10 @@ const HouseWorkStepTwoPage = () => {
           });
 
           setTimeout(() => {
+            setActiveDate(formattedDate);
+            setActiveWeek(new Date(formattedDate));
+            setActiveTab('전체');
+            setWeekText(getWeekText(new Date(formattedDate)));
             navigate(`/main/${channelId}`);
             setTimeout(() => {
               reset();
