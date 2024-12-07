@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import useDeviceHeight from '@/hooks/useDevice';
+import LogoIcon from '@/components/common/icon/LogoIcon';
 
 const LeavePage = () => {
   const navigate = useNavigate();
@@ -28,7 +29,9 @@ const LeavePage = () => {
     <div className={`${customHeightClass} flex flex-col gap-6`}>
       <Header title='탈퇴하기' handleBack={handleBack} isNeededDoneBtn={false} />
       <div className='flex flex-1 flex-col gap-4 px-5'>
-        <div className='flex h-24 w-full items-center justify-center'>우리의 로고</div>
+        <div className='flex h-24 w-full items-center justify-center'>
+          <LogoIcon width={125} height={40} />
+        </div>
         <div className='flex flex-col items-center justify-center gap-6'>
           <p className='font-body'>두잇투게더 탈퇴 전 꼭 확인하세요</p>
           <div className='flex flex-col items-center justify-center text-gray3 font-caption'>
