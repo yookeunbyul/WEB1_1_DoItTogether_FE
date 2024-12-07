@@ -18,6 +18,7 @@ import {
 import { motion } from 'framer-motion';
 import { postPersonalKeyword } from '@/services/onboarding/postPersonalKeyword';
 import { patchMyInitState } from '@/services/user/patchMyInitState';
+import { getMyInfo } from '@/services/user/getMyInfo';
 
 interface OnBoardingProps {}
 
@@ -27,9 +28,26 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
   const [answer, setAnswer] = useState<string[]>([]); // 사용자 답변
   const [isCompleted, setIsCompleted] = useState<boolean>(false); // 분석완료 여부
   const [result, setResult] = useState<string[]>([]); // 분석 결과
-  const [username] = useState<string>('사용자'); // 사용자명
+  const [username, setUserName] = useState<string>('사용자'); // 사용자명
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchMyInfo = async () => {
+      try {
+        const response = await getMyInfo();
+        setUserName(response.result.nickName);
+      } catch (error) {
+        console.error('내 정보 조회 실패:', error);
+      }
+    };
+
+    fetchMyInfo();
+  }, []);
+
+  useEffect(() => {
+    if (step === 0) navigate('/survey-intro');
+  }, [step]);
 
   const item = {
     hidden: { opacity: 0 },
@@ -101,10 +119,6 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
     return answer.length >= step;
   };
 
-  useEffect(() => {
-    if (step === 0) navigate('/survey-intro');
-  }, [step]);
-
   return (
     <div className={`flex h-screen flex-col overflow-hidden`}>
       {step <= 4 && (
@@ -117,7 +131,7 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
       )}
 
       {loading ? (
-        <div className='h-full px-0 pt-28'>
+        <div className='h-full px-0'>
           <LoadingScreen username={username} isCompleted={isCompleted} />
         </div>
       ) : (
