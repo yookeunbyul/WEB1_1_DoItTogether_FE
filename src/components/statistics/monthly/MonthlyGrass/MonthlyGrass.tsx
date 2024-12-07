@@ -6,6 +6,7 @@ import { CompletionStatus, MonthlyDateScore } from '@/types/apis/statisticsApi';
 import { useNavigate, useParams } from 'react-router-dom';
 import useHomePageStore from './../../../../store/useHomePageStore';
 import getFormattedDate from '@/utils/getFormattedDate';
+import getWeekText from '@/utils/getWeekText';
 
 interface MonthlyGrassProps {
   onMonthChange: (monthKey: string) => void;
@@ -22,7 +23,7 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ onMonthChange, onDataChange
   const [monthlyData, setMonthlyData] = useState<MonthlyDateScore[]>([]);
 
   const { channelId: strChannelId } = useParams();
-  const { setActiveDate, setActiveTab, setActiveWeek } = useHomePageStore();
+  const { setActiveDate, setActiveTab, setActiveWeek, setWeekText } = useHomePageStore();
   const channelId = Number(strChannelId);
 
   useEffect(() => {
@@ -91,6 +92,7 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ onMonthChange, onDataChange
     setActiveDate(getFormattedDate(value));
     setActiveWeek(value);
     setActiveTab('전체');
+    setWeekText(getWeekText(value));
     navigate(`/main/${channelId}`);
   };
 
