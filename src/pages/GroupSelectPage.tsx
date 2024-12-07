@@ -1,7 +1,7 @@
 import Button from '@/components/common/button/Button/Button';
 import GroupSelectTitle from '@/components/groupSelect/GroupSelectTitle/GroupSelectTitle';
 import OpenSheetBtn from '@/components/common/button/OpenSheetBtn/OpenSheetBtn';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useHomePageStore from '@/store/useHomePageStore';
 import { getMyGroup } from '@/services/group/getMyGroup';
@@ -13,15 +13,27 @@ const GroupSelectPage = () => {
   const navigate = useNavigate();
   const { setCurrentGroup, groups, setGroups, setActiveTab } = useHomePageStore();
   const customHeightClass = useDeviceHeight();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchMyGroup = async () => {
-      const groups = await getMyGroup();
-      setGroups(groups.result.channelList);
+      try {
+        const groups = await getMyGroup();
+        setGroups(groups.result.channelList);
+      } catch (error) {
+        console.error('그룹 조회 실패:', error);
+      } finally {
+        setIsLoading(false); // 데이터 로드 완료
+      }
     };
 
     fetchMyGroup();
   }, []);
+
+  // 로딩 중일 때는 빈 화면 반환
+  if (isLoading) {
+    return <></>;
+  }
 
   const handleMakeGroupBtnClick = () => {
     navigate('/group/create');
