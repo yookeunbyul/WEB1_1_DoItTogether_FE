@@ -22,7 +22,7 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ onMonthChange, onDataChange
   const [monthlyData, setMonthlyData] = useState<MonthlyDateScore[]>([]);
 
   const { channelId: strChannelId } = useParams();
-  const { setActiveDate, setActiveTab } = useHomePageStore();
+  const { setActiveDate, setActiveTab, setActiveWeek } = useHomePageStore();
   const channelId = Number(strChannelId);
 
   useEffect(() => {
@@ -89,6 +89,7 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ onMonthChange, onDataChange
 
   const handleClickDay = (value: Date) => {
     setActiveDate(getFormattedDate(value));
+    setActiveWeek(value);
     setActiveTab('전체');
     navigate(`/main/${channelId}`);
   };
