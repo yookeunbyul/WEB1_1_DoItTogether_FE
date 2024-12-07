@@ -8,8 +8,15 @@ import usePresetSetting from '@/hooks/usePresetSetting';
 import usePresetSettingStore from '@/store/usePresetSettingStore';
 
 const PresetSettingPage = () => {
-  const { categoryList, activeTab, setActiveTab, deleteButtonStates, presetData } =
-    usePresetSettingStore();
+  const {
+    categoryList,
+    activeTab,
+    setActiveTab,
+    cateActiveTab,
+    setCateActiveTab,
+    deleteButtonStates,
+    presetData,
+  } = usePresetSettingStore();
   const { handleAddInput, handleSelectClick, handleDeleteClick, handleBack } = usePresetSetting();
 
   return (
@@ -27,6 +34,8 @@ const PresetSettingPage = () => {
           <div className='mt-5 flex-1'>
             <PresetTab
               presetData={presetData}
+              cateActiveTab={cateActiveTab}
+              setCateActiveTab={setCateActiveTab}
               isPresetSettingCustom={true}
               deleteButtonStates={deleteButtonStates}
               handleDeleteClick={handleDeleteClick}

@@ -21,6 +21,8 @@ interface PresetList {
 
 interface PresetTabProps {
   presetData: PresetList[];
+  cateActiveTab?: string;
+  setCateActiveTab?: (cateActiveTab: string) => void;
   isPresetSettingCustom?: boolean;
   deleteButtonStates?: Record<number, boolean>;
   handleDeleteClick?: (presetCategoryId: number, itemId: number) => void;
@@ -31,6 +33,8 @@ interface PresetTabProps {
 
 const PresetTab: React.FC<PresetTabProps> = ({
   presetData,
+  cateActiveTab,
+  setCateActiveTab,
   isPresetSettingCustom = false,
   deleteButtonStates = {},
   handleDeleteClick,
@@ -50,7 +54,7 @@ const PresetTab: React.FC<PresetTabProps> = ({
   };
 
   return (
-    <Tabs defaultValue={PresetCategory.ALL}>
+    <Tabs defaultValue={PresetCategory.ALL} value={cateActiveTab} onValueChange={setCateActiveTab}>
       <TabsList className='flex h-full w-full justify-start gap-4 overflow-x-auto bg-white p-0 px-5 no-scrollbar'>
         <PresetTabItem name={allPresetData.category} value={allPresetData.category} />
         {presetData.map(categoryList => (

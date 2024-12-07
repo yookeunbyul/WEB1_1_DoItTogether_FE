@@ -7,7 +7,7 @@ import {
 } from '@/services/preset';
 import usePresetSettingStore from '@/store/usePresetSettingStore';
 import { useNavigate, useParams } from 'react-router-dom';
-import { PresetDefault, PresetTabName } from '@/constants';
+import { Category, PresetDefault, PresetTabName } from '@/constants';
 
 const usePresetSetting = () => {
   const navigate = useNavigate();
@@ -18,6 +18,7 @@ const usePresetSetting = () => {
     setPresetData,
     selectedItem,
     setSelectedItem,
+    setCateActiveTab,
   } = usePresetSettingStore();
   const { channelId: strChannelId } = useParams();
   const channelId = Number(strChannelId);
@@ -38,6 +39,7 @@ const usePresetSetting = () => {
 
   useEffect(() => {
     getPresetData();
+    setCateActiveTab(Category.ALL);
   }, [activeTab]);
 
   const getPresetData = async () => {
