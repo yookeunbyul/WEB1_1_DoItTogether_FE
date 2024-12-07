@@ -43,8 +43,6 @@ const HouseWorkStepOnePage = () => {
   const location = useLocation();
   const targetHousework = location.state;
 
-  console.log('가져온거', targetHousework);
-
   useEffect(() => {
     if (targetHousework) {
       setTask(targetHousework.task);
