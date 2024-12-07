@@ -3,6 +3,7 @@ import { Group } from '@/types/apis/groupApi';
 import getFormattedDate from '@/utils/getFormattedDate';
 import { UserBase } from '@/types/apis/userApi';
 import { IncompleteScoreResponse } from '@/types/apis/houseworkApi';
+import getWeekText from '@/utils/getWeekText';
 
 interface WeeklyDates extends IncompleteScoreResponse {
   day: string;
@@ -53,7 +54,7 @@ const useHomePageStore = create<HomePageState>(set => ({
   activeWeek: new Date(),
   setActiveWeek: date => set({ activeWeek: date }),
 
-  weekText: '',
+  weekText: getWeekText(new Date()),
   setWeekText: weekText => set({ weekText: weekText }),
 
   activeDate: getFormattedDate(new Date()),
