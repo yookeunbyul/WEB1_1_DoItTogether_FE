@@ -15,6 +15,7 @@ const usePresetSetting = () => {
     setCategoryList,
     setDeleteButtonStates,
     activeTab,
+    setActiveTab,
     setPresetData,
     selectedItem,
     setSelectedItem,
@@ -93,11 +94,27 @@ const usePresetSetting = () => {
     navigate(-1);
   };
 
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    window.scrollTo({
+      top: 0,
+    });
+  };
+
+  const handleCateTabChange = (value: string) => {
+    setCateActiveTab(value);
+    window.scrollTo({
+      top: 0,
+    });
+  };
+
   return {
     handleAddInput,
     handleSelectClick,
     handleDeleteClick,
     handleBack,
+    handleTabChange,
+    handleCateTabChange,
   };
 };
 

@@ -11,13 +11,20 @@ const PresetSettingPage = () => {
   const {
     categoryList,
     activeTab,
-    setActiveTab,
+    // setActiveTab,
     cateActiveTab,
-    setCateActiveTab,
+    // setCateActiveTab,
     deleteButtonStates,
     presetData,
   } = usePresetSettingStore();
-  const { handleAddInput, handleSelectClick, handleDeleteClick, handleBack } = usePresetSetting();
+  const {
+    handleAddInput,
+    handleSelectClick,
+    handleDeleteClick,
+    handleBack,
+    handleTabChange,
+    handleCateTabChange,
+  } = usePresetSetting();
 
   return (
     <div className={`flex h-screen flex-col`}>
@@ -25,7 +32,7 @@ const PresetSettingPage = () => {
         <Header title='프리셋 관리' isNeededDoneBtn={false} handleBack={handleBack} />
         <Tab
           activeTab={activeTab}
-          handleSetActiveTab={setActiveTab}
+          handleSetActiveTab={handleTabChange}
           chargers={convertTabNameToChargers(PresetTabName)}
         />
       </div>
@@ -35,7 +42,7 @@ const PresetSettingPage = () => {
             <PresetTab
               presetData={presetData}
               cateActiveTab={cateActiveTab}
-              setCateActiveTab={setCateActiveTab}
+              setCateActiveTab={handleCateTabChange}
               isPresetSettingCustom={true}
               deleteButtonStates={deleteButtonStates}
               handleDeleteClick={handleDeleteClick}
