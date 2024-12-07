@@ -5,7 +5,7 @@ const SurveyIntroIcon = () => {
     /* TODO 그래픽요소로 변경*/
   }
   return (
-    <div className='flex items-center justify-center'>
+    <div className='flex flex-1 items-center justify-center'>
       <LottieIcon />
     </div>
   );

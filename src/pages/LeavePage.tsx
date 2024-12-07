@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import useDeviceHeight from '@/hooks/useDevice';
 import LogoIcon from '@/components/common/icon/LogoIcon';
+import { deleteUser } from '@/services/user/deleteUser';
 
 const LeavePage = () => {
   const navigate = useNavigate();
@@ -21,8 +22,14 @@ const LeavePage = () => {
     setIsChecked(!isChecked);
   };
 
-  const handleDone = () => {
-    console.log('가지마 ㅜㅜㅜㅜ 😈');
+  const handleDone = async () => {
+    try {
+      await deleteUser();
+      localStorage.removeItem('access_token');
+      navigate('/');
+    } catch (error) {
+      console.error('회원 탈퇴 실패:', error);
+    }
   };
 
   return (
