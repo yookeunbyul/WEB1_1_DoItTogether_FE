@@ -75,8 +75,8 @@ const HouseWorkStepTwoPage = () => {
           setTimeout(() => {
             reset();
             setIsLoading(false);
-          }, 1500);
-        }, 2000);
+          }, 2000);
+        }, 2500);
       }
     } else {
       try {
@@ -95,8 +95,8 @@ const HouseWorkStepTwoPage = () => {
             setTimeout(() => {
               reset();
               setIsLoading(false);
-            }, 1500);
-          }, 2000);
+            }, 2000);
+          }, 2500);
         }
       } catch (error) {
         console.error('집안일 추가 실패:', error);
