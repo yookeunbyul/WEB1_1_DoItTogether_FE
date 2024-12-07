@@ -33,6 +33,8 @@ const HomePage: React.FC = () => {
     myInfo,
     setMyInfo,
     setCurrWeek,
+    weekText,
+    setWeekText,
   } = useHomePageStore();
   const { channelId } = useParams();
   const [chargers, setChargers] = useState<{ name: string }[]>([{ name: '전체' }]);
@@ -59,6 +61,7 @@ const HomePage: React.FC = () => {
       setMyInfo(myInfoResult.result);
     };
 
+    setWeekText(weekText);
     fetchMyGroups();
     fetchMyInfo();
   }, []);
