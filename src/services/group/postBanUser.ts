@@ -2,7 +2,6 @@ import { axiosInstance } from '@/services/axiosInstance';
 import { KickUserReq, KickUserRes } from '@/types/apis/groupApi';
 
 export const postBanUser = async ({ channelId, email }: KickUserReq) => {
-  console.log(channelId, email);
   try {
     const response = await axiosInstance.post<KickUserRes>(`/api/v1/channels/${channelId}/kick`, {
       email,

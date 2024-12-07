@@ -15,7 +15,8 @@ import { ProfileIcon } from '@/components/common/icon';
 import { putHousework } from '@/services/housework/putHousework';
 import { formatDateToISO } from '@/utils/convertDate';
 import { convertStartTime } from '@/utils/convertStartTime';
-import useDeviceHeight from '@/hooks/useDevice';
+import useHomePageStore from '@/store/useHomePageStore';
+import getWeekText from '@/utils/getWeekText';
 
 const HouseWorkStepTwoPage = () => {
   const navigate = useNavigate();
@@ -25,8 +26,8 @@ const HouseWorkStepTwoPage = () => {
   const { task, category, startDate, startTime, userId, setUserId, reset } = useAddHouseWorkStore();
   const [selectedValue, setSelectedValue] = useState(userId || null);
   const [members, setMembers] = useState<User[]>([]);
-  const customHeightClass = useDeviceHeight();
   const [isMemberLoading, setIsMemberLoading] = useState(true);
+  const { setActiveDate, setActiveWeek, setActiveTab, setWeekText } = useHomePageStore();
 
   const channelId = Number(strChannelId);
 
@@ -48,8 +49,6 @@ const HouseWorkStepTwoPage = () => {
   if (isMemberLoading) {
     return <></>;
   }
-
-  console.log('전역:', task, category, startDate, startTime, userId);
 
   const handleBackClick = () => {
     if (houseworkId) navigate(`/add-housework/edit/${channelId}/${houseworkId}/step1`);
@@ -75,12 +74,16 @@ const HouseWorkStepTwoPage = () => {
         });
 
         setTimeout(() => {
+          setActiveDate(formattedDate);
+          setActiveWeek(new Date(formattedDate));
+          setActiveTab('전체');
+          setWeekText(getWeekText(new Date(formattedDate)));
           navigate(`/main/${channelId}`);
           setTimeout(() => {
             reset();
             setIsLoading(false);
-          }, 1500);
-        }, 2000);
+          }, 2000);
+        }, 2500);
       }
     } else {
       try {
@@ -95,12 +98,16 @@ const HouseWorkStepTwoPage = () => {
           });
 
           setTimeout(() => {
+            setActiveDate(formattedDate);
+            setActiveWeek(new Date(formattedDate));
+            setActiveTab('전체');
+            setWeekText(getWeekText(new Date(formattedDate)));
             navigate(`/main/${channelId}`);
             setTimeout(() => {
               reset();
               setIsLoading(false);
-            }, 1500);
-          }, 2000);
+            }, 2000);
+          }, 2500);
         }
       } catch (error) {
         console.error('집안일 추가 실패:', error);
@@ -119,7 +126,7 @@ const HouseWorkStepTwoPage = () => {
 
   return (
     <>
-      <div className={`${customHeightClass} flex flex-col gap-6 px-5 pb-6`}>
+      <div className={`flex h-screen flex-col gap-6 px-5 pb-6`}>
         {isLoading ? (
           <>
             <HouseWorkAddLoading

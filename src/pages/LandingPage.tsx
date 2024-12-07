@@ -2,13 +2,33 @@ import Button from '@/components/common/button/Button/Button';
 import { getMyInitState } from '@/services/user/getMyInitState';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useDeviceHeight from '@/hooks/useDevice';
 import LottieIcon from '@/components/common/lottie/LottieIcon';
 import LogoIcon from '@/components/common/icon/LogoIcon';
+import { motion } from 'framer-motion';
 
 const LandingPage = () => {
   const navigate = useNavigate();
-  const customHeightClass = useDeviceHeight();
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.7,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 0 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: 'easeIn',
+      },
+    },
+  };
 
   const handleLoginButton = () => {
     if (localStorage.getItem('access_token')) {
@@ -36,27 +56,38 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div className={`${customHeightClass} mx-auto flex flex-col gap-10 px-5 text-center`}>
-      <div className='flex flex-1 flex-col gap-10'>
+    <motion.div
+      className={`mx-auto flex h-screen flex-col gap-10 px-5 text-center`}
+      variants={container}
+      initial='hidden'
+      animate='show'
+    >
+      <div className='flex flex-1 flex-col'>
         <section aria-label='서비스 이름'>
           <div className='flex flex-col items-center justify-center gap-6 pt-20 text-24 font-bold'>
-            <p className='flex justify-center text-sub font-label'>함께라서 더 즐거운 집안일</p>
-            <LogoIcon />
+            <motion.p className='flex justify-center text-sub font-label' variants={item}>
+              함께라서 더 즐거운 집안일
+            </motion.p>
+            <motion.div variants={item}>
+              <LogoIcon />
+            </motion.div>
           </div>
         </section>
-        <section aria-label='서비스 로고' className='flex flex-1 items-center justify-center'>
-          <LottieIcon />
-        </section>
+        <motion.section variants={item} aria-label='서비스 로고' className='relative flex-1'>
+          <div className='absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2'>
+            <LottieIcon />
+          </div>
+        </motion.section>
       </div>
-      <section aria-label='카카오 로그인 버튼' className='sticky bottom-6'>
+      <motion.section variants={item} aria-label='카카오 로그인 버튼' className='sticky bottom-6'>
         <Button
           label='카카오로 3초만에 시작하기'
           variant='kakao'
           size='large'
           handleClick={handleLoginButton}
         />
-      </section>
-    </div>
+      </motion.section>
+    </motion.div>
   );
 };
 
