@@ -72,15 +72,14 @@ const MonthlyStatisticsPage = () => {
   return (
     <div className='flex flex-col gap-4'>
       <MonthlyGrass onMonthChange={handleMonthChange} onDataChange={handleDataChange} />
-      <div className='flex items-center gap-3 text-black font-label'>
-        이번달에는
-        <div className='flex items-center gap-3'>
+      <div className='flex items-center gap-1 text-black font-label'>
+        이번달은
+        <div className='flex items-center gap-1'>
           <div className='flex items-center text-main'>
             <Completion count={currentMonthStats.completionRate} icon={<ChartIcon />} />%
           </div>
           <div className='flex items-center text-main'>
-            <Completion count={currentMonthStats.completedDays} icon={<CheckFillIcon />} />
-            개의
+            <Completion count={currentMonthStats.completedDays} icon={<CheckFillIcon />} />개
           </div>
         </div>
         작업을 완료했어요!
