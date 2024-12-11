@@ -5,7 +5,7 @@
 
 ### 🔗 배포 링크
 **[두잇투게더 바로가기](https://doit-together.vercel.app/)**
-![Slide 16_9 - 1](https://github.com/user-attachments/assets/711d55f5-be20-46cf-9956-6c422e674516)
+![Slide 16_9 - 1 (1)](https://github.com/user-attachments/assets/da85437c-322b-49af-af65-59bf4d0650a9)
 
 
 - 무제한 그룹 생성 및 인원 제한 없는 그룹 관리
