@@ -5,7 +5,8 @@
 
 ### 🔗 배포 링크
 **[두잇투게더 바로가기](https://doit-together.vercel.app/)**
-![image](https://github.com/user-attachments/assets/9ebc33ea-32fa-4d95-9df0-c3153b9a828c)
+![Slide 16_9 - 1](https://github.com/user-attachments/assets/711d55f5-be20-46cf-9956-6c422e674516)
+
 
 - 무제한 그룹 생성 및 인원 제한 없는 그룹 관리
 - AI 기반 개인 맞춤형 집안일 할당
