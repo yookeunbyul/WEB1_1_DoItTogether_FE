@@ -1,5 +1,4 @@
 import Header from '@/components/common/header/Header';
-import { Toaster } from '@/components/common/ui/toaster';
 import GroupCreateStep1 from '@/components/group/create/GroupCreateStep1';
 import GroupCreateStep2 from '@/components/group/create/GroupCreateStep2';
 import { useState } from 'react';
@@ -50,7 +49,6 @@ const GroupCreatePage = () => {
           <GroupCreateStep2 inviteLink={inviteLink} onSubmit={handleSubmit} roomName={roomName} />
         )}
       </div>
-      <Toaster />
     </div>
   );
 };

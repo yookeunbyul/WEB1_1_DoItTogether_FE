@@ -41,7 +41,7 @@ const GroupCreateStep1: React.FC<GroupCreateStep1Props> = ({
           <p className='mt-1 text-main font-caption'>{INPUT_VALIDATION.roomName.errorMessage}</p>
         )}
       </div>
-      <div>
+      <div className='sticky bottom-6'>
         <Button
           label='다음'
           size='large'

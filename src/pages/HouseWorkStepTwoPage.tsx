@@ -163,6 +163,7 @@ const HouseWorkStepTwoPage = () => {
               size='large'
               handleClick={handleNextClick}
               disabled={!userId}
+              className='sticky bottom-6'
             />
           </>
         )}
