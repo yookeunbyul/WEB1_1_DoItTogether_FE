@@ -65,7 +65,7 @@ const GroupSelectPage = () => {
           </div>
         )}
       </div>
-      <div className='flex gap-x-4 px-5 py-6'>
+      <div className='sticky bottom-6 flex gap-x-4 px-5'>
         <Button
           label='방만들기'
           variant='full'
