@@ -49,7 +49,7 @@ const SurveyIntroPage: React.FC = () => {
       <motion.div variants={item} className='h-96'>
         <LottieIcon />
       </motion.div>
-      <motion.div variants={item}>
+      <motion.div variants={item} className='sticky bottom-6'>
         <Button
           size='large'
           variant='full'

@@ -41,6 +41,7 @@ const HomePage: React.FC = () => {
   const { data: houseworks, refetch } = useQuery({
     queryKey: ['houseworks', channelId, activeDate],
     queryFn: async () => await fetchHouseworks(activeDate),
+    refetchOnWindowFocus: true,
   });
   const { toast } = useToast();
   const navigate = useNavigate();

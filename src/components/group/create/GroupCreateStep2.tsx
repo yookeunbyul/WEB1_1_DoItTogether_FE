@@ -16,7 +16,7 @@ const GroupCreateStep2: React.FC<GroupCreateStep2Props> = ({ inviteLink, onSubmi
         <InputBox value={roomName} disabled={true} />
         <InviteLinkWithLabel initialLink={inviteLink} />
       </div>
-      <div>
+      <div className='sticky bottom-6'>
         <Button
           label='입장하기'
           size='large'
