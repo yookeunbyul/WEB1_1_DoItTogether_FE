@@ -120,7 +120,7 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
   };
 
   return (
-    <div className={`flex h-screen flex-col overflow-hidden`}>
+    <div className={`flex h-screen flex-col`}>
       {step <= 4 && (
         <motion.div variants={item} initial='hidden' animate='show'>
           <div className='p-5'>
@@ -135,7 +135,7 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
           <LoadingScreen username={username} isCompleted={isCompleted} />
         </div>
       ) : (
-        <motion.div className='flex h-screen flex-col gap-8 px-5'>
+        <motion.div className='flex flex-1 flex-col gap-8 px-5'>
           {/* TODO STEP 동일구조라서 hook 으로 사용 고려 */}
           {step === 1 && (
             <Step1
@@ -174,7 +174,7 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
       )}
 
       {!loading && (
-        <motion.div className='sticky bottom-6 bg-white px-5 pb-14'>
+        <motion.div className='sticky bottom-6 bg-white px-5'>
           <Button
             size={'large'}
             variant={!isStepVaild() ? 'disabled' : 'full'}
