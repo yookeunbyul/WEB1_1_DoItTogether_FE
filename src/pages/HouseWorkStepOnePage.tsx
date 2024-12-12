@@ -123,6 +123,7 @@ const HouseWorkStepOnePage = () => {
         label='다음'
         handleClick={handleNextClick}
         disabled={!task || !startDate}
+        className='sticky bottom-6'
       />
 
       <HouseWorkSheet isOpen={isHouseWorkSheetOpen} setOpen={setHouseWorkSheetOpen} />

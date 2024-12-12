@@ -4,10 +4,12 @@ import InputBox from '@/components/common/input/InputBox';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postJoinGroup } from '@/services/group/postJoinGroup';
+import { useToast } from '@/hooks/use-toast';
 
 const GroupInviteReceivePage = () => {
   const [inviteLink, setInviteLink] = useState('');
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const handleBack = () => {
     navigate('/group-select');
@@ -18,7 +20,7 @@ const GroupInviteReceivePage = () => {
       const joinResult = await postJoinGroup({ inviteLink });
       navigate(`/main/${joinResult.result.channelId}`);
     } catch (error) {
-      console.error(error);
+      toast({ title: '코드를 다시 확인해주세요' });
     }
   };
 
@@ -33,7 +35,7 @@ const GroupInviteReceivePage = () => {
           handleChange={setInviteLink}
         />
       </div>
-      <div className='p-5'>
+      <div className='sticky bottom-6 px-5'>
         <Button
           label='입장하기'
           size='large'

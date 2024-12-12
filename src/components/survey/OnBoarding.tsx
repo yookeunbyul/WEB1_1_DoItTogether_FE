@@ -174,7 +174,7 @@ const OnBoarding: React.FC<OnBoardingProps> = ({}) => {
       )}
 
       {!loading && (
-        <motion.div className='sticky bottom-0 bg-white px-5 pb-6'>
+        <motion.div className='sticky bottom-6 bg-white px-5 pb-14'>
           <Button
             size={'large'}
             variant={!isStepVaild() ? 'disabled' : 'full'}
