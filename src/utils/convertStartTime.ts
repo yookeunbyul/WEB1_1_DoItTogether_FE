@@ -1,4 +1,4 @@
-import { SelectedTime } from '@/pages/HouseWorkStepOnePage';
+import { SelectedTime } from '@/pages/housework/HouseWorkStepOnePage';
 
 export const convertStartTime = (time: SelectedTime | null) => {
   if (!time) return null;
