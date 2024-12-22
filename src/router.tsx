@@ -14,7 +14,7 @@ import GroupSettingPage from '@/pages/group/GroupSettingPage';
 import HomePage from '@/pages/home/HomePage';
 import WeeklyStatisticsPage from '@/pages/statistics/WeeklyStatisticsPage';
 import MonthlyStatisticsPage from '@/pages/statistics/MonthlyStatisticsPage';
-import PresetSettingPage from '@/pages/PresetSettingPage';
+import PresetSettingPage from '@/pages/group/PresetSettingPage';
 import MyPage from '@/pages/my/MyPage';
 import MyPageEditPage from '@/pages/my/MyPageEditPage';
 import AccountManagePage from '@/pages/my/AccountManagePage';
