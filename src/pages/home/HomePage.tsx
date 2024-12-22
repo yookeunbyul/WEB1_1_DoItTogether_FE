@@ -38,42 +38,42 @@ const HomePage: React.FC = () => {
     weekText,
     setWeekText,
   } = useHomePageStore();
-  const { channelId } = useParams();
+
+  const { channelId: channelIdStr } = useParams();
+  const channelId = Number(channelIdStr);
   const [chargers, setChargers] = useState<{ name: string }[]>([{ name: '전체' }]);
+
   const { data: houseworks, refetch } = useQuery({
     queryKey: ['houseworks', channelId, activeDate],
     queryFn: async () => await fetchHouseworks(activeDate),
     refetchOnWindowFocus: true,
   });
+
   const { toast } = useToast();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchMyGroups = async () => {
-      const getMyGroupResult = await getMyGroup();
-      const myGroups = getMyGroupResult.result.channelList;
+    const fetchData = async () => {
+      const [myGroupResult, myInfoResult] = await Promise.all([getMyGroup(), getMyInfo()]);
+
+      const myGroups = myGroupResult.result.channelList;
       setGroups(myGroups);
+      setMyInfo(myInfoResult.result);
+
       if (channelId) {
-        const currentGroup = myGroups.find(group => group.channelId === Number(channelId));
+        const currentGroup = myGroups.find(group => group.channelId === channelId);
         setCurrentGroup(currentGroup!);
       }
     };
 
-    const fetchMyInfo = async () => {
-      const myInfoResult = await getMyInfo();
-      setMyInfo(myInfoResult.result);
-    };
-
     setWeekText(weekText);
-    fetchMyGroups();
-    fetchMyInfo();
+    fetchData();
   }, []);
 
   useEffect(() => {
     const fetchGroupUsers = async () => {
       if (!channelId) return;
-      const newChannelId = Number(channelId);
-      const getGroupUsersResult = await getGroupUser({ channelId: newChannelId });
+      const getGroupUsersResult = await getGroupUser({ channelId });
       const newChargers = [
         { name: '전체' },
         ...Array.from(new Set(getGroupUsersResult.result.userList.map(user => user.nickName))).map(
@@ -87,9 +87,8 @@ const HomePage: React.FC = () => {
   }, [channelId]);
 
   const fetchHouseworks = async (date: string) => {
-    const newChannelId = Number(channelId);
     const getHouseworksResult = await getHouseworks({
-      channelId: newChannelId,
+      channelId,
       targetDate: date,
       pageNumber: homePageNumber,
       pageSize: PAGE_SIZE,
@@ -97,51 +96,53 @@ const HomePage: React.FC = () => {
     return getHouseworksResult.result.responses;
   };
 
+  const updateWeeklyIncomplete = async () => {
+    const currWeekResult = await getWeeklyIncomplete({
+      channelId,
+      targetDate: activeDate,
+    });
+    const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+    const newWeekDates = (weekData: IncompleteScoreResponse[]) => {
+      return weekData.map(data => {
+        const date = new Date(data.date);
+        const weekdayIndex = date.getDay();
+        const day = weekdays[weekdayIndex];
+
+        return {
+          ...data,
+          day,
+        };
+      });
+    };
+    setCurrWeek(newWeekDates(currWeekResult.result.incompleteScoreResponses));
+  };
+
   const handleAction = async (houseworkId: number) => {
     const targetHousework = houseworks?.find(housework => housework.houseworkId === houseworkId);
-    const newChannelId = Number(channelId);
 
-    if (targetHousework?.userId === myInfo?.userId) {
-      await changeHouseworkStatus({
-        channelId: newChannelId,
-        houseworkId,
-      });
+    if (!targetHousework) return;
+
+    const isMyHousework = targetHousework.userId === myInfo?.userId;
+    const isComplete = targetHousework.status === HOUSEWORK_STATUS.COMPLETE;
+
+    if (isMyHousework) {
+      await changeHouseworkStatus({ channelId, houseworkId });
       refetch();
-      const currWeekResult = await getWeeklyIncomplete({
-        channelId: newChannelId,
-        targetDate: activeDate,
+      await updateWeeklyIncomplete();
+    } else if (isComplete) {
+      await postCompliment({
+        channelId,
+        targetUserId: targetHousework.userId,
+        reactDate: targetHousework.startDate,
       });
-      const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
-      const newWeekDates = (weekData: IncompleteScoreResponse[]) => {
-        return weekData.map(data => {
-          const date = new Date(data.date);
-          const weekdayIndex = date.getDay();
-          const day = weekdays[weekdayIndex];
-
-          return {
-            ...data,
-            day,
-          };
-        });
-      };
-
-      setCurrWeek(newWeekDates(currWeekResult.result.incompleteScoreResponses));
+      toast({ title: `${targetHousework.assignee}님을 칭찬했어요` });
     } else {
-      if (targetHousework?.status === HOUSEWORK_STATUS.COMPLETE) {
-        await postCompliment({
-          channelId: newChannelId,
-          targetUserId: targetHousework.userId,
-          reactDate: targetHousework.startDate,
-        });
-        toast({ title: `${targetHousework.assignee}님을 칭찬했어요` });
-      } else {
-        await postPoke({
-          channelId: newChannelId,
-          targetUserId: targetHousework?.userId!,
-          reactDate: targetHousework?.startDate!,
-        });
-        toast({ title: `${targetHousework?.assignee}님을 찔렀어요` });
-      }
+      await postPoke({
+        channelId,
+        targetUserId: targetHousework.userId!,
+        reactDate: targetHousework.startDate!,
+      });
+      toast({ title: `${targetHousework.assignee}님을 찔렀어요` });
     }
   };
 
@@ -155,8 +156,7 @@ const HomePage: React.FC = () => {
   };
 
   const handleDelete = async (houseworkId: number) => {
-    const newChannelId = Number(channelId);
-    await deleteHousework({ channelId: newChannelId, houseworkId });
+    await deleteHousework({ channelId, houseworkId });
     toast({ title: '집안일이 삭제되었습니다' });
     refetch();
   };
