@@ -11,7 +11,7 @@ import SurveyPage from '@/pages/SurveyPage';
 import GroupCreatePage from '@/pages/GroupCreatePage';
 import GroupSelectPage from '@/pages/GroupSelectPage';
 import GroupSettingPage from '@/pages/GroupSettingPage';
-import HomePage from '@/pages/HomePage';
+import HomePage from '@/pages/home/HomePage';
 import WeeklyStatisticsPage from '@/pages/WeeklyStatisticsPage';
 import MonthlyStatisticsPage from '@/pages/MonthlyStatisticsPage';
 import PresetSettingPage from '@/pages/PresetSettingPage';
