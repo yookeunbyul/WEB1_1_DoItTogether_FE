@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import HomeHeader from '@/components/home/HomeHeader/HomeHeader';
-import WeeklyDateAndTab from '@/components/home/WeeklyDateAndTab';
-import HouseworkList from '@/components/home/HouseworkList/HouseworkList';
-import GroupSelectSheet from '@/components/home/GroupSelectSheet/GroupSelectSheet';
-import useHomePageStore from '@/store/useHomePageStore';
-import { useParams } from 'react-router-dom';
-import { getMyGroup } from '@/services/group/getMyGroup';
-import { getGroupUser } from '@/services/group/getGroupUser';
-import { PAGE_SIZE } from '@/constants/common';
-import { getHouseworks } from '@/services/housework/getHouseworks';
-import { deleteHousework } from '@/services/housework/deleteHouswork';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useToast } from '@/hooks/use-toast';
-import { useNavigate } from 'react-router-dom';
-import { changeHouseworkStatus } from '@/services/housework/changeHouseworkStatus';
-import { getMyInfo } from '@/services/user/getMyInfo';
+
+import { PAGE_SIZE } from '@/constants/common';
 import { HOUSEWORK_STATUS } from '@/constants/homePage';
+import { IncompleteScoreResponse } from '@/types/apis/houseworkApi';
+
+import { changeHouseworkStatus } from '@/services/housework/changeHouseworkStatus';
+import { deleteHousework } from '@/services/housework/deleteHouswork';
+import { getGroupUser } from '@/services/group/getGroupUser';
+import { getHouseworks } from '@/services/housework/getHouseworks';
+import { getMyGroup } from '@/services/group/getMyGroup';
+import { getMyInfo } from '@/services/user/getMyInfo';
+import { getWeeklyIncomplete } from '@/services/housework/getWeeklyIncomplete';
 import { postCompliment } from '@/services/noticeManage/postCompliment';
 import { postPoke } from '@/services/noticeManage/postPoke';
-import { getWeeklyIncomplete } from '@/services/housework/getWeeklyIncomplete';
-import { IncompleteScoreResponse } from '@/types/apis/houseworkApi';
+
+import GroupSelectSheet from '@/components/home/GroupSelectSheet/GroupSelectSheet';
+import HomeHeader from '@/components/home/HomeHeader/HomeHeader';
+import HouseworkList from '@/components/home/HouseworkList/HouseworkList';
 import NoList from '@/components/home/NoList/NoList';
+import WeeklyDateAndTab from '@/components/home/WeeklyDateAndTab';
+import useHomePageStore from '@/store/useHomePageStore';
 
 const HomePage: React.FC = () => {
   const {
@@ -96,15 +98,6 @@ const HomePage: React.FC = () => {
   };
 
   const handleAction = async (houseworkId: number) => {
-    /**
-     * 처리 경우의 수
-     * 1. 자신의 집안일이라면 완료/미완료
-     * 2. 자신의 집안일이 아닌경우
-     * 2.1 완료된 상태인 경우 => 칭찬
-     * 2.2 미완료된 상태인 경우 => 찌르기
-     */
-    // 해당 id에 해당하는 집안일 완료 처리
-
     const targetHousework = houseworks?.find(housework => housework.houseworkId === houseworkId);
     const newChannelId = Number(channelId);
 
@@ -180,11 +173,11 @@ const HomePage: React.FC = () => {
         handleSetActiveTab={setActiveTab}
         chargers={chargers}
       />
-      {!houseworks || filteredHouseworks!.length === 0 ? (
+      {!filteredHouseworks || filteredHouseworks.length === 0 ? (
         <NoList />
       ) : (
         <HouseworkList
-          items={filteredHouseworks!}
+          items={filteredHouseworks}
           handleAction={handleAction}
           handleEdit={handleEdit}
           handleDelete={handleDelete}
