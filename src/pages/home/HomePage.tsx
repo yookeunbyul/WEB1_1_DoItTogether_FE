@@ -16,11 +16,11 @@ import { useNavigate } from 'react-router-dom';
 import { changeHouseworkStatus } from '@/services/housework/changeHouseworkStatus';
 import { getMyInfo } from '@/services/user/getMyInfo';
 import { HOUSEWORK_STATUS } from '@/constants/homePage';
-import NoListIcon from '@/components/common/icon/NoListIcon';
 import { postCompliment } from '@/services/noticeManage/postCompliment';
 import { postPoke } from '@/services/noticeManage/postPoke';
 import { getWeeklyIncomplete } from '@/services/housework/getWeeklyIncomplete';
 import { IncompleteScoreResponse } from '@/types/apis/houseworkApi';
+import NoList from '@/components/home/NoList/NoList';
 
 const HomePage: React.FC = () => {
   const {
@@ -168,6 +168,10 @@ const HomePage: React.FC = () => {
     refetch();
   };
 
+  const filteredHouseworks = houseworks?.filter(
+    item => item.assignee === activeTab || activeTab === '전체'
+  );
+
   return (
     <div>
       <HomeHeader />
@@ -176,18 +180,11 @@ const HomePage: React.FC = () => {
         handleSetActiveTab={setActiveTab}
         chargers={chargers}
       />
-      {!houseworks ||
-      houseworks.filter(item => item.assignee === activeTab || activeTab === '전체').length ===
-        0 ? (
-        <div className='flex h-[calc(100vh-280px)] flex-1 flex-col items-center justify-center gap-[48px] whitespace-pre-line text-center text-gray3'>
-          <NoListIcon />
-          <p className='text-gray6 font-subhead'>
-            {'현재 일정이 없어요\n +버튼을 눌러 일정을 만들어보세요'}
-          </p>
-        </div>
+      {!houseworks || filteredHouseworks!.length === 0 ? (
+        <NoList />
       ) : (
         <HouseworkList
-          items={houseworks.filter(item => item.assignee === activeTab || activeTab === '전체')}
+          items={filteredHouseworks!}
           handleAction={handleAction}
           handleEdit={handleEdit}
           handleDelete={handleDelete}
