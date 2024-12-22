@@ -5,7 +5,7 @@ import StatisticsLayout from '@/layout/StatisticsLayout';
 
 import ErrorPage from '@/pages/ErrorPage';
 import LandingPage from '@/pages/LandingPage';
-import RegisterPage from '@/pages/RegisterPage';
+import RegisterPage from '@/pages/register/RegisterPage';
 import SurveyIntroPage from '@/pages/survey/SurveyIntroPage';
 import SurveyPage from '@/pages/survey/SurveyPage';
 import GroupCreatePage from '@/pages/group/GroupCreatePage';
