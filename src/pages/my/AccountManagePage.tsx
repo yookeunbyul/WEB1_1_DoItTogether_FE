@@ -1,30 +1,11 @@
 import AlertDialogProps from '@/components/common/alert/AlertDialogProps';
 import Header from '@/components/common/header/Header';
 import AccountMenuItem from '@/components/my/AccountMenuItem/AccountMenuItem';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useAccountManage } from '@/hooks/useAccountManage';
 
 const AccountManagePage = () => {
-  const navigate = useNavigate();
-  const { channelId } = useParams();
-  const [showAlert, setShowAlert] = useState(false);
-  const handleBack = () => {
-    navigate(`/main/${channelId}/my-page`);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('access_token');
-    navigate('/');
-  };
-
-  const handleLeave = () => {
-    navigate(`/my-page/leave/${channelId}`);
-  };
-
-  const onConfirm = () => {
-    setShowAlert(true);
-  };
+  const { showAlert, setShowAlert, handleBack, handleLogout, handleLeave, onConfirm } =
+    useAccountManage();
 
   return (
     <div>
