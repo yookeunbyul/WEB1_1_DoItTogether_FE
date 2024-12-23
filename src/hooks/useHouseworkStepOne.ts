@@ -9,7 +9,7 @@ export interface SelectedTime {
   ampm: 'AM' | 'PM';
 }
 
-export const useHouseWorkStepOne = () => {
+export const useHouseworkStepOne = () => {
   const navigate = useNavigate();
   const {
     task,
@@ -92,3 +92,5 @@ export const useHouseWorkStepOne = () => {
     setDueDateSheetOpen,
   };
 };
+
+export default useHouseworkStepOne;

@@ -6,7 +6,7 @@ import {
   DueDateSheet,
   HouseworkForm,
 } from '@/components/housework';
-import { useHouseWorkStepOne } from '@/hooks/useHouseworkStepOne';
+import useHouseworkStepOne from '@/hooks/useHouseworkStepOne';
 
 const HouseWorkStepOnePage: React.FC = () => {
   const {
@@ -21,7 +21,7 @@ const HouseWorkStepOnePage: React.FC = () => {
     handleTimeChange,
     setHouseWorkSheetOpen,
     setDueDateSheetOpen,
-  } = useHouseWorkStepOne();
+  } = useHouseworkStepOne();
 
   return (
     <div className={`flex h-screen flex-col gap-4 px-5 pb-6`}>
