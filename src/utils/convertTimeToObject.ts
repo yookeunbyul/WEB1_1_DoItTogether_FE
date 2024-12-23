@@ -1,4 +1,4 @@
-import { SelectedTime } from '@/pages/housework/HouseWorkStepOnePage';
+import { SelectedTime } from '@/hooks/useHouseworkStepOne';
 
 export default function convertTimeToObject(timeString: string): SelectedTime {
   // 입력된 시간 문자열을 분리합니다.
