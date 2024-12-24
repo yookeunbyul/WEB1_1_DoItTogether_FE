@@ -1,4 +1,4 @@
-import { SelectedTime } from '@/pages/housework/HouseWorkStepOnePage';
+import { SelectedTime } from '@/hooks/useHouseworkStepOne';
 import { create } from 'zustand';
 
 interface AddHouseWorkState {
