@@ -17,7 +17,7 @@ export const useRegister = () => {
         setName(response.result.nickName);
         setProfileUrl(response.result.profileImageUrl);
       } catch (error) {
-        console.error('사용자 정보 조회 실패:', error);
+        console.error('내 정보 조회 실패:', error);
       }
     };
 

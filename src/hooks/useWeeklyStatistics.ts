@@ -22,7 +22,7 @@ const useWeeklyStatistics = () => {
       const response = await getWeeklyTotalCount({ channelId, targetDate });
       setTotalCountData(response.result);
     } catch (error) {
-      console.error('주간 통계 데이터 조회 실패: ', error);
+      console.error('주간 통계 개수 데이터 조회 실패: ', error);
     }
   };
 

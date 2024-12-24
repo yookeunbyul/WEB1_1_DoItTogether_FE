@@ -19,7 +19,7 @@ const GroupSelectPage = () => {
         const groups = await getMyGroup();
         setGroups(groups.result.channelList);
       } catch (error) {
-        console.error('그룹 조회 실패:', error);
+        console.error('그룹 목록 조회 실패:', error);
       } finally {
         setIsLoading(false); // 데이터 로드 완료
       }

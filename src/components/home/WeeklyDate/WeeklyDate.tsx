@@ -56,26 +56,30 @@ const WeeklyDate = () => {
   }, [api, current, activeWeek]);
 
   const fetchCurrWeek = async (newDate: string) => {
-    const newChannelId = Number(channelId);
-    const currWeekResult = await getWeeklyIncomplete({
-      channelId: newChannelId,
-      targetDate: newDate,
-    });
-    const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
-    const newWeekDates = (weekData: IncompleteScoreResponse[]) => {
-      return weekData.map(data => {
-        const date = new Date(data.date);
-        const weekdayIndex = date.getDay();
-        const day = weekdays[weekdayIndex];
-
-        return {
-          ...data,
-          day,
-        };
+    try {
+      const newChannelId = Number(channelId);
+      const currWeekResult = await getWeeklyIncomplete({
+        channelId: newChannelId,
+        targetDate: newDate,
       });
-    };
+      const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+      const newWeekDates = (weekData: IncompleteScoreResponse[]) => {
+        return weekData.map(data => {
+          const date = new Date(data.date);
+          const weekdayIndex = date.getDay();
+          const day = weekdays[weekdayIndex];
 
-    setCurrWeek(newWeekDates(currWeekResult.result.incompleteScoreResponses));
+          return {
+            ...data,
+            day,
+          };
+        });
+      };
+
+      setCurrWeek(newWeekDates(currWeekResult.result.incompleteScoreResponses));
+    } catch (error) {
+      console.error('주간 미완료율 조회 실패:', error);
+    }
   };
 
   const handleActiveDate = async (date: string) => {

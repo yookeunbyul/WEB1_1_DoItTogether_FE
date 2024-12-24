@@ -29,7 +29,7 @@ const useHouseworkStepTwo = () => {
         const response = await getGroupUser({ channelId });
         setMembers(response.result.userList);
       } catch (error) {
-        console.error('멤버 조회 실패:', error);
+        console.error('그룹 사용자 조회 실패:', error);
       } finally {
         setIsMemberLoading(false);
       }
@@ -50,28 +50,32 @@ const useHouseworkStepTwo = () => {
     const newTime = convertStartTime(startTime);
 
     if (houseworkId) {
-      if (userId) {
-        await putHousework({
-          channelId,
-          houseworkId: Number(houseworkId),
-          category,
-          startDate: formattedDate,
-          task,
-          startTime: newTime,
-          userId,
-        });
+      try {
+        if (userId) {
+          await putHousework({
+            channelId,
+            houseworkId: Number(houseworkId),
+            category,
+            startDate: formattedDate,
+            task,
+            startTime: newTime,
+            userId,
+          });
 
-        setTimeout(() => {
-          setActiveDate(formattedDate);
-          setActiveWeek(new Date(formattedDate));
-          setActiveTab('전체');
-          setWeekText(getWeekText(new Date(formattedDate)));
-          navigate(`/main/${channelId}`);
           setTimeout(() => {
-            reset();
-            setIsLoading(false);
-          }, 2000);
-        }, 2500);
+            setActiveDate(formattedDate);
+            setActiveWeek(new Date(formattedDate));
+            setActiveTab('전체');
+            setWeekText(getWeekText(new Date(formattedDate)));
+            navigate(`/main/${channelId}`);
+            setTimeout(() => {
+              reset();
+              setIsLoading(false);
+            }, 2000);
+          }, 2500);
+        }
+      } catch (error) {
+        console.error('집안일 수정 실패:', error);
       }
     } else {
       try {
