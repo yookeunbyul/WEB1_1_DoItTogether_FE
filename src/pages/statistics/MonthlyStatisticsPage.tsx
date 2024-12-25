@@ -2,13 +2,21 @@ import CompletionText from '@/components/statistics/monthly/CompletionText/Compl
 import MonthlyGoodBad from '@/components/statistics/monthly/MonthlyGoodBad/MonthlyGoodBad';
 import MonthlyGrass from '@/components/statistics/monthly/MonthlyGrass/MonthlyGrass';
 import useMonthlyStatistics from '@/hooks/useMonthlyStatistics';
+import MetaTags from '@/components/common/metaTags/MetaTags';
+import { useParams } from 'react-router-dom';
 
 const MonthlyStatisticsPage = () => {
   const { mvpData, handleMonthChange, handleDataChange, monthlyData, currentMonth } =
     useMonthlyStatistics();
+  const { channelId } = useParams();
 
   return (
     <div className='flex flex-col gap-4'>
+      <MetaTags
+        title={'두잇투게더 - 월간 통계'}
+        description={'그룹의 월간 통계를 확인해보세요.'}
+        url={`https://doit-together.vercel.app/main/${channelId}/statistics/monthly/`}
+      />
       <MonthlyGrass onMonthChange={handleMonthChange} onDataChange={handleDataChange} />
       <CompletionText monthlyData={monthlyData} currentMonth={currentMonth} />
       <div className='flex gap-3 py-2'>

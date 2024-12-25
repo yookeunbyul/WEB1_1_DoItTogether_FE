@@ -5,13 +5,21 @@ import WeeklyStatActions from '@/components/statistics/weekly/WeeklyStatAction/W
 import WeeklyRanking from '@/components/statistics/weekly/WeeklyRanking/WeeklyRanking';
 import useWeeklyStateStore from '@/store/useWeeklyStatisticsStore';
 import useWeeklyStatistics from '@/hooks/useWeeklyStatistics';
+import MetaTags from '@/components/common/metaTags/MetaTags';
+import { useParams } from 'react-router-dom';
 
 const WeeklyStatisticsPage: React.FC = () => {
   const { currentDate, totalCountData, scoreCountData } = useWeeklyStateStore();
   const { handlePrevWeek, handleNextWeek } = useWeeklyStatistics();
+  const { channelId } = useParams();
 
   return (
     <>
+      <MetaTags
+        title={'두잇투게더 - 주간 통계'}
+        description={'그룹의 주간 통계를 확인해보세요.'}
+        url={`https://doit-together.vercel.app/main/${channelId}/statistics/weekly/`}
+      />
       <WeeklyStatDate
         currentDate={currentDate}
         handlePrevWeek={handlePrevWeek}
