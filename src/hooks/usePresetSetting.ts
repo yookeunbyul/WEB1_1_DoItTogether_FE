@@ -34,7 +34,7 @@ const usePresetSetting = () => {
       const categoryListData = response.result.categoryList;
       setCategoryList(categoryListData);
     } catch (error) {
-      console.error('카테고리 초기화 오류: ', error);
+      console.error('카테고리명 조회 실패: ', error);
     }
   };
 
@@ -68,7 +68,7 @@ const usePresetSetting = () => {
       await getPresetData();
       setCateActiveTab(Category.ALL);
     } catch (error) {
-      console.error('프리셋 아이템 추가 오류: ', error);
+      console.error('프리셋 아이템 추가 실패: ', error);
     }
   };
 
@@ -86,7 +86,7 @@ const usePresetSetting = () => {
       // 업데이트된 아이템 리스트 조회
       await getPresetData();
     } catch (error) {
-      console.error('프리셋 아이템 삭제 오류: ', error);
+      console.error('프리셋 아이템 삭제 실패: ', error);
     }
   };
 

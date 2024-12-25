@@ -22,11 +22,21 @@ const GroupCreatePage = () => {
 
   const handleNext = async () => {
     if (roomName.trim()) {
-      const createResult = await postCreateGroup({ name: roomName });
-      const createLink = await postCreateInviteLink({ channelId: createResult.result.channelId });
-      setInviteLink(createLink.result.inviteLink);
-      setChannelId(createResult.result.channelId);
-      setStep('invite');
+      try {
+        const createResult = await postCreateGroup({ name: roomName });
+        
+        try {
+          const createLink = await postCreateInviteLink({ channelId: createResult.result.channelId });
+          setInviteLink(createLink.result.inviteLink);
+          setChannelId(createResult.result.channelId);
+          setStep('invite');
+        } catch(error) {
+          console.error('초대 링크 생성 실패:',error);
+        }
+
+      } catch(error){
+        console.error('그룹 생성 실패:',error);
+      }
     }
   };
 

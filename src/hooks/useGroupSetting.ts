@@ -34,7 +34,7 @@ const useGroupSetting = () => {
         setCurrentUser(current || null);
         setIsLoading(false);
       } catch (error) {
-        console.error('멤버 조회 실패:', error);
+        console.error('그룹 사용자 조회 실패:', error);
         setIsLoading(false);
       }
     };
@@ -60,14 +60,18 @@ const useGroupSetting = () => {
   };
 
   const handleDone = async () => {
-    await putChangeGroupName({
-      channelId: channelId,
-      name: groupName,
-    });
-    setIsEdited(false);
-    toast({
-      title: '그룹 이름이 변경되었어요',
-    });
+    try {
+      await putChangeGroupName({
+        channelId: channelId,
+        name: groupName,
+      });
+      setIsEdited(false);
+      toast({
+        title: '그룹 이름이 변경되었어요',
+      });
+    } catch (error) {
+      console.error('그룹 이름 변경 실패:', error);
+    }
   };
 
   const handleSheet = (member: User) => {
@@ -86,23 +90,46 @@ const useGroupSetting = () => {
     setIsOpen(true);
   };
 
-  const handleExit = async (member: User) => {
-    try {
-      const isCurrentUserSelected = member.currentUser;
+  // const handleExit = async (member: User) => {
+  //   try {
+  //     const isCurrentUserSelected = member.currentUser;
 
-      if (isAdmin && !isCurrentUserSelected) {
+  //     if (isAdmin && !isCurrentUserSelected) {
+  //       await postBanUser({ channelId, email: member.email });
+  //       setMembers(prev => prev.filter(m => m.email !== member.email));
+  //       toast({ title: '탈퇴되었습니다' });
+  //     } else {
+  //       await deleteGroupUser({ channelId });
+  //       navigate('/group-select');
+  //     }
+
+  //     setIsOpen(false);
+  //   } catch (error) {
+  //     console.error('멤버 방출/그룹 나가기 실패:', error);
+  //   }
+  // };
+
+  const handleExit = async (member: User) => {
+    const isCurrentUserSelected = member.currentUser;
+
+    if (isAdmin && !isCurrentUserSelected) {
+      try {
         await postBanUser({ channelId, email: member.email });
         setMembers(prev => prev.filter(m => m.email !== member.email));
         toast({ title: '탈퇴되었습니다' });
-      } else {
+      } catch (error) {
+        console.error('멤버 방출 실패:', error);
+      }
+    } else {
+      try {
         await deleteGroupUser({ channelId });
         navigate('/group-select');
+      } catch (error) {
+        console.error('그룹 나가기 실패:', error);
       }
-
-      setIsOpen(false);
-    } catch (error) {
-      console.error('멤버 방출/그룹 나가기 실패:', error);
     }
+
+    setIsOpen(false);
   };
 
   const handleClose = () => {

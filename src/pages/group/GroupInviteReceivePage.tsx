@@ -21,6 +21,7 @@ const GroupInviteReceivePage = () => {
       navigate(`/main/${joinResult.result.channelId}`);
     } catch (error) {
       toast({ title: '코드를 다시 확인해주세요' });
+      console.error('그룹 입장 실패:',error);
     }
   };
 
