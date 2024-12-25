@@ -1,8 +1,10 @@
 import React from 'react';
-import WeeklyStatDate from '@/components/statistics/weekly/WeeklyStatDate/WeeklyStatDate';
-import WeeklyCompletion from '@/components/statistics/weekly/WeeklyCompletion/WeeklyCompletion';
-import WeeklyStatActions from '@/components/statistics/weekly/WeeklyStatAction/WeeklyStatActions';
-import WeeklyRanking from '@/components/statistics/weekly/WeeklyRanking/WeeklyRanking';
+import {
+  WeeklyCompletion,
+  WeeklyRanking,
+  WeeklyStatActions,
+  WeeklyStatDate,
+} from '@/components/statistics/weekly';
 import useWeeklyStateStore from '@/store/useWeeklyStatisticsStore';
 import useWeeklyStatistics from '@/hooks/useWeeklyStatistics';
 import MetaTags from '@/components/common/metaTags/MetaTags';
