@@ -5,6 +5,7 @@ import { Progress } from '@/components/common/ui/progress';
 import { Button } from '@/components/common/ui/button';
 import { Step1, Step2, Step3, Step4, Step5, LoadingScreen } from '@/components/survey';
 import { useSurvey } from '@/hooks/useSurvey';
+import MetaTags from '@/components/common/metaTags/MetaTags';
 
 const SurveyPage: React.FC = () => {
   const {
@@ -71,6 +72,11 @@ const SurveyPage: React.FC = () => {
 
   return (
     <div className={`flex h-screen flex-col`}>
+      <MetaTags
+        title={'두잇투게더 - 설문조사'}
+        description={'나의 집안일 스타일을 알아보세요.'}
+        url={`https://doit-together.vercel.app/survey/`}
+      />
       {step <= 4 && (
         <motion.div variants={item} initial='hidden' animate='show'>
           <div className='p-5'>
