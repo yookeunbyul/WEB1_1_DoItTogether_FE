@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import Button from '@/components/common/button/Button/Button';
-import SurveyTitle from '@/components/survey/SurveyTitle/SurveyTitle';
-import SurveyIntroDesc from '@/components/survey/surveyIntro/SurveyIntroDesc';
+import { SurveyTitle, SurveyIntroDesc } from '@/components/survey';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import LottieIcon from '@/components/common/lottie/LottieIcon';
