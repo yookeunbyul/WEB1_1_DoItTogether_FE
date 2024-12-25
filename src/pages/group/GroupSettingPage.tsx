@@ -7,6 +7,8 @@ import { INPUT_VALIDATION } from '@/constants/validation';
 import useGroupSetting from '@/hooks/useGroupSetting';
 import PresetSettingBtn from '@/components/setting/groupSetting/PresetSettingBtn/PresetSettingBtn';
 import ErrorMessage from '@/components/common/errorMessage/ErrorMessage';
+import MetaTags from '@/components/common/metaTags/MetaTags';
+import { useParams } from 'react-router-dom';
 
 const GroupSettingPage = () => {
   const {
@@ -29,6 +31,7 @@ const GroupSettingPage = () => {
     handleClose,
     setIsOpen,
   } = useGroupSetting();
+  const { channelId } = useParams();
 
   if (isLoading) {
     return <div></div>;
@@ -36,6 +39,11 @@ const GroupSettingPage = () => {
 
   return (
     <>
+      <MetaTags
+        title={'두잇투게더 - 그룹 설정'}
+        description={'그룹과 그룹원들을 관리할 수 있습니다.'}
+        url={`https://doit-together.vercel.app/main/${channelId}/group-setting/`}
+      />
       <div className='fixed left-0 right-0 top-0 z-10 m-auto max-w bg-white'>
         <SettingHeaderContainer
           title='그룹 설정'
