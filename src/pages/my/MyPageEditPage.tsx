@@ -4,12 +4,20 @@ import InputWithLabel from '@/components/common/input/InputWithLabel';
 import ProfileImg from '@/components/common/profile/ProfileImg';
 import { INPUT_VALIDATION } from '@/constants/validation';
 import { useMyEdit } from '@/hooks/useMyEdit';
+import MetaTags from '@/components/common/metaTags/MetaTags';
+import { useParams } from 'react-router-dom';
 
 const MyPageEditPage = () => {
   const { imageUrl, username, isEdited, error, handleBack, handleChange, handleDone } = useMyEdit();
+  const { channelId } = useParams();
 
   return (
     <>
+      <MetaTags
+        title={'두잇투게더 - 프로필 편집'}
+        description={'등록된 프로필을 편집할 수 있습니다.'}
+        url={`https://doit-together.vercel.app/main/${channelId}/my-page/edit/`}
+      />
       <Header
         title='프로필 편집'
         isNeededDoneBtn={isEdited && !error}

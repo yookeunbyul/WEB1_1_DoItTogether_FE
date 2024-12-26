@@ -7,6 +7,7 @@ import useHomePageStore from '@/store/useHomePageStore';
 import { getMyGroup } from '@/services/group/getMyGroup';
 import { Group } from '@/types/apis/groupApi';
 import { NoGroupIcon } from '@/components/common/icon';
+import MetaTags from '@/components/common/metaTags/MetaTags';
 
 const GroupSelectPage = () => {
   const navigate = useNavigate();
@@ -47,6 +48,11 @@ const GroupSelectPage = () => {
 
   return (
     <div className={`flex h-screen flex-col`}>
+      <MetaTags
+        title={'두잇투게더 - 그룹 선택'}
+        description={'그룹을 선택하고 가사를 분담해보세요.'}
+        url={'https://doit-together.vercel.app/group-select/'}
+      />
       <GroupSelectTitle />
       <div className='flex flex-1 flex-col px-5 py-4'>
         {groups.length > 0 ? (

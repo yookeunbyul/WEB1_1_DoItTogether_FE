@@ -6,12 +6,18 @@ import TitleCenter from '@/components/common/title/TitleCenter';
 import RegisterNotice from '@/components/register/RegisterNotice';
 import { INPUT_VALIDATION } from '@/constants/validation';
 import { useRegister } from '@/hooks/useRegister';
+import MetaTags from '@/components/common/metaTags/MetaTags';
 
 const RegisterPage = () => {
   const { name, profileUrl, error, handleNameChange, handleSubmitButton } = useRegister();
 
   return (
     <div className={`flex h-screen w-full flex-col items-center justify-between px-5 pt-10`}>
+      <MetaTags
+        title={'두잇투게더 - 회원가입'}
+        description={'두잇투게더에 가입해보세요.'}
+        url={`https://doit-together.vercel.app/register/`}
+      />
       <div className='flex w-full flex-col items-center justify-between gap-4'>
         <TitleCenter title={`사용하실 닉네임과\n프로필을 설정해주세요`} />
         <ProfileImg imageUrl={profileUrl} />

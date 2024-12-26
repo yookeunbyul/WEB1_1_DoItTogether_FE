@@ -6,6 +6,8 @@ import { PresetTabName } from '@/constants';
 import { convertTabNameToChargers } from '@/utils/convertUtils';
 import usePresetSetting from '@/hooks/usePresetSetting';
 import usePresetSettingStore from '@/store/usePresetSettingStore';
+import MetaTags from '@/components/common/metaTags/MetaTags';
+import { useParams } from 'react-router-dom';
 
 const PresetSettingPage = () => {
   const {
@@ -25,9 +27,15 @@ const PresetSettingPage = () => {
     handleTabChange,
     handleCateTabChange,
   } = usePresetSetting();
+  const { channelId } = useParams();
 
   return (
     <div className={`flex h-screen flex-col`}>
+      <MetaTags
+        title={'두잇투게더 - 프리셋 설정'}
+        description={'사용자정의 프리셋을 추가하고 삭제할 수 있습니다.'}
+        url={`https://doit-together.vercel.app/group-setting/${channelId}/preset-setting/`}
+      />
       <div className='sticky top-0 z-10 bg-[#fff]'>
         <Header title='프리셋 관리' isNeededDoneBtn={false} handleBack={handleBack} />
         <Tab

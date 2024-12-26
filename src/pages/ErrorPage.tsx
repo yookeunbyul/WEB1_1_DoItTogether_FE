@@ -1,6 +1,7 @@
 import Button from '@/components/common/button/Button/Button';
 import Error404Icon from '@/components/common/icon/Error404Icon';
 import { useNavigate } from 'react-router-dom';
+import MetaTags from '@/components/common/metaTags/MetaTags';
 
 const ErrorPage = () => {
   const navigate = useNavigate();
@@ -9,6 +10,11 @@ const ErrorPage = () => {
   };
   return (
     <div className={`flex h-screen flex-col items-center justify-between pb-6`}>
+      <MetaTags
+        title={'두잇투게더 - 오류'}
+        description={'요청하신 페이지를 찾을 수 없습니다.'}
+        url={`https://doit-together.vercel.app/404/`}
+      />
       <div className='flex flex-1 flex-col items-center justify-center'>
         <Error404Icon />
         <div className='text-gray3 font-label'>요청하신 페이지를 찾을 수 없습니다</div>
