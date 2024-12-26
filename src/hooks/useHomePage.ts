@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
@@ -29,8 +29,6 @@ export const useHomePage = () => {
     myInfo,
     setMyInfo,
     setCurrWeek,
-    weekText,
-    setWeekText,
   } = useHomePageStore();
 
   const { channelId: channelIdStr } = useParams();
@@ -42,9 +40,26 @@ export const useHomePage = () => {
 
   const { data: houseworks, refetch } = useQuery({
     queryKey: ['houseworks', channelId, activeDate],
-    queryFn: async () => await fetchHouseworks(activeDate),
+    queryFn: () => fetchHouseworks(activeDate),
     refetchOnWindowFocus: true,
   });
+
+  const fetchHouseworks = useCallback(
+    async (date: string) => {
+      try {
+        const getHouseworksResult = await getHouseworks({
+          channelId,
+          targetDate: date,
+          pageNumber: homePageNumber,
+          pageSize: PAGE_SIZE,
+        });
+        return getHouseworksResult.result.responses;
+      } catch (error) {
+        console.error('집안일 목록 가져오기 실패:', error);
+      }
+    },
+    [channelId, homePageNumber]
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,9 +79,8 @@ export const useHomePage = () => {
       }
     };
 
-    setWeekText(weekText);
     fetchData();
-  }, []);
+  }, [channelId, setGroups, setMyInfo, setCurrentGroup]);
 
   useEffect(() => {
     const fetchGroupUsers = async () => {
@@ -88,21 +102,7 @@ export const useHomePage = () => {
     fetchGroupUsers();
   }, [channelId]);
 
-  const fetchHouseworks = async (date: string) => {
-    try {
-      const getHouseworksResult = await getHouseworks({
-        channelId,
-        targetDate: date,
-        pageNumber: homePageNumber,
-        pageSize: PAGE_SIZE,
-      });
-      return getHouseworksResult.result.responses;
-    } catch (error) {
-      console.error('집안일 목록 가져오기 실패:', error);
-    }
-  };
-
-  const updateWeeklyIncomplete = async () => {
+  const updateWeeklyIncomplete = useCallback(async () => {
     try {
       const currWeekResult = await getWeeklyIncomplete({
         channelId,
@@ -125,70 +125,82 @@ export const useHomePage = () => {
     } catch (error) {
       console.error('주간 미완료율 조회 실패:', error);
     }
-  };
+  }, [channelId, activeDate, setCurrWeek]);
 
-  const handleAction = async (houseworkId: number) => {
-    const targetHousework = houseworks?.find(housework => housework.houseworkId === houseworkId);
+  const handleAction = useCallback(
+    async (houseworkId: number) => {
+      const targetHousework = houseworks?.find(housework => housework.houseworkId === houseworkId);
 
-    if (!targetHousework) return;
+      if (!targetHousework) return;
 
-    const isMyHousework = targetHousework.userId === myInfo?.userId;
-    const isComplete = targetHousework.status === HOUSEWORK_STATUS.COMPLETE;
+      const isMyHousework = targetHousework.userId === myInfo?.userId;
+      const isComplete = targetHousework.status === HOUSEWORK_STATUS.COMPLETE;
 
-    if (isMyHousework) {
+      if (isMyHousework) {
+        try {
+          await changeHouseworkStatus({ channelId, houseworkId });
+          refetch();
+          await updateWeeklyIncomplete();
+        } catch (error) {
+          console.error('집안일 상태 변경 실패:', error);
+        }
+      } else if (isComplete) {
+        try {
+          await postCompliment({
+            channelId,
+            targetUserId: targetHousework.userId,
+            reactDate: targetHousework.startDate,
+          });
+          toast({ title: `${targetHousework.assignee}님을 칭찬했어요` });
+        } catch (error) {
+          console.error('칭찬하기 실패:', error);
+        }
+      } else {
+        try {
+          await postPoke({
+            channelId,
+            targetUserId: targetHousework.userId!,
+            reactDate: targetHousework.startDate!,
+          });
+          toast({ title: `${targetHousework.assignee}님을 찔렀어요` });
+        } catch (error) {
+          console.error('찌르기 실패:', error);
+        }
+      }
+    },
+    [channelId, houseworks, myInfo, refetch, updateWeeklyIncomplete, toast]
+  );
+
+  const handleEdit = useCallback(
+    (houseworkId: number) => {
+      const targetHousework = houseworks?.find(housework => housework.houseworkId === houseworkId);
+      if (targetHousework?.status === HOUSEWORK_STATUS.COMPLETE) {
+        toast({ title: '완료한 집안일은 수정할 수 없어요' });
+      } else {
+        navigate(`/add-housework/edit/${channelId}/${houseworkId}/step1`, {
+          state: targetHousework,
+        });
+      }
+    },
+    [houseworks, navigate, channelId, toast]
+  );
+
+  const handleDelete = useCallback(
+    async (houseworkId: number) => {
       try {
-        await changeHouseworkStatus({ channelId, houseworkId });
+        await deleteHousework({ channelId, houseworkId });
+        toast({ title: '집안일이 삭제되었습니다' });
         refetch();
-        await updateWeeklyIncomplete();
       } catch (error) {
-        console.error('집안일 상태 변경 실패:', error);
+        console.error('집안일 삭제 실패:', error);
       }
-    } else if (isComplete) {
-      try {
-        await postCompliment({
-          channelId,
-          targetUserId: targetHousework.userId,
-          reactDate: targetHousework.startDate,
-        });
-        toast({ title: `${targetHousework.assignee}님을 칭찬했어요` });
-      } catch (error) {
-        console.error('칭찬하기 실패:', error);
-      }
-    } else {
-      try {
-        await postPoke({
-          channelId,
-          targetUserId: targetHousework.userId!,
-          reactDate: targetHousework.startDate!,
-        });
-        toast({ title: `${targetHousework.assignee}님을 찔렀어요` });
-      } catch (error) {
-        console.error('찌르기 실패:', error);
-      }
-    }
-  };
+    },
+    [channelId, refetch, toast]
+  );
 
-  const handleEdit = (houseworkId: number) => {
-    const targetHousework = houseworks?.find(housework => housework.houseworkId === houseworkId);
-    if (targetHousework?.status === HOUSEWORK_STATUS.COMPLETE) {
-      toast({ title: '완료한 집안일은 수정할 수 없어요' });
-    } else {
-      navigate(`/add-housework/edit/${channelId}/${houseworkId}/step1`, { state: targetHousework });
-    }
-  };
-
-  const handleDelete = async (houseworkId: number) => {
-    try {
-      await deleteHousework({ channelId, houseworkId });
-      toast({ title: '집안일이 삭제되었습니다' });
-      refetch();
-    } catch (error) {
-      console.error('집안일 삭제 실패:', error);
-    }
-  };
-
-  const filteredHouseworks = houseworks?.filter(
-    item => item.assignee === activeTab || activeTab === '전체'
+  const filteredHouseworks = useMemo(
+    () => houseworks?.filter(item => item.assignee === activeTab || activeTab === '전체'),
+    [houseworks, activeTab]
   );
 
   return {
