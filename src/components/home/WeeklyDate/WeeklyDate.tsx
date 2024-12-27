@@ -1,13 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import DateItem from './DateItem/DateItem';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/common/ui/carousel';
-import getWeekText from '@/utils/getWeekText';
+import { getWeekText, getFormattedDate } from '@/utils/dateUtils';
 import useHomePageStore from '@/store/useHomePageStore';
 import { type CarouselApi } from '@/components/common/ui/carousel';
 import { IncompleteScoreResponse } from '@/types/apis/houseworkApi';
 import { getWeeklyIncomplete } from '@/services/housework/getWeeklyIncomplete';
 import { useParams } from 'react-router-dom';
-import getFormattedDate from '@/utils/getFormattedDate';
 
 const WeeklyDate = () => {
   const [api, setApi] = useState<CarouselApi>();
