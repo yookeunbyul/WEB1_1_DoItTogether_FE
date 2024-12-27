@@ -66,7 +66,7 @@ const BottomNav = () => {
         />
       </div>
       <div className='flex flex-1 justify-center'>
-        <AddHouseWorkBtn handleClick={() => handleClick(`/add-housework/${channelId}/step1`)} />
+        <AddHouseWorkBtn handleClick={() => handleClick(`/add-housework/${channelId}`)} />
       </div>
       <div className='flex flex-1 justify-center'>
         <BottomNavBtn

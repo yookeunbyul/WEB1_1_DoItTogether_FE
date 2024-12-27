@@ -1,4 +1,4 @@
-import { SelectedTime } from '@/hooks/useHouseworkStepOne';
+import { SelectedTime } from '@/hooks/useAddHouseWork';
 
 export const convertStartTime = (time: SelectedTime | null) => {
   if (!time) return null;

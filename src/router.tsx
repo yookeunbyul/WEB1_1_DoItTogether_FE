@@ -19,12 +19,11 @@ import MyPage from '@/pages/my/MyPage';
 import MyPageEditPage from '@/pages/my/MyPageEditPage';
 import AccountManagePage from '@/pages/my/AccountManagePage';
 import LeavePage from '@/pages/my/LeavePage';
-import HouseWorkStepOnePage from '@/pages/housework/HouseWorkStepOnePage';
-import HouseWorkStepTwoPage from '@/pages/housework/HouseWorkStepTwoPage';
 import GroupInviteReceivePage from '@/pages/group/GroupInviteReceivePage';
 import ScrollToTop from '@/components/common/scroll/ScrollToTop';
 import { Toaster } from '@/components/common/ui/toaster';
 import PrivateRouter from '@/components/PrivateRouter';
+import AddHouseworkPage from '@/pages/housework/AddHouseworkPage';
 // import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const RootLayout = () => {
@@ -178,34 +177,18 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: '/add-housework/:channelId/step1',
+        path: '/add-housework/:channelId',
         element: (
           <PrivateRouter>
-            <HouseWorkStepOnePage />
+            <AddHouseworkPage />
           </PrivateRouter>
         ),
       },
       {
-        path: '/add-housework/edit/:channelId/:houseworkId/step1/',
+        path: '/add-housework/edit/:channelId/:houseworkId',
         element: (
           <PrivateRouter>
-            <HouseWorkStepOnePage />
-          </PrivateRouter>
-        ),
-      },
-      {
-        path: '/add-housework/:channelId/step2',
-        element: (
-          <PrivateRouter>
-            <HouseWorkStepTwoPage />
-          </PrivateRouter>
-        ),
-      },
-      {
-        path: '/add-housework/edit/:channelId/:houseworkId/step2/',
-        element: (
-          <PrivateRouter>
-            <HouseWorkStepTwoPage />
+            <AddHouseworkPage />
           </PrivateRouter>
         ),
       },

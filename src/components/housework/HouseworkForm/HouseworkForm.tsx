@@ -3,7 +3,7 @@ import OpenSheetBtn from '@/components/common/button/OpenSheetBtn/OpenSheetBtn';
 import OpenSheetBtnWithLabel from '@/components/common/button/OpenSheetBtn/OpenSheetBtnWithLabel';
 import TimeControl from '@/components/housework/TimeControl/TimeControl';
 import { DateIcon, EtcIcon } from '@/components/common/icon';
-import { SelectedTime } from '@/hooks/useHouseworkStepOne';
+import { SelectedTime } from '@/hooks/useAddHouseWork';
 
 interface HouseworkFormProps {
   task: string;
@@ -21,7 +21,7 @@ const HouseworkForm: React.FC<HouseworkFormProps> = ({
   onTimeChange,
 }) => {
   return (
-    <section className='flex flex-col flex-1 gap-4' aria-label='집안일 추가 컨텐츠'>
+    <section className='flex flex-1 flex-col gap-4' aria-label='집안일 추가 컨텐츠'>
       {task ? (
         <OpenSheetBtnWithLabel
           selected={task}
