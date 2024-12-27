@@ -1,4 +1,4 @@
-import { SelectedTime } from '@/hooks/useHouseworkStepOne';
+import { SelectedTime } from '@/hooks/useAddHouseWork';
 
 /**
  * 12시간제 시간 객체를 24시간제 문자열로 변환합니다.
