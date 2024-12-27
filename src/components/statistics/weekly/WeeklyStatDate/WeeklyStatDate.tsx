@@ -1,6 +1,6 @@
 import { ArrowLeftIcon, ArrowRightIcon } from '@/components/common/icon';
 import React from 'react';
-import getWeekText from '@/utils/getWeekText';
+import { getWeekText } from '@/utils/dateUtils';
 
 export interface WeeklyStatDateProps {
   /** 현재 날짜 */

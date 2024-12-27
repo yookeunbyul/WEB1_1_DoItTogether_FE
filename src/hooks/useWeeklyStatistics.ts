@@ -1,7 +1,7 @@
 import { getWeeklyScore } from '@/services/statistics/getWeeklyScore';
 import { getWeeklyTotalCount } from '@/services/statistics/getWeeklyTotalCount';
 import useWeeklyStateStore from '@/store/useWeeklyStatisticsStore';
-import getFormattedDate from '@/utils/getFormattedDate';
+import { getFormattedDate } from '@/utils/dateUtils';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 

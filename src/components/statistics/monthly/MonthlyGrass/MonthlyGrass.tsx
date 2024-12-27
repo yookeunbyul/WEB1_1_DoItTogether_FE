@@ -5,8 +5,7 @@ import { getMonthlyScore } from '@/services/statistics/getMonthlyScore';
 import { CompletionStatus, MonthlyDateScore } from '@/types/apis/statisticsApi';
 import { useNavigate, useParams } from 'react-router-dom';
 import useHomePageStore from './../../../../store/useHomePageStore';
-import getFormattedDate from '@/utils/getFormattedDate';
-import getWeekText from '@/utils/getWeekText';
+import { getFormattedDate, getWeekText } from '@/utils/dateUtils';
 
 interface MonthlyGrassProps {
   onMonthChange: (monthKey: string) => void;
