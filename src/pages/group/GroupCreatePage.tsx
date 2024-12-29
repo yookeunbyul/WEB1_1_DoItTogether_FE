@@ -1,8 +1,10 @@
+import React, { Suspense } from 'react';
 import Header from '@/components/common/header/Header';
-import GroupCreateStep1 from '@/components/group/create/GroupCreateStep1';
-import GroupCreateStep2 from '@/components/group/create/GroupCreateStep2';
 import MetaTags from '@/components/common/metaTags/MetaTags';
 import { useGroupCreate } from '@/hooks/useGroupCreate';
+
+const GroupCreateStep1 = React.lazy(() => import('@/components/group/create/GroupCreateStep1'));
+const GroupCreateStep2 = React.lazy(() => import('@/components/group/create/GroupCreateStep2'));
 
 const GroupCreatePage = () => {
   const { step, roomName, setRoomName, inviteLink, handleNext, handleBack, handleSubmit } =
@@ -17,12 +19,18 @@ const GroupCreatePage = () => {
       />
       <Header title='방만들기' isNeededDoneBtn={false} handleBack={handleBack} />
       <div className='flex-1'>
-        {step === 'roomName' && (
-          <GroupCreateStep1 handleNext={handleNext} roomName={roomName} setRoomName={setRoomName} />
-        )}
-        {step === 'invite' && (
-          <GroupCreateStep2 inviteLink={inviteLink} onSubmit={handleSubmit} roomName={roomName} />
-        )}
+        <Suspense fallback={<div></div>}>
+          {step === 'roomName' && (
+            <GroupCreateStep1
+              handleNext={handleNext}
+              roomName={roomName}
+              setRoomName={setRoomName}
+            />
+          )}
+          {step === 'invite' && (
+            <GroupCreateStep2 inviteLink={inviteLink} onSubmit={handleSubmit} roomName={roomName} />
+          )}
+        </Suspense>
       </div>
     </div>
   );
