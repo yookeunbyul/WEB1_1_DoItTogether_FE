@@ -1,3 +1,4 @@
+import React from 'react';
 import { Group } from '@/types/apis/groupApi';
 import OpenSheetBtn from '@/components/common/button/OpenSheetBtn/OpenSheetBtn';
 import { NoGroupIcon } from '@/components/common/icon';
@@ -7,7 +8,7 @@ interface GroupListProps {
   handleClick: (group: Group) => void;
 }
 
-const GroupList = ({ groups, handleClick }: GroupListProps) => {
+const GroupList: React.FC<GroupListProps> = React.memo(({ groups, handleClick }) => {
   if (groups.length === 0) {
     return (
       <div className='flex flex-1 flex-col items-center justify-center gap-4 whitespace-pre-line text-center text-gray3'>
@@ -29,6 +30,6 @@ const GroupList = ({ groups, handleClick }: GroupListProps) => {
       ))}
     </>
   );
-};
+});
 
 export default GroupList;
