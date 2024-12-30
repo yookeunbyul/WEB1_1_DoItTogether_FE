@@ -177,7 +177,7 @@ export const useHomePage = () => {
       if (targetHousework?.status === HOUSEWORK_STATUS.COMPLETE) {
         toast({ title: '완료한 집안일은 수정할 수 없어요' });
       } else {
-        navigate(`/add-housework/edit/${channelId}/${houseworkId}/step1`, {
+        navigate(`/add-housework/edit/${channelId}/${houseworkId}`, {
           state: targetHousework,
         });
       }
