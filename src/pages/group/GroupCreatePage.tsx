@@ -1,54 +1,12 @@
 import Header from '@/components/common/header/Header';
 import GroupCreateStep1 from '@/components/group/create/GroupCreateStep1';
 import GroupCreateStep2 from '@/components/group/create/GroupCreateStep2';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { postCreateGroup } from '@/services/group/postCreateGroup';
-import { postCreateInviteLink } from '@/services/group/postCreateInviteLink';
 import MetaTags from '@/components/common/metaTags/MetaTags';
-
-type StepType = 'roomName' | 'invite';
-
-/**
- * todo
- * 1. channelId를 전역으로 관리
- */
+import { useGroupCreate } from '@/hooks/useGroupCreate';
 
 const GroupCreatePage = () => {
-  const navigate = useNavigate();
-  const [step, setStep] = useState<StepType>('roomName');
-  const [roomName, setRoomName] = useState('');
-  const [inviteLink, setInviteLink] = useState('');
-  const [channelId, setChannelId] = useState(-1);
-
-  const handleNext = async () => {
-    if (roomName.trim()) {
-      try {
-        const createResult = await postCreateGroup({ name: roomName });
-
-        try {
-          const createLink = await postCreateInviteLink({
-            channelId: createResult.result.channelId,
-          });
-          setInviteLink(createLink.result.inviteLink);
-          setChannelId(createResult.result.channelId);
-          setStep('invite');
-        } catch (error) {
-          console.error('초대 링크 생성 실패:', error);
-        }
-      } catch (error) {
-        console.error('그룹 생성 실패:', error);
-      }
-    }
-  };
-
-  const handleBack = () => {
-    step === 'invite' ? setStep('roomName') : navigate('/group-select');
-  };
-
-  const handleSubmit = () => {
-    navigate(`/main/${channelId}`);
-  };
+  const { step, roomName, setRoomName, inviteLink, handleNext, handleBack, handleSubmit } =
+    useGroupCreate();
 
   return (
     <div className={`flex h-screen flex-col`}>
