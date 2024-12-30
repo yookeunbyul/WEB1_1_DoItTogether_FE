@@ -1,8 +1,8 @@
 import Header from '@/components/common/header/Header';
-import GroupCreateStep1 from '@/components/group/create/GroupCreateStep1';
-import GroupCreateStep2 from '@/components/group/create/GroupCreateStep2';
 import MetaTags from '@/components/common/metaTags/MetaTags';
 import { useGroupCreate } from '@/hooks/useGroupCreate';
+import GroupCreateStep1 from '@/components/group/create/GroupCreateStep1';
+import GroupCreateStep2 from '@/components/group/create/GroupCreateStep2';
 
 const GroupCreatePage = () => {
   const { step, roomName, setRoomName, inviteLink, handleNext, handleBack, handleSubmit } =
