@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useHomePageStore from '@/store/useHomePageStore';
 import { getMyGroup } from '@/services/group/getMyGroup';
@@ -9,20 +9,21 @@ export const useGroupSelect = () => {
   const { setCurrentGroup, groups, setGroups, setActiveTab } = useHomePageStore();
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchMyGroup = async () => {
-      try {
-        const groups = await getMyGroup();
-        setGroups(groups.result.channelList);
-      } catch (error) {
-        console.error('그룹 목록 조회 실패:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchMyGroup();
+  const fetchGroups = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const fetchedGroups = await getMyGroup();
+      setGroups(fetchedGroups.result.channelList);
+    } catch (err) {
+      console.error('그룹 목록 조회 실패:', err);
+    } finally {
+      setIsLoading(false);
+    }
   }, [setGroups]);
+
+  useEffect(() => {
+    fetchGroups();
+  }, [fetchGroups]);
 
   const handleMakeGroupBtnClick = () => {
     navigate('/group/create');
