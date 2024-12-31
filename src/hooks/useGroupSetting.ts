@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { User } from '@/types/apis/groupApi';
 import { getGroupUser } from '@/services/group/getGroupUser';
@@ -24,23 +24,23 @@ const useGroupSetting = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<boolean>(false);
 
-  useEffect(() => {
-    const fetchGroupMembers = async () => {
-      try {
-        const response = await getGroupUser({ channelId });
-        setGroupName(response.result.name);
-        setMembers(response.result.userList);
-        const current = response.result.userList.find(user => user.currentUser);
-        setCurrentUser(current || null);
-        setIsLoading(false);
-      } catch (error) {
-        console.error('그룹 사용자 조회 실패:', error);
-        setIsLoading(false);
-      }
-    };
+  const fetchGroupMembers = useCallback(async () => {
+    try {
+      const response = await getGroupUser({ channelId });
+      setGroupName(response.result.name);
+      setMembers(response.result.userList);
+      const current = response.result.userList.find(user => user.currentUser);
+      setCurrentUser(current || null);
+    } catch (error) {
+      console.error('그룹 사용자 조회 실패:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [channelId]);
 
+  useEffect(() => {
     fetchGroupMembers();
-  }, []);
+  }, [fetchGroupMembers]);
 
   const handleMovePreset = () => {
     navigate(`/group-setting/${channelId}/preset-setting`);
