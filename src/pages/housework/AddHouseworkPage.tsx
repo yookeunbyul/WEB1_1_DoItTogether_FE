@@ -1,28 +1,29 @@
-import React from 'react';
 import MetaTags from '@/components/common/metaTags/MetaTags';
-import { HeaderWithTitle, Step1, Step2 } from '@/components/housework';
+import { HeaderWithTitle, Step1, Step2, HouseWorkAddLoading } from '@/components/housework';
 import Button from '@/components/common/button/Button/Button';
 import useAddHouseWork from '@/hooks/useAddHouseWork';
 
-interface AddHouseworkPageProps {}
-
-const AddHouseworkPage: React.FC<AddHouseworkPageProps> = ({}) => {
+const AddHouseworkPage = ({}) => {
   const {
     startDate,
     userId,
     task,
-    isMemberLoading,
+    setTask,
     isLoading,
     channelId,
     houseworkId,
     handleBackClick,
     handleNextClick,
     step,
+    time,
+    setTime,
+    members,
+    category,
+    setCategory,
+    setStartDate,
   } = useAddHouseWork();
 
-  if (isMemberLoading) {
-    return <></>;
-  }
+  console.log(task, category);
 
   return (
     <div className='flex h-screen flex-col gap-4 px-5 pb-6'>
@@ -47,10 +48,31 @@ const AddHouseworkPage: React.FC<AddHouseworkPageProps> = ({}) => {
       )}
 
       {/* 집안일,날짜,시간 */}
-      {step === 1 && <Step1 />}
+      {step === 1 && (
+        <Step1
+          setTime={setTime}
+          time={time}
+          task={task}
+          setTask={setTask}
+          setCategory={setCategory}
+          startDate={startDate}
+          setStartDate={setStartDate}
+        />
+      )}
 
       {/* 담당자 */}
-      {step === 2 && <Step2 />}
+      {step === 2 &&
+        (isLoading ? (
+          <HouseWorkAddLoading
+            member={userId}
+            housework={task}
+            date={startDate}
+            members={members}
+            category={category}
+          />
+        ) : (
+          <Step2 />
+        ))}
 
       {!isLoading && (
         <Button

@@ -14,6 +14,8 @@ interface HouseWorkSheetProps {
   isOpen: boolean;
   /** isOpen 바꾸는 set함수 */
   setOpen: (isOpen: boolean) => void;
+  setTask: React.Dispatch<React.SetStateAction<string>>;
+  setCategory: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface PresetItem {
@@ -31,8 +33,13 @@ interface PresetList {
   presetItemList: Array<PresetItem>;
 }
 
-const HouseWorkSheet: React.FC<HouseWorkSheetProps> = ({ isOpen, setOpen }) => {
-  const { setTask, setCategory, selectedItem, setSelectedItem } = useAddHouseWorkStore();
+const HouseWorkSheet: React.FC<HouseWorkSheetProps> = ({
+  isOpen,
+  setOpen,
+  setTask,
+  setCategory,
+}) => {
+  const { selectedItem, setSelectedItem } = useAddHouseWorkStore();
   const [activeTab, setActiveTab] = useState<string>(PresetTabName.PRESET_DATA);
   const [cateActiveTab, setCateActiveTab] = useState<string>(Category.ALL);
   const [presetData, setPresetData] = useState<PresetList[]>([]);

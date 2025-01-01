@@ -10,7 +10,8 @@ interface HouseworkFormProps {
   startDate: string;
   handleHouseWorkClick: () => void;
   handleDueDateClick: () => void;
-  onTimeChange: (newTime: SelectedTime | null) => void;
+  setTime: React.Dispatch<React.SetStateAction<SelectedTime | null>>;
+  time: SelectedTime | null;
 }
 
 const HouseworkForm: React.FC<HouseworkFormProps> = ({
@@ -18,7 +19,8 @@ const HouseworkForm: React.FC<HouseworkFormProps> = ({
   startDate,
   handleHouseWorkClick,
   handleDueDateClick,
-  onTimeChange,
+  setTime,
+  time,
 }) => {
   return (
     <section className='flex flex-1 flex-col gap-4' aria-label='집안일 추가 컨텐츠'>
@@ -50,7 +52,7 @@ const HouseworkForm: React.FC<HouseworkFormProps> = ({
           icon={<DateIcon className='text-gray3' />}
         />
       )}
-      <TimeControl onTimeChange={onTimeChange} />
+      <TimeControl setTime={setTime} time={time} />
     </section>
   );
 };

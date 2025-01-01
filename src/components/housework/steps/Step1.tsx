@@ -1,13 +1,28 @@
 import { DueDateSheet, HouseworkForm, HouseWorkSheet } from '@/components/housework';
-import useAddHouseWork from '@/hooks/useAddHouseWork';
+import useAddHouseWork, { SelectedTime } from '@/hooks/useAddHouseWork';
 
-const Step1 = () => {
+interface Step1Props {
+  setTime: React.Dispatch<React.SetStateAction<SelectedTime | null>>;
+  time: SelectedTime | null;
+  task: string;
+  setTask: React.Dispatch<React.SetStateAction<string>>;
+  setCategory: React.Dispatch<React.SetStateAction<string>>;
+  startDate: string;
+  setStartDate: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Step1 = ({
+  setTime,
+  time,
+  task,
+  setTask,
+  setCategory,
+  startDate,
+  setStartDate,
+}: Step1Props) => {
   const {
-    task,
-    startDate,
     handleHouseWorkClick,
     handleDueDateClick,
-    handleTimeChange,
     isHouseWorkSheetOpen,
     setHouseWorkSheetOpen,
     isDueDateSheetOpen,
@@ -20,11 +35,21 @@ const Step1 = () => {
         startDate={startDate}
         handleHouseWorkClick={handleHouseWorkClick}
         handleDueDateClick={handleDueDateClick}
-        onTimeChange={handleTimeChange}
+        setTime={setTime}
+        time={time}
       />
 
-      <HouseWorkSheet isOpen={isHouseWorkSheetOpen} setOpen={setHouseWorkSheetOpen} />
-      <DueDateSheet isOpen={isDueDateSheetOpen} setOpen={setDueDateSheetOpen} />
+      <HouseWorkSheet
+        isOpen={isHouseWorkSheetOpen}
+        setOpen={setHouseWorkSheetOpen}
+        setTask={setTask}
+        setCategory={setCategory}
+      />
+      <DueDateSheet
+        isOpen={isDueDateSheetOpen}
+        setOpen={setDueDateSheetOpen}
+        setStartDate={setStartDate}
+      />
     </>
   );
 };

@@ -28,27 +28,23 @@ const useAddHouseWork = () => {
   const targetHousework = location.state;
 
   //전역 상태
-  const {
-    task,
-    category,
-    setCategory,
-    startDate,
-    startTime,
-    userId,
-    setStartTime,
-    setTask,
-    setStartDate,
-    setIsAllday,
-    setUserId,
-    reset,
-  } = useAddHouseWorkStore();
+  const { userId, setIsAllday, setUserId, reset } = useAddHouseWorkStore();
 
   const { setActiveDate, setActiveWeek, setActiveTab, setWeekText } = useHomePageStore();
 
   //지역 상태
   const [isHouseWorkSheetOpen, setHouseWorkSheetOpen] = useState(false);
   const [isDueDateSheetOpen, setDueDateSheetOpen] = useState(false);
-  const [time, setTime] = useState<SelectedTime | null>(startTime);
+  const [time, setTime] = useState<SelectedTime | null>(() =>
+    targetHousework && !targetHousework.isAllDay && targetHousework.startTime
+      ? convertTimeToObject(targetHousework.startTime)
+      : null
+  );
+
+  const [task, setTask] = useState('');
+  const [category, setCategory] = useState('');
+  const [startDate, setStartDate] = useState('');
+
   //담당자 선택 시트 오픈 여부
   const [isOpen, setIsOpen] = useState(false);
   //등록중입니다..할때 조건 걸 상태
@@ -74,12 +70,11 @@ const useAddHouseWork = () => {
   const handleNextClick = async () => {
     if (step === 1) {
       setStep(step => step + 1);
-      setStartTime(time);
     } else if (step === 2) {
       setIsLoading(true);
 
       const formattedDate = formatDateToISO(startDate);
-      const newTime = convertStartTime(startTime);
+      const newTime = convertStartTime(time);
 
       if (houseworkId) {
         try {
@@ -152,10 +147,6 @@ const useAddHouseWork = () => {
       setCategory(targetHousework.category);
       setUserId(targetHousework.userId);
       setIsAllday(targetHousework.isAllDay);
-      if (!targetHousework.isAllDay && targetHousework.startTime) {
-        const result = convertTimeToObject(targetHousework.startTime);
-        setStartTime(result);
-      }
     }
   }, []);
 
@@ -188,11 +179,6 @@ const useAddHouseWork = () => {
     setIsOpen(true);
   };
 
-  //우선 지역상태로 관리하는 시간 값
-  const handleTimeChange = (newTime: SelectedTime | null) => {
-    setTime(newTime);
-  };
-
   //담당자 선택 완료하면 시트 닫힘
   const handleDoneClick = () => {
     setIsOpen(false);
@@ -204,11 +190,11 @@ const useAddHouseWork = () => {
     userId,
     category,
     task,
+    setTask,
     isMemberLoading,
     isLoading,
     handleHouseWorkClick,
     handleDueDateClick,
-    handleTimeChange,
     isHouseWorkSheetOpen,
     setHouseWorkSheetOpen,
     isDueDateSheetOpen,
@@ -225,6 +211,10 @@ const useAddHouseWork = () => {
     handleBackClick,
     handleNextClick,
     step,
+    time,
+    setTime,
+    setCategory,
+    setStartDate,
   };
 };
 
