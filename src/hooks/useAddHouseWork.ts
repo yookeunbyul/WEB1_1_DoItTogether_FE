@@ -62,6 +62,45 @@ const useAddHouseWork = () => {
   //패널 : 스텝
   const [step, setStep] = useState(1);
 
+  //home에서 가져온 집안일이 있을 경우 전역 상태에 값들을 채워준다
+  useEffect(() => {
+    if (targetHousework) {
+      setTask(targetHousework.task);
+
+      const date = new Date(targetHousework.startDate);
+      const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
+
+      setStartDate(formattedDate);
+      setCategory(targetHousework.category);
+      setUserId(targetHousework.userId);
+      setIsAllday(targetHousework.isAllDay);
+      if (!targetHousework.isAllDay && targetHousework.startTime) {
+        const result = convertTimeToObject(targetHousework.startTime);
+        setStartTime(result);
+      }
+    }
+  }, []);
+
+  //멤버 조회하는 api 호출
+  useEffect(() => {
+    const fetchGroupMembers = async () => {
+      try {
+        const response = await getGroupUser({ channelId });
+        setMembers(response.result.userList);
+      } catch (error) {
+        console.error('그룹 사용자 조회 실패:', error);
+      } finally {
+        setIsMemberLoading(false);
+      }
+    };
+
+    fetchGroupMembers();
+  }, [channelId]);
+
+  useEffect(() => {
+    setStartTime(time);
+  }, [time]);
+
   const handleBackClick = () => {
     if (step === 1) {
       navigate(`/main/${channelId}`);
@@ -74,7 +113,6 @@ const useAddHouseWork = () => {
   const handleNextClick = async () => {
     if (step === 1) {
       setStep(step => step + 1);
-      setStartTime(time);
     } else if (step === 2) {
       setIsLoading(true);
 
@@ -139,41 +177,6 @@ const useAddHouseWork = () => {
       }
     }
   };
-
-  //home에서 가져온 집안일이 있을 경우 전역 상태에 값들을 채워준다
-  useEffect(() => {
-    if (targetHousework) {
-      setTask(targetHousework.task);
-
-      const date = new Date(targetHousework.startDate);
-      const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
-
-      setStartDate(formattedDate);
-      setCategory(targetHousework.category);
-      setUserId(targetHousework.userId);
-      setIsAllday(targetHousework.isAllDay);
-      if (!targetHousework.isAllDay && targetHousework.startTime) {
-        const result = convertTimeToObject(targetHousework.startTime);
-        setStartTime(result);
-      }
-    }
-  }, []);
-
-  //멤버 조회하는 api 호출
-  useEffect(() => {
-    const fetchGroupMembers = async () => {
-      try {
-        const response = await getGroupUser({ channelId });
-        setMembers(response.result.userList);
-      } catch (error) {
-        console.error('그룹 사용자 조회 실패:', error);
-      } finally {
-        setIsMemberLoading(false);
-      }
-    };
-
-    fetchGroupMembers();
-  }, [channelId]);
 
   //바텀 시트 여는 함수들
   const handleHouseWorkClick = () => {
