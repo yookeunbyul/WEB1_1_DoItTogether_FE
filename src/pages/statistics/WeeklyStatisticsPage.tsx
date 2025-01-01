@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   WeeklyCompletion,
   WeeklyRanking,
@@ -10,7 +9,7 @@ import useWeeklyStatistics from '@/hooks/useWeeklyStatistics';
 import MetaTags from '@/components/common/metaTags/MetaTags';
 import { useParams } from 'react-router-dom';
 
-const WeeklyStatisticsPage: React.FC = () => {
+const WeeklyStatisticsPage = () => {
   const { currentDate, totalCountData, scoreCountData } = useWeeklyStateStore();
   const { handlePrevWeek, handleNextWeek } = useWeeklyStatistics();
   const { channelId } = useParams();

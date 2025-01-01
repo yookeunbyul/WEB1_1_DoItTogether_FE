@@ -2,7 +2,7 @@ import { getWeeklyScore } from '@/services/statistics/getWeeklyScore';
 import { getWeeklyTotalCount } from '@/services/statistics/getWeeklyTotalCount';
 import useWeeklyStateStore from '@/store/useWeeklyStatisticsStore';
 import { getFormattedDate } from '@/utils/dateUtils';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 const useWeeklyStatistics = () => {
@@ -12,13 +12,25 @@ const useWeeklyStatistics = () => {
     useWeeklyStateStore();
 
   useEffect(() => {
-    getTotalCountData();
-    getScoreCountData();
+    setCurrentDate(prevDate => {
+      if (prevDate.toDateString() !== new Date().toDateString()) {
+        return new Date();
+      }
+      return prevDate;
+    });
+  }, []);
+
+  useEffect(() => {
+    const fetchCountData = async () => {
+      const targetDate = getFormattedDate(currentDate);
+      await Promise.allSettled([getTotalCountData(targetDate), getScoreCountData(targetDate)]);
+    };
+
+    fetchCountData();
   }, [currentDate]);
 
-  const getTotalCountData = async () => {
+  const getTotalCountData = async (targetDate: string) => {
     try {
-      const targetDate = getFormattedDate(currentDate);
       const response = await getWeeklyTotalCount({ channelId, targetDate });
       setTotalCountData(response.result);
     } catch (error) {
@@ -26,9 +38,8 @@ const useWeeklyStatistics = () => {
     }
   };
 
-  const getScoreCountData = async () => {
+  const getScoreCountData = async (targetDate: string) => {
     try {
-      const targetDate = getFormattedDate(currentDate);
       const response = await getWeeklyScore({ channelId, targetDate });
       setScoreCountData(response.result.completeScoreSortedResponse);
     } catch (error) {
@@ -36,21 +47,21 @@ const useWeeklyStatistics = () => {
     }
   };
 
-  const handlePrevWeek = () => {
+  const handlePrevWeek = useCallback(() => {
     setCurrentDate((prevDate: Date) => {
       const newDate = new Date(prevDate);
       newDate.setDate(newDate.getDate() - 7);
       return newDate;
     });
-  };
+  }, [setCurrentDate]);
 
-  const handleNextWeek = () => {
+  const handleNextWeek = useCallback(() => {
     setCurrentDate(prevDate => {
       const newDate = new Date(prevDate);
       newDate.setDate(newDate.getDate() + 7);
       return newDate;
     });
-  };
+  }, [setCurrentDate]);
 
   return {
     handlePrevWeek,
