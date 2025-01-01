@@ -12,26 +12,22 @@ interface SelectedTime {
 }
 
 interface TimeControlProps {
-  onTimeChange: (time: SelectedTime | null) => void;
+  setTime: React.Dispatch<React.SetStateAction<SelectedTime | null>>;
+  time: SelectedTime | null;
 }
 
-const TimeControl: React.FC<TimeControlProps> = ({ onTimeChange }) => {
-  const { isAllday, setIsAllday, startTime } = useAddHouseWorkStore();
+const TimeControl = ({ setTime, time }: TimeControlProps) => {
+  const { isAllday, setIsAllday } = useAddHouseWorkStore();
 
   const handleSwitchChange = () => {
     if (!isAllday) {
       //false때 누르면 하루종일하기가 활성화
       setIsAllday(true);
-
-      onTimeChange(null);
+      setTime(null);
     } else {
       //true일때 누르면 하루종일하기가 비활성화
       setIsAllday(false);
     }
-  };
-
-  const handleTimeChange = (time: SelectedTime) => {
-    onTimeChange(time);
   };
 
   return (
@@ -64,7 +60,7 @@ const TimeControl: React.FC<TimeControlProps> = ({ onTimeChange }) => {
           className='border data-[state=checked]:border-sub2 data-[state=checked]:bg-main'
         />
       </div>
-      {!isAllday && <TimePicker onTimeChange={handleTimeChange} initialTime={startTime} />}
+      {!isAllday && <TimePicker initialTime={time} setTime={setTime} />}
     </div>
   );
 };

@@ -1,18 +1,10 @@
 import useAddHouseWork from '@/hooks/useAddHouseWork';
-import {
-  HouseWorkAddLoading,
-  ManagerSelectSheet,
-  TaskAssignmentContent,
-} from '@/components/housework';
+import { ManagerSelectSheet, TaskAssignmentContent } from '@/components/housework';
 
 const Step2 = () => {
   const {
-    isLoading,
     userId,
-    task,
-    startDate,
     members,
-    category,
     handleManagerClick,
     isOpen,
     setIsOpen,
@@ -21,17 +13,6 @@ const Step2 = () => {
     handleDoneClick,
   } = useAddHouseWork();
 
-  if (isLoading) {
-    return (
-      <HouseWorkAddLoading
-        member={userId}
-        housework={task}
-        date={startDate}
-        members={members}
-        category={category}
-      />
-    );
-  }
   return (
     <>
       <TaskAssignmentContent
