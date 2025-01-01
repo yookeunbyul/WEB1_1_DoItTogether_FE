@@ -1,6 +1,6 @@
+import React, { Suspense } from 'react';
 import SettingHeaderContainer from '@/components/common/header/Header';
 import InputWithLabel from '@/components/common/input/InputWithLabel';
-import MemberItems from '@/components/setting/groupSetting/MemberItems/MemberItems';
 import InviteLinkWithLabel from '@/components/setting/groupSetting/InviteLink/InviteLinkWithLabel';
 import ExitSheet from '@/components/setting/ExitSheet/ExitSheet';
 import { INPUT_VALIDATION } from '@/constants/validation';
@@ -9,6 +9,10 @@ import PresetSettingBtn from '@/components/setting/groupSetting/PresetSettingBtn
 import ErrorMessage from '@/components/common/errorMessage/ErrorMessage';
 import MetaTags from '@/components/common/metaTags/MetaTags';
 import { useParams } from 'react-router-dom';
+
+const MemberItems = React.lazy(
+  () => import('@/components/setting/groupSetting/MemberItems/MemberItems')
+);
 
 const GroupSettingPage = () => {
   const {
@@ -61,12 +65,16 @@ const GroupSettingPage = () => {
           />
           {error && <ErrorMessage message={INPUT_VALIDATION.roomName.errorMessage} />}
         </div>
-        <MemberItems
-          leader={isAdmin}
-          members={members}
-          currentUser={currentUser}
-          handleClick={handleSheet}
-        />
+
+        <Suspense fallback={<div></div>}>
+          <MemberItems
+            leader={isAdmin}
+            members={members}
+            currentUser={currentUser}
+            handleClick={handleSheet}
+          />
+        </Suspense>
+
         <InviteLinkWithLabel />
         <PresetSettingBtn handleClick={handleMovePreset} />
       </div>
