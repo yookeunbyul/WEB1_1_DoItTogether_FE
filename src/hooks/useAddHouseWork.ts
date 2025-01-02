@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 import { User } from '@/types/apis/groupApi';
@@ -29,8 +29,6 @@ const useAddHouseWork = () => {
   const { setActiveDate, setActiveWeek, setActiveTab, setWeekText } = useHomePageStore();
 
   //지역 상태
-  const [isHouseWorkSheetOpen, setHouseWorkSheetOpen] = useState(false);
-  const [isDueDateSheetOpen, setDueDateSheetOpen] = useState(false);
   const [time, setTime] = useState<SelectedTime | null>(() =>
     targetHousework && !targetHousework.isAllDay && targetHousework.startTime
       ? convertTimeToObject(targetHousework.startTime)
@@ -58,6 +56,8 @@ const useAddHouseWork = () => {
   const [members, setMembers] = useState<User[]>([]);
   const [isMemberLoading, setIsMemberLoading] = useState(true);
 
+  const memoizedMembers = useMemo(() => members, [members]);
+
   //패널 : 스텝
   const [step, setStep] = useState(1);
 
@@ -84,16 +84,16 @@ const useAddHouseWork = () => {
     fetchGroupMembers();
   }, [channelId]);
 
-  const handleBackClick = () => {
+  const handleBackClick = useCallback(() => {
     if (step === 1) {
       navigate(`/main/${channelId}`);
       reset();
     } else if (step === 2) {
       setStep(step => step - 1);
     }
-  };
+  }, [step]);
 
-  const handleNextClick = async () => {
+  const handleNextClick = useCallback(async () => {
     if (step === 1) {
       setStep(step => step + 1);
     } else if (step === 2) {
@@ -102,9 +102,9 @@ const useAddHouseWork = () => {
       const formattedDate = formatDateToISO(startDate);
       const newTime = convertStartTime(time);
 
-      if (houseworkId) {
-        try {
-          if (userId) {
+      try {
+        if (userId) {
+          if (houseworkId) {
             await putHousework({
               channelId,
               houseworkId: Number(houseworkId),
@@ -114,25 +114,7 @@ const useAddHouseWork = () => {
               startTime: newTime,
               userId,
             });
-
-            setTimeout(() => {
-              setActiveDate(formattedDate);
-              setActiveWeek(new Date(formattedDate));
-              setActiveTab('전체');
-              setWeekText(getWeekText(new Date(formattedDate)));
-              navigate(`/main/${channelId}`);
-              setTimeout(() => {
-                reset();
-                setIsLoading(false);
-              }, 2000);
-            }, 2500);
-          }
-        } catch (error) {
-          console.error('집안일 수정 실패:', error);
-        }
-      } else {
-        try {
-          if (userId) {
+          } else {
             await postHousework({
               channelId,
               category,
@@ -141,34 +123,41 @@ const useAddHouseWork = () => {
               startTime: newTime,
               userId,
             });
-
-            setTimeout(() => {
-              setActiveDate(formattedDate);
-              setActiveWeek(new Date(formattedDate));
-              setActiveTab('전체');
-              setWeekText(getWeekText(new Date(formattedDate)));
-              navigate(`/main/${channelId}`);
-              setTimeout(() => {
-                reset();
-                setIsLoading(false);
-              }, 2000);
-            }, 2500);
           }
-        } catch (error) {
-          console.error('집안일 추가 실패:', error);
+
+          setTimeout(() => {
+            setActiveDate(formattedDate);
+            setActiveWeek(new Date(formattedDate));
+            setActiveTab('전체');
+            setWeekText(getWeekText(new Date(formattedDate)));
+            navigate(`/main/${channelId}`);
+            setTimeout(() => {
+              reset();
+              setIsLoading(false);
+            }, 2000);
+          }, 2500);
         }
+      } catch (error) {
+        console.error(houseworkId ? '집안일 수정 실패:' : '집안일 추가 실패:', error);
       }
     }
-  };
-
-  //바텀 시트 여는 함수들
-  const handleHouseWorkClick = () => {
-    setHouseWorkSheetOpen(true);
-  };
-
-  const handleDueDateClick = () => {
-    setDueDateSheetOpen(true);
-  };
+  }, [
+    step,
+    startDate,
+    time,
+    userId,
+    houseworkId,
+    category,
+    task,
+    channelId,
+    setActiveDate,
+    setActiveWeek,
+    setActiveTab,
+    setWeekText,
+    navigate,
+    reset,
+    setIsLoading,
+  ]);
 
   const handleManagerClick = () => {
     setIsOpen(true);
@@ -188,13 +177,7 @@ const useAddHouseWork = () => {
     setTask,
     isMemberLoading,
     isLoading,
-    handleHouseWorkClick,
-    handleDueDateClick,
-    isHouseWorkSheetOpen,
-    setHouseWorkSheetOpen,
-    isDueDateSheetOpen,
-    setDueDateSheetOpen,
-    members,
+    members: memoizedMembers,
     handleManagerClick,
     isOpen,
     setIsOpen,

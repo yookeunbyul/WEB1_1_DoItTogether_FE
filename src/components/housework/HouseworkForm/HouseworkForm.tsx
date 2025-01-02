@@ -16,6 +16,17 @@ interface HouseworkFormProps {
   setIsAllday: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const ICONS = {
+  ETC: {
+    DEFAULT: <EtcIcon />,
+    GRAY: <EtcIcon fillOneClass='fill-gray2' fillTwoClass='fill-gray3' />,
+  },
+  DATE: {
+    DEFAULT: <DateIcon className='text-main' />,
+    GRAY: <DateIcon className='text-gray3' />,
+  },
+} as const;
+
 const HouseworkForm: React.FC<HouseworkFormProps> = ({
   task,
   startDate,
@@ -32,28 +43,28 @@ const HouseworkForm: React.FC<HouseworkFormProps> = ({
         <OpenSheetBtnWithLabel
           selected={task}
           handleClick={handleHouseWorkClick}
-          icon={<EtcIcon />}
+          icon={ICONS.ETC.DEFAULT}
         />
       ) : (
         <OpenSheetBtn
           text='어떤 집안일인가요?'
           handleClick={handleHouseWorkClick}
           type='housework'
-          icon={<EtcIcon fillOneClass='fill-gray2' fillTwoClass='fill-gray3' />}
+          icon={ICONS.ETC.GRAY}
         />
       )}
       {startDate ? (
         <OpenSheetBtnWithLabel
           selected={startDate}
           handleClick={handleDueDateClick}
-          icon={<DateIcon className='text-main' />}
+          icon={ICONS.DATE.DEFAULT}
         />
       ) : (
         <OpenSheetBtn
           text='언제 해야 하나요?'
           handleClick={handleDueDateClick}
           type='housework'
-          icon={<DateIcon className='text-gray3' />}
+          icon={ICONS.DATE.GRAY}
         />
       )}
       <TimeControl setTime={setTime} time={time} isAllday={isAllday} setIsAllday={setIsAllday} />

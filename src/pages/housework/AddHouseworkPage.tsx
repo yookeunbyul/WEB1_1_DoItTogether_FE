@@ -1,7 +1,9 @@
 import MetaTags from '@/components/common/metaTags/MetaTags';
 import { HeaderWithTitle, Step1, Step2, HouseWorkAddLoading } from '@/components/housework';
-import Button from '@/components/common/button/Button/Button';
 import useAddHouseWork from '@/hooks/useAddHouseWork';
+import { STEP_TITLES } from '@/constants/addHousework';
+import { useMemo } from 'react';
+import ActionButton from '@/components/housework/ActionButton/ActionButton';
 
 const AddHouseworkPage = ({}) => {
   const {
@@ -25,6 +27,11 @@ const AddHouseworkPage = ({}) => {
     setIsAllday,
   } = useAddHouseWork();
 
+  const isDisabled = useMemo(
+    () => (step === 1 ? !task || !startDate : !userId),
+    [step, task, startDate, userId]
+  );
+
   return (
     <div className='flex h-screen flex-col gap-4 px-5 pb-6'>
       {houseworkId ? (
@@ -41,10 +48,7 @@ const AddHouseworkPage = ({}) => {
         />
       )}
       {!isLoading && (
-        <HeaderWithTitle
-          title={step === 1 ? `새로운 집안일을\n추가해보세요` : `담당자를\n지정해보세요`}
-          handleClick={handleBackClick}
-        />
+        <HeaderWithTitle title={STEP_TITLES[step as 1 | 2]} handleClick={handleBackClick} />
       )}
 
       {/* 집안일,날짜,시간 */}
@@ -76,16 +80,12 @@ const AddHouseworkPage = ({}) => {
           <Step2 />
         ))}
 
-      {!isLoading && (
-        <Button
-          variant='full'
-          size='large'
-          label={step === 1 ? '다음' : '완료'}
-          handleClick={handleNextClick}
-          disabled={step === 1 ? !task || !startDate : !userId}
-          className='sticky bottom-6'
-        />
-      )}
+      <ActionButton
+        step={step}
+        isLoading={isLoading}
+        isDisabled={isDisabled}
+        handleNextClick={handleNextClick}
+      />
     </div>
   );
 };

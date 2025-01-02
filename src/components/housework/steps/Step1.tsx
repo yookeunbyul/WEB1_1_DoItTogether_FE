@@ -1,5 +1,6 @@
 import { DueDateSheet, HouseworkForm, HouseWorkSheet } from '@/components/housework';
-import useAddHouseWork, { SelectedTime } from '@/hooks/useAddHouseWork';
+import { SelectedTime } from '@/hooks/useAddHouseWork';
+import React, { useState } from 'react';
 
 interface Step1Props {
   setTime: React.Dispatch<React.SetStateAction<SelectedTime | null>>;
@@ -24,14 +25,17 @@ const Step1 = ({
   isAllday,
   setIsAllday,
 }: Step1Props) => {
-  const {
-    handleHouseWorkClick,
-    handleDueDateClick,
-    isHouseWorkSheetOpen,
-    setHouseWorkSheetOpen,
-    isDueDateSheetOpen,
-    setDueDateSheetOpen,
-  } = useAddHouseWork();
+  const [isHouseWorkSheetOpen, setHouseWorkSheetOpen] = useState(false);
+  const [isDueDateSheetOpen, setDueDateSheetOpen] = useState(false);
+
+  //바텀 시트 여는 함수들
+  const handleHouseWorkClick = () => {
+    setHouseWorkSheetOpen(true);
+  };
+
+  const handleDueDateClick = () => {
+    setDueDateSheetOpen(true);
+  };
   return (
     <>
       <HouseworkForm
