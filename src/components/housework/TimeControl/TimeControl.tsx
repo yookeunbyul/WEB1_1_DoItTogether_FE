@@ -1,8 +1,8 @@
-import { Label } from '@/components/common/ui/label';
 import { Switch } from '@/components/common/ui/switch';
 import TimePicker from '@/components/housework/TimeControl/TimePicker/TimePicker';
 import { cn } from '@/lib/utils';
-import { ClockIcon } from '@/components/common/icon';
+import TimeLabel from '@/components/housework/TimeLabel/TimeLabel'; // TimeLabel 컴포넌트 import
+import React from 'react';
 
 interface SelectedTime {
   hour: string;
@@ -20,11 +20,9 @@ interface TimeControlProps {
 const TimeControl = ({ setTime, time, isAllday, setIsAllday }: TimeControlProps) => {
   const handleSwitchChange = () => {
     if (!isAllday) {
-      //false때 누르면 하루종일하기가 활성화
       setIsAllday(true);
       setTime(null);
     } else {
-      //true일때 누르면 하루종일하기가 비활성화
       setIsAllday(false);
     }
   };
@@ -37,21 +35,7 @@ const TimeControl = ({ setTime, time, isAllday, setIsAllday }: TimeControlProps)
       )}
     >
       <div className='flex items-center justify-between text-black font-body'>
-        {isAllday ? (
-          <Label htmlFor='time-mode' className='flex items-center gap-4'>
-            <ClockIcon
-              fillClass='fill-main'
-              circleStrokeClass='stroke-main'
-              handStrokeClass='stroke-white'
-            />
-            <p>하루종일 하기</p>
-          </Label>
-        ) : (
-          <Label htmlFor='time-mode' className='text-gray flex items-center gap-4'>
-            <ClockIcon />
-            <p>시작시간이 언제인가요?</p>
-          </Label>
-        )}
+        <TimeLabel isAllday={isAllday} />
         <Switch
           id='time-mode'
           checked={isAllday}
@@ -64,4 +48,4 @@ const TimeControl = ({ setTime, time, isAllday, setIsAllday }: TimeControlProps)
   );
 };
 
-export default TimeControl;
+export default React.memo(TimeControl);
