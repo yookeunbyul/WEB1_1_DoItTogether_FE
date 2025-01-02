@@ -14,6 +14,15 @@ interface PresetTabItemProps {
   value: string;
 }
 
+const ICONS = {
+  [Category.ALL]: <HomeIcon />,
+  [Category.LIVING_ROOM]: <LivingRoomIcon />,
+  [Category.BATH_ROOM]: <BathRoomIcon />,
+  [Category.BED_ROOM]: <BedRoomIcon />,
+  [Category.KITCHEN]: <KitchenIcon />,
+  [Category.ETC]: <EtcIcon />,
+} as const;
+
 const PresetTabItem: React.FC<PresetTabItemProps> = ({ name, value }) => {
   return (
     <TabsTrigger
@@ -21,12 +30,7 @@ const PresetTabItem: React.FC<PresetTabItemProps> = ({ name, value }) => {
       className='flex gap-2 rounded-xl px-2 py-2 font-label data-[state=active]:bg-black data-[state=inactive]:bg-gray5 data-[state=active]:text-white data-[state=inactive]:text-black'
     >
       <div className='flex h-5 items-center justify-center'>
-        {name === Category.ALL && <HomeIcon />}
-        {name === Category.LIVING_ROOM && <LivingRoomIcon />}
-        {name === Category.BATH_ROOM && <BathRoomIcon />}
-        {name === Category.BED_ROOM && <BedRoomIcon />}
-        {name === Category.KITCHEN && <KitchenIcon />}
-        {name === Category.ETC && <EtcIcon />}
+        {ICONS[name as keyof typeof ICONS]}
       </div>
       <span className='flex items-center'>{name}</span>
     </TabsTrigger>

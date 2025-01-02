@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import BottomSheet from '@/components/common/bottomSheet/BottomSheet';
 import Button from '@/components/common/button/Button/Button';
 import PresetTab from '@/components/common/tab/PresetTab/PresetTab';
@@ -46,6 +46,8 @@ const HouseWorkSheet: React.FC<HouseWorkSheetProps> = ({
   const [selectedHouseWork, setSelectedHouseWork] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
+  const memoizedPresetData = useMemo(() => presetData, [presetData]);
+
   // 현재 입장한 채널
   const { channelId: strChannelId } = useParams();
   const channelId = Number(strChannelId);
@@ -81,11 +83,11 @@ const HouseWorkSheet: React.FC<HouseWorkSheetProps> = ({
     }
   };
 
-  const handleDoneClick = () => {
+  const handleDoneClick = useCallback(() => {
     setTask(selectedHouseWork ?? '');
     setCategory(selectedCategory ?? '');
     setOpen(false);
-  };
+  }, [selectedHouseWork, selectedCategory]);
 
   const handleTabChange = (value: string) => {
     setActiveTab(value);
@@ -114,7 +116,7 @@ const HouseWorkSheet: React.FC<HouseWorkSheetProps> = ({
             />
           </div>
           <PresetTab
-            presetData={presetData}
+            presetData={memoizedPresetData}
             cateActiveTab={cateActiveTab}
             setCateActiveTab={handleCateTabChange}
             isBottomSheet={true}
