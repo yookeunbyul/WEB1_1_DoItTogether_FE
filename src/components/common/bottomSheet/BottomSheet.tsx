@@ -1,5 +1,5 @@
 import { Sheet } from 'react-modal-sheet';
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import BottomSheetTitle from '@/components/common/bottomSheet/BottomSheetTitle/BottomSheetTitle';
 import CloseBtn from '@/components/common/bottomSheet/CloseBtn/CloseBtn';
 
@@ -23,6 +23,21 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
   closeBtn = true,
   children,
 }) => {
+  const handleClick = useCallback(() => {
+    setOpen(false);
+  }, []);
+
+  const memoizedTitle = useMemo(() => title, [title]);
+
+  const SheetHeader = useMemo(
+    () => (
+      <Sheet.Header>
+        <BottomSheetTitle title={memoizedTitle} />
+      </Sheet.Header>
+    ),
+    [memoizedTitle]
+  );
+
   return (
     <>
       <Sheet
@@ -33,10 +48,8 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
       >
         <div className='relative mx-auto h-full w-full max-w'>
           <Sheet.Container>
-            {closeBtn && <CloseBtn handleClick={() => setOpen(false)} />}
-            <Sheet.Header>
-              <BottomSheetTitle title={title} />
-            </Sheet.Header>
+            {closeBtn && <CloseBtn handleClick={handleClick} />}
+            {SheetHeader}
             <Sheet.Content>{children}</Sheet.Content>
           </Sheet.Container>
         </div>
