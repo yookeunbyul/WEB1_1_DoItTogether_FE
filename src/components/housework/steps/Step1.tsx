@@ -9,6 +9,8 @@ interface Step1Props {
   setCategory: React.Dispatch<React.SetStateAction<string>>;
   startDate: string;
   setStartDate: React.Dispatch<React.SetStateAction<string>>;
+  isAllday: boolean;
+  setIsAllday: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Step1 = ({
@@ -19,6 +21,8 @@ const Step1 = ({
   setCategory,
   startDate,
   setStartDate,
+  isAllday,
+  setIsAllday,
 }: Step1Props) => {
   const {
     handleHouseWorkClick,
@@ -37,6 +41,8 @@ const Step1 = ({
         handleDueDateClick={handleDueDateClick}
         setTime={setTime}
         time={time}
+        isAllday={isAllday}
+        setIsAllday={setIsAllday}
       />
 
       <HouseWorkSheet

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 import { User } from '@/types/apis/groupApi';
 import { getGroupUser } from '@/services/group/getGroupUser';
@@ -16,7 +16,6 @@ export interface SelectedTime {
 }
 
 const useAddHouseWork = () => {
-  const location = useLocation();
   const navigate = useNavigate();
 
   //채널 id와 집안일 id
@@ -24,11 +23,8 @@ const useAddHouseWork = () => {
   const channelId = Number(strChannelId);
   const houseworkId = Number(strHouseworkId);
 
-  //home에서 가져온 집안일 정보(집안일 수정에서 사용할 거임)
-  const targetHousework = location.state;
-
   //전역 상태
-  const { userId, setIsAllday, setUserId, reset } = useAddHouseWorkStore();
+  const { userId, setUserId, reset, setNickName, targetHousework } = useAddHouseWorkStore();
 
   const { setActiveDate, setActiveWeek, setActiveTab, setWeekText } = useHomePageStore();
 
@@ -41,9 +37,16 @@ const useAddHouseWork = () => {
       : null
   );
 
-  const [task, setTask] = useState('');
-  const [category, setCategory] = useState('');
-  const [startDate, setStartDate] = useState('');
+  const [task, setTask] = useState(targetHousework?.task || '');
+  const [category, setCategory] = useState(targetHousework?.category || '');
+  const [startDate, setStartDate] = useState(() => {
+    if (targetHousework?.startDate) {
+      const date = new Date(targetHousework.startDate);
+      return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
+    }
+    return '';
+  });
+  const [isAllday, setIsAllday] = useState((targetHousework?.isAllDay as boolean) ?? true);
 
   //담당자 선택 시트 오픈 여부
   const [isOpen, setIsOpen] = useState(false);
@@ -58,18 +61,10 @@ const useAddHouseWork = () => {
   //패널 : 스텝
   const [step, setStep] = useState(1);
 
-  //home에서 가져온 집안일이 있을 경우 전역 상태에 값들을 채워준다
   useEffect(() => {
     if (targetHousework) {
-      setTask(targetHousework.task);
-
-      const date = new Date(targetHousework.startDate);
-      const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
-
-      setStartDate(formattedDate);
-      setCategory(targetHousework.category);
       setUserId(targetHousework.userId);
-      setIsAllday(targetHousework.isAllDay);
+      setNickName(targetHousework.assignee);
     }
   }, []);
 
@@ -215,6 +210,8 @@ const useAddHouseWork = () => {
     setTime,
     setCategory,
     setStartDate,
+    isAllday,
+    setIsAllday,
   };
 };
 

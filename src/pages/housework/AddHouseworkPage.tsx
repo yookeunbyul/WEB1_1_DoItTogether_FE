@@ -21,9 +21,9 @@ const AddHouseworkPage = ({}) => {
     category,
     setCategory,
     setStartDate,
+    isAllday,
+    setIsAllday,
   } = useAddHouseWork();
-
-  console.log(task, category);
 
   return (
     <div className='flex h-screen flex-col gap-4 px-5 pb-6'>
@@ -57,6 +57,8 @@ const AddHouseworkPage = ({}) => {
           setCategory={setCategory}
           startDate={startDate}
           setStartDate={setStartDate}
+          isAllday={isAllday}
+          setIsAllday={setIsAllday}
         />
       )}
 

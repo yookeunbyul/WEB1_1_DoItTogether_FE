@@ -12,6 +12,8 @@ interface HouseworkFormProps {
   handleDueDateClick: () => void;
   setTime: React.Dispatch<React.SetStateAction<SelectedTime | null>>;
   time: SelectedTime | null;
+  isAllday: boolean;
+  setIsAllday: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const HouseworkForm: React.FC<HouseworkFormProps> = ({
@@ -21,6 +23,8 @@ const HouseworkForm: React.FC<HouseworkFormProps> = ({
   handleDueDateClick,
   setTime,
   time,
+  isAllday,
+  setIsAllday,
 }) => {
   return (
     <section className='flex flex-1 flex-col gap-4' aria-label='집안일 추가 컨텐츠'>
@@ -52,7 +56,7 @@ const HouseworkForm: React.FC<HouseworkFormProps> = ({
           icon={<DateIcon className='text-gray3' />}
         />
       )}
-      <TimeControl setTime={setTime} time={time} />
+      <TimeControl setTime={setTime} time={time} isAllday={isAllday} setIsAllday={setIsAllday} />
     </section>
   );
 };

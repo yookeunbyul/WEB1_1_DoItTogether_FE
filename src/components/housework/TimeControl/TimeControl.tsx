@@ -1,7 +1,6 @@
 import { Label } from '@/components/common/ui/label';
 import { Switch } from '@/components/common/ui/switch';
 import TimePicker from '@/components/housework/TimeControl/TimePicker/TimePicker';
-import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 import { cn } from '@/lib/utils';
 import { ClockIcon } from '@/components/common/icon';
 
@@ -14,11 +13,11 @@ interface SelectedTime {
 interface TimeControlProps {
   setTime: React.Dispatch<React.SetStateAction<SelectedTime | null>>;
   time: SelectedTime | null;
+  isAllday: boolean;
+  setIsAllday: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const TimeControl = ({ setTime, time }: TimeControlProps) => {
-  const { isAllday, setIsAllday } = useAddHouseWorkStore();
-
+const TimeControl = ({ setTime, time, isAllday, setIsAllday }: TimeControlProps) => {
   const handleSwitchChange = () => {
     if (!isAllday) {
       //false때 누르면 하루종일하기가 활성화
