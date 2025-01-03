@@ -1,6 +1,5 @@
 import BackBtn from '@/components/common/button/BackBtn/BackBtn';
 import AccountSetBtn from '@/components/my/AccountSetBtn/AccountSetBtn';
-import React from 'react';
 
 interface HeaderProps {
   title: string;
