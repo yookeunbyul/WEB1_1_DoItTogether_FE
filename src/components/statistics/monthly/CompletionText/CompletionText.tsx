@@ -1,3 +1,4 @@
+import React from 'react';
 import { ChartIcon, CheckFillIcon } from '@/components/common/icon';
 import Completion from '@/components/statistics/monthly/Completion/Completion';
 import { CompletionStatus, MonthlyDateScore } from '@/types/apis/statisticsApi';
@@ -7,7 +8,7 @@ interface CompletionTextProps {
   currentMonth: string;
 }
 
-const CompletionText: React.FC<CompletionTextProps> = ({ monthlyData, currentMonth }) => {
+const CompletionText = React.memo(({ monthlyData, currentMonth }: CompletionTextProps) => {
   const calculateMonthStats = () => {
     if (!monthlyData.length) return { completionRate: 0, completedDays: 0 };
 
@@ -37,6 +38,6 @@ const CompletionText: React.FC<CompletionTextProps> = ({ monthlyData, currentMon
       작업을 완료했어요!
     </div>
   );
-};
+});
 
 export default CompletionText;

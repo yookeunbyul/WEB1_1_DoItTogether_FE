@@ -1,6 +1,6 @@
 import Calendar from 'react-calendar';
 import { ArrowLeftIcon, ArrowRightIcon } from '@/components/common/icon';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getMonthlyScore } from '@/services/statistics/getMonthlyScore';
 import { CompletionStatus, MonthlyDateScore } from '@/types/apis/statisticsApi';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -12,7 +12,7 @@ interface MonthlyGrassProps {
   onDataChange: (data: MonthlyDateScore[]) => void;
 }
 
-const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ onMonthChange, onDataChange }) => {
+const MonthlyGrass = React.memo(({ onMonthChange, onDataChange }: MonthlyGrassProps) => {
   const today = new Date();
   const navigate = useNavigate();
   const lastDayCurrentMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
@@ -127,5 +127,5 @@ const MonthlyGrass: React.FC<MonthlyGrassProps> = ({ onMonthChange, onDataChange
       }
     />
   );
-};
+});
 export default MonthlyGrass;
