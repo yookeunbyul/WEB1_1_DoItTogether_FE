@@ -1,6 +1,7 @@
 import { Housework } from '@/types/apis/houseworkApi';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { User } from '@/types/apis/groupApi';
 
 interface AddHouseWorkState {
   userId: number | null;
@@ -8,6 +9,8 @@ interface AddHouseWorkState {
   selectedDate: Date | undefined;
   nickname: string;
   targetHousework: Housework | undefined;
+  members: User[];
+  isMemberLoading: boolean;
 }
 
 interface AddHouseWorkActions {
@@ -16,6 +19,8 @@ interface AddHouseWorkActions {
   setSelectedDate: (date: Date | undefined) => void;
   setNickName: (nickname: string) => void;
   setTargetHousework: (targetHousework: Housework | undefined) => void;
+  setMembers: (members: User[]) => void;
+  setIsMemberLoading: (isMemberLoading: boolean) => void;
   reset: () => void;
 }
 
@@ -25,6 +30,8 @@ const initialState: AddHouseWorkState = {
   selectedDate: undefined,
   nickname: '',
   targetHousework: undefined,
+  members: [],
+  isMemberLoading: true,
 };
 
 type State = AddHouseWorkState & AddHouseWorkActions;
@@ -39,6 +46,8 @@ const useAddHouseWorkStore = create<State>()(
       setSelectedDate: selectedDate => set({ selectedDate }),
       setNickName: nickname => set({ nickname }),
       setTargetHousework: targetHousework => set({ targetHousework }),
+      setMembers: members => set({ members }),
+      setIsMemberLoading: isMemberLoading => set({ isMemberLoading }),
       reset: () => set(initialState),
     }),
     {

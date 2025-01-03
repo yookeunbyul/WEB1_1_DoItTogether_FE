@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
-import { User } from '@/types/apis/groupApi';
 import { getGroupUser } from '@/services/group/getGroupUser';
 import { putHousework } from '@/services/housework/putHousework';
 import { postHousework } from '@/services/housework/postHousework';
@@ -24,7 +23,16 @@ const useAddHouseWork = () => {
   const houseworkId = Number(strHouseworkId);
 
   //전역 상태
-  const { userId, setUserId, reset, setNickName, targetHousework } = useAddHouseWorkStore();
+  const {
+    userId,
+    setUserId,
+    reset,
+    setNickName,
+    targetHousework,
+    members,
+    setMembers,
+    setIsMemberLoading,
+  } = useAddHouseWorkStore();
 
   const { setActiveDate, setActiveWeek, setActiveTab, setWeekText } = useHomePageStore();
 
@@ -53,8 +61,6 @@ const useAddHouseWork = () => {
 
   //담당자 시트 관리하는 지역 상태
   const [selectedValue, setSelectedValue] = useState(userId || null);
-  const [members, setMembers] = useState<User[]>([]);
-  const [isMemberLoading, setIsMemberLoading] = useState(true);
 
   const memoizedMembers = useMemo(() => members, [members]);
 
@@ -70,19 +76,21 @@ const useAddHouseWork = () => {
 
   //멤버 조회하는 api 호출
   useEffect(() => {
+    if (step !== 2) return;
+
     const fetchGroupMembers = async () => {
       try {
         const response = await getGroupUser({ channelId });
-        setMembers(response.result.userList);
+        setMembers(response.result.userList); // 전역 상태 업데이트
+        setIsMemberLoading(false);
       } catch (error) {
         console.error('그룹 사용자 조회 실패:', error);
-      } finally {
         setIsMemberLoading(false);
       }
     };
 
     fetchGroupMembers();
-  }, [channelId]);
+  }, [channelId, step]);
 
   const handleBackClick = useCallback(() => {
     if (step === 1) {
@@ -175,7 +183,6 @@ const useAddHouseWork = () => {
     category,
     task,
     setTask,
-    isMemberLoading,
     isLoading,
     members: memoizedMembers,
     handleManagerClick,
