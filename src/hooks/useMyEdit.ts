@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { patchMyInfo } from '@/services/user/patchMyInfo';
 import { toast } from '@/hooks/use-toast';
@@ -9,6 +9,9 @@ export const useMyEdit = () => {
   const location = useLocation();
   const { channelId } = useParams();
 
+  const nicknameRegex = useMemo(() => INPUT_VALIDATION.nickname.regexp, []);
+  const maxLength = useMemo(() => INPUT_VALIDATION.nickname.maxLength, []);
+
   const imageUrl = location.state?.imageUrl;
   const nickName = location.state?.nickname;
 
@@ -16,24 +19,27 @@ export const useMyEdit = () => {
   const [isEdited, setIsEdited] = useState(false);
   const [error, setError] = useState<boolean>(false);
 
-  const handleBack = () => {
+  const validateUsername = useCallback(
+    (value: string) => {
+      return value.length <= maxLength && nicknameRegex.test(value);
+    },
+    [maxLength, nicknameRegex]
+  );
+
+  const handleBack = useCallback(() => {
     navigate(`/main/${channelId}/my-page`);
-  };
+  }, [navigate, channelId]);
 
-  const handleChange = (value: string) => {
-    setUserName(value);
-    setIsEdited(true);
-    if (
-      value.length <= INPUT_VALIDATION.nickname.maxLength &&
-      INPUT_VALIDATION.nickname.regexp.test(value)
-    ) {
-      setError(false);
-    } else {
-      setError(true);
-    }
-  };
+  const handleChange = useCallback(
+    (value: string) => {
+      setUserName(value);
+      setIsEdited(true);
+      setError(!validateUsername(value));
+    },
+    [validateUsername]
+  );
 
-  const handleDone = async () => {
+  const handleDone = useCallback(async () => {
     try {
       await patchMyInfo({ nickName: username });
       navigate(`/main/${channelId}/my-page`);
@@ -43,7 +49,7 @@ export const useMyEdit = () => {
     } catch (error) {
       console.error('프로필 수정 실패:', error);
     }
-  };
+  }, [username, navigate, channelId]);
 
   return {
     imageUrl,
