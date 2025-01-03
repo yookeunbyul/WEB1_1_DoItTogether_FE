@@ -10,13 +10,13 @@ interface HeaderProps {
   handleDone?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({
+const Header = ({
   title,
   isNeededDoneBtn,
   handleBack,
   handleDone,
   isNeededSettingBtn,
-}) => {
+}: HeaderProps) => {
   return (
     <div className='flex items-center justify-between border-b-[1px] border-solid border-gray4/40 bg-white px-5 py-4'>
       <div className='flex-1'>{handleBack && <BackBtn handleClick={handleBack} />}</div>

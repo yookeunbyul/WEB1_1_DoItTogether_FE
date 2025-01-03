@@ -5,7 +5,7 @@ interface LeaveGuideProps {
   handleCheckboxChange: () => void;
 }
 
-const LeaveGuide: React.FC<LeaveGuideProps> = ({ handleCheckboxChange }) => {
+const LeaveGuide = ({ handleCheckboxChange }: LeaveGuideProps) => {
   return (
     <div className='flex flex-1 flex-col gap-4 px-5'>
       <div className='flex h-24 w-full items-center justify-center'>
