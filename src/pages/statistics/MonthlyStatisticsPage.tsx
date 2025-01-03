@@ -1,10 +1,9 @@
-import React from 'react';
 import { CompletionText, MonthlyGoodBad, MonthlyGrass } from '@/components/statistics/monthly';
 import useMonthlyStatistics from '@/hooks/useMonthlyStatistics';
 import MetaTags from '@/components/common/metaTags/MetaTags';
 import { useParams } from 'react-router-dom';
 
-const MonthlyStatisticsPage: React.FC = () => {
+const MonthlyStatisticsPage = () => {
   const { mvpData, handleMonthChange, handleDataChange, monthlyData, currentMonth } =
     useMonthlyStatistics();
   const { channelId } = useParams();
