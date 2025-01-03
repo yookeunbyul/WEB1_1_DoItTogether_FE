@@ -2,9 +2,8 @@ import { CompletionText, MonthlyGoodBad, MonthlyGrass } from '@/components/stati
 import useMonthlyStatistics from '@/hooks/useMonthlyStatistics';
 import MetaTags from '@/components/common/metaTags/MetaTags';
 import { useParams } from 'react-router-dom';
-import React from 'react';
 
-const MonthlyStatisticsPage = React.memo(() => {
+const MonthlyStatisticsPage = () => {
   const { mvpData, handleMonthChange, handleDataChange, monthlyData, currentMonth } =
     useMonthlyStatistics();
   const { channelId } = useParams();
@@ -24,6 +23,6 @@ const MonthlyStatisticsPage = React.memo(() => {
       </div>
     </div>
   );
-});
+};
 
 export default MonthlyStatisticsPage;
