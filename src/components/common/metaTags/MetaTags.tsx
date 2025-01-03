@@ -1,4 +1,3 @@
-import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 interface MetaTagsProps {
@@ -7,7 +6,7 @@ interface MetaTagsProps {
   url: string;
 }
 
-const MetaTags: React.FC<MetaTagsProps> = ({ title, description, url }) => {
+const MetaTags = ({ title, description, url }: MetaTagsProps) => {
   return (
     <Helmet>
       <title>{title}</title>

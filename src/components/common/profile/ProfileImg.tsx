@@ -7,7 +7,7 @@ interface ProfileImgProps {
   imageUrl?: string;
 }
 
-const ProfileImg: React.FC<ProfileImgProps> = ({ classname, imageUrl = '' }) => {
+const ProfileImg = ({ classname, imageUrl = '' }: ProfileImgProps) => {
   const location = useLocation();
   const isEditPage = location.pathname.includes('edit');
 
