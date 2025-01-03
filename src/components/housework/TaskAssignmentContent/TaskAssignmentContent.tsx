@@ -10,6 +10,13 @@ interface TaskAssignmentContentProps {
   handleManagerClick: () => void;
 }
 
+const ICONS = {
+  PROFILE: {
+    DEFAULT: <ProfileIcon className='text-main' />,
+    GRAY: <ProfileIcon className='text-gray3' />,
+  },
+} as const;
+
 const TaskAssignmentContent: React.FC<TaskAssignmentContentProps> = ({
   userId,
   members,
@@ -23,14 +30,14 @@ const TaskAssignmentContent: React.FC<TaskAssignmentContentProps> = ({
             selected={userId}
             handleClick={handleManagerClick}
             members={members}
-            icon={<ProfileIcon className='text-main' />}
+            icon={ICONS.PROFILE.DEFAULT}
           />
         ) : (
           <OpenSheetBtn
             text='책임자는 누구인가요?'
             handleClick={handleManagerClick}
             type='housework'
-            icon={<ProfileIcon className='text-gray3' />}
+            icon={ICONS.PROFILE.GRAY}
           />
         )}
       </section>

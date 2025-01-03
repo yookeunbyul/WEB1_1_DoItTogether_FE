@@ -1,5 +1,6 @@
 import { DueDateSheet, HouseworkForm, HouseWorkSheet } from '@/components/housework';
-import useAddHouseWork, { SelectedTime } from '@/hooks/useAddHouseWork';
+import { SelectedTime } from '@/hooks/useAddHouseWork';
+import React, { useState } from 'react';
 
 interface Step1Props {
   setTime: React.Dispatch<React.SetStateAction<SelectedTime | null>>;
@@ -9,6 +10,8 @@ interface Step1Props {
   setCategory: React.Dispatch<React.SetStateAction<string>>;
   startDate: string;
   setStartDate: React.Dispatch<React.SetStateAction<string>>;
+  isAllday: boolean;
+  setIsAllday: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Step1 = ({
@@ -19,15 +22,20 @@ const Step1 = ({
   setCategory,
   startDate,
   setStartDate,
+  isAllday,
+  setIsAllday,
 }: Step1Props) => {
-  const {
-    handleHouseWorkClick,
-    handleDueDateClick,
-    isHouseWorkSheetOpen,
-    setHouseWorkSheetOpen,
-    isDueDateSheetOpen,
-    setDueDateSheetOpen,
-  } = useAddHouseWork();
+  const [isHouseWorkSheetOpen, setHouseWorkSheetOpen] = useState(false);
+  const [isDueDateSheetOpen, setDueDateSheetOpen] = useState(false);
+
+  //바텀 시트 여는 함수들
+  const handleHouseWorkClick = () => {
+    setHouseWorkSheetOpen(true);
+  };
+
+  const handleDueDateClick = () => {
+    setDueDateSheetOpen(true);
+  };
   return (
     <>
       <HouseworkForm
@@ -37,6 +45,8 @@ const Step1 = ({
         handleDueDateClick={handleDueDateClick}
         setTime={setTime}
         time={time}
+        isAllday={isAllday}
+        setIsAllday={setIsAllday}
       />
 
       <HouseWorkSheet

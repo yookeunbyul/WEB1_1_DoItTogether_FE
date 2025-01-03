@@ -1,4 +1,5 @@
 import { Button as ButtonComponent } from '@/components/common/ui/button';
+import React from 'react';
 
 interface ButtonProps {
   /** 라벨 */
@@ -35,4 +36,4 @@ const Button = ({
   );
 };
 
-export default Button;
+export default React.memo(Button);
