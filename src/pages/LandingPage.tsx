@@ -1,7 +1,10 @@
+import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
-import { ServiceTitle, ServiceLogo, KakaoLoginButton } from '@/components/landing';
+import { ServiceTitle, KakaoLoginButton } from '@/components/landing';
 import { useLanding } from '@/hooks/useLanding';
 import MetaTags from '@/components/common/metaTags/MetaTags';
+
+const ServiceLogo = lazy(() => import('@/components/landing/ServiceLogo'));
 
 const LandingPage = () => {
   const { handleLoginButton } = useLanding();
@@ -32,7 +35,9 @@ const LandingPage = () => {
       >
         <div className='flex flex-1 flex-col'>
           <ServiceTitle />
-          <ServiceLogo />
+          <Suspense fallback={<div></div>}>
+            <ServiceLogo />
+          </Suspense>
         </div>
         <KakaoLoginButton handleLoginButton={handleLoginButton} />
       </motion.div>
