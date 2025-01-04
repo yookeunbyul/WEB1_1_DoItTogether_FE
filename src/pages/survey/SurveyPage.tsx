@@ -6,6 +6,7 @@ import { Button } from '@/components/common/ui/button';
 import { Step1, Step2, Step3, Step4, Step5, LoadingScreen } from '@/components/survey';
 import { useSurvey } from '@/hooks/useSurvey';
 import MetaTags from '@/components/common/metaTags/MetaTags';
+import { BUTTON_TEXT } from '@/constants/onBoarding';
 
 const SurveyPage: React.FC = () => {
   const {
@@ -32,6 +33,8 @@ const SurveyPage: React.FC = () => {
       },
     },
   };
+
+  const isValid = isStepValid();
 
   const renderStep = () => {
     if (step <= 4) {
@@ -61,11 +64,11 @@ const SurveyPage: React.FC = () => {
     <motion.div className='sticky bottom-6 bg-white px-5'>
       <Button
         size={'large'}
-        variant={!isStepValid() ? 'disabled' : 'full'}
+        variant={!isValid ? 'disabled' : 'full'}
         onClick={setNextStep}
-        disabled={!isStepValid()}
+        disabled={!isValid}
       >
-        {step === 5 ? '완료' : '다음'}
+        {step === 5 ? BUTTON_TEXT.COMPLETE : BUTTON_TEXT.NEXT}
       </Button>
     </motion.div>
   );
