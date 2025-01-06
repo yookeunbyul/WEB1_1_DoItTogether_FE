@@ -8,10 +8,11 @@ interface DueDateSheetProps {
   isOpen: boolean;
   /** isOpen 바꾸는 set함수 */
   setOpen: (isOpen: boolean) => void;
+  setStartDate: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const DueDateSheet = ({ isOpen, setOpen }: DueDateSheetProps) => {
-  const { setStartDate, selectedDate, setSelectedDate } = useAddHouseWorkStore();
+const DueDateSheet = ({ isOpen, setOpen, setStartDate }: DueDateSheetProps) => {
+  const { selectedDate, setSelectedDate } = useAddHouseWorkStore();
   const handleDoneClick = () => {
     if (selectedDate) {
       //string으로 전역저장(2024년 11월 30일)

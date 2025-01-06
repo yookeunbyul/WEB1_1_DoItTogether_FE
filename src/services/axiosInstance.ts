@@ -26,7 +26,16 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   error => {
-    console.error('API 요청 실패:', error);
+    // 공통 에러 처리
+    if (error.response) {
+      console.error(
+        `API 요청 실패: HTTP ${error.response.status} (${error.response.data?.code}) - ${error.response.data?.message}`
+      );
+    } else if (error.request) {
+      console.error('API 요청 실패: 서버 응답이 없습니다.');
+    } else {
+      console.error('API 요청 실패:', error.message);
+    }
     return Promise.reject(error);
   }
 );
