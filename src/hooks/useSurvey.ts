@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postPersonalKeyword } from '@/services/onboarding/postPersonalKeyword';
 import { patchMyInitState } from '@/services/user/patchMyInitState';
@@ -14,6 +14,7 @@ export const useSurvey = () => {
   const [step, setStep] = useState(1);
   const [progressStep, setProgressStep] = useState(1);
   const [answer, setAnswer] = useState<string[]>([]);
+  const [answerLength, setAnswerLength] = useState(0);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   const [result, setResult] = useState<string[]>([]);
   const [username, setUserName] = useState<string>('사용자');
@@ -21,6 +22,8 @@ export const useSurvey = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (step !== 5) return;
+
     const fetchMyInfo = async () => {
       try {
         const response = await getMyInfo();
@@ -31,13 +34,9 @@ export const useSurvey = () => {
     };
 
     fetchMyInfo();
-  }, []);
+  }, [step]);
 
-  useEffect(() => {
-    if (step === 0) navigate('/survey-intro');
-  }, [step, navigate]);
-
-  const setNextStep = async () => {
+  const setNextStep = useCallback(async () => {
     if (step === 4) {
       setProgressStep(5);
       await new Promise(resolve => setTimeout(resolve, 500));
@@ -73,20 +72,25 @@ export const useSurvey = () => {
 
     setStep(prev => prev + 1);
     setProgressStep(prev => prev + 1);
-  };
+  }, [step, answer, navigate]);
 
-  const setPrevStep = () => {
+  const setPrevStep = useCallback(() => {
+    if (step === 1) {
+      navigate('/survey-intro');
+    }
     setStep(prev => prev - 1);
-  };
+    setProgressStep(prev => prev - 1);
+  }, [step]);
 
-  const handleAnswer = (select: string) => {
+  const handleAnswer = useCallback((select: string) => {
     setAnswer(prev => [...prev, select]);
-  };
+    setAnswerLength(prev => prev + 1);
+  }, []);
 
-  const isStepValid = () => {
+  const isStepValid = useCallback(() => {
     if (step === 5) return true;
-    return answer.length >= step;
-  };
+    return answerLength >= step;
+  }, [step, answerLength]);
 
   const stepComponents = [
     {

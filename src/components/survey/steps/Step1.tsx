@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import SurveyTitle from '@/components/survey/SurveyTitle/SurveyTitle';
 import MenuSelect from '@/components/survey/MenuSelect/MenuSelect';
 import { motion } from 'framer-motion';
@@ -9,13 +9,17 @@ interface Step1Props {
   handleAnswer: (text: string) => void;
 }
 
-const Step1: React.FC<Step1Props> = ({ title, questions, handleAnswer }) => {
+const Step1 = ({ title, questions, handleAnswer }: Step1Props) => {
   const [activeItem, setActiveItem] = useState('');
+  const memoizedTitle = useMemo(() => title, [title]);
 
-  const handleSelect = (content: string) => {
-    setActiveItem(content);
-    handleAnswer(content);
-  };
+  const handleSelect = useCallback(
+    (content: string) => {
+      setActiveItem(content);
+      handleAnswer(content);
+    },
+    [handleAnswer]
+  );
 
   const container = {
     hidden: { opacity: 0, y: -20 },
@@ -37,7 +41,7 @@ const Step1: React.FC<Step1Props> = ({ title, questions, handleAnswer }) => {
       animate='show'
     >
       <div className='mb-5'>
-        <SurveyTitle title={title} />
+        <SurveyTitle title={memoizedTitle} />
       </div>
 
       <div className='flex flex-wrap gap-4'>
@@ -55,4 +59,4 @@ const Step1: React.FC<Step1Props> = ({ title, questions, handleAnswer }) => {
   );
 };
 
-export default Step1;
+export default React.memo(Step1);
