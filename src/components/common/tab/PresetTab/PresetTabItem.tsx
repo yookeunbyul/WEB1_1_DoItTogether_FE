@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {
   BathRoomIcon,
   BedRoomIcon,
@@ -23,7 +24,7 @@ const ICONS = {
   [Category.ETC]: <EtcIcon />,
 } as const;
 
-const PresetTabItem: React.FC<PresetTabItemProps> = ({ name, value }) => {
+const PresetTabItem = ({ name, value }: PresetTabItemProps) => {
   return (
     <TabsTrigger
       value={value}
@@ -37,4 +38,4 @@ const PresetTabItem: React.FC<PresetTabItemProps> = ({ name, value }) => {
   );
 };
 
-export default PresetTabItem;
+export default memo(PresetTabItem);

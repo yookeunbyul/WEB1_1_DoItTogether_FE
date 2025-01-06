@@ -8,25 +8,13 @@ import usePresetSetting from '@/hooks/usePresetSetting';
 import usePresetSettingStore from '@/store/usePresetSettingStore';
 import MetaTags from '@/components/common/metaTags/MetaTags';
 import { useParams } from 'react-router-dom';
+import { useMemo } from 'react';
 
 const PresetSettingPage = () => {
-  const {
-    categoryList,
-    activeTab,
-    // setActiveTab,
-    cateActiveTab,
-    // setCateActiveTab,
-    deleteButtonStates,
-    presetData,
-  } = usePresetSettingStore();
-  const {
-    handleAddInput,
-    handleSelectClick,
-    handleDeleteClick,
-    handleBack,
-    handleTabChange,
-    handleCateTabChange,
-  } = usePresetSetting();
+  const { categoryList, activeTab, cateActiveTab, deleteButtonStates, presetData } =
+    usePresetSettingStore();
+  const { handleSelectClick, handleDeleteClick, handleBack, handleTabChange, handleCateTabChange } =
+    usePresetSetting();
   const { channelId } = useParams();
 
   return (
@@ -41,7 +29,7 @@ const PresetSettingPage = () => {
         <Tab
           activeTab={activeTab}
           handleSetActiveTab={handleTabChange}
-          chargers={convertTabNameToChargers(PresetTabName)}
+          chargers={useMemo(() => convertTabNameToChargers(PresetTabName), [])}
         />
       </div>
       {activeTab === PresetTabName.USER_DATA ? (
@@ -58,7 +46,7 @@ const PresetSettingPage = () => {
             />
           </div>
           <div className='sticky bottom-0 bg-[#fff]'>
-            <PresetAddInput categoryList={categoryList} handleAddInput={handleAddInput} />
+            <PresetAddInput categoryList={categoryList} />
           </div>
         </>
       ) : (
