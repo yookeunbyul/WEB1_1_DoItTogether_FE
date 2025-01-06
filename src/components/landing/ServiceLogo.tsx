@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import LottieIcon from '@/components/common/lottie/LottieIcon';
 
@@ -23,4 +24,4 @@ const ServiceLogo = () => {
   );
 };
 
-export default ServiceLogo;
+export default React.memo(ServiceLogo);
