@@ -2,6 +2,7 @@ import { Sheet } from 'react-modal-sheet';
 import React, { useCallback, useMemo } from 'react';
 import BottomSheetTitle from '@/components/common/bottomSheet/BottomSheetTitle/BottomSheetTitle';
 import CloseBtn from '@/components/common/bottomSheet/CloseBtn/CloseBtn';
+import useAddHouseWorkStore from '@/store/useAddHouseWorkStore';
 
 interface BottomSheetProps {
   /** 바텀시트 오픈 여부 */
@@ -14,6 +15,8 @@ interface BottomSheetProps {
   closeBtn?: boolean;
   /**바텀시트 컨텐츠 */
   children: React.ReactNode;
+  selectedDate?: Date | undefined;
+  setSelectedDate?: React.Dispatch<React.SetStateAction<Date | undefined>>;
 }
 
 const BottomSheet: React.FC<BottomSheetProps> = ({
@@ -22,10 +25,21 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
   title,
   closeBtn = true,
   children,
+  setSelectedDate,
+  selectedDate,
 }) => {
+  const { targetHousework } = useAddHouseWorkStore();
+
   const handleClick = useCallback(() => {
+    if (selectedDate) {
+      setSelectedDate?.(undefined);
+    }
+    if (targetHousework?.startDate) {
+      const date = new Date(targetHousework.startDate);
+      setSelectedDate?.(date);
+    }
     setOpen(false);
-  }, []);
+  }, [selectedDate, targetHousework?.startDate]);
 
   const memoizedTitle = useMemo(() => title, [title]);
 
