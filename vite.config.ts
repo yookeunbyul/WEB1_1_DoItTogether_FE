@@ -50,6 +50,9 @@ export default defineConfig({
         display: 'standalone',
         background_color: '#ffffff',
       },
+      workbox: {
+        globPatterns: ['*/.{js,css,html,png,svg}'],
+      },
     }),
   ],
   css: {
