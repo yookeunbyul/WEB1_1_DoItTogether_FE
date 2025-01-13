@@ -32,6 +32,7 @@ const WeeklyStatisticsPage = () => {
         unCompletedCount={totalCountData.unCompletedCount}
       />
       <WeeklyStatActions
+        channelName={totalCountData.channelName}
         complimentCount={totalCountData.complimentCount}
         pokeCount={totalCountData.pokeCount}
       />

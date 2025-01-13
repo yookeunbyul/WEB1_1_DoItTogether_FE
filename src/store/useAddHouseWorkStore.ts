@@ -6,7 +6,6 @@ import { User } from '@/types/apis/groupApi';
 interface AddHouseWorkState {
   userId: number | null;
   selectedItem: number | null;
-  selectedDate: Date | undefined;
   nickname: string;
   targetHousework: Housework | undefined;
   members: User[];
@@ -16,7 +15,6 @@ interface AddHouseWorkState {
 interface AddHouseWorkActions {
   setUserId: (id: number | null) => void;
   setSelectedItem: (itemId: number | null) => void;
-  setSelectedDate: (date: Date | undefined) => void;
   setNickName: (nickname: string) => void;
   setTargetHousework: (targetHousework: Housework | undefined) => void;
   setMembers: (members: User[]) => void;
@@ -27,7 +25,6 @@ interface AddHouseWorkActions {
 const initialState: AddHouseWorkState = {
   userId: null,
   selectedItem: null,
-  selectedDate: undefined,
   nickname: '',
   targetHousework: undefined,
   members: [],
@@ -43,7 +40,6 @@ const useAddHouseWorkStore = create<State>()(
       ...initialState,
       setUserId: userId => set({ userId }),
       setSelectedItem: selectedItem => set({ selectedItem }),
-      setSelectedDate: selectedDate => set({ selectedDate }),
       setNickName: nickname => set({ nickname }),
       setTargetHousework: targetHousework => set({ targetHousework }),
       setMembers: members => set({ members }),
