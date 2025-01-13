@@ -21,10 +21,18 @@ export default defineConfig({
         enabled: true,
       },
       manifest: {
-        name: 'DOITTO',
+        name: 'Do It Together',
         short_name: 'DOITTO',
-        description: '함께하는 집안일',
+        description: '집안일 협동 기록 서비스, 효율적으로 집안일을 관리하세요.',
         theme_color: '#ffffff',
+        lang: 'ko',
+        // prefer_related_applications: true,
+        // related_applications: [
+        //   {
+        //     platform: 'play',
+        //     url: 'https://play.google.com/store/apps/details?id=com.example.app',
+        //   },
+        // ],
         icons: [
           {
             src: 'icons/icon-192x192.png',
