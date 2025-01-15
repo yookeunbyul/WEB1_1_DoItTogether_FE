@@ -100,9 +100,11 @@
 
   - `온보딩(OpenAI GPT 기반 청소 성향 키워드 추출) 구현`
 
-    ![image 11](https://github.com/user-attachments/assets/925ce971-0695-4f57-9e56-f1c976d79d63)
-    ![image 1600](https://github.com/user-attachments/assets/cf4e5195-f13b-4e59-abb1-517e296d9975)
-    ![image 132](https://github.com/user-attachments/assets/de74f0e9-70aa-497a-8d5e-3e7d0890483f)
+    <img src="https://github.com/user-attachments/assets/df4125ea-dbc0-4ca9-b309-951a5ee08fca" width="250" />
+    <img src="https://github.com/user-attachments/assets/cbcc9e0b-cceb-4768-abb7-6a519f2751c3" width="250" />
+    <img src="https://github.com/user-attachments/assets/b1610d13-7695-4a6c-b271-95f37b90b0a7" width="250" />
+
+
     
     - 토스의 퍼널(Funnel) 패턴을 적용해 4단계 설문을 단일 페이지에서 지역 상태로 통합 관리
       - 분산된 페이지 흐름과 불필요한 전역 상태 관리 개선
@@ -122,9 +124,10 @@
 
   - `집안일 추가 및 수정 구현`
 
-    ![image 204](https://github.com/user-attachments/assets/ebd01098-9381-4941-9a64-85641946b41d)
-    ![image 205](https://github.com/user-attachments/assets/746a4402-1de7-4508-a23e-c69e8a149270)
-    ![image 206](https://github.com/user-attachments/assets/9b728817-3230-4b88-b03c-c67b9f107b39)
+
+    <img src="https://github.com/user-attachments/assets/d29d6c81-1935-4beb-b803-1f312d00ffbe" width="250" />
+    <img src="https://github.com/user-attachments/assets/6fa088cf-3ff9-4954-9a94-e9c2c40da70b" width="250" />
+    <img src="https://github.com/user-attachments/assets/991613f2-ec6b-4bd9-8130-98ac44f6cdec" width="250" />
 
     - 집안일 수정 시 useEffect로 인한 UI 플래시 현상 발생
       - 전역 상태 관리를 통한 데이터 선행 로드로 UI 플레시 현상 제거 및 사용자 경험 개선
